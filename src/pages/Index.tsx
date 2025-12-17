@@ -219,7 +219,7 @@ const Index = () => {
                   </Badge>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-xl mb-2">{vehicle.name}</h3>
+                  <h3 className="accent-title text-xl mb-2">{vehicle.name}</h3>
                   <p className="text-2xl font-bold text-accent mb-4">{vehicle.price}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {vehicle.features.map((feature, idx) => (
