@@ -109,7 +109,7 @@ const Index = () => {
               ИЗ КИТАЯ
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-              Индивидуальный подбор, полное сопровождение сделки, VIP-доставка
+              Авто из Китая легально под ключ. 30-60 дней без переплат. Ваша мечта — наша экспертиза.
             </p>
             <div className="flex flex-wrap gap-6">
               <Button 
