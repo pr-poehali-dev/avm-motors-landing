@@ -122,12 +122,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground shadow-lg">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Icon name="Car" size={32} className="text-accent" />
-            <div>
-              <h1 className="text-2xl font-bold">AVM Motors</h1>
-              <p className="text-xs text-primary-foreground/80">Авто и мото из КНР</p>
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
+              alt="AVM Motors" 
+              className="h-10 md:h-12"
+            />
           </div>
           <Button
             variant="secondary"
@@ -488,12 +488,12 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Icon name="Car" size={32} className="text-accent" />
-                <div>
-                  <h3 className="text-xl font-bold">AVM Motors</h3>
-                  <p className="text-xs text-primary-foreground/80">Авто и мото из КНР</p>
-                </div>
+              <div className="mb-4">
+                <img 
+                  src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
+                  alt="AVM Motors" 
+                  className="h-12 mb-3"
+                />
               </div>
               <p className="text-sm text-primary-foreground/80">
                 Официальный импорт автомобилей и мотоциклов из Китая с гарантией и полным сопровождением
