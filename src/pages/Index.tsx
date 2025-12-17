@@ -58,7 +58,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-16">
               <img 
@@ -97,7 +97,7 @@ const Index = () => {
           }}
         ></div>
         
-        <div className="container mx-auto px-6 lg:px-12 relative z-20 py-32">
+        <div className="w-full px-6 lg:px-12 relative z-20 py-32">
           <div className="max-w-5xl">
             <div className="mb-8 flex items-center gap-3">
               <div className="h-px w-12 bg-accent"></div>
@@ -146,7 +146,7 @@ const Index = () => {
       </section>
 
       <section id="vehicles" className="py-32 relative">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
@@ -203,7 +203,7 @@ const Index = () => {
       </section>
 
       <section id="services" className="py-32 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="max-w-4xl mx-auto text-center mb-20">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
@@ -233,7 +233,7 @@ const Index = () => {
       </section>
 
       <section className="py-32">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -273,7 +273,7 @@ const Index = () => {
       </section>
 
       <section id="contact" className="py-32 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
             <Card className="p-12 bg-card border-accent/20">
               <div className="text-center mb-12">
@@ -328,7 +328,7 @@ const Index = () => {
       </section>
 
       <footer className="border-t border-border py-16">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div className="col-span-1">
               <img 
