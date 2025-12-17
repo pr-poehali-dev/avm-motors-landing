@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
@@ -18,371 +18,308 @@ const Index = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Заявка отправлена!",
-      description: "Наш менеджер свяжется с вами в ближайшее время",
+      title: "Заявка отправлена",
+      description: "Наш специалист свяжется с вами в ближайшее время",
     });
     setFormData({ name: "", phone: "", message: "" });
   };
 
-  const categories = [
-    { title: "Китай - новые авто", count: "40+ моделей" },
-    { title: "Китай - авто с пробегом", count: "100+ вариантов" },
-    { title: "Мотоциклы", count: "30+ моделей" },
-  ];
-
   const vehicles = [
     {
-      name: "Enduro X-500",
-      type: "Эндуро",
-      price: "от 450 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/422b718d-0e06-4591-9b81-c98893202986.jpg",
-      features: ["500cc", "Новый", "В наличии"],
-      year: "2024",
-      mileage: "0 км",
+      name: "HONGQI E-HS9",
+      type: "Премиум SUV",
+      price: "от 6 850 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["600 л.с.", "0-100 за 4.9с", "Electric"],
     },
     {
-      name: "Sport Touring ST-650",
-      type: "Туризм",
-      price: "от 580 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/422b718d-0e06-4591-9b81-c98893202986.jpg",
-      features: ["650cc", "Новый", "Под заказ"],
-      year: "2024",
-      mileage: "0 км",
+      name: "NIO ET7",
+      type: "Седан Executive",
+      price: "от 4 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["480 л.с.", "1000 км запас хода", "AWD"],
     },
     {
-      name: "Urban SUV X7",
-      type: "Кроссовер",
-      price: "от 2 850 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/155572cd-4de4-4478-b50e-f695becf8e34.jpg",
-      features: ["1.5T", "Новый", "В наличии"],
-      year: "2024",
-      mileage: "0 км",
+      name: "CF MOTO 800MT",
+      type: "Adventure Touring",
+      price: "от 890 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/49624ed1-78a6-4a4a-ae22-579718390d6a.jpg",
+      specs: ["95 л.с.", "799cc", "21L бак"],
     },
     {
-      name: "Electric EV-Pro",
-      type: "Электромобиль",
-      price: "от 3 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/155572cd-4de4-4478-b50e-f695becf8e34.jpg",
-      features: ["Electric", "Новый", "Под заказ"],
-      year: "2024",
-      mileage: "0 км",
-    },
-  ];
-
-  const services = [
-    {
-      icon: "Car",
-      title: "Подбор авто",
-      description: "Поможем выбрать идеальный автомобиль под ваши требования и бюджет",
-    },
-    {
-      icon: "FileCheck",
-      title: "Проверка перед покупкой",
-      description: "Полная диагностика технического состояния перед отправкой",
-    },
-    {
-      icon: "Ship",
-      title: "Доставка",
-      description: "Организуем доставку морем или ЖД с полным страхованием груза",
-    },
-    {
-      icon: "Shield",
-      title: "Таможенное оформление",
-      description: "Берем на себя все вопросы растаможки и документов",
-    },
-  ];
-
-  const advantages = [
-    { icon: "Percent", title: "Экономия до 30%", description: "По сравнению с покупкой в РФ" },
-    { icon: "Clock", title: "Сроки 30-45 дней", description: "От заказа до получения" },
-    { icon: "BadgeCheck", title: "100% легально", description: "Официальный ввоз с документами" },
-    { icon: "Headphones", title: "Поддержка 24/7", description: "На всех этапах сделки" },
-  ];
-
-  const reviews = [
-    {
-      name: "Алексей М.",
-      rating: 5,
-      text: "Заказывал кроссовер из Китая. Все прошло отлично, сэкономил около 800 тысяч. Менеджеры постоянно на связи.",
-      date: "15.11.2024",
-    },
-    {
-      name: "Ирина К.",
-      rating: 5,
-      text: "Купила эндуро через AVM Motors. Привезли точно в срок, мотоцикл в идеальном состоянии!",
-      date: "28.10.2024",
-    },
-    {
-      name: "Дмитрий П.",
-      rating: 5,
-      text: "Профессиональный подход, прозрачные условия. Рекомендую всем, кто хочет качественную технику по адекватной цене.",
-      date: "05.10.2024",
+      name: "QJMOTOR SRV 800",
+      type: "Sport Touring",
+      price: "от 1 150 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/49624ed1-78a6-4a4a-ae22-579718390d6a.jpg",
+      specs: ["76 л.с.", "754cc", "KYB подвеска"],
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 bg-white shadow-md">
-        <div className="border-b border-border">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-8">
-                <img 
-                  src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
-                  alt="AVM Motors" 
-                  className="h-10"
-                />
-                <nav className="hidden md:flex gap-6">
-                  <a href="#catalog" className="text-sm hover:text-accent transition-colors">Каталог</a>
-                  <a href="#services" className="text-sm hover:text-accent transition-colors">Услуги</a>
-                  <a href="#about" className="text-sm hover:text-accent transition-colors">О нас</a>
-                  <a href="#reviews" className="text-sm hover:text-accent transition-colors">Отзывы</a>
-                  <a href="#contacts" className="text-sm hover:text-accent transition-colors">Контакты</a>
-                </nav>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="hidden lg:flex flex-col items-end">
-                  <a href="tel:+79991234567" className="text-sm font-semibold hover:text-accent">+7 (999) 123-45-67</a>
-                  <span className="text-xs text-muted-foreground">Ежедневно с 9:00 до 21:00</span>
-                </div>
-                <Button 
-                  className="bg-accent hover:bg-accent/90"
-                  onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  Оставить заявку
-                </Button>
-              </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center gap-16">
+              <img 
+                src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
+                alt="AVM Motors" 
+                className="h-8 brightness-0 invert"
+              />
+              <nav className="hidden lg:flex items-center gap-10">
+                <a href="#vehicles" className="text-sm tracking-wider uppercase text-muted-foreground hover:text-accent transition-colors">Коллекция</a>
+                <a href="#services" className="text-sm tracking-wider uppercase text-muted-foreground hover:text-accent transition-colors">Услуги</a>
+                <a href="#concierge" className="text-sm tracking-wider uppercase text-muted-foreground hover:text-accent transition-colors">Консьерж</a>
+              </nav>
+            </div>
+            <div className="flex items-center gap-6">
+              <a href="tel:+79991234567" className="hidden md:block text-sm tracking-wider hover:text-accent transition-colors">
+                +7 999 123 45 67
+              </a>
+              <Button 
+                variant="outline" 
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Консультация
+              </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <section className="bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground py-20 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl">
-            <Badge className="mb-6 bg-accent text-accent-foreground">Официальный импорт из Китая</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Автомобили и мотоциклы<br />из КНР под заказ
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background z-10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{
+            backgroundImage: `url('https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg')`,
+          }}
+        ></div>
+        
+        <div className="container mx-auto px-6 lg:px-12 relative z-20 py-32">
+          <div className="max-w-5xl">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">
+              АВТОМОБИЛИ<br />
+              <span className="accent-title text-accent">премиум-класса</span><br />
+              ИЗ КИТАЯ
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
-              Экономия до 30% • Гарантия • Полное сопровождение
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
+              Индивидуальный подбор, полное сопровождение сделки, VIP-доставка
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90" onClick={() => document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" })}>
-                <Icon name="Search" size={20} className="mr-2" />
-                Смотреть каталог
+            <div className="flex flex-wrap gap-6">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-lg px-10 h-14"
+                onClick={() => document.getElementById("vehicles")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Смотреть коллекцию
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary">
-                <Icon name="Calculator" size={20} className="mr-2" />
-                Рассчитать стоимость
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 text-lg px-10 h-14 hover:bg-accent hover:border-accent hover:text-accent-foreground"
+              >
+                Консультация эксперта
               </Button>
+            </div>
+            <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl">
+              <div className="border-l-2 border-accent pl-6">
+                <div className="text-4xl font-bold mb-2">30%</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
+              </div>
+              <div className="border-l-2 border-accent pl-6">
+                <div className="text-4xl font-bold mb-2">45</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
+              </div>
+              <div className="border-l-2 border-accent pl-6">
+                <div className="text-4xl font-bold mb-2">24/7</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-8 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {categories.map((cat, idx) => (
-              <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-lg mb-2">{cat.title}</h3>
-                  <p className="text-muted-foreground text-sm">{cat.count}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Популярные модели</h2>
-              <p className="text-muted-foreground text-lg">Актуальный каталог автомобилей и мотоциклов</p>
+      <section id="vehicles" className="py-32 relative">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="mb-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Избранное</span>
             </div>
-            <Button variant="outline" size="lg">
-              Весь каталог
-              <Icon name="ArrowRight" size={20} className="ml-2" />
-            </Button>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Премиальная коллекция</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl">
+              Эксклюзивные модели с индивидуальными характеристиками
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {vehicles.map((vehicle, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                <div className="relative h-56 overflow-hidden">
+              <Card 
+                key={index} 
+                className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
+              >
+                <div className="relative h-[400px] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10"></div>
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
+                  <Badge className="absolute top-6 right-6 z-20 bg-accent/90 backdrop-blur-sm text-accent-foreground border-0 px-4 py-2">
                     {vehicle.type}
                   </Badge>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="accent-title text-lg mb-3">{vehicle.name}</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <div className="flex justify-between">
-                      <span>Год:</span>
-                      <span className="font-semibold text-foreground">{vehicle.year}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Пробег:</span>
-                      <span className="font-semibold text-foreground">{vehicle.mileage}</span>
-                    </div>
+                <div className="p-8">
+                  <h3 className="accent-title text-2xl mb-4">{vehicle.name}</h3>
+                  <div className="flex gap-6 mb-6 text-sm text-muted-foreground">
+                    {vehicle.specs.map((spec, idx) => (
+                      <span key={idx} className="flex items-center gap-2">
+                        <div className="w-1 h-1 bg-accent rounded-full"></div>
+                        {spec}
+                      </span>
+                    ))}
                   </div>
-                  <p className="text-2xl font-bold text-accent mb-4">{vehicle.price}</p>
-                  <Button className="w-full" variant="outline">
-                    Подробнее
-                  </Button>
-                </CardContent>
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div className="text-sm text-muted-foreground mb-2">Стоимость</div>
+                      <div className="text-3xl font-bold">{vehicle.price}</div>
+                    </div>
+                    <Button variant="ghost" className="text-accent hover:text-accent hover:bg-accent/10">
+                      Подробнее
+                      <Icon name="ArrowRight" size={20} className="ml-2" />
+                    </Button>
+                  </div>
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Наши услуги</h2>
-            <p className="text-muted-foreground text-lg">Полный цикл от подбора до получения техники</p>
+      <section id="services" className="py-32 bg-secondary/30">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
+              <div className="h-px w-12 bg-accent"></div>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="text-center p-8 hover:shadow-xl transition-shadow">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+            {[
+              { icon: "Search", title: "Индивидуальный подбор", desc: "Эксперт найдёт идеальный вариант под ваши критерии" },
+              { icon: "Shield", title: "Юридическая защита", desc: "Полная проверка документов и юридическая чистота" },
+              { icon: "Truck", title: "VIP доставка", desc: "Безопасная транспортировка с полным страхованием" },
+              { icon: "Wrench", title: "Постпродажный сервис", desc: "Техническая поддержка и обслуживание" },
+            ].map((service, idx) => (
+              <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
                   <Icon name={service.icon} size={32} className="text-accent" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Почему выбирают нас</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {advantages.map((adv, index) => (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-4">
-                  <Icon name={adv.icon} size={36} className="text-accent" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">{adv.title}</h3>
-                <p className="text-muted-foreground">{adv.description}</p>
+      <section className="py-32">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-12 bg-accent"></div>
+                <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Как мы работаем</h2>
-            <p className="text-center text-primary-foreground/90 mb-12 text-lg">
-              Простой и прозрачный процесс покупки
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-              {[
-                { num: "01", title: "Заявка", desc: "Оставляете заявку на сайте" },
-                { num: "02", title: "Подбор", desc: "Подбираем варианты под ваш запрос" },
-                { num: "03", title: "Договор", desc: "Заключаем договор и вносите аванс" },
-                { num: "04", title: "Доставка", desc: "Организуем доставку и растаможку" },
-                { num: "05", title: "Получение", desc: "Получаете авто с документами" },
-              ].map((step, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
-                    {step.num}
+              <h2 className="text-5xl md:text-6xl font-bold mb-8">Почему AVM Motors</h2>
+              <div className="space-y-8">
+                {[
+                  { title: "Прямые поставки", desc: "Работаем напрямую с производителями, без посредников" },
+                  { title: "Гарантия лучшей цены", desc: "Экономия до 30% по сравнению с рынком РФ" },
+                  { title: "Полная прозрачность", desc: "Отслеживайте каждый этап сделки в реальном времени" },
+                  { title: "Эксклюзивный сервис", desc: "Персональный менеджер на всех этапах" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-6 group">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <Icon name="Check" size={24} className="text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.desc}</p>
+                    </div>
                   </div>
-                  <h3 className="font-bold mb-2">{step.title}</h3>
-                  <p className="text-sm text-primary-foreground/80">{step.desc}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            <div className="relative h-[600px]">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
+              <img 
+                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg"
+                alt="Premium service"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="reviews" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Отзывы клиентов</h2>
-            <p className="text-muted-foreground text-lg">Нам доверяют сотни довольных клиентов</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {reviews.map((review, index) => (
-              <Card key={index} className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h4 className="font-bold">{review.name}</h4>
-                    <p className="text-xs text-muted-foreground">{review.date}</p>
-                  </div>
-                  <div className="flex gap-1">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={16} className="text-accent fill-accent" />
-                    ))}
-                  </div>
+      <section id="contact" className="py-32 bg-secondary/30">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="max-w-3xl mx-auto">
+            <Card className="p-12 bg-card border-accent/20">
+              <div className="text-center mb-12">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="h-px w-12 bg-accent"></div>
+                  <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
+                  <div className="h-px w-12 bg-accent"></div>
                 </div>
-                <p className="text-sm text-muted-foreground">{review.text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact-form" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <Card className="p-8 md:p-12">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Оставьте заявку</h2>
-                <p className="text-muted-foreground text-lg">
-                  Ответим на все вопросы и поможем с подбором техники
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">Оставьте заявку</h2>
+                <p className="text-lg text-muted-foreground">
+                  Эксперт свяжется с вами для персональной консультации
                 </p>
               </div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    type="text"
-                    placeholder="Ваше имя"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="h-12"
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="h-12"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Какая модель вас интересует? Расскажите о ваших пожеланиях..."
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                </div>
-                <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-lg py-6">
-                  <Icon name="Send" size={20} className="mr-2" />
+                <Input
+                  type="text"
+                  placeholder="Ваше имя"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="h-14 bg-background border-border focus:border-accent"
+                />
+                <Input
+                  type="tel"
+                  placeholder="+7 (___) ___-__-__"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="h-14 bg-background border-border focus:border-accent"
+                />
+                <Textarea
+                  placeholder="Расскажите о ваших предпочтениях..."
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="bg-background border-border focus:border-accent resize-none"
+                />
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-accent hover:bg-accent/90 h-14 text-lg"
+                >
                   Отправить заявку
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
+                  Конфиденциальность гарантируется
                 </p>
               </form>
             </Card>
@@ -390,52 +327,58 @@ const Index = () => {
         </div>
       </section>
 
-      <footer id="contacts" className="bg-primary text-primary-foreground py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
+      <footer className="border-t border-border py-16">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="col-span-1">
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
                 alt="AVM Motors" 
-                className="h-12 mb-4 brightness-0 invert"
+                className="h-10 mb-6 brightness-0 invert"
               />
-              <p className="text-sm text-primary-foreground/80">
-                Официальный импорт автомобилей и мотоциклов из Китая
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Эксклюзивный импорт премиальной автотехники из Китая
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Каталог</h4>
-              <ul className="space-y-2 text-sm text-primary-foreground/80">
-                <li><a href="#" className="hover:text-accent transition-colors">Новые авто</a></li>
-                <li><a href="#" className="hover:text-accent transition-colors">Авто с пробегом</a></li>
+              <h4 className="font-bold mb-4 tracking-wider uppercase text-sm">Коллекция</h4>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-accent transition-colors">Автомобили</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Мотоциклы</a></li>
+                <li><a href="#" className="hover:text-accent transition-colors">Эксклюзив</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Компания</h4>
-              <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <h4 className="font-bold mb-4 tracking-wider uppercase text-sm">Компания</h4>
+              <ul className="space-y-3 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-accent transition-colors">О нас</a></li>
-                <li><a href="#" className="hover:text-accent transition-colors">Отзывы</a></li>
+                <li><a href="#" className="hover:text-accent transition-colors">Услуги</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Контакты</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Контакты</h4>
+              <h4 className="font-bold mb-4 tracking-wider uppercase text-sm">Контакты</h4>
               <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-2">
-                  <Icon name="Phone" size={18} className="text-accent" />
-                  <a href="tel:+79991234567" className="hover:text-accent transition-colors">+7 (999) 123-45-67</a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Mail" size={18} className="text-accent" />
-                  <a href="mailto:info@avmmotors.ru" className="hover:text-accent transition-colors">info@avmmotors.ru</a>
-                </div>
-                <p className="text-primary-foreground/80">Пн-Вс: 9:00 - 21:00</p>
+                <a href="tel:+79991234567" className="block text-muted-foreground hover:text-accent transition-colors">
+                  +7 999 123 45 67
+                </a>
+                <a href="mailto:info@avmmotors.ru" className="block text-muted-foreground hover:text-accent transition-colors">
+                  info@avmmotors.ru
+                </a>
+                <p className="text-muted-foreground">Пн-Вс: 10:00 - 22:00</p>
               </div>
             </div>
           </div>
-          <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/80">
-            <p>© 2024 AVM Motors. Все права защищены.</p>
+          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">© 2024 AVM Motors. Все права защищены.</p>
+            <div className="flex gap-6">
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+                <Icon name="Instagram" size={20} />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+                <Icon name="MessageCircle" size={20} />
+              </a>
+            </div>
           </div>
         </div>
       </footer>
