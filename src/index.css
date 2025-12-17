@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Geologica:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -47,7 +47,7 @@
   }
 
   body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Geologica", sans-serif;
   }
 
   h1,
