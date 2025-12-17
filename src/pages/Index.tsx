@@ -88,58 +88,63 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background z-10"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{
-            backgroundImage: `url('https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg')`,
-          }}
-        ></div>
-        
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
         <div className="w-full px-6 lg:px-12 relative z-20 py-32">
-          <div className="max-w-5xl">
-            <div className="mb-8 flex items-center gap-3">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="mb-8 flex items-center gap-3">
+                <div className="h-px w-12 bg-accent"></div>
+                <span className="text-sm tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
+              </div>
+              <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">
+                АВТОМОБИЛИ<br />
+                <span className="accent-title text-accent">премиум-класса</span><br />
+                ИЗ КИТАЯ
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
+                Авто из Китая легально под ключ. 30-60 дней без переплат. Ваша мечта — наша экспертиза.
+              </p>
+              <div className="flex flex-wrap gap-6">
+                <Button 
+                  size="lg" 
+                  className="bg-accent hover:bg-accent/90 text-lg px-10 h-14"
+                  onClick={() => document.getElementById("vehicles")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Смотреть коллекцию
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 text-lg px-10 h-14 hover:bg-accent hover:border-accent hover:text-accent-foreground"
+                >
+                  Консультация эксперта
+                </Button>
+              </div>
+              <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl">
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="text-4xl font-bold mb-2">30%</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
+                </div>
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="text-4xl font-bold mb-2">45</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
+                </div>
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="text-4xl font-bold mb-2">24/7</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
+                </div>
+              </div>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">
-              АВТОМОБИЛИ<br />
-              <span className="accent-title text-accent">премиум-класса</span><br />
-              ИЗ КИТАЯ
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-              Авто из Китая легально под ключ. 30-60 дней без переплат. Ваша мечта — наша экспертиза.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-lg px-10 h-14"
-                onClick={() => document.getElementById("vehicles")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Смотреть коллекцию
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 text-lg px-10 h-14 hover:bg-accent hover:border-accent hover:text-accent-foreground"
-              >
-                Консультация эксперта
-              </Button>
-            </div>
-            <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl">
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">30%</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
-              </div>
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">45</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
-              </div>
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">24/7</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
-              </div>
+            
+            <div className="relative h-[600px] lg:h-[700px]">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-transparent to-background/80 z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+              <div className="absolute -inset-4 bg-accent/10 blur-3xl"></div>
+              <img 
+                src="https://cdn.poehali.dev/files/Group_117.png"
+                alt="Premium Car"
+                className="relative w-full h-full object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
         </div>
