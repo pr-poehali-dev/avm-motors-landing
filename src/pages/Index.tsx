@@ -197,7 +197,7 @@ const Index = () => {
         </div>
         
         {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 border-t border-border/50 bg-background/98 backdrop-blur-xl shadow-2xl animate-in slide-in-from-top-4 duration-300 max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 border-t border-border/50 bg-background shadow-2xl animate-in slide-in-from-top-4 duration-300 max-h-[calc(100vh-5rem)] overflow-y-auto">
             <div className="w-full px-6 lg:px-12 py-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl">
                 <div>
