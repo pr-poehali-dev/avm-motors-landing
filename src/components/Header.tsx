@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
@@ -9,6 +10,7 @@ interface HeaderProps {
 }
 
 const Header = ({ onVehicleRegionChange }: HeaderProps) => {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -17,11 +19,13 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
       <div className="w-full px-6 lg:px-12">
         <div className="flex items-center justify-between gap-6 h-20">
           <div className="flex items-center gap-6">
-            <img 
-              src="https://cdn.poehali.dev/files/AVM_logo_horizontal_mono.png" 
-              alt="AVM Motors" 
-              className="h-8 flex-shrink-0"
-            />
+            <button onClick={() => navigate('/')}>
+              <img 
+                src="https://cdn.poehali.dev/files/AVM_logo_horizontal_mono.png" 
+                alt="AVM Motors" 
+                className="h-8 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+              />
+            </button>
             
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -102,34 +106,32 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <div>
                 <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Каталог</h3>
                 <div className="space-y-2">
-                  <a 
-                    href="#vehicles" 
+                  <button
                     onClick={() => {
-                      onVehicleRegionChange('Китай');
+                      navigate('/catalog');
                       setMobileMenuOpen(false);
                     }} 
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <span className="text-2xl">🇨🇳</span>
                       <span className="text-sm font-medium">Китай - новые авто</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
-                  </a>
-                  <a 
-                    href="#vehicles" 
+                  </button>
+                  <button
                     onClick={() => {
-                      onVehicleRegionChange('Европа');
+                      navigate('/catalog');
                       setMobileMenuOpen(false);
                     }} 
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <span className="text-2xl">🇪🇺</span>
                       <span className="text-sm font-medium">Европа - авто с пробегом</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
-                  </a>
+                  </button>
                 </div>
                 
                 <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">

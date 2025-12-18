@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +11,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
@@ -424,7 +426,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-lg px-10 h-14"
-                onClick={() => document.getElementById("vehicles")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => navigate('/catalog')}
               >
                 Смотреть коллекцию
               </Button>
@@ -531,7 +533,7 @@ const Index = () => {
             <Button 
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground px-10 h-14 text-lg"
-              onClick={() => window.location.href = '#vehicles'}
+              onClick={() => navigate('/catalog')}
             >
               Перейти в каталог
               <Icon name="ArrowRight" size={20} className="ml-2" />
