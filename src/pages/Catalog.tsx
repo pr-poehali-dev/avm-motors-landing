@@ -15,6 +15,17 @@ const Catalog = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000000]);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
+    search: true,
+    region: true,
+    type: true,
+    condition: true,
+    price: true
+  });
+
+  const toggleFilterSection = (section: string) => {
+    setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
+  };
 
   const allVehicles = [
     { id: 1, name: "HONGQI E-HS9", type: "SUV", region: "Китай", condition: "Новый", price: 6850000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["600 л.с.", "0-100 за 4.9с", "Electric"], badge: "Хит продаж" },
@@ -87,114 +98,176 @@ const Catalog = () => {
       <section className="pb-32">
         <div className="w-full px-6 lg:px-12">
           <div className="flex gap-8">
-            <aside className="w-64 flex-shrink-0 space-y-4 sticky top-32 h-fit">
-              <Card className="p-4 bg-card border-border">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Icon name="Search" size={16} className="text-accent" />
-                  Поиск
-                </h3>
-                <Input
-                  type="text"
-                  placeholder="Марка автомобиля"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-9 text-sm bg-secondary/50 border-border"
-                />
-              </Card>
-
-              <Card className="p-4 bg-card border-border">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Icon name="MapPin" size={16} className="text-accent" />
-                  Регион
-                </h3>
-                <div className="space-y-2">
-                  {regions.map(region => (
-                    <button
-                      key={region}
-                      onClick={() => toggleFilter(region, 'region')}
-                      className={`w-full px-3 py-2 rounded-md text-sm text-left transition-all ${
-                        selectedRegion.includes(region)
-                          ? 'bg-accent text-accent-foreground font-medium'
-                          : 'bg-secondary/50 hover:bg-secondary text-foreground'
-                      }`}
-                    >
-                      {region}
-                    </button>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="p-4 bg-card border-border">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Icon name="Car" size={16} className="text-accent" />
-                  Тип кузова
-                </h3>
-                <div className="space-y-2">
-                  {types.map(type => (
-                    <label
-                      key={type}
-                      className="flex items-center gap-2 cursor-pointer group"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedType.includes(type)}
-                        onChange={() => toggleFilter(type, 'type')}
-                        className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
-                      />
-                      <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                        {type}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="p-4 bg-card border-border">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Icon name="Badge" size={16} className="text-accent" />
-                  Состояние
-                </h3>
-                <div className="space-y-2">
-                  {["Новый", "Б/У"].map(condition => (
-                    <label
-                      key={condition}
-                      className="flex items-center gap-2 cursor-pointer group"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedCondition.includes(condition)}
-                        onChange={() => toggleFilter(condition, 'condition')}
-                        className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
-                      />
-                      <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                        {condition}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="p-4 bg-card border-border">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Icon name="DollarSign" size={16} className="text-accent" />
-                  Цена
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex gap-2">
+            <aside className="w-64 flex-shrink-0 space-y-2 sticky top-32 h-fit">
+              <Card className="bg-card border-border overflow-hidden">
+                <button
+                  onClick={() => toggleFilterSection('search')}
+                  className="w-full p-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="Search" size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold">Поиск</h3>
+                  </div>
+                  <Icon 
+                    name="ChevronDown" 
+                    size={16} 
+                    className={`text-muted-foreground transition-transform ${openFilters.search ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFilters.search && (
+                  <div className="px-3 pb-3">
                     <Input
                       type="text"
-                      value={`${(priceRange[0] / 1000000).toFixed(1)} млн`}
-                      readOnly
-                      className="bg-secondary/50 border-border text-center text-xs h-9"
-                    />
-                    <Input
-                      type="text"
-                      value={`${(priceRange[1] / 1000000).toFixed(1)} млн`}
-                      readOnly
-                      className="bg-secondary/50 border-border text-center text-xs h-9"
+                      placeholder="Марка автомобиля"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="h-9 text-sm bg-secondary/50 border-border"
                     />
                   </div>
-                </div>
+                )}
+              </Card>
+
+              <Card className="bg-card border-border overflow-hidden">
+                <button
+                  onClick={() => toggleFilterSection('region')}
+                  className="w-full p-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="MapPin" size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold">Регион</h3>
+                  </div>
+                  <Icon 
+                    name="ChevronDown" 
+                    size={16} 
+                    className={`text-muted-foreground transition-transform ${openFilters.region ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFilters.region && (
+                  <div className="px-3 pb-3 space-y-2">
+                    {regions.map(region => (
+                      <button
+                        key={region}
+                        onClick={() => toggleFilter(region, 'region')}
+                        className={`w-full px-3 py-2 rounded-md text-sm text-left transition-all ${
+                          selectedRegion.includes(region)
+                            ? 'bg-accent text-accent-foreground font-medium'
+                            : 'bg-secondary/50 hover:bg-secondary text-foreground'
+                        }`}
+                      >
+                        {region}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </Card>
+
+              <Card className="bg-card border-border overflow-hidden">
+                <button
+                  onClick={() => toggleFilterSection('type')}
+                  className="w-full p-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="Car" size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold">Тип кузова</h3>
+                  </div>
+                  <Icon 
+                    name="ChevronDown" 
+                    size={16} 
+                    className={`text-muted-foreground transition-transform ${openFilters.type ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFilters.type && (
+                  <div className="px-3 pb-3 space-y-2">
+                    {types.map(type => (
+                      <label
+                        key={type}
+                        className="flex items-center gap-2 cursor-pointer group"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedType.includes(type)}
+                          onChange={() => toggleFilter(type, 'type')}
+                          className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                        />
+                        <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                          {type}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </Card>
+
+              <Card className="bg-card border-border overflow-hidden">
+                <button
+                  onClick={() => toggleFilterSection('condition')}
+                  className="w-full p-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="Badge" size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold">Состояние</h3>
+                  </div>
+                  <Icon 
+                    name="ChevronDown" 
+                    size={16} 
+                    className={`text-muted-foreground transition-transform ${openFilters.condition ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFilters.condition && (
+                  <div className="px-3 pb-3 space-y-2">
+                    {["Новый", "Б/У"].map(condition => (
+                      <label
+                        key={condition}
+                        className="flex items-center gap-2 cursor-pointer group"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedCondition.includes(condition)}
+                          onChange={() => toggleFilter(condition, 'condition')}
+                          className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                        />
+                        <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                          {condition}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </Card>
+
+              <Card className="bg-card border-border overflow-hidden">
+                <button
+                  onClick={() => toggleFilterSection('price')}
+                  className="w-full p-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="DollarSign" size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold">Цена</h3>
+                  </div>
+                  <Icon 
+                    name="ChevronDown" 
+                    size={16} 
+                    className={`text-muted-foreground transition-transform ${openFilters.price ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFilters.price && (
+                  <div className="px-3 pb-3">
+                    <div className="flex gap-2">
+                      <Input
+                        type="text"
+                        value={`${(priceRange[0] / 1000000).toFixed(1)} млн`}
+                        readOnly
+                        className="bg-secondary/50 border-border text-center text-xs h-9"
+                      />
+                      <Input
+                        type="text"
+                        value={`${(priceRange[1] / 1000000).toFixed(1)} млн`}
+                        readOnly
+                        className="bg-secondary/50 border-border text-center text-xs h-9"
+                      />
+                    </div>
+                  </div>
+                )}
               </Card>
 
               <Button
