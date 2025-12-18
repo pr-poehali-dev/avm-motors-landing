@@ -197,37 +197,142 @@ const Index = () => {
         </div>
         
         {mobileMenuOpen && (
-          <div className="border-t border-border/50 bg-background/95 backdrop-blur-xl animate-in slide-in-from-top-4 duration-300">
-            <nav className="px-6 py-6 space-y-4">
-              <a href="#vehicles" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
-                Коллекция
-                <Icon name="ChevronRight" size={18} />
-              </a>
-              <a href="#services" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
-                Услуги
-                <Icon name="ChevronRight" size={18} />
-              </a>
-              <a href="#contact" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
-                Контакты
-                <Icon name="ChevronRight" size={18} />
-              </a>
-              <div className="pt-4 border-t border-border/50 lg:hidden">
-                <a href="tel:+79991234567" className="flex items-center gap-3 py-3 text-sm font-medium hover:text-accent transition-colors">
-                  <Icon name="Phone" size={18} className="text-accent" />
-                  <span>+7 999 123 45 67</span>
-                </a>
+          <div className="absolute top-full left-0 right-0 border-t border-border/50 bg-background/98 backdrop-blur-xl shadow-2xl animate-in slide-in-from-top-4 duration-300 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div className="w-full px-6 lg:px-12 py-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl">
+                <div>
+                  <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Каталог</h3>
+                  <div className="space-y-2">
+                    <a href="#vehicles" onClick={() => setVehicleRegion('Китай')} className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3 flex-1">
+                        <span className="text-2xl">🇨🇳</span>
+                        <span className="text-sm font-medium">Китай - новые авто</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#vehicles" onClick={() => setVehicleRegion('Европа')} className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3 flex-1">
+                        <span className="text-2xl">🇪🇺</span>
+                        <span className="text-sm font-medium">Европа - авто с пробегом</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                  </div>
+                  
+                  <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
+                    <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Доставка</h4>
+                    <div className="flex gap-2">
+                      <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-accent text-accent-foreground">
+                        в РБ
+                      </button>
+                      <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                        в РФ
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
+                    <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Цены</h4>
+                    <div className="flex gap-2">
+                      <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-accent text-accent-foreground">
+                        USD
+                      </button>
+                      <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                        RUB
+                      </button>
+                      <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                        BYN
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Информация</h3>
+                  <div className="space-y-2">
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="DollarSign" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Тарифы и цены</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="FileText" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Блог</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Star" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Отзывы</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Calculator" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Калькулятор</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Компания</h3>
+                  <div className="space-y-2">
+                    <a href="#services" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Info" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">О нас</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Play" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Обзоры</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#contact" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Phone" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Позвонить нам</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                    <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                      <div className="flex items-center gap-3">
+                        <Icon name="MapPin" size={20} className="text-accent" />
+                        <span className="text-sm font-medium">Адреса и офисы</span>
+                      </div>
+                      <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    </a>
+                  </div>
+                  
+                  <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20">
+                    <div className="p-6 relative z-10">
+                      <h4 className="text-lg font-bold mb-2">Подберем 10 свежих предложений бесплатно</h4>
+                      <Button 
+                        size="sm"
+                        className="mt-4 bg-accent hover:bg-accent/90 text-accent-foreground"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                        }}
+                      >
+                        Получить подборку
+                      </Button>
+                    </div>
+                    <div className="absolute -right-4 -bottom-4 text-8xl opacity-20">🚗</div>
+                  </div>
+                </div>
               </div>
-              <Button 
-                size="lg"
-                className="w-full lg:hidden bg-accent hover:bg-accent/90 text-accent-foreground h-12"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Консультация
-              </Button>
-            </nav>
+            </div>
           </div>
         )}
       </header>
