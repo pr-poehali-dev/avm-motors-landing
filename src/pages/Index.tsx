@@ -13,6 +13,8 @@ const Index = () => {
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [workflowTab, setWorkflowTab] = useState('Этапы работ');
   const [openStep, setOpenStep] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -138,23 +140,86 @@ const Index = () => {
                 </a>
               </nav>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
+              >
+                <Icon name="Search" size={18} className="text-accent" />
+              </button>
+              
               <a href="tel:+79991234567" className="hidden md:flex items-center gap-2 text-sm font-medium tracking-wider hover:text-accent transition-colors group">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Icon name="Phone" size={18} className="text-accent" />
                 </div>
                 <span>+7 999 123 45 67</span>
               </a>
+              
               <Button 
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 h-12"
+                className="hidden md:flex bg-accent hover:bg-accent/90 text-accent-foreground px-8 h-12"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Консультация
               </Button>
+              
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
+              >
+                <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} className="text-accent" />
+              </button>
             </div>
           </div>
+          
+          {searchOpen && (
+            <div className="py-4 border-t border-border/50 animate-in slide-in-from-top-2 duration-200">
+              <div className="relative max-w-2xl">
+                <Icon name="Search" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Поиск автомобилей по марке, модели..."
+                  className="h-12 pl-12 pr-4 bg-background/50 border-border focus:border-accent"
+                />
+              </div>
+            </div>
+          )}
         </div>
+        
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-border/50 bg-background/95 backdrop-blur-xl animate-in slide-in-from-top-4 duration-300">
+            <nav className="px-6 py-6 space-y-4">
+              <a href="#vehicles" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
+                Коллекция
+                <Icon name="ChevronRight" size={18} />
+              </a>
+              <a href="#services" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
+                Услуги
+                <Icon name="ChevronRight" size={18} />
+              </a>
+              <a href="#contact" className="flex items-center justify-between py-3 text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors">
+                Контакты
+                <Icon name="ChevronRight" size={18} />
+              </a>
+              <div className="pt-4 border-t border-border/50">
+                <a href="tel:+79991234567" className="flex items-center gap-3 py-3 text-sm font-medium hover:text-accent transition-colors">
+                  <Icon name="Phone" size={18} className="text-accent" />
+                  <span>+7 999 123 45 67</span>
+                </a>
+              </div>
+              <Button 
+                size="lg"
+                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground h-12"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Консультация
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
