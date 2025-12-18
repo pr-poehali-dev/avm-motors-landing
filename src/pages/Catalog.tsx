@@ -68,7 +68,7 @@ const Catalog = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-6">Автомобили премиум-класса</h1>
+            <h1 className="text-6xl md:text-7xl font-bold mb-6">Автомобили из Китая и Европы</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
               Эксклюзивная коллекция автомобилей из Китая и Европы
             </p>
