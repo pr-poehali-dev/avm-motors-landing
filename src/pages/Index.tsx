@@ -439,28 +439,31 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {vehicles.map((vehicle, index) => (
               <Card 
                 key={index} 
                 className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
               >
-                <div className="relative h-[400px] overflow-hidden">
+                <div className="relative h-[240px] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10"></div>
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <Badge className="absolute top-6 right-6 z-20 bg-accent/90 backdrop-blur-sm text-accent-foreground border-0 px-4 py-2">
+                  <Badge className="absolute top-4 right-4 z-20 bg-accent/90 backdrop-blur-sm text-accent-foreground border-0 px-3 py-1 text-xs">
                     {vehicle.type}
                   </Badge>
+                  <button className="absolute top-4 left-4 z-20 w-9 h-9 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors">
+                    <Icon name="Heart" size={18} className="text-foreground" />
+                  </button>
                 </div>
-                <div className="p-8">
-                  <h3 className="accent-title text-2xl mb-4">{vehicle.name}</h3>
-                  <div className="flex gap-6 mb-6 text-sm text-muted-foreground">
+                <div className="p-5">
+                  <h3 className="font-bold text-lg mb-3 line-clamp-1">{vehicle.name}</h3>
+                  <div className="flex flex-wrap gap-2 mb-4 text-xs text-muted-foreground">
                     {vehicle.specs.map((spec, idx) => (
-                      <span key={idx} className="flex items-center gap-2">
+                      <span key={idx} className="flex items-center gap-1">
                         <div className="w-1 h-1 bg-accent rounded-full"></div>
                         {spec}
                       </span>
@@ -468,17 +471,24 @@ const Index = () => {
                   </div>
                   <div className="flex items-end justify-between">
                     <div>
-                      <div className="text-sm text-muted-foreground mb-2">Стоимость</div>
-                      <div className="text-3xl font-bold">{vehicle.price}</div>
+                      <div className="text-xs text-muted-foreground mb-1">Стоимость</div>
+                      <div className="text-xl font-bold">{vehicle.price}</div>
                     </div>
-                    <Button variant="ghost" className="text-accent hover:text-accent hover:bg-accent/10">
-                      Подробнее
-                      <Icon name="ArrowRight" size={20} className="ml-2" />
-                    </Button>
                   </div>
                 </div>
               </Card>
             ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button 
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground px-10 h-14 text-lg"
+              onClick={() => window.location.href = '#vehicles'}
+            >
+              Перейти в каталог
+              <Icon name="ArrowRight" size={20} className="ml-2" />
+            </Button>
           </div>
         </div>
       </section>
