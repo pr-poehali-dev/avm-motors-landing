@@ -118,68 +118,78 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50">
         <div className="w-full px-6 lg:px-12">
-          <div className="flex items-center justify-between h-24">
-            <div className="flex items-center gap-20">
+          <div className="flex items-center justify-between gap-6 h-20">
+            <div className="flex items-center gap-6">
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
                 alt="AVM Motors" 
-                className="h-10 brightness-0 invert"
+                className="h-8 brightness-0 invert flex-shrink-0"
               />
-              <nav className="hidden lg:flex items-center gap-12">
-                <a href="#vehicles" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
-                  Коллекция
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="#services" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
-                  Услуги
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="#contact" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
-                  Контакты
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
-              >
-                <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} className="text-accent" />
-              </button>
               
               <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-colors"
+              >
+                <Icon name="Menu" size={20} className="text-accent" />
+                <span className="text-sm font-medium">Меню</span>
+              </button>
+            </div>
+            
+            <div className="hidden md:flex flex-1 max-w-xl">
+              <div className="relative w-full">
+                <Icon name="Car" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Марка или параметры"
+                  className="h-11 pl-12 pr-12 bg-background border-border focus:border-accent rounded-lg"
+                />
+                <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-accent/10 hover:bg-accent/20 flex items-center justify-center transition-colors">
+                  <Icon name="Search" size={18} className="text-accent" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <button 
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
+                className="md:hidden w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
               >
                 <Icon name="Search" size={18} className="text-accent" />
               </button>
               
-              <a href="tel:+79991234567" className="hidden md:flex items-center gap-2 text-sm font-medium tracking-wider hover:text-accent transition-colors group">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Icon name="Phone" size={18} className="text-accent" />
-                </div>
-                <span>+7 999 123 45 67</span>
-              </a>
+              <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
+                <Icon name="MapPin" size={20} className="mb-1" />
+                <span>Быстрый подбор</span>
+              </div>
+              
+              <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
+                <Icon name="Package" size={20} className="mb-1" />
+                <span>Доставка в РФ</span>
+              </div>
+              
+              <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
+                <Icon name="Heart" size={20} className="mb-1" />
+                <span>Избранное</span>
+              </div>
               
               <Button 
                 size="lg"
-                className="hidden md:flex bg-accent hover:bg-accent/90 text-accent-foreground px-8 h-12"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 h-11 rounded-full font-medium"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                Консультация
+                Связаться
               </Button>
             </div>
           </div>
           
           {searchOpen && (
-            <div className="py-4 border-t border-border/50 animate-in slide-in-from-top-2 duration-200">
-              <div className="relative max-w-2xl">
-                <Icon name="Search" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <div className="py-4 border-t border-border/50 animate-in slide-in-from-top-2 duration-200 md:hidden">
+              <div className="relative">
+                <Icon name="Car" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Поиск автомобилей по марке, модели..."
-                  className="h-12 pl-12 pr-4 bg-background/50 border-border focus:border-accent"
+                  placeholder="Марка или параметры"
+                  className="h-12 pl-12 pr-4 bg-background border-border focus:border-accent"
                 />
               </div>
             </div>
