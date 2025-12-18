@@ -11,6 +11,8 @@ const Index = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
+  const [workflowTab, setWorkflowTab] = useState('Этапы работ');
+  const [openStep, setOpenStep] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -474,6 +476,112 @@ const Index = () => {
                 className="w-full h-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 bg-secondary/30">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-12 bg-accent"></div>
+                <span className="text-sm tracking-[0.3em] uppercase text-accent">Процесс</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-8">Как мы работаем</h2>
+            </div>
+
+            <div className="flex gap-4 mb-8">
+              {['Этапы работ', 'Вопрос-ответ'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setWorkflowTab(tab)}
+                  className={`px-8 py-3 rounded-full text-lg font-medium transition-all ${
+                    workflowTab === tab 
+                      ? 'bg-accent text-accent-foreground' 
+                      : 'bg-background text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {workflowTab === 'Этапы работ' && (
+              <div className="space-y-4">
+                {[
+                  { emoji: '🤝', title: 'Договор на услуги', desc: 'Заключаем официальный договор с прозрачными условиями и фиксированной стоимостью услуг' },
+                  { emoji: '🔍', title: 'Подбор автомобиля', desc: 'Наш эксперт подбирает идеальный вариант согласно вашим требованиям и бюджету' },
+                  { emoji: '💰', title: 'Подбор кредита / лизинга (опция)', desc: 'Помогаем с оформлением выгодного финансирования через проверенные банки' },
+                  { emoji: '💸', title: 'Покупка и оплата', desc: 'Безопасная сделка с полным юридическим сопровождением и гарантией' },
+                  { emoji: '🚚', title: 'Доставка автомобиля', desc: 'Логистика и таможенное оформление под ключ за 30-60 дней' },
+                  { emoji: '📋', title: 'Растаможка и учет', desc: 'Полное оформление документов, сертификация и постановка на учёт в ГИБДД' },
+                  { emoji: '🔧', title: 'Помощь в ремонте (опция)', desc: 'Сервисное обслуживание и поддержка после покупки' },
+                ].map((step, idx) => (
+                  <Card 
+                    key={idx} 
+                    className="bg-background border-border hover:border-accent transition-all cursor-pointer"
+                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
+                  >
+                    <div className="p-6 flex items-center justify-between">
+                      <div className="flex items-center gap-6">
+                        <div className="text-5xl">{step.emoji}</div>
+                        <div>
+                          <div className="text-sm text-muted-foreground mb-1">Шаг {idx + 1}.</div>
+                          <h3 className="text-xl font-bold">{step.title}</h3>
+                        </div>
+                      </div>
+                      <Icon 
+                        name="ChevronDown" 
+                        size={24} 
+                        className={`text-accent transition-transform ${openStep === idx ? 'rotate-180' : ''}`}
+                      />
+                    </div>
+                    {openStep === idx && (
+                      <div className="px-6 pb-6">
+                        <p className="text-lg text-muted-foreground leading-relaxed ml-[76px]">
+                          {step.desc}
+                        </p>
+                      </div>
+                    )}
+                  </Card>
+                ))}
+              </div>
+            )}
+
+            {workflowTab === 'Вопрос-ответ' && (
+              <div className="space-y-4">
+                {[
+                  { q: 'Сколько времени занимает доставка?', a: 'В среднем 30-60 дней от момента заказа до получения автомобиля в России с полным пакетом документов.' },
+                  { q: 'Какие гарантии вы предоставляете?', a: 'Официальный договор, юридическое сопровождение на всех этапах, страхование при доставке и гарантия производителя.' },
+                  { q: 'Можно ли получить кредит на автомобиль?', a: 'Да, мы работаем с ведущими банками и поможем подобрать оптимальные условия кредитования или лизинга.' },
+                  { q: 'Нужно ли мне самому заниматься растаможкой?', a: 'Нет, мы берём на себя все вопросы таможенного оформления, сертификации и постановки на учёт.' },
+                  { q: 'Какая экономия по сравнению с покупкой в России?', a: 'В среднем экономия составляет 25-35% от рыночной цены аналогичного автомобиля в РФ.' },
+                ].map((item, idx) => (
+                  <Card 
+                    key={idx} 
+                    className="bg-background border-border hover:border-accent transition-all cursor-pointer"
+                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
+                  >
+                    <div className="p-6 flex items-center justify-between">
+                      <h3 className="text-xl font-bold pr-4">{item.q}</h3>
+                      <Icon 
+                        name="ChevronDown" 
+                        size={24} 
+                        className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
+                      />
+                    </div>
+                    {openStep === idx && (
+                      <div className="px-6 pb-6">
+                        <p className="text-lg text-muted-foreground leading-relaxed">
+                          {item.a}
+                        </p>
+                      </div>
+                    )}
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
