@@ -10,48 +10,56 @@ import Footer from "@/components/Footer";
 const Catalog = () => {
   const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<string[]>([]);
+  const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000000]);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const allVehicles = [
-    { id: 1, name: "HONGQI E-HS9", type: "SUV", region: "Китай", price: 6850000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["600 л.с.", "0-100 за 4.9с", "Electric"], badge: "Хит продаж" },
-    { id: 2, name: "NIO ET7", type: "Седан", region: "Китай", price: 4200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["480 л.с.", "1000 км запас", "AWD"], badge: "Новинка" },
-    { id: 3, name: "Zeekr 001", type: "Хэтчбек", region: "Китай", price: 5200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["544 л.с.", "0-100 за 3.8с", "Electric"], badge: "Хит продаж" },
-    { id: 4, name: "Li Auto L7", type: "SUV", region: "Китай", price: 5900000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["449 л.с.", "EREV", "5 мест"] },
-    { id: 5, name: "BYD Han", type: "Седан", region: "Китай", price: 3900000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["517 л.с.", "605 км запас", "AWD"] },
-    { id: 6, name: "Xpeng G9", type: "SUV", region: "Китай", price: 4800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["551 л.с.", "702 км запас", "AWD"] },
-    { id: 7, name: "Avatr 11", type: "SUV", region: "Китай", price: 4500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["578 л.с.", "Electric", "AWD"] },
-    { id: 8, name: "Geely Monjaro", type: "Кроссовер", region: "Китай", price: 3200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["238 л.с.", "2.0T", "AWD"] },
-    { id: 9, name: "Tank 500", type: "Внедорожник", region: "Китай", price: 5500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["354 л.с.", "3.0T", "Рама"] },
-    { id: 10, name: "BMW X5 M50i", type: "SUV", region: "Европа", price: 8500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["530 л.с.", "0-100 за 4.3с", "AWD"], badge: "Премиум" },
-    { id: 11, name: "Mercedes-Benz S-Class", type: "Седан", region: "Европа", price: 9200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["367 л.с.", "Hybrid", "4MATIC"], badge: "Премиум" },
-    { id: 12, name: "Audi Q7", type: "SUV", region: "Европа", price: 7800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["340 л.с.", "3.0 TFSI", "Quattro"] },
-    { id: 13, name: "Porsche Cayenne", type: "SUV", region: "Европа", price: 9500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["340 л.с.", "3.0 V6", "AWD"], badge: "Премиум" },
-    { id: 14, name: "Range Rover Sport", type: "Внедорожник", region: "Европа", price: 10200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["400 л.с.", "3.0 MHEV", "AWD"], badge: "Премиум" },
-    { id: 15, name: "Volvo XC90", type: "SUV", region: "Европа", price: 6800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["250 л.с.", "PHEV", "7 мест"] },
-    { id: 16, name: "BMW 7 Series", type: "Седан", region: "Европа", price: 9800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["380 л.с.", "3.0 Hybrid", "AWD"], badge: "Премиум" },
-    { id: 17, name: "Jaguar F-PACE", type: "SUV", region: "Европа", price: 7200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["300 л.с.", "3.0 Diesel", "AWD"] },
+    { id: 1, name: "HONGQI E-HS9", type: "SUV", region: "Китай", condition: "Новый", price: 6850000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["600 л.с.", "0-100 за 4.9с", "Electric"], badge: "Хит продаж" },
+    { id: 2, name: "NIO ET7", type: "Седан", region: "Китай", condition: "Новый", price: 4200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["480 л.с.", "1000 км запас", "AWD"], badge: "Новинка" },
+    { id: 3, name: "Zeekr 001", type: "Хэтчбек", region: "Китай", condition: "Новый", price: 5200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["544 л.с.", "0-100 за 3.8с", "Electric"], badge: "Хит продаж" },
+    { id: 4, name: "Li Auto L7", type: "SUV", region: "Китай", condition: "Новый", price: 5900000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["449 л.с.", "EREV", "5 мест"] },
+    { id: 5, name: "BYD Han", type: "Седан", region: "Китай", condition: "Новый", price: 3900000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["517 л.с.", "605 км запас", "AWD"] },
+    { id: 6, name: "Xpeng G9", type: "SUV", region: "Китай", condition: "Новый", price: 4800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["551 л.с.", "702 км запас", "AWD"] },
+    { id: 7, name: "Avatr 11", type: "SUV", region: "Китай", condition: "Новый", price: 4500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["578 л.с.", "Electric", "AWD"] },
+    { id: 8, name: "Geely Monjaro", type: "Кроссовер", region: "Китай", condition: "Новый", price: 3200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["238 л.с.", "2.0T", "AWD"] },
+    { id: 9, name: "Tank 500", type: "Внедорожник", region: "Китай", condition: "Новый", price: 5500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["354 л.с.", "3.0T", "Рама"] },
+    { id: 10, name: "BMW X5 M50i", type: "SUV", region: "Европа", condition: "Б/У", price: 8500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["530 л.с.", "0-100 за 4.3с", "AWD"], badge: "Премиум" },
+    { id: 11, name: "Mercedes-Benz S-Class", type: "Седан", region: "Европа", condition: "Б/У", price: 9200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["367 л.с.", "Hybrid", "4MATIC"], badge: "Премиум" },
+    { id: 12, name: "Audi Q7", type: "SUV", region: "Европа", condition: "Б/У", price: 7800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["340 л.с.", "3.0 TFSI", "Quattro"] },
+    { id: 13, name: "Porsche Cayenne", type: "SUV", region: "Европа", condition: "Б/У", price: 9500000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["340 л.с.", "3.0 V6", "AWD"], badge: "Премиум" },
+    { id: 14, name: "Range Rover Sport", type: "Внедорожник", region: "Европа", condition: "Б/У", price: 10200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["400 л.с.", "3.0 MHEV", "AWD"], badge: "Премиум" },
+    { id: 15, name: "Volvo XC90", type: "SUV", region: "Европа", condition: "Б/У", price: 6800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["250 л.с.", "PHEV", "7 мест"] },
+    { id: 16, name: "BMW 7 Series", type: "Седан", region: "Европа", condition: "Б/У", price: 9800000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["380 л.с.", "3.0 Hybrid", "AWD"], badge: "Премиум" },
+    { id: 17, name: "Jaguar F-PACE", type: "SUV", region: "Европа", condition: "Б/У", price: 7200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["300 л.с.", "3.0 Diesel", "AWD"] },
   ];
 
   const regions = ["Китай", "Европа"];
   const types = ["SUV", "Седан", "Хэтчбек", "Кроссовер", "Внедорожник"];
 
-  const toggleFilter = (filter: string, type: 'region' | 'type') => {
+  const toggleFilter = (filter: string, type: 'region' | 'type' | 'condition') => {
     if (type === 'region') {
       setSelectedRegion(prev => 
         prev.includes(filter) ? prev.filter(r => r !== filter) : [...prev, filter]
       );
-    } else {
+    } else if (type === 'type') {
       setSelectedType(prev => 
         prev.includes(filter) ? prev.filter(t => t !== filter) : [...prev, filter]
+      );
+    } else {
+      setSelectedCondition(prev => 
+        prev.includes(filter) ? prev.filter(c => c !== filter) : [...prev, filter]
       );
     }
   };
 
   const filteredVehicles = allVehicles.filter(vehicle => {
+    if (searchQuery && !vehicle.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     if (selectedRegion.length > 0 && !selectedRegion.includes(vehicle.region)) return false;
     if (selectedType.length > 0 && !selectedType.includes(vehicle.type)) return false;
+    if (selectedCondition.length > 0 && !selectedCondition.includes(vehicle.condition)) return false;
     if (vehicle.price < priceRange[0] || vehicle.price > priceRange[1]) return false;
     return true;
   });
@@ -80,6 +88,20 @@ const Catalog = () => {
         <div className="w-full px-6 lg:px-12">
           <div className="flex gap-8">
             <aside className="w-64 flex-shrink-0 space-y-4 sticky top-32 h-fit">
+              <Card className="p-4 bg-card border-border">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Icon name="Search" size={16} className="text-accent" />
+                  Поиск
+                </h3>
+                <Input
+                  type="text"
+                  placeholder="Марка автомобиля"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="h-9 text-sm bg-secondary/50 border-border"
+                />
+              </Card>
+
               <Card className="p-4 bg-card border-border">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Icon name="MapPin" size={16} className="text-accent" />
@@ -129,6 +151,31 @@ const Catalog = () => {
 
               <Card className="p-4 bg-card border-border">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Icon name="Badge" size={16} className="text-accent" />
+                  Состояние
+                </h3>
+                <div className="space-y-2">
+                  {["Новый", "Б/У"].map(condition => (
+                    <label
+                      key={condition}
+                      className="flex items-center gap-2 cursor-pointer group"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedCondition.includes(condition)}
+                        onChange={() => toggleFilter(condition, 'condition')}
+                        className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                      />
+                      <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                        {condition}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="p-4 bg-card border-border">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Icon name="DollarSign" size={16} className="text-accent" />
                   Цена
                 </h3>
@@ -155,8 +202,10 @@ const Catalog = () => {
                 size="sm"
                 className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground text-xs"
                 onClick={() => {
+                  setSearchQuery('');
                   setSelectedRegion([]);
                   setSelectedType([]);
+                  setSelectedCondition([]);
                   setPriceRange([0, 20000000]);
                 }}
               >
