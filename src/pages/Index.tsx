@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 const Index = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
+  const [vehicleRegion, setVehicleRegion] = useState('Китай');
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -25,7 +26,7 @@ const Index = () => {
     setFormData({ name: "", phone: "", message: "" });
   };
 
-  const vehicles = [
+  const vehiclesChina = [
     {
       name: "HONGQI E-HS9",
       type: "Премиум SUV",
@@ -55,6 +56,25 @@ const Index = () => {
       specs: ["76 л.с.", "754cc", "KYB подвеска"],
     },
   ];
+
+  const vehiclesEurope = [
+    {
+      name: "BMW X5 M50i",
+      type: "Премиум SUV",
+      price: "от 8 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["530 л.с.", "0-100 за 4.3с", "AWD"],
+    },
+    {
+      name: "Mercedes-Benz S-Class",
+      type: "Седан Люкс",
+      price: "от 9 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["367 л.с.", "Hybrid", "4MATIC"],
+    },
+  ];
+
+  const vehicles = vehicleRegion === 'Китай' ? vehiclesChina : vehiclesEurope;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -167,9 +187,28 @@ const Index = () => {
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6">Наша коллекция</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-xl text-muted-foreground max-w-2xl mb-8">
               Автомобили разных классов и марок из Китая и Европы
             </p>
+            
+            <div className="flex gap-4 border-b border-border">
+              {['Китай', 'Европа'].map((region) => (
+                <button
+                  key={region}
+                  onClick={() => setVehicleRegion(region)}
+                  className={`pb-4 px-8 text-lg font-medium transition-all relative ${
+                    vehicleRegion === region 
+                      ? 'text-accent' 
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {region}
+                  {vehicleRegion === region && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
