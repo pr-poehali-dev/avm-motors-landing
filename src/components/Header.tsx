@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
-import ThemeToggle from "@/components/ThemeToggle";
 
 interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
@@ -68,8 +67,6 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <Icon name="Heart" size={20} className="mb-1" />
               <span>Избранное</span>
             </div>
-            
-            <ThemeToggle />
             
             <Button 
               size="lg"
