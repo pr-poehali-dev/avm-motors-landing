@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
-import SectionDivider from "@/components/SectionDivider";
 
 const Index = () => {
   const { toast } = useToast();
@@ -412,8 +411,6 @@ const Index = () => {
         </div>
       </section>
 
-      <SectionDivider variant="accent" label="Каталог" />
-
       <section id="vehicles" className="py-32 relative">
         <div className="w-full px-6 lg:px-12">
           <div className="mb-20">
@@ -499,8 +496,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      <SectionDivider variant="default" />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
@@ -621,8 +616,6 @@ const Index = () => {
         </div>
       </section>
 
-      <SectionDivider variant="accent" label="Сервис" />
-
       <section id="services" className="py-32 bg-secondary/30">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-4xl mx-auto text-center mb-20">
@@ -652,8 +645,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      <SectionDivider variant="minimal" />
 
       <section className="py-32">
         <div className="w-full px-6 lg:px-12">
@@ -694,8 +685,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      <SectionDivider variant="accent" label="Процесс работы" />
 
       <section className="py-32 bg-secondary/30">
         <div className="w-full px-6 lg:px-12">
