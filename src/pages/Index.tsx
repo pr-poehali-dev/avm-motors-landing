@@ -491,18 +491,21 @@ const Index = () => {
               <h2 className="text-5xl md:text-6xl font-bold mb-8">Как мы работаем</h2>
             </div>
 
-            <div className="flex gap-4 mb-8">
+            <div className="flex gap-4 mb-12 border-b border-border">
               {['Этапы работ', 'Вопрос-ответ'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setWorkflowTab(tab)}
-                  className={`px-8 py-3 rounded-full text-lg font-medium transition-all ${
+                  className={`pb-4 px-8 text-lg font-medium transition-all relative ${
                     workflowTab === tab 
-                      ? 'bg-accent text-accent-foreground' 
-                      : 'bg-background text-muted-foreground hover:text-foreground'
+                      ? 'text-accent' 
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {tab}
+                  {workflowTab === tab && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
+                  )}
                 </button>
               ))}
             </div>
