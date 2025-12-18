@@ -13,6 +13,7 @@ const Index = () => {
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [workflowTab, setWorkflowTab] = useState('Этапы работ');
   const [openStep, setOpenStep] = useState<number | null>(null);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -124,14 +125,84 @@ const Index = () => {
                 className="h-10 brightness-0 invert"
               />
               <nav className="hidden lg:flex items-center gap-12">
-                <a href="#vehicles" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
-                  Коллекция
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="#services" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
-                  Услуги
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-                </a>
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setOpenMenu('catalog')}
+                  onMouseLeave={() => setOpenMenu(null)}
+                >
+                  <a href="#vehicles" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group flex items-center gap-2">
+                    Каталог
+                    <Icon name="ChevronDown" size={16} className={`transition-transform ${openMenu === 'catalog' ? 'rotate-180' : ''}`} />
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+                  </a>
+                  {openMenu === 'catalog' && (
+                    <div className="absolute top-full left-0 mt-6 w-64 bg-background/95 backdrop-blur-xl border border-border rounded-lg shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="py-2">
+                        <a href="#vehicles" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="TrendingUp" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Топ продаж</span>
+                        </a>
+                        <a href="#vehicles" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="Palmtree" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Китай</span>
+                        </a>
+                        <a href="#vehicles" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="MapPin" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Европа</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setOpenMenu('services')}
+                  onMouseLeave={() => setOpenMenu(null)}
+                >
+                  <a href="#services" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group flex items-center gap-2">
+                    Услуги
+                    <Icon name="ChevronDown" size={16} className={`transition-transform ${openMenu === 'services' ? 'rotate-180' : ''}`} />
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+                  </a>
+                  {openMenu === 'services' && (
+                    <div className="absolute top-full left-0 mt-6 w-72 bg-background/95 backdrop-blur-xl border border-border rounded-lg shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="py-2">
+                        <a href="#services" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="Search" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Подбор автомобиля</span>
+                        </a>
+                        <a href="#services" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="Truck" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Доставка</span>
+                        </a>
+                        <a href="#services" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="Shield" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Юридическая поддержка</span>
+                        </a>
+                        <a href="#services" className="flex items-center gap-3 px-6 py-3 hover:bg-accent/10 transition-colors group">
+                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <Icon name="Wrench" size={18} className="text-accent" />
+                          </div>
+                          <span className="text-sm font-medium">Сервисное обслуживание</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
                 <a href="#contact" className="text-sm font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-accent transition-colors relative group">
                   Контакты
                   <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
