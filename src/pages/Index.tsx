@@ -314,7 +314,12 @@ const Index = () => {
                     </a>
                   </div>
                   
-                  <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20">
+                  <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 h-[200px]">
+                    <img 
+                      src="https://cdn.poehali.dev/files/Group_117.png"
+                      alt="Premium Car"
+                      className="absolute inset-0 w-full h-full object-cover opacity-10"
+                    />
                     <div className="p-6 relative z-10">
                       <h4 className="text-lg font-bold mb-2">Подберем 10 свежих предложений бесплатно</h4>
                       <Button 
@@ -328,7 +333,6 @@ const Index = () => {
                         Получить подборку
                       </Button>
                     </div>
-                    <div className="absolute -right-4 -bottom-4 text-8xl opacity-20">🚗</div>
                   </div>
                 </div>
               </div>
