@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 const Index = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
-  const [vehicleRegion, setVehicleRegion] = useState('Китай');
+  const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -74,7 +74,41 @@ const Index = () => {
     },
   ];
 
-  const vehicles = vehicleRegion === 'Китай' ? vehiclesChina : vehiclesEurope;
+  const vehiclesTop = [
+    {
+      name: "Zeekr 001",
+      type: "Хэтчбек",
+      price: "от 5 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["544 л.с.", "0-100 за 3.8с", "Electric"],
+    },
+    {
+      name: "BYD Han",
+      type: "Седан",
+      price: "от 3 900 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["517 л.с.", "605 км запас", "AWD"],
+    },
+    {
+      name: "Li Auto L9",
+      type: "SUV",
+      price: "от 6 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["449 л.с.", "EREV", "7 мест"],
+    },
+    {
+      name: "Audi Q7",
+      type: "SUV",
+      price: "от 7 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["340 л.с.", "3.0 TFSI", "Quattro"],
+    },
+  ];
+
+  const vehicles = 
+    vehicleRegion === 'Китай' ? vehiclesChina : 
+    vehicleRegion === 'Европа' ? vehiclesEurope : 
+    vehiclesTop;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -192,7 +226,7 @@ const Index = () => {
             </p>
             
             <div className="flex gap-4 border-b border-border">
-              {['Китай', 'Европа'].map((region) => (
+              {['Топ продаж', 'Китай', 'Европа'].map((region) => (
                 <button
                   key={region}
                   onClick={() => setVehicleRegion(region)}
