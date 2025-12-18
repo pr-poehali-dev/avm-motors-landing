@@ -78,19 +78,19 @@ const Catalog = () => {
 
       <section className="pb-32">
         <div className="w-full px-6 lg:px-12">
-          <div className="flex gap-12">
-            <aside className="w-80 flex-shrink-0 space-y-8 sticky top-32 h-fit">
-              <Card className="p-6 bg-card border-border">
-                <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-                  <Icon name="MapPin" size={20} className="text-accent" />
+          <div className="flex gap-8">
+            <aside className="w-64 flex-shrink-0 space-y-4 sticky top-32 h-fit">
+              <Card className="p-4 bg-card border-border">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Icon name="MapPin" size={16} className="text-accent" />
                   Регион
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {regions.map(region => (
                     <button
                       key={region}
                       onClick={() => toggleFilter(region, 'region')}
-                      className={`w-full px-4 py-3 rounded-lg text-left transition-all ${
+                      className={`w-full px-3 py-2 rounded-md text-sm text-left transition-all ${
                         selectedRegion.includes(region)
                           ? 'bg-accent text-accent-foreground font-medium'
                           : 'bg-secondary/50 hover:bg-secondary text-foreground'
@@ -102,24 +102,24 @@ const Catalog = () => {
                 </div>
               </Card>
 
-              <Card className="p-6 bg-card border-border">
-                <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-                  <Icon name="Car" size={20} className="text-accent" />
+              <Card className="p-4 bg-card border-border">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Icon name="Car" size={16} className="text-accent" />
                   Тип кузова
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {types.map(type => (
                     <label
                       key={type}
-                      className="flex items-center gap-3 cursor-pointer group"
+                      className="flex items-center gap-2 cursor-pointer group"
                     >
                       <input
                         type="checkbox"
                         checked={selectedType.includes(type)}
                         onChange={() => toggleFilter(type, 'type')}
-                        className="w-5 h-5 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                        className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
                       />
-                      <span className="text-foreground group-hover:text-accent transition-colors">
+                      <span className="text-sm text-foreground group-hover:text-accent transition-colors">
                         {type}
                       </span>
                     </label>
@@ -127,24 +127,24 @@ const Catalog = () => {
                 </div>
               </Card>
 
-              <Card className="p-6 bg-card border-border">
-                <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-                  <Icon name="DollarSign" size={20} className="text-accent" />
+              <Card className="p-4 bg-card border-border">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Icon name="DollarSign" size={16} className="text-accent" />
                   Цена
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex gap-3">
+                <div className="space-y-3">
+                  <div className="flex gap-2">
                     <Input
                       type="text"
                       value={`${(priceRange[0] / 1000000).toFixed(1)} млн`}
                       readOnly
-                      className="bg-secondary/50 border-border text-center"
+                      className="bg-secondary/50 border-border text-center text-xs h-9"
                     />
                     <Input
                       type="text"
                       value={`${(priceRange[1] / 1000000).toFixed(1)} млн`}
                       readOnly
-                      className="bg-secondary/50 border-border text-center"
+                      className="bg-secondary/50 border-border text-center text-xs h-9"
                     />
                   </div>
                 </div>
@@ -152,7 +152,8 @@ const Catalog = () => {
 
               <Button
                 variant="outline"
-                className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                size="sm"
+                className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground text-xs"
                 onClick={() => {
                   setSelectedRegion([]);
                   setSelectedType([]);
