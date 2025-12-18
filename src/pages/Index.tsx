@@ -222,7 +222,7 @@ const Index = () => {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Insights</span>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Экспертиза</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">Наша экспертиза</h2>
           </div>
