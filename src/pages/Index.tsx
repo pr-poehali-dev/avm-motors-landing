@@ -164,11 +164,11 @@ const Index = () => {
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Избранное</span>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Премиальная коллекция</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Наша коллекция</h2>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Эксклюзивные модели с индивидуальными характеристиками
+              Автомобили разных классов и марок из Китая и Европы
             </p>
           </div>
 
