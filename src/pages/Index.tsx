@@ -121,9 +121,9 @@ const Index = () => {
           <div className="flex items-center justify-between gap-6 h-20">
             <div className="flex items-center gap-6">
               <img 
-                src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
+                src="https://cdn.poehali.dev/files/AVM_logo_horizontal_mono.png" 
                 alt="AVM Motors" 
-                className="h-8 brightness-0 invert flex-shrink-0"
+                className="h-8 flex-shrink-0"
               />
               
               <button
@@ -844,9 +844,9 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
             <div className="lg:col-span-4">
               <img 
-                src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.).png" 
+                src="https://cdn.poehali.dev/files/AVM_logo_horizontal_mono.png" 
                 alt="AVM Motors" 
-                className="h-12 mb-6 brightness-0 invert"
+                className="h-12 mb-6"
               />
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Эксклюзивный импорт премиальных автомобилей из Китая и Европы
