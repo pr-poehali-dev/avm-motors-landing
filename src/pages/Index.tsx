@@ -245,41 +245,57 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="w-full px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
+      <section className="relative py-32 overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-accent/3 blur-[100px] rounded-full"></div>
+        <div className="absolute top-1/3 left-1/4 w-px h-72 bg-gradient-to-b from-transparent via-accent/30 to-transparent rotate-12"></div>
+        <div className="absolute top-1/2 left-[15%] w-20 h-20 border border-accent/20 rotate-45"></div>
+        
+        <div className="w-full px-6 lg:px-12 relative">
+          <div className="relative">
+            <div className="max-w-2xl mb-16 relative z-30">
+              <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-12 bg-accent"></div>
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">Почему AVM Motors</h2>
-              <div className="space-y-8">
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-10 leading-[0.95]">
+                Почему<br />
+                <span className="accent-title text-accent">AVM Motors</span>
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+                Мы создаём безупречный опыт импорта премиальных автомобилей из Китая
+              </p>
+              <div className="space-y-6">
                 {[
-                  { title: "Прямые поставки", desc: "Работаем напрямую с производителями, без посредников" },
-                  { title: "Гарантия лучшей цены", desc: "Экономия до 30% по сравнению с рынком РФ" },
-                  { title: "Полная прозрачность", desc: "Отслеживайте каждый этап сделки в реальном времени" },
-                  { title: "Эксклюзивный сервис", desc: "Персональный менеджер на всех этапах" },
+                  { num: "01", title: "Прямые поставки", desc: "Работаем напрямую с производителями" },
+                  { num: "02", title: "Гарантия цены", desc: "Экономия до 30% от рынка РФ" },
+                  { num: "03", title: "Прозрачность", desc: "Отслеживание каждого этапа сделки" },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <Icon name="Check" size={24} className="text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.desc}</p>
+                  <div key={idx} className="flex gap-6 items-start group">
+                    <div className="text-5xl font-bold text-accent/20 group-hover:text-accent/40 transition-colors leading-none">{item.num}</div>
+                    <div className="border-l-2 border-accent/30 pl-6 py-2">
+                      <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-lg text-muted-foreground">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative h-[600px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
+            
+            <div className="absolute top-0 -right-40 lg:-right-20 w-[1000px] lg:w-[1500px] h-full pointer-events-none z-20">
+              <div className="absolute inset-0">
+                <div className="absolute top-1/3 right-1/3 w-px h-56 bg-gradient-to-b from-transparent via-accent/50 to-transparent rotate-12"></div>
+                <div className="absolute top-1/2 right-[40%] w-px h-72 bg-gradient-to-b from-transparent via-accent/40 to-transparent -rotate-6"></div>
+                <div className="absolute top-[40%] right-[35%] w-24 h-24 border border-accent/25 rotate-[30deg]"></div>
+                <div className="absolute top-[55%] right-[25%] w-16 h-16 border border-accent/20 -rotate-12"></div>
+              </div>
               <img 
-                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg"
-                alt="Premium service"
-                className="w-full h-full object-cover"
+                src="https://cdn.poehali.dev/files/Group_117.png"
+                alt="Premium Car"
+                className="w-full h-full object-contain drop-shadow-[0_40px_120px_rgba(229,87,68,0.5)] opacity-90"
               />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-accent/5 to-transparent"></div>
+              <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-accent/10 blur-[100px] rounded-full"></div>
             </div>
           </div>
         </div>
