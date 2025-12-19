@@ -23,6 +23,24 @@ const Index = () => {
     message: "",
   });
 
+  const [quizStep, setQuizStep] = useState(1);
+  const [quizData, setQuizData] = useState({
+    carModel: '',
+    budget: '',
+    name: '',
+    phone: '',
+  });
+
+  const handleQuizSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Заявка принята!",
+      description: "Мы подберём для вас идеальный автомобиль и свяжемся в течение часа",
+    });
+    setQuizStep(1);
+    setQuizData({ carModel: '', budget: '', name: '', phone: '' });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -687,6 +705,187 @@ const Index = () => {
                 <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 bg-secondary/30 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="w-full px-6 lg:px-12 relative z-10">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-accent"></div>
+                <span className="text-sm tracking-[0.3em] uppercase text-accent">Подбор авто</span>
+                <div className="h-px w-12 bg-accent"></div>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Подобрать авто из Китая в 3 шага
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Ответьте на 3 вопроса — мы найдём идеальный вариант
+              </p>
+            </div>
+
+            <Card className="bg-background border-border shadow-2xl">
+              <div className="p-8 md:p-12">
+                <div className="flex justify-between mb-8">
+                  {[1, 2, 3].map((step) => (
+                    <div key={step} className="flex items-center">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
+                        quizStep === step 
+                          ? 'bg-accent text-accent-foreground scale-110' 
+                          : quizStep > step 
+                          ? 'bg-accent/20 text-accent' 
+                          : 'bg-secondary text-muted-foreground'
+                      }`}>
+                        {quizStep > step ? <Icon name="Check" size={20} /> : step}
+                      </div>
+                      {step < 3 && (
+                        <div className={`w-16 md:w-24 h-0.5 mx-2 transition-colors ${
+                          quizStep > step ? 'bg-accent' : 'bg-secondary'
+                        }`}></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <form onSubmit={handleQuizSubmit}>
+                  {quizStep === 1 && (
+                    <div className="space-y-6 animate-in fade-in duration-300">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                          Шаг 1 из 3
+                        </label>
+                        <h3 className="text-2xl font-bold mb-4">Какой марки/модели хотите авто?</h3>
+                        <Input
+                          type="text"
+                          placeholder="Например: BYD Han, Zeekr 001, NIO ET7"
+                          value={quizData.carModel}
+                          onChange={(e) => setQuizData({ ...quizData, carModel: e.target.value })}
+                          className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                          required
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        onClick={() => setQuizStep(2)}
+                        className="w-full h-14 bg-accent hover:bg-accent/90 text-lg"
+                        disabled={!quizData.carModel.trim()}
+                      >
+                        Далее
+                        <Icon name="ArrowRight" size={20} className="ml-2" />
+                      </Button>
+                    </div>
+                  )}
+
+                  {quizStep === 2 && (
+                    <div className="space-y-6 animate-in fade-in duration-300">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                          Шаг 2 из 3
+                        </label>
+                        <h3 className="text-2xl font-bold mb-6">Автомобиль в каком бюджете рассматриваете?</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            { label: 'До 15 млн ₽', value: 'до 15 млн' },
+                            { label: '15-20 млн ₽', value: '15-20 млн' },
+                            { label: '20-30 млн ₽', value: '20-30 млн' },
+                            { label: '30-40 млн ₽', value: '30-40 млн' },
+                            { label: '40+ млн ₽', value: '40+ млн' },
+                            { label: 'Не определился', value: 'не определился' },
+                          ].map((option) => (
+                            <button
+                              key={option.value}
+                              type="button"
+                              onClick={() => setQuizData({ ...quizData, budget: option.value })}
+                              className={`p-4 rounded-lg border-2 font-medium transition-all ${
+                                quizData.budget === option.value
+                                  ? 'border-accent bg-accent/10 text-accent'
+                                  : 'border-border bg-secondary/50 hover:border-accent/50 text-foreground'
+                              }`}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Button
+                          type="button"
+                          onClick={() => setQuizStep(1)}
+                          variant="outline"
+                          className="flex-1 h-14 text-lg border-border hover:border-accent"
+                        >
+                          <Icon name="ArrowLeft" size={20} className="mr-2" />
+                          Назад
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={() => setQuizStep(3)}
+                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          disabled={!quizData.budget}
+                        >
+                          Далее
+                          <Icon name="ArrowRight" size={20} className="ml-2" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {quizStep === 3 && (
+                    <div className="space-y-6 animate-in fade-in duration-300">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                          Шаг 3 из 3
+                        </label>
+                        <h3 className="text-2xl font-bold mb-6">Куда отправить подборку?</h3>
+                        <div className="space-y-4">
+                          <Input
+                            type="text"
+                            placeholder="Ваше имя"
+                            value={quizData.name}
+                            onChange={(e) => setQuizData({ ...quizData, name: e.target.value })}
+                            className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                            required
+                          />
+                          <Input
+                            type="tel"
+                            placeholder="+7 (___) ___-__-__"
+                            value={quizData.phone}
+                            onChange={(e) => setQuizData({ ...quizData, phone: e.target.value })}
+                            className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Button
+                          type="button"
+                          onClick={() => setQuizStep(2)}
+                          variant="outline"
+                          className="flex-1 h-14 text-lg border-border hover:border-accent"
+                        >
+                          <Icon name="ArrowLeft" size={20} className="mr-2" />
+                          Назад
+                        </Button>
+                        <Button
+                          type="submit"
+                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          disabled={!quizData.name.trim() || !quizData.phone.trim()}
+                        >
+                          Получить подборку
+                          <Icon name="Check" size={20} className="ml-2" />
+                        </Button>
+                      </div>
+                      <p className="text-xs text-center text-muted-foreground">
+                        Конфиденциальность гарантируется
+                      </p>
+                    </div>
+                  )}
+                </form>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
