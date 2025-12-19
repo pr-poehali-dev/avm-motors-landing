@@ -679,36 +679,6 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-32 bg-secondary/30">
-        <div className="w-full px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto text-center mb-20">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
-              <div className="h-px w-12 bg-accent"></div>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: "Search", title: "Индивидуальный подбор", desc: "Эксперт найдёт идеальный вариант под ваши критерии" },
-              { icon: "Shield", title: "Юридическая защита", desc: "Полная проверка документов и юридическая чистота" },
-              { icon: "Truck", title: "VIP доставка", desc: "Безопасная транспортировка с полным страхованием" },
-              { icon: "Wrench", title: "Постпродажный сервис", desc: "Техническая поддержка и обслуживание" },
-            ].map((service, idx) => (
-              <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                  <Icon name={service.icon} size={32} className="text-accent" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-32 bg-secondary/30 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative z-10">
@@ -886,6 +856,36 @@ const Index = () => {
                 </form>
               </div>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="py-32 bg-secondary/30">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
+              <div className="h-px w-12 bg-accent"></div>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: "Search", title: "Индивидуальный подбор", desc: "Эксперт найдёт идеальный вариант под ваши критерии" },
+              { icon: "Shield", title: "Юридическая защита", desc: "Полная проверка документов и юридическая чистота" },
+              { icon: "Truck", title: "VIP доставка", desc: "Безопасная транспортировка с полным страхованием" },
+              { icon: "Wrench", title: "Постпродажный сервис", desc: "Техническая поддержка и обслуживание" },
+            ].map((service, idx) => (
+              <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                  <Icon name={service.icon} size={32} className="text-accent" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
