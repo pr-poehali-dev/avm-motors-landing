@@ -30,6 +30,7 @@ const Index = () => {
     name: '',
     phone: '',
   });
+  const [showAllVehicles, setShowAllVehicles] = useState(false);
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -395,10 +396,12 @@ const Index = () => {
     },
   ];
 
-  const vehicles = 
+  const allVehicles = 
     vehicleRegion === 'Китай' ? vehiclesChina : 
     vehicleRegion === 'Европа' ? vehiclesEurope : 
     vehiclesTop;
+
+  const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -506,7 +509,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {vehicles.map((vehicle, index) => (
               <Card 
                 key={index} 
@@ -547,7 +550,18 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="mt-12 text-center">
+          <div className="flex flex-col items-center gap-4">
+            {!showAllVehicles && allVehicles.length > 8 && (
+              <Button 
+                size="lg"
+                variant="outline"
+                className="border-2 px-10 h-14 text-lg hover:bg-accent hover:border-accent hover:text-accent-foreground"
+                onClick={() => setShowAllVehicles(true)}
+              >
+                Показать ещё ({allVehicles.length - 8})
+                <Icon name="ChevronDown" size={20} className="ml-2" />
+              </Button>
+            )}
             <Button 
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground px-10 h-14 text-lg"
