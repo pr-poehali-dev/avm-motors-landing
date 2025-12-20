@@ -1175,42 +1175,75 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="w-full px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">Почему AVM Motors</h2>
-              <div className="space-y-8">
-                {[
-                  { title: "Прямые поставки", desc: "Работаем напрямую с производителями, без посредников" },
-                  { title: "Гарантия лучшей цены", desc: "Экономия до 30% по сравнению с рынком РФ" },
-                  { title: "Полная прозрачность", desc: "Отслеживайте каждый этап сделки в реальном времени" },
-                  { title: "Эксклюзивный сервис", desc: "Персональный менеджер на всех этапах" },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <Icon name="Check" size={24} className="text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="w-full px-6 lg:px-12 relative">
+          <div className="mb-20 text-center">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
+              <div className="h-px w-12 bg-accent"></div>
             </div>
-            <div className="relative h-[600px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
-              <img 
-                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg"
-                alt="Premium service"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Почему AVM Motors</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Опыт, надежность и прозрачность на каждом этапе
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[
+              { 
+                icon: "Calculator", 
+                title: "Прозрачная цена до покупки", 
+                desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки" 
+              },
+              { 
+                icon: "SearchCheck", 
+                title: "Проверка автомобиля до выкупа", 
+                desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты" 
+              },
+              { 
+                icon: "CreditCard", 
+                title: "Кредит и лизинг удаленно", 
+                desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис" 
+              },
+              { 
+                icon: "Package", 
+                title: "Дополнительное оборудование с выгодой", 
+                desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка" 
+              },
+              { 
+                icon: "ClipboardCheck", 
+                title: "Сопровождение до постановки на учет", 
+                desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ" 
+              },
+              { 
+                icon: "Users", 
+                title: "Экосистема партнеров", 
+                desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам" 
+              },
+              { 
+                icon: "Award", 
+                title: "Опыт и доверие, подтвержденные временем", 
+                desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025" 
+              },
+              { 
+                icon: "Gift", 
+                title: "Программа лояльности", 
+                desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by" 
+              },
+            ].map((item, idx) => (
+              <Card 
+                key={idx} 
+                className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
+              >
+                <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 group-hover:scale-110 transition-all">
+                  <Icon name={item.icon} size={28} className="text-accent" />
+                </div>
+                <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
