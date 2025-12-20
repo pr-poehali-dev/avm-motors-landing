@@ -1178,14 +1178,13 @@ const Index = () => {
       <section className="py-32 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative">
-          <div className="mb-20 text-center">
-            <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="mb-20">
+            <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
-              <div className="h-px w-12 bg-accent"></div>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6">Почему AVM Motors</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl">
               Опыт, надежность и прозрачность на каждом этапе
             </p>
           </div>
