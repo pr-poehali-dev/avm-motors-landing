@@ -1361,18 +1361,17 @@ const Index = () => {
       <section id="contact" className="py-32 bg-secondary/30">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
-            <Card className="p-12 bg-card border-accent/20">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="h-px w-12 bg-accent"></div>
-                  <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
-                  <div className="h-px w-12 bg-accent"></div>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">Оставьте заявку</h2>
-                <p className="text-lg text-muted-foreground">
-                  Эксперт свяжется с вами для персональной консультации
-                </p>
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-12 bg-accent"></div>
+                <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
               </div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки
+              </p>
+            </div>
+            <Card className="p-12 bg-card border-accent/20">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Input
                   type="text"
@@ -1389,19 +1388,12 @@ const Index = () => {
                   inputClassName="h-14 bg-background border-border focus:border-accent"
                   className="phone-input-custom"
                 />
-                <Textarea
-                  placeholder="Расскажите о ваших предпочтениях..."
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-background border-border focus:border-accent resize-none"
-                />
                 <Button 
                   type="submit" 
                   size="lg" 
                   className="w-full bg-accent hover:bg-accent/90 h-14 text-lg"
                 >
-                  Отправить заявку
+                  Получить консультацию
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
                   Конфиденциальность гарантируется
