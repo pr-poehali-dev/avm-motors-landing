@@ -422,8 +422,8 @@ const Index = () => {
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
               АВТОМОБИЛИ<br />
-              <span className="accent-title text-accent">премиум-класса</span><br />
-              ИЗ КИТАЯ
+              <span className="accent-title text-accent">из Китая</span><br />
+              ПОД КЛЮЧ
             </h1>
             
             <div className="absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20">
@@ -441,7 +441,7 @@ const Index = () => {
             </div>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed relative z-30">
-              Авто из Китая легально под ключ. 30-60 дней без переплат. Ваша мечта — наша экспертиза.
+              Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
             </p>
             <div className="flex flex-wrap gap-6 relative z-30">
               <Button 
@@ -459,18 +459,22 @@ const Index = () => {
                 Консультация эксперта
               </Button>
             </div>
-            <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl relative z-30">
+            <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-3xl relative z-30">
               <div className="border-l-2 border-accent pl-6">
                 <div className="text-4xl font-bold mb-2">30%</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
               </div>
               <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">45</div>
+                <div className="text-4xl font-bold mb-2">30</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
               </div>
               <div className="border-l-2 border-accent pl-6">
                 <div className="text-4xl font-bold mb-2">24/7</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
+              </div>
+              <div className="border-l-2 border-accent pl-6">
+                <div className="text-4xl font-bold mb-2">14</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
               </div>
             </div>
           </div>
