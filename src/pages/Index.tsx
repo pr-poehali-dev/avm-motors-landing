@@ -396,9 +396,189 @@ const Index = () => {
     },
   ];
 
+  const vehiclesAmerican = [
+    {
+      name: "Ford F-150 Lightning",
+      type: "Пикап",
+      price: "от 7 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["563 л.с.", "Electric", "AWD"],
+    },
+    {
+      name: "Chevrolet Tahoe",
+      type: "SUV",
+      price: "от 8 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["420 л.с.", "6.2 V8", "4WD"],
+    },
+    {
+      name: "Cadillac Escalade",
+      type: "Премиум SUV",
+      price: "от 10 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["420 л.с.", "6.2 V8", "AWD"],
+    },
+    {
+      name: "Jeep Grand Cherokee",
+      type: "SUV",
+      price: "от 6 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["357 л.с.", "5.7 V8", "4WD"],
+    },
+    {
+      name: "Tesla Model S Plaid",
+      type: "Седан",
+      price: "от 12 000 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["1020 л.с.", "0-100 за 2.1с", "AWD"],
+    },
+    {
+      name: "GMC Yukon Denali",
+      type: "SUV",
+      price: "от 9 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["420 л.с.", "6.2 V8", "AWD"],
+    },
+    {
+      name: "Lincoln Navigator",
+      type: "Премиум SUV",
+      price: "от 10 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["450 л.с.", "3.5 Twin-Turbo", "4WD"],
+    },
+    {
+      name: "Ram 1500 TRX",
+      type: "Пикап",
+      price: "от 11 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["702 л.с.", "6.2 Supercharged", "4WD"],
+    },
+  ];
+
+  const vehiclesJapanese = [
+    {
+      name: "Toyota Land Cruiser 300",
+      type: "Внедорожник",
+      price: "от 9 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["415 л.с.", "3.5 Twin-Turbo", "4WD"],
+    },
+    {
+      name: "Lexus LX 600",
+      type: "Премиум SUV",
+      price: "от 10 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["409 л.с.", "3.5 Twin-Turbo", "4WD"],
+    },
+    {
+      name: "Mazda CX-90",
+      type: "SUV",
+      price: "от 5 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["340 л.с.", "PHEV", "AWD"],
+    },
+    {
+      name: "Honda Pilot",
+      type: "SUV",
+      price: "от 4 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["285 л.с.", "3.5 V6", "AWD"],
+    },
+    {
+      name: "Nissan Patrol",
+      type: "Внедорожник",
+      price: "от 6 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["400 л.с.", "5.6 V8", "4WD"],
+    },
+    {
+      name: "Lexus RX 500h",
+      type: "SUV",
+      price: "от 7 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["366 л.с.", "Hybrid", "AWD"],
+    },
+    {
+      name: "Toyota Alphard",
+      type: "Минивэн",
+      price: "от 5 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["245 л.с.", "Hybrid", "7 мест"],
+    },
+    {
+      name: "Infiniti QX80",
+      type: "SUV",
+      price: "от 7 900 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["400 л.с.", "5.6 V8", "4WD"],
+    },
+  ];
+
+  const vehiclesKorean = [
+    {
+      name: "Genesis GV80",
+      type: "Премиум SUV",
+      price: "от 6 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["375 л.с.", "3.5 Twin-Turbo", "AWD"],
+    },
+    {
+      name: "Hyundai Palisade",
+      type: "SUV",
+      price: "от 4 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["291 л.с.", "3.8 V6", "AWD"],
+    },
+    {
+      name: "Kia EV6 GT",
+      type: "Кроссовер",
+      price: "от 5 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["585 л.с.", "0-100 за 3.5с", "AWD"],
+    },
+    {
+      name: "Genesis G90",
+      type: "Седан Люкс",
+      price: "от 8 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["409 л.с.", "3.5 Twin-Turbo", "AWD"],
+    },
+    {
+      name: "Hyundai Ioniq 5 N",
+      type: "Кроссовер",
+      price: "от 6 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["641 л.с.", "Electric", "AWD"],
+    },
+    {
+      name: "Kia Telluride",
+      type: "SUV",
+      price: "от 4 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["291 л.с.", "3.8 V6", "AWD"],
+    },
+    {
+      name: "Genesis GV70",
+      type: "SUV",
+      price: "от 5 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["300 л.с.", "2.5 Turbo", "AWD"],
+    },
+    {
+      name: "Hyundai Santa Fe",
+      type: "SUV",
+      price: "от 3 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["277 л.с.", "2.5 Turbo", "AWD"],
+    },
+  ];
+
   const allVehicles = 
-    vehicleRegion === 'Китай' ? vehiclesChina : 
-    vehicleRegion === 'Европа' ? vehiclesEurope : 
+    vehicleRegion === 'Китайские бренды' ? vehiclesChina : 
+    vehicleRegion === 'Европейские бренды' ? vehiclesEurope :
+    vehicleRegion === 'Американские бренды' ? vehiclesAmerican :
+    vehicleRegion === 'Японские бренды' ? vehiclesJapanese :
+    vehicleRegion === 'Корейские бренды' ? vehiclesKorean :
     vehiclesTop;
 
   const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
@@ -493,23 +673,25 @@ const Index = () => {
               Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
-            <div className="flex gap-4 border-b border-border">
-              {['Топ продаж', 'Китай', 'Европа'].map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setVehicleRegion(region)}
-                  className={`pb-4 px-8 text-lg font-medium transition-all relative ${
-                    vehicleRegion === region 
-                      ? 'text-accent' 
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {region}
-                  {vehicleRegion === region && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
-                  )}
-                </button>
-              ))}
+            <div className="relative">
+              <div className="flex gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
+                {['Топ продаж', 'Китайские бренды', 'Европейские бренды', 'Американские бренды', 'Японские бренды', 'Корейские бренды'].map((region) => (
+                  <button
+                    key={region}
+                    onClick={() => setVehicleRegion(region)}
+                    className={`pb-4 px-6 text-base md:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
+                      vehicleRegion === region 
+                        ? 'text-accent' 
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {region}
+                    {vehicleRegion === region && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
