@@ -672,7 +672,7 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Примеры автомобилей, доступных для заказа</h2>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">Примеры автомобилей, доступных для заказа</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mb-8">
               Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
@@ -772,7 +772,7 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Экспертиза</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold">Обзоры</h2>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight">Обзоры</h2>
           </div>
 
           <div className="flex flex-wrap gap-4 mb-12 border-b border-border">
@@ -893,7 +893,7 @@ const Index = () => {
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Подбор авто</span>
                 <div className="h-px w-12 bg-accent"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[0.95] tracking-tight">
                 Не нашли подходящий вариант?
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -1150,7 +1150,7 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">Полный цикл обслуживания</h2>
             <p className="text-xl text-muted-foreground max-w-2xl">
               Что вы получаете до, во время и после покупки с нами
             </p>
@@ -1256,7 +1256,7 @@ const Index = () => {
                 <div className="h-px w-12 bg-accent"></div>
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Процесс</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">Как мы работаем</h2>
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-12 leading-[0.95] tracking-tight">Как мы работаем</h2>
             </div>
 
             <div className="flex gap-4 mb-12 border-b border-border">
@@ -1366,7 +1366,7 @@ const Index = () => {
                 <div className="h-px w-12 bg-accent"></div>
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] tracking-tight">Начнём подбор автомобиля прямо сейчас</h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки
               </p>
