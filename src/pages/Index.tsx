@@ -488,9 +488,9 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Наша коллекция</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Примеры автомобилей, доступных для заказа</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-              Автомобили разных классов и марок из Китая и Европы
+              Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
             <div className="flex gap-4 border-b border-border">
