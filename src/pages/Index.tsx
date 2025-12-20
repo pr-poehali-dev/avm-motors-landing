@@ -25,8 +25,9 @@ const Index = () => {
 
   const [quizStep, setQuizStep] = useState(1);
   const [quizData, setQuizData] = useState({
-    carModel: '',
     budget: '',
+    tasks: [] as string[],
+    chineseBrands: '',
     name: '',
     phone: '',
   });
@@ -39,7 +40,8 @@ const Index = () => {
       description: "Мы подберём для вас идеальный автомобиль и свяжемся в течение часа",
     });
     setQuizStep(1);
-    setQuizData({ carModel: '', budget: '', name: '', phone: '' });
+    setQuizData({ budget: '', tasks: [], chineseBrands: '', name: '', phone: '' });
+    setQuizStep(1);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -890,17 +892,17 @@ const Index = () => {
                 <div className="h-px w-12 bg-accent"></div>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Подобрать авто из Китая в 3 шага
+                Не нашли подходящий вариант?
               </h2>
               <p className="text-lg text-muted-foreground">
-                Ответьте на 3 вопроса — мы найдём идеальный вариант
+                Ответьте на 3 простых вопроса - эксперт AVM предложит оптимальные варианты в Ваш бюджет
               </p>
             </div>
 
             <Card className="bg-background border-border shadow-2xl">
               <div className="p-8 md:p-12">
                 <div className="flex justify-between mb-8">
-                  {[1, 2, 3].map((step) => (
+                  {[1, 2, 3, 4].map((step) => (
                     <div key={step} className="flex items-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
                         quizStep === step 
@@ -911,8 +913,8 @@ const Index = () => {
                       }`}>
                         {quizStep > step ? <Icon name="Check" size={20} /> : step}
                       </div>
-                      {step < 3 && (
-                        <div className={`w-16 md:w-24 h-0.5 mx-2 transition-colors ${
+                      {step < 4 && (
+                        <div className={`w-12 md:w-20 h-0.5 mx-2 transition-colors ${
                           quizStep > step ? 'bg-accent' : 'bg-secondary'
                         }`}></div>
                       )}
@@ -927,43 +929,13 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Шаг 1 из 3
                         </label>
-                        <h3 className="text-2xl font-bold mb-4">Какой марки/модели хотите авто?</h3>
-                        <Input
-                          type="text"
-                          placeholder="Например: BYD Han, Zeekr 001, NIO ET7"
-                          value={quizData.carModel}
-                          onChange={(e) => setQuizData({ ...quizData, carModel: e.target.value })}
-                          className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
-                          required
-                        />
-                      </div>
-                      <Button
-                        type="button"
-                        onClick={() => setQuizStep(2)}
-                        className="w-full h-14 bg-accent hover:bg-accent/90 text-lg"
-                        disabled={!quizData.carModel.trim()}
-                      >
-                        Далее
-                        <Icon name="ArrowRight" size={20} className="ml-2" />
-                      </Button>
-                    </div>
-                  )}
-
-                  {quizStep === 2 && (
-                    <div className="space-y-6 animate-in fade-in duration-300">
-                      <div>
-                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                          Шаг 2 из 3
-                        </label>
-                        <h3 className="text-2xl font-bold mb-6">Автомобиль в каком бюджете рассматриваете?</h3>
-                        <div className="grid grid-cols-2 gap-3">
+                        <h3 className="text-2xl font-bold mb-6">В каком бюджете подбираем автомобиль?</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {[
-                            { label: 'До 15 млн ₽', value: 'до 15 млн' },
-                            { label: '15-20 млн ₽', value: '15-20 млн' },
-                            { label: '20-30 млн ₽', value: '20-30 млн' },
-                            { label: '30-40 млн ₽', value: '30-40 млн' },
-                            { label: '40+ млн ₽', value: '40+ млн' },
-                            { label: 'Не определился', value: 'не определился' },
+                            { label: 'до 15 000$', value: 'do-15k' },
+                            { label: '15 000 - 20 000$', value: '15k-20k' },
+                            { label: '20 000 - 30 000$', value: '20k-30k' },
+                            { label: '30 000$ и выше', value: '30k+' },
                           ].map((option) => (
                             <button
                               key={option.value}
@@ -980,6 +952,61 @@ const Index = () => {
                           ))}
                         </div>
                       </div>
+                      <Button
+                        type="button"
+                        onClick={() => setQuizStep(2)}
+                        className="w-full h-14 bg-accent hover:bg-accent/90 text-lg"
+                        disabled={!quizData.budget}
+                      >
+                        Далее
+                        <Icon name="ArrowRight" size={20} className="ml-2" />
+                      </Button>
+                    </div>
+                  )}
+
+                  {quizStep === 2 && (
+                    <div className="space-y-6 animate-in fade-in duration-300">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                          Шаг 2 из 3
+                        </label>
+                        <h3 className="text-2xl font-bold mb-6">Для каких задач Вам нужен автомобиль?</h3>
+                        <p className="text-sm text-muted-foreground mb-4">Можно выбрать несколько вариантов</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {[
+                            { label: 'Семейный автомобиль', value: 'family' },
+                            { label: 'Поездки по городу', value: 'city' },
+                            { label: 'Путешествия / трасса', value: 'travel' },
+                            { label: 'Бездорожье', value: 'offroad' },
+                            { label: 'Стиль и комфорт', value: 'luxury' },
+                            { label: 'Пока не определился', value: 'unsure' },
+                          ].map((option) => {
+                            const isSelected = quizData.tasks.includes(option.value);
+                            return (
+                              <button
+                                key={option.value}
+                                type="button"
+                                onClick={() => {
+                                  const newTasks = isSelected
+                                    ? quizData.tasks.filter(t => t !== option.value)
+                                    : [...quizData.tasks, option.value];
+                                  setQuizData({ ...quizData, tasks: newTasks });
+                                }}
+                                className={`p-4 rounded-lg border-2 font-medium transition-all text-left ${
+                                  isSelected
+                                    ? 'border-accent bg-accent/10 text-accent'
+                                    : 'border-border bg-secondary/50 hover:border-accent/50 text-foreground'
+                                }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span>{option.label}</span>
+                                  {isSelected && <Icon name="Check" size={20} className="ml-2" />}
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
                       <div className="flex gap-3">
                         <Button
                           type="button"
@@ -994,7 +1021,7 @@ const Index = () => {
                           type="button"
                           onClick={() => setQuizStep(3)}
                           className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
-                          disabled={!quizData.budget}
+                          disabled={quizData.tasks.length === 0}
                         >
                           Далее
                           <Icon name="ArrowRight" size={20} className="ml-2" />
@@ -1008,6 +1035,58 @@ const Index = () => {
                       <div>
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Шаг 3 из 3
+                        </label>
+                        <h3 className="text-2xl font-bold mb-6">Как Вы относитесь к китайским маркам?</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          {[
+                            { label: 'Рассматриваю к покупке', value: 'considering' },
+                            { label: 'Рассмотрю, если очень выгодно', value: 'if-profitable' },
+                            { label: 'Без разницы', value: 'no-preference' },
+                            { label: 'Пока не рассматриваю', value: 'not-considering' },
+                          ].map((option) => (
+                            <button
+                              key={option.value}
+                              type="button"
+                              onClick={() => setQuizData({ ...quizData, chineseBrands: option.value })}
+                              className={`p-4 rounded-lg border-2 font-medium transition-all text-left ${
+                                quizData.chineseBrands === option.value
+                                  ? 'border-accent bg-accent/10 text-accent'
+                                  : 'border-border bg-secondary/50 hover:border-accent/50 text-foreground'
+                              }`}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Button
+                          type="button"
+                          onClick={() => setQuizStep(2)}
+                          variant="outline"
+                          className="flex-1 h-14 text-lg border-border hover:border-accent"
+                        >
+                          <Icon name="ArrowLeft" size={20} className="mr-2" />
+                          Назад
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={() => setQuizStep(4)}
+                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          disabled={!quizData.chineseBrands}
+                        >
+                          Далее
+                          <Icon name="ArrowRight" size={20} className="ml-2" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {quizStep === 4 && (
+                    <div className="space-y-6 animate-in fade-in duration-300">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                          Последний шаг
                         </label>
                         <h3 className="text-2xl font-bold mb-6">Куда отправить подборку?</h3>
                         <div className="space-y-4">
@@ -1032,7 +1111,7 @@ const Index = () => {
                       <div className="flex gap-3">
                         <Button
                           type="button"
-                          onClick={() => setQuizStep(2)}
+                          onClick={() => setQuizStep(3)}
                           variant="outline"
                           className="flex-1 h-14 text-lg border-border hover:border-accent"
                         >
@@ -1044,7 +1123,7 @@ const Index = () => {
                           className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
                           disabled={!quizData.name.trim() || !quizData.phone.trim()}
                         >
-                          Получить подборку
+                          Получить индивидуальный подбор
                           <Icon name="Check" size={20} className="ml-2" />
                         </Button>
                       </div>
