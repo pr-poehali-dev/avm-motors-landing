@@ -7,7 +7,11 @@ const Footer = () => {
       <div className="w-full px-6 lg:px-12 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
-            <div className="text-3xl font-bold mb-6">AVM Моторс</div>
+            <img 
+              src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
+              alt="AVM Motors" 
+              className="h-16 mb-6"
+            />
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               Официальный импорт автомобилей из Китая и Европы с полным юридическим сопровождением
             </p>
