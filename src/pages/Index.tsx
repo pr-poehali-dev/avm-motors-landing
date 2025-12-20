@@ -574,11 +574,11 @@ const Index = () => {
   ];
 
   const allVehicles = 
-    vehicleRegion === 'Китайские бренды' ? vehiclesChina : 
-    vehicleRegion === 'Европейские бренды' ? vehiclesEurope :
-    vehicleRegion === 'Американские бренды' ? vehiclesAmerican :
-    vehicleRegion === 'Японские бренды' ? vehiclesJapanese :
-    vehicleRegion === 'Корейские бренды' ? vehiclesKorean :
+    vehicleRegion === 'Китайские' ? vehiclesChina : 
+    vehicleRegion === 'Европейские' ? vehiclesEurope :
+    vehicleRegion === 'Американские' ? vehiclesAmerican :
+    vehicleRegion === 'Японские' ? vehiclesJapanese :
+    vehicleRegion === 'Корейские' ? vehiclesKorean :
     vehiclesTop;
 
   const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
@@ -675,7 +675,7 @@ const Index = () => {
             
             <div className="relative">
               <div className="flex gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
-                {['Топ продаж', 'Китайские бренды', 'Европейские бренды', 'Американские бренды', 'Японские бренды', 'Корейские бренды'].map((region) => (
+                {['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'].map((region) => (
                   <button
                     key={region}
                     onClick={() => setVehicleRegion(region)}
