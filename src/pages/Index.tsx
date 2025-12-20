@@ -1145,21 +1145,23 @@ const Index = () => {
 
       <section id="services" className="py-32 bg-secondary/30">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto text-center mb-20">
-            <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="mb-20">
+            <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
-              <div className="h-px w-12 bg-accent"></div>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl">
+              Что вы получаете до, во время и после покупки с нами
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: "Search", title: "Индивидуальный подбор", desc: "Эксперт найдёт идеальный вариант под ваши критерии" },
-              { icon: "Shield", title: "Юридическая защита", desc: "Полная проверка документов и юридическая чистота" },
-              { icon: "Truck", title: "VIP доставка", desc: "Безопасная транспортировка с полным страхованием" },
-              { icon: "Wrench", title: "Постпродажный сервис", desc: "Техническая поддержка и обслуживание" },
+              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки" },
+              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи" },
+              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути" },
+              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля" },
             ].map((service, idx) => (
               <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
