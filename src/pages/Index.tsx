@@ -9,6 +9,8 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -1088,23 +1090,25 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Последний шаг
                         </label>
-                        <h3 className="text-2xl font-bold mb-6">Куда отправить подборку?</h3>
+                        <h3 className="text-2xl font-bold mb-3">Мы подготовим для Вас индивидуальную подборку автомобилей</h3>
+                        <p className="text-base text-muted-foreground mb-6">
+                          С учетом бюджета, задач и расчетом полной стоимости до покупки - без сюрпризов
+                        </p>
                         <div className="space-y-4">
                           <Input
                             type="text"
-                            placeholder="Ваше имя"
+                            placeholder="Имя"
                             value={quizData.name}
                             onChange={(e) => setQuizData({ ...quizData, name: e.target.value })}
                             className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
                             required
                           />
-                          <Input
-                            type="tel"
-                            placeholder="+7 (___) ___-__-__"
+                          <PhoneInput
+                            defaultCountry="ru"
                             value={quizData.phone}
-                            onChange={(e) => setQuizData({ ...quizData, phone: e.target.value })}
-                            className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
-                            required
+                            onChange={(phone) => setQuizData({ ...quizData, phone })}
+                            inputClassName="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                            className="phone-input-custom"
                           />
                         </div>
                       </div>
@@ -1123,12 +1127,12 @@ const Index = () => {
                           className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
                           disabled={!quizData.name.trim() || !quizData.phone.trim()}
                         >
-                          Получить индивидуальный подбор
+                          Получить подбор от эксперта AVM
                           <Icon name="Check" size={20} className="ml-2" />
                         </Button>
                       </div>
-                      <p className="text-xs text-center text-muted-foreground">
-                        Конфиденциальность гарантируется
+                      <p className="text-sm text-center text-muted-foreground">
+                        Контакты нужны, чтобы связаться и отправить варианты и расчет. Спама не будет
                       </p>
                     </div>
                   )}
@@ -1344,13 +1348,12 @@ const Index = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="h-14 bg-background border-border focus:border-accent"
                 />
-                <Input
-                  type="tel"
-                  placeholder="+7 (___) ___-__-__"
-                  required
+                <PhoneInput
+                  defaultCountry="ru"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="h-14 bg-background border-border focus:border-accent"
+                  onChange={(phone) => setFormData({ ...formData, phone })}
+                  inputClassName="h-14 bg-background border-border focus:border-accent"
+                  className="phone-input-custom"
                 />
                 <Textarea
                   placeholder="Расскажите о ваших предпочтениях..."

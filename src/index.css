@@ -116,3 +116,43 @@
     display: none;
   }
 }
+
+.phone-input-custom {
+  width: 100%;
+}
+
+.phone-input-custom .react-international-phone-input-container {
+  width: 100%;
+}
+
+.phone-input-custom .react-international-phone-input {
+  height: 3.5rem;
+  font-size: 1.125rem;
+  background-color: hsl(var(--secondary) / 0.5);
+  border-color: hsl(var(--border));
+  border-radius: 0;
+  width: 100%;
+}
+
+.phone-input-custom .react-international-phone-input:focus {
+  border-color: hsl(var(--accent));
+  outline: none;
+}
+
+.phone-input-custom .react-international-phone-country-selector-button {
+  height: 3.5rem;
+  background-color: hsl(var(--secondary) / 0.5);
+  border-color: hsl(var(--border));
+  border-radius: 0;
+}
+
+.phone-input-custom .react-international-phone-country-selector-button:hover {
+  background-color: hsl(var(--secondary));
+}
+
+.dark .phone-input-custom .react-international-phone-input,
+.dark .phone-input-custom .react-international-phone-country-selector-button {
+  background-color: hsl(var(--secondary) / 0.5);
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
