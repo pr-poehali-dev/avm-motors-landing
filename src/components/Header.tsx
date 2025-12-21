@@ -29,9 +29,9 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
             
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-accent/10 hover:bg-blue-accent/20 transition-colors"
             >
-              <Icon name="Menu" size={20} className="text-accent" />
+              <Icon name="Menu" size={20} className="text-blue-accent" />
               <span className="text-sm font-medium">Меню</span>
             </button>
           </div>
@@ -42,10 +42,10 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <Input
                 type="text"
                 placeholder="Марка или параметры"
-                className="h-11 pl-12 pr-12 bg-background border-border focus:border-accent rounded-lg"
+                className="h-11 pl-12 pr-12 bg-background border-border focus:border-blue-accent rounded-lg"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-accent/10 hover:bg-accent/20 flex items-center justify-center transition-colors">
-                <Icon name="Search" size={18} className="text-accent" />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-blue-accent/10 hover:bg-blue-accent/20 flex items-center justify-center transition-colors">
+                <Icon name="Search" size={18} className="text-blue-accent" />
               </button>
             </div>
           </div>
@@ -53,23 +53,23 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
           <div className="flex items-center gap-3">
             <button 
               onClick={() => setSearchOpen(!searchOpen)}
-              className="md:hidden w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
+              className="md:hidden w-10 h-10 rounded-full bg-blue-accent/10 flex items-center justify-center hover:bg-blue-accent/20 transition-colors"
             >
-              <Icon name="Search" size={18} className="text-accent" />
+              <Icon name="Search" size={18} className="text-blue-accent" />
             </button>
             
-            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
-              <Icon name="MapPin" size={20} className="mb-1" />
+            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-blue-accent transition-colors cursor-pointer">
+              <Icon name="MapPin" size={20} className="mb-1 text-blue-accent" />
               <span>Быстрый подбор</span>
             </div>
             
-            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
-              <Icon name="Package" size={20} className="mb-1" />
+            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-blue-accent transition-colors cursor-pointer">
+              <Icon name="Package" size={20} className="mb-1 text-blue-accent" />
               <span>Доставка в РФ</span>
             </div>
             
-            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-accent transition-colors cursor-pointer">
-              <Icon name="Heart" size={20} className="mb-1" />
+            <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-blue-accent transition-colors cursor-pointer">
+              <Icon name="Heart" size={20} className="mb-1 text-blue-accent" />
               <span>Избранное</span>
             </div>
             
@@ -92,7 +92,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <Input
                 type="text"
                 placeholder="Марка или параметры"
-                className="h-12 pl-12 pr-4 bg-background border-border focus:border-accent"
+                className="h-12 pl-12 pr-4 bg-background border-border focus:border-blue-accent"
               />
             </div>
           </div>
@@ -111,26 +111,26 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                       navigate('/catalog');
                       setMobileMenuOpen(false);
                     }} 
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group w-full"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <span className="text-2xl">🇨🇳</span>
                       <span className="text-sm font-medium">Китай - новые авто</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </button>
                   <button
                     onClick={() => {
                       navigate('/catalog');
                       setMobileMenuOpen(false);
                     }} 
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/10 transition-colors group w-full"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <span className="text-2xl">🇪🇺</span>
                       <span className="text-sm font-medium">Европа - авто с пробегом</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </button>
                 </div>
                 
@@ -140,7 +140,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                     <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
                       в РБ
                     </button>
-                    <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                    <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-blue-accent/10 transition-colors">
                       в РФ
                     </button>
                   </div>
@@ -152,10 +152,10 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                     <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
                       USD
                     </button>
-                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-blue-accent/10 transition-colors">
                       RUB
                     </button>
-                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
+                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-blue-accent/10 transition-colors">
                       BYN
                     </button>
                   </div>
@@ -165,30 +165,30 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <div>
                 <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Информация</h3>
                 <div className="space-y-2">
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="DollarSign" size={20} className="text-accent" />
+                      <Icon name="DollarSign" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Тарифы и цены</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="FileText" size={20} className="text-accent" />
+                      <Icon name="FileText" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Блог</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="Star" size={20} className="text-accent" />
+                      <Icon name="Star" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Отзывы</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="Calculator" size={20} className="text-accent" />
+                      <Icon name="Calculator" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Калькулятор</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
@@ -199,41 +199,41 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <div>
                 <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Компания</h3>
                 <div className="space-y-2">
-                  <a href="#services" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#services" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="Info" size={20} className="text-accent" />
+                      <Icon name="Info" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">О нас</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="Play" size={20} className="text-accent" />
+                      <Icon name="Play" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Обзоры</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
                   <a 
                     href="#contact" 
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group"
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group"
                   >
                     <div className="flex items-center gap-3">
-                      <Icon name="Phone" size={20} className="text-accent" />
+                      <Icon name="Phone" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Позвонить нам</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
-                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/10 transition-colors group">
+                  <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-blue-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
-                      <Icon name="MapPin" size={20} className="text-accent" />
+                      <Icon name="MapPin" size={20} className="text-blue-accent" />
                       <span className="text-sm font-medium">Адреса и офисы</span>
                     </div>
-                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-accent" />
+                    <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-blue-accent" />
                   </a>
                 </div>
                 
-                <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 h-[200px]">
+                <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-blue-accent/20 to-blue-accent/5 border border-blue-accent/20 h-[200px]">
                   <img 
                     src="https://cdn.poehali.dev/files/Group_117.png"
                     alt="Premium Car"
@@ -243,7 +243,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                     <h4 className="text-lg font-bold mb-2">Подберем 10 свежих предложений бесплатно</h4>
                     <Button 
                       size="sm"
-                      className="mt-4 bg-accent hover:bg-accent/90 text-accent-foreground"
+                      className="mt-4 bg-blue-accent hover:bg-blue-accent/90 text-white"
                       onClick={() => {
                         setMobileMenuOpen(false);
                         document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
