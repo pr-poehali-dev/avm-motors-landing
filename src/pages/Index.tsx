@@ -645,19 +645,19 @@ const Index = () => {
             </div>
             <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-3xl relative z-30">
               <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">30%</div>
+                <div className="text-4xl font-bold mb-2 text-accent">30%</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
               </div>
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">30</div>
+              <div className="border-l-2 border-blue-accent pl-6">
+                <div className="text-4xl font-bold mb-2 text-blue-accent">30</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
               </div>
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">24/7</div>
+              <div className="border-l-2 border-green-accent pl-6">
+                <div className="text-4xl font-bold mb-2 text-green-accent">24/7</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
               </div>
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2">14</div>
+              <div className="border-l-2 border-orange-accent pl-6">
+                <div className="text-4xl font-bold mb-2 text-orange-accent">14</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
               </div>
             </div>
@@ -882,7 +882,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-secondary/30 relative overflow-hidden">
+      <section className="py-32 bg-secondary relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto">
@@ -1142,7 +1142,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-32 bg-secondary/30">
+      <section id="services" className="py-32 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
@@ -1157,14 +1157,24 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки" },
-              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи" },
-              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути" },
-              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля" },
+              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки", color: "accent" },
+              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи", color: "blue-accent" },
+              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути", color: "green-accent" },
+              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля", color: "orange-accent" },
             ].map((service, idx) => (
               <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                  <Icon name={service.icon} size={32} className="text-accent" />
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${
+                  service.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
+                  service.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
+                  service.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
+                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
+                }`}>
+                  <Icon name={service.icon} size={32} className={`${
+                    service.color === 'accent' ? 'text-accent' :
+                    service.color === 'blue-accent' ? 'text-blue-accent' :
+                    service.color === 'green-accent' ? 'text-green-accent' :
+                    'text-orange-accent'
+                  }`} />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
@@ -1246,7 +1256,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-secondary/30">
+      <section className="py-32 bg-muted">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <div className="mb-12">
@@ -1356,7 +1366,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-32 bg-secondary/30">
+      <section id="contact" className="py-32 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-12">
