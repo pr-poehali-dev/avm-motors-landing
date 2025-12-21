@@ -1203,50 +1203,68 @@ const Index = () => {
               { 
                 icon: "Calculator", 
                 title: "Прозрачная цена до покупки", 
-                desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки" 
+                desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки",
+                color: "accent"
               },
               { 
                 icon: "SearchCheck", 
                 title: "Проверка автомобиля до выкупа", 
-                desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты" 
+                desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты",
+                color: "blue-accent"
               },
               { 
                 icon: "CreditCard", 
                 title: "Кредит и лизинг удаленно", 
-                desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис" 
+                desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис",
+                color: "green-accent"
               },
               { 
                 icon: "Package", 
                 title: "Дополнительное оборудование с выгодой", 
-                desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка" 
+                desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка",
+                color: "orange-accent"
               },
               { 
                 icon: "ClipboardCheck", 
                 title: "Сопровождение до постановки на учет", 
-                desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ" 
+                desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ",
+                color: "accent"
               },
               { 
                 icon: "Users", 
                 title: "Экосистема партнеров", 
-                desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам" 
+                desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам",
+                color: "blue-accent"
               },
               { 
                 icon: "Award", 
                 title: "Опыт и доверие, подтвержденные временем", 
-                desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025" 
+                desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025",
+                color: "green-accent"
               },
               { 
                 icon: "Gift", 
                 title: "Программа лояльности", 
-                desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by" 
+                desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by",
+                color: "orange-accent"
               },
             ].map((item, idx) => (
               <Card 
                 key={idx} 
                 className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
               >
-                <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 group-hover:scale-110 transition-all">
-                  <Icon name={item.icon} size={28} className="text-accent" />
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-all ${
+                  item.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
+                  item.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
+                  item.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
+                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
+                }`}>
+                  <Icon name={item.icon} size={28} className={`${
+                    item.color === 'accent' ? 'text-accent' :
+                    item.color === 'blue-accent' ? 'text-blue-accent' :
+                    item.color === 'green-accent' ? 'text-green-accent' :
+                    'text-orange-accent'
+                  }`} />
                 </div>
                 <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
