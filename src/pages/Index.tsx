@@ -592,11 +592,11 @@ const Index = () => {
       <Header onVehicleRegionChange={setVehicleRegion} />
 
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-accent/5 blur-[120px] rounded-full"></div>
-        <div className="absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 to-transparent rotate-12"></div>
-        <div className="absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 to-transparent -rotate-6"></div>
-        <div className="absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 rotate-45"></div>
-        <div className="absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 rotate-12"></div>
+        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
+        <div className="absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
+        <div className="absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
+        <div className="absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
         
         <div className="w-full px-6 lg:px-12 relative py-32">
           <div className="relative">
@@ -612,16 +612,16 @@ const Index = () => {
             
             <div className="absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20">
               <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 to-transparent"></div>
-                <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 to-transparent"></div>
-                <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 to-transparent"></div>
+                <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
+                <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
+                <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
               </div>
               <img 
                 src="https://cdn.poehali.dev/files/Group_117.png"
                 alt="Premium Car"
-                className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] animate-in slide-in-from-right-full duration-1000 ease-out"
+                className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)] animate-in slide-in-from-right-full duration-1000 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
             </div>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed relative z-30">
