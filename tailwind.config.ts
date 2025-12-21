@@ -64,7 +64,11 @@ export default {
 				},
 				'blue-accent': 'hsl(var(--blue-accent))',
 				'green-accent': 'hsl(var(--green-accent))',
-				'orange-accent': 'hsl(var(--orange-accent))'
+				'orange-accent': 'hsl(var(--orange-accent))',
+				'button-primary': {
+					DEFAULT: 'hsl(var(--button-primary))',
+					foreground: 'hsl(var(--button-primary-foreground))'
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

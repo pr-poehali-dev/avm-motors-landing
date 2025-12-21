@@ -273,7 +273,7 @@ const Catalog = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground text-xs"
+                className="w-full border-accent text-accent hover:bg-button-primary hover:text-accent-foreground text-xs"
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedRegion([]);
@@ -372,7 +372,7 @@ const Catalog = () => {
                               {(vehicle.price / 1000000).toFixed(1)} млн ₽
                             </div>
                           </div>
-                          <Button size="sm" className="bg-accent hover:bg-accent/90">
+                          <Button size="sm" className="bg-button-primary hover:bg-button-primary/90">
                             Подробнее
                           </Button>
                         </div>
@@ -423,7 +423,7 @@ const Catalog = () => {
                                 {(vehicle.price / 1000000).toFixed(1)} млн ₽
                               </div>
                             </div>
-                            <Button className="bg-accent hover:bg-accent/90 px-8 h-12">
+                            <Button className="bg-button-primary hover:bg-button-primary/90 px-8 h-12">
                               Подробнее
                               <Icon name="ArrowRight" size={20} className="ml-2" />
                             </Button>
@@ -443,7 +443,7 @@ const Catalog = () => {
                     Попробуйте изменить параметры фильтрации
                   </p>
                   <Button
-                    className="bg-accent hover:bg-accent/90"
+                    className="bg-button-primary hover:bg-button-primary/90"
                     onClick={() => {
                       setSelectedRegion([]);
                       setSelectedType([]);

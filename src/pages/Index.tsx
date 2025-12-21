@@ -630,7 +630,7 @@ const Index = () => {
             <div className="flex flex-wrap gap-6 relative z-30">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent/90 text-lg px-10 h-14"
+                className="bg-button-primary hover:bg-button-primary/90 text-lg px-10 h-14"
                 onClick={() => navigate('/catalog')}
               >
                 Смотреть коллекцию
@@ -638,7 +638,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 text-lg px-10 h-14 hover:bg-accent hover:border-accent hover:text-accent-foreground"
+                className="border-2 text-lg px-10 h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
               >
                 Консультация эксперта
               </Button>
@@ -744,7 +744,7 @@ const Index = () => {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-2 px-10 h-14 text-lg hover:bg-accent hover:border-accent hover:text-accent-foreground"
+                className="border-2 px-10 h-14 text-lg hover:bg-button-primary hover:border-accent hover:text-accent-foreground"
                 onClick={() => setShowAllVehicles(true)}
               >
                 Показать ещё ({allVehicles.length - 8})
@@ -753,7 +753,7 @@ const Index = () => {
             )}
             <Button 
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground px-10 h-14 text-lg"
+              className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-10 h-14 text-lg"
               onClick={() => navigate('/catalog')}
             >
               Перейти в каталог
@@ -956,7 +956,7 @@ const Index = () => {
                       <Button
                         type="button"
                         onClick={() => setQuizStep(2)}
-                        className="w-full h-14 bg-accent hover:bg-accent/90 text-lg"
+                        className="w-full h-14 bg-button-primary hover:bg-button-primary/90 text-lg"
                         disabled={!quizData.budget}
                       >
                         Далее
@@ -1021,7 +1021,7 @@ const Index = () => {
                         <Button
                           type="button"
                           onClick={() => setQuizStep(3)}
-                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-lg"
                           disabled={quizData.tasks.length === 0}
                         >
                           Далее
@@ -1073,7 +1073,7 @@ const Index = () => {
                         <Button
                           type="button"
                           onClick={() => setQuizStep(4)}
-                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-lg"
                           disabled={!quizData.chineseBrands}
                         >
                           Далее
@@ -1123,7 +1123,7 @@ const Index = () => {
                         </Button>
                         <Button
                           type="submit"
-                          className="flex-1 h-14 bg-accent hover:bg-accent/90 text-lg"
+                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-lg"
                           disabled={!quizData.name.trim() || !quizData.phone.trim()}
                         >
                           Получить подбор от эксперта AVM
@@ -1417,7 +1417,7 @@ const Index = () => {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-accent hover:bg-accent/90 h-14 text-lg"
+                  className="w-full bg-button-primary hover:bg-button-primary/90 h-14 text-lg"
                 >
                   Получить консультацию
                 </Button>
