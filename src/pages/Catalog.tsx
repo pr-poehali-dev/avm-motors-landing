@@ -47,7 +47,7 @@ const Catalog = () => {
     { id: 17, name: "Jaguar F-PACE", type: "SUV", region: "Европа", condition: "Б/У", price: 7200000, image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg", specs: ["300 л.с.", "3.0 Diesel", "AWD"] },
   ];
 
-  const regions = ["Китай", "Европа"];
+  const regions = ["Китай", "Европа", "Америка", "Япония", "Корея"];
   const types = ["SUV", "Седан", "Хэтчбек", "Кроссовер", "Внедорожник"];
 
   const toggleFilter = (filter: string, type: 'region' | 'type' | 'condition') => {
