@@ -98,7 +98,7 @@ const Catalog = () => {
       <section className="pb-32">
         <div className="w-full px-6 lg:px-12">
           <div className="flex gap-8">
-            <aside className="w-64 flex-shrink-0 space-y-2 sticky top-32 h-fit">
+            <aside className="w-64 flex-shrink-0 space-y-2 sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto scrollbar-hide">
               <Card className="bg-card border-border overflow-hidden">
                 <button
                   onClick={() => toggleFilterSection('search')}
