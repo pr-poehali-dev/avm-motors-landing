@@ -34,13 +34,13 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
+      className="w-10 h-10 rounded-full bg-header-accent/10 flex items-center justify-center hover:bg-header-accent/20 transition-colors"
       aria-label="Переключить тему"
     >
       {isDark ? (
-        <Icon name="Sun" size={18} className="text-accent" />
+        <Icon name="Sun" size={18} className="text-header-accent" />
       ) : (
-        <Icon name="Moon" size={18} className="text-accent" />
+        <Icon name="Moon" size={18} className="text-header-accent" />
       )}
     </button>
   );

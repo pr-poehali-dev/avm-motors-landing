@@ -41,6 +41,7 @@
     --orange-accent: 16 100% 50%;
     --button-primary: 201 100% 48%;
     --button-primary-foreground: 0 0% 100%;
+    --header-accent: 201 100% 48%;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 218 100% 13%;
@@ -86,6 +87,7 @@
     --orange-accent: 16 100% 55%;
     --button-primary: 8 72% 53%;
     --button-primary-foreground: 0 0% 98%;
+    --header-accent: 8 72% 53%;
 
     --sidebar-background: 216 17% 15%;
     --sidebar-foreground: 0 0% 95%;

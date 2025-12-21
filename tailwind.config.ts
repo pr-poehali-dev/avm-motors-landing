@@ -68,7 +68,8 @@ export default {
 				'button-primary': {
 					DEFAULT: 'hsl(var(--button-primary))',
 					foreground: 'hsl(var(--button-primary-foreground))'
-				}
+				},
+				'header-accent': 'hsl(var(--header-accent))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
