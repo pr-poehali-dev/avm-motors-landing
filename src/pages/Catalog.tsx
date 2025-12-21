@@ -338,7 +338,6 @@ const Catalog = () => {
                       className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
                     >
                       <div className="relative h-[280px] overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent z-10"></div>
                         <img
                           src={vehicle.image}
                           alt={vehicle.name}
@@ -349,7 +348,7 @@ const Catalog = () => {
                             {vehicle.badge}
                           </Badge>
                         )}
-                        <button className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors">
+                        <button className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors">
                           <Icon name="Heart" size={20} className="text-foreground" />
                         </button>
                       </div>
