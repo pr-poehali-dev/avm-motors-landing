@@ -77,7 +77,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
             
             <Button 
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 h-11 rounded-full font-medium"
+              className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-6 h-11 rounded-full font-medium"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Связаться
@@ -137,7 +137,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                 <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
                   <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Доставка</h4>
                   <div className="flex gap-2">
-                    <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-accent text-accent-foreground">
+                    <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
                       в РБ
                     </button>
                     <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
@@ -149,7 +149,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                 <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
                   <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Цены</h4>
                   <div className="flex gap-2">
-                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-accent text-accent-foreground">
+                    <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
                       USD
                     </button>
                     <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-accent/10 transition-colors">
