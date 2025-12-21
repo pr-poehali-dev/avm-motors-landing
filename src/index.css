@@ -24,7 +24,7 @@
     --muted: 218 12% 88%;
     --muted-foreground: 218 15% 45%;
 
-    --accent: 201 100% 48%;
+    --accent: 8 76% 51%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -32,7 +32,7 @@
 
     --border: 218 15% 88%;
     --input: 0 0% 100%;
-    --ring: 201 100% 48%;
+    --ring: 8 76% 51%;
 
     --radius: 0.75rem;
 
@@ -47,7 +47,7 @@
     --sidebar-accent: 218 18% 92%;
     --sidebar-accent-foreground: 218 100% 13%;
     --sidebar-border: 218 15% 88%;
-    --sidebar-ring: 201 100% 48%;
+    --sidebar-ring: 8 76% 51%;
   }
 
   .dark {
