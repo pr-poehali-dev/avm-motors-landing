@@ -338,7 +338,7 @@ const Catalog = () => {
                       className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
                     >
                       <div className="relative h-[280px] overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent z-10"></div>
                         <img
                           src={vehicle.image}
                           alt={vehicle.name}
