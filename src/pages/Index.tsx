@@ -774,7 +774,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="vehicles" className="py-16 md:py-32 relative">
+      <section id="vehicles" className="py-16 md:py-24 relative">
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="mb-12 md:mb-20">
             <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
@@ -1030,7 +1030,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-32 bg-secondary relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-secondary relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto">
@@ -1290,7 +1290,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-32 bg-secondary">
+      <section id="services" className="py-16 md:py-24 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
@@ -1332,7 +1332,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-32 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-4 sm:px-6 lg:px-12 relative">
           <div className="mb-20">
@@ -1422,7 +1422,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-32 bg-muted">
+      <section className="py-16 md:py-24 bg-muted">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <div className="mb-12">
@@ -1532,7 +1532,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-16 md:py-32 bg-secondary">
+      <section id="contact" className="py-16 md:py-24 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-12">
