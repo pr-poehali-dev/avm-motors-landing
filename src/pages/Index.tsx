@@ -761,6 +761,9 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/Group_117.png"
                 alt="Premium Car"
+                fetchPriority="high"
+                width="1400"
+                height="904"
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
@@ -774,6 +777,9 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
                 alt="Premium Motorcycle"
+                fetchPriority="high"
+                width="1398"
+                height="1025"
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
@@ -944,7 +950,8 @@ const Index = () => {
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
-                    loading="lazy"
+                    loading={index < 4 ? "eager" : "lazy"}
+                    fetchPriority={index < 2 ? "high" : "auto"}
                     width="294"
                     height="240"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
