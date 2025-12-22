@@ -591,26 +591,26 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Header onVehicleRegionChange={setVehicleRegion} />
 
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
-        <div className="absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
-        <div className="absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
-        <div className="absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
-        <div className="absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
+      <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-20">
+        <div className="absolute top-1/4 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
+        <div className="hidden md:block absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
+        <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
+        <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
         
-        <div className="w-full px-6 lg:px-12 relative py-32">
+        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-16 md:py-32">
           <div className="relative">
-            <div className="mb-8 flex items-center gap-3 relative z-30">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
+            <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative z-30">
+              <div className="h-px w-8 md:w-12 bg-accent"></div>
+              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
             </div>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
               АВТОМОБИЛИ<br />
               <span className="accent-title text-accent">из Китая</span><br />
               ПОД КЛЮЧ
             </h1>
             
-            <div className="absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20">
+            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20">
               <div className="absolute inset-0">
                 <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
                 <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
@@ -624,13 +624,13 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
             </div>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed relative z-30">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative z-30">
               Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
             </p>
-            <div className="flex flex-wrap gap-6 relative z-30">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
               <Button 
                 size="lg" 
-                className="bg-button-primary hover:bg-button-primary/90 text-lg px-10 h-14"
+                className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
                 onClick={() => navigate('/catalog')}
               >
                 Перейти в каталог
@@ -638,52 +638,52 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 text-lg px-10 h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
+                className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground w-full sm:w-auto"
               >
                 Консультация эксперта
               </Button>
             </div>
-            <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-3xl relative z-30">
-              <div className="border-l-2 border-accent pl-6">
-                <div className="text-4xl font-bold mb-2 text-accent">30%</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
+            <div className="mt-12 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-3xl relative z-30">
+              <div className="border-l-2 border-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-accent">30%</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
               </div>
-              <div className="border-l-2 border-blue-accent pl-6">
-                <div className="text-4xl font-bold mb-2 text-blue-accent">30</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
+              <div className="border-l-2 border-blue-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-blue-accent">30</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
               </div>
-              <div className="border-l-2 border-green-accent pl-6">
-                <div className="text-4xl font-bold mb-2 text-green-accent">24/7</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
+              <div className="border-l-2 border-green-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-green-accent">24/7</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
               </div>
-              <div className="border-l-2 border-orange-accent pl-6">
-                <div className="text-4xl font-bold mb-2 text-orange-accent">14</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
+              <div className="border-l-2 border-orange-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-orange-accent">14</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="vehicles" className="py-32 relative">
-        <div className="w-full px-6 lg:px-12">
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
+      <section id="vehicles" className="py-16 md:py-32 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-12">
+          <div className="mb-12 md:mb-20">
+            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+              <div className="h-px w-8 md:w-12 bg-accent"></div>
+              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Примеры автомобилей, доступных для заказа</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры автомобилей, доступных для заказа</h2>
+            <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
               Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
             <div className="relative">
-              <div className="flex gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
+              <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
                 {['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'].map((region) => (
                   <button
                     key={region}
                     onClick={() => setVehicleRegion(region)}
-                    className={`pb-4 px-6 text-base md:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
+                    className={`pb-3 md:pb-4 px-3 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
                       vehicleRegion === region 
                         ? 'text-accent' 
                         : 'text-muted-foreground hover:text-foreground'
@@ -699,7 +699,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
             {vehicles.map((vehicle, index) => (
               <Card 
                 key={index} 
@@ -763,23 +763,23 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
-        <div className="w-full px-6 lg:px-12">
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Экспертиза</span>
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
+        <div className="w-full px-4 sm:px-6 lg:px-12">
+          <div className="mb-8 md:mb-16">
+            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+              <div className="h-px w-8 md:w-12 bg-accent"></div>
+              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Экспертиза</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold">Обзоры</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Обзоры</h2>
           </div>
 
-          <div className="flex flex-wrap gap-4 mb-12 border-b border-border">
+          <div className="flex flex-wrap gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
             {['Видеообзоры', 'Отзывы клиентов', 'Блог'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb-4 px-6 text-lg font-medium transition-all relative ${
+                className={`pb-3 md:pb-4 px-4 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap ${
                   activeTab === tab 
                     ? 'text-accent' 
                     : 'text-muted-foreground hover:text-foreground'
@@ -794,7 +794,7 @@ const Index = () => {
           </div>
 
           {activeTab === 'Видеообзоры' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {[
                 { title: 'Обзор Zeekr 001', time: '12:45', views: '24K' },
                 { title: 'Тест-драйв BYD Han', time: '15:20', views: '31K' },
@@ -825,7 +825,7 @@ const Index = () => {
           )}
 
           {activeTab === 'Отзывы клиентов' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {[
                 { name: 'Александр М.', car: 'Zeekr 001', text: 'Невероятный сервис! Получил автомобиль мечты за 42 дня. Всё прозрачно и профессионально.', rating: 5 },
                 { name: 'Елена К.', car: 'BYD Han', text: 'Команда AVM Motors сопровождала на каждом этапе. Экономия составила более 2 млн рублей!', rating: 5 },
@@ -853,7 +853,7 @@ const Index = () => {
           )}
 
           {activeTab === 'Блог' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               {[
                 { title: 'Как выбрать электромобиль из Китая', date: '15 дек 2024', category: 'Гид покупателя', excerpt: 'Подробное руководство по выбору идеального электромобиля с учётом технических характеристик и личных предпочтений.' },
                 { title: 'Топ-5 премиум моделей 2024', date: '10 дек 2024', category: 'Обзоры', excerpt: 'Эксклюзивная подборка самых востребованных премиальных автомобилей китайского производства в этом году.' },
@@ -882,30 +882,30 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-secondary relative overflow-hidden">
+      <section className="py-16 md:py-32 bg-secondary relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Подбор авто</span>
-                <div className="h-px w-12 bg-accent"></div>
+            <div className="text-center mb-8 md:mb-12">
+              <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
+                <div className="h-px w-8 md:w-12 bg-accent"></div>
+                <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Подбор авто</span>
+                <div className="h-px w-8 md:w-12 bg-accent"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
                 Не нашли подходящий вариант?
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-sm md:text-base lg:text-lg text-muted-foreground px-4">
                 Ответьте на 3 простых вопроса - эксперт AVM предложит оптимальные варианты в Ваш бюджет
               </p>
             </div>
 
             <Card className="bg-background border-border shadow-2xl">
-              <div className="p-8 md:p-12">
-                <div className="flex justify-between mb-8">
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+                <div className="flex justify-between mb-6 md:mb-8 overflow-x-auto">
                   {[1, 2, 3, 4].map((step) => (
-                    <div key={step} className="flex items-center">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
+                    <div key={step} className="flex items-center flex-shrink-0">
+                      <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all ${
                         quizStep === step 
                           ? 'bg-accent text-accent-foreground scale-110' 
                           : quizStep > step 
@@ -1142,7 +1142,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-32 bg-secondary">
+      <section id="services" className="py-16 md:py-32 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
@@ -1155,7 +1155,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки", color: "accent" },
               { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи", color: "blue-accent" },
@@ -1184,9 +1184,9 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
-        <div className="w-full px-6 lg:px-12 relative">
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="w-full px-4 sm:px-6 lg:px-12 relative">
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
@@ -1198,7 +1198,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { 
                 icon: "Calculator", 
@@ -1274,7 +1274,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-muted">
+      <section className="py-16 md:py-32 bg-muted">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <div className="mb-12">
@@ -1384,7 +1384,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-32 bg-secondary">
+      <section id="contact" className="py-16 md:py-32 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-12">
