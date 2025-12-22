@@ -633,7 +633,7 @@ const Index = () => {
                 className="bg-button-primary hover:bg-button-primary/90 text-lg px-10 h-14"
                 onClick={() => navigate('/catalog')}
               >
-                Смотреть коллекцию
+                Перейти в каталог
               </Button>
               <Button 
                 size="lg" 
