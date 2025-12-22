@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,7 +38,7 @@ const Index = () => {
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
 
-  const handleQuizSubmit = (e: React.FormEvent) => {
+  const handleQuizSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Заявка принята!",
@@ -46,21 +46,33 @@ const Index = () => {
     });
     setQuizStep(1);
     setQuizData({ budget: '', tasks: [], chineseBrands: '', name: '', phone: '' });
-    setQuizStep(1);
-  };
+  }, [toast]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Заявка отправлена",
       description: "Наш специалист свяжется с вами в ближайшее время",
     });
     setFormData({ name: "", phone: "", message: "" });
-  };
+  }, [toast]);
 
   useEffect(() => {
+    let ticking = false;
+    let lastScrollY = 0;
+
+    const updateScrollY = () => {
+      lastScrollY = window.scrollY;
+      ticking = false;
+    };
+
     const handleScroll = (e: WheelEvent) => {
-      if (window.scrollY < 50) {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollY);
+        ticking = true;
+      }
+
+      if (lastScrollY < 50) {
         if (e.deltaY > 0 && heroSlide === 0) {
           e.preventDefault();
           setHeroSlide(1);
@@ -684,35 +696,37 @@ const Index = () => {
     },
   ];
 
-  let allVehicles;
-  
-  if (vehicleCategory === 'Мото') {
-    if (motoType === 'Все') {
-      allVehicles = motorcycles;
-    } else if (motoType === 'Спортбайки') {
-      allVehicles = motorcycles.filter(m => m.type === 'Спортбайк');
-    } else if (motoType === 'Круизеры') {
-      allVehicles = motorcycles.filter(m => m.type === 'Круизер');
-    } else if (motoType === 'Туреры') {
-      allVehicles = motorcycles.filter(m => m.type === 'Турер');
-    } else if (motoType === 'Нейкеды') {
-      allVehicles = motorcycles.filter(m => m.type === 'Нейкед');
-    } else if (motoType === 'Эндуро') {
-      allVehicles = motorcycles.filter(m => m.type === 'Эндуро');
+  const allVehicles = useMemo(() => {
+    if (vehicleCategory === 'Мото') {
+      if (motoType === 'Все') {
+        return motorcycles;
+      } else if (motoType === 'Спортбайки') {
+        return motorcycles.filter(m => m.type === 'Спортбайк');
+      } else if (motoType === 'Круизеры') {
+        return motorcycles.filter(m => m.type === 'Круизер');
+      } else if (motoType === 'Туреры') {
+        return motorcycles.filter(m => m.type === 'Турер');
+      } else if (motoType === 'Нейкеды') {
+        return motorcycles.filter(m => m.type === 'Нейкед');
+      } else if (motoType === 'Эндуро') {
+        return motorcycles.filter(m => m.type === 'Эндуро');
+      } else {
+        return motorcycles;
+      }
     } else {
-      allVehicles = motorcycles;
+      return vehicleRegion === 'Китайские' ? vehiclesChina : 
+        vehicleRegion === 'Европейские' ? vehiclesEurope :
+        vehicleRegion === 'Американские' ? vehiclesAmerican :
+        vehicleRegion === 'Японские' ? vehiclesJapanese :
+        vehicleRegion === 'Корейские' ? vehiclesKorean :
+        vehiclesTop;
     }
-  } else {
-    allVehicles = 
-      vehicleRegion === 'Китайские' ? vehiclesChina : 
-      vehicleRegion === 'Европейские' ? vehiclesEurope :
-      vehicleRegion === 'Американские' ? vehiclesAmerican :
-      vehicleRegion === 'Японские' ? vehiclesJapanese :
-      vehicleRegion === 'Корейские' ? vehiclesKorean :
-      vehiclesTop;
-  }
+  }, [vehicleCategory, vehicleRegion, motoType]);
 
-  const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
+  const vehicles = useMemo(() => 
+    showAllVehicles ? allVehicles : allVehicles.slice(0, 8),
+    [showAllVehicles, allVehicles]
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground">
