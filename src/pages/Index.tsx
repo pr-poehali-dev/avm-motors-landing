@@ -604,7 +604,7 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
               АВТОМОБИЛИ<br />
               <span className="accent-title text-accent">из Китая</span><br />
               ПОД КЛЮЧ
@@ -672,7 +672,7 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры автомобилей, доступных для заказа</h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры автомобилей, доступных для заказа</h2>
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
               Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
@@ -771,15 +771,15 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Экспертиза</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Обзоры</h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Обзоры</h2>
           </div>
 
-          <div className="flex flex-wrap gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
             {['Видеообзоры', 'Отзывы клиентов', 'Блог'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb-3 md:pb-4 px-4 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap ${
+                className={`pb-3 md:pb-4 px-3 md:px-6 text-xs sm:text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab 
                     ? 'text-accent' 
                     : 'text-muted-foreground hover:text-foreground'
@@ -892,7 +892,7 @@ const Index = () => {
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Подбор авто</span>
                 <div className="h-px w-8 md:w-12 bg-accent"></div>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
                 Не нашли подходящий вариант?
               </h2>
               <p className="text-sm md:text-base lg:text-lg text-muted-foreground px-4">
@@ -930,7 +930,7 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Шаг 1 из 3
                         </label>
-                        <h3 className="text-2xl font-bold mb-6">В каком бюджете подбираем автомобиль?</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">В каком бюджете подбираем автомобиль?</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {[
                             { label: 'до 15 000$', value: 'do-15k' },
@@ -971,7 +971,7 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Шаг 2 из 3
                         </label>
-                        <h3 className="text-2xl font-bold mb-6">Для каких задач Вам нужен автомобиль?</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">Для каких задач Вам нужен автомобиль?</h3>
                         <p className="text-sm text-muted-foreground mb-4">Можно выбрать несколько вариантов</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {[
@@ -1037,7 +1037,7 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Шаг 3 из 3
                         </label>
-                        <h3 className="text-2xl font-bold mb-6">Как Вы относитесь к китайским маркам?</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">Как Вы относитесь к китайским маркам?</h3>
                         <div className="grid grid-cols-1 gap-3">
                           {[
                             { label: 'Рассматриваю к покупке', value: 'considering' },
@@ -1089,7 +1089,7 @@ const Index = () => {
                         <label className="block text-sm font-medium mb-2 text-muted-foreground">
                           Последний шаг
                         </label>
-                        <h3 className="text-2xl font-bold mb-3">Мы подготовим для Вас индивидуальную подборку автомобилей</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3">Мы подготовим для Вас индивидуальную подборку автомобилей</h3>
                         <p className="text-base text-muted-foreground mb-6">
                           С учетом бюджета, задач и расчетом полной стоимости до покупки - без сюрпризов
                         </p>
@@ -1099,14 +1099,14 @@ const Index = () => {
                             placeholder="Имя"
                             value={quizData.name}
                             onChange={(e) => setQuizData({ ...quizData, name: e.target.value })}
-                            className="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                            className="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
                             required
                           />
                           <PhoneInput
                             defaultCountry="ru"
                             value={quizData.phone}
                             onChange={(phone) => setQuizData({ ...quizData, phone })}
-                            inputClassName="h-14 text-lg bg-secondary/50 border-border focus:border-accent"
+                            inputClassName="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
                             className="phone-input-custom"
                           />
                         </div>
@@ -1149,8 +1149,8 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
+            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
               Что вы получаете до, во время и после покупки с нами
             </p>
           </div>
@@ -1192,8 +1192,8 @@ const Index = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">Почему AVM Motors</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Почему AVM Motors</h2>
+            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
               Опыт, надежность и прозрачность на каждом этапе
             </p>
           </div>
@@ -1282,7 +1282,7 @@ const Index = () => {
                 <div className="h-px w-12 bg-accent"></div>
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Процесс</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">Как мы работаем</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-8">Как мы работаем</h2>
             </div>
 
             <div className="flex gap-4 mb-12 border-b border-border">
@@ -1392,12 +1392,12 @@ const Index = () => {
                 <div className="h-px w-12 bg-accent"></div>
                 <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
+              <p className="text-sm sm:text-base md:text-xl text-muted-foreground leading-relaxed">
                 Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки
               </p>
             </div>
-            <Card className="p-12 bg-card border-accent/20">
+            <Card className="p-4 sm:p-8 md:p-12 bg-card border-accent/20">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Input
                   type="text"
@@ -1405,19 +1405,19 @@ const Index = () => {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-14 bg-background border-border focus:border-accent"
+                  className="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
                 />
                 <PhoneInput
                   defaultCountry="ru"
                   value={formData.phone}
                   onChange={(phone) => setFormData({ ...formData, phone })}
-                  inputClassName="h-14 bg-background border-border focus:border-accent"
+                  inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
                   className="phone-input-custom"
                 />
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-button-primary hover:bg-button-primary/90 h-14 text-lg"
+                  className="w-full bg-button-primary hover:bg-button-primary/90 h-12 sm:h-14 text-base sm:text-lg"
                 >
                   Получить консультацию
                 </Button>
