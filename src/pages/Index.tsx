@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
@@ -10,6 +9,11 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VehicleModal from "@/components/VehicleModal";
+import VehicleCard from "@/components/VehicleCard";
+import SectionHeader from "@/components/SectionHeader";
+import ServiceCard from "@/components/ServiceCard";
+import StepCard from "@/components/StepCard";
+import FAQCard from "@/components/FAQCard";
 import { 
   Vehicle, 
   vehiclesChina, 
@@ -261,14 +265,11 @@ const Index = () => {
       <section id="vehicles" className="py-16 md:py-24 relative">
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="mb-12 md:mb-20">
-            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              <div className="h-px w-8 md:w-12 bg-accent"></div>
-              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Каталог</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры доступные для заказа</h2>
-            <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
-              Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
-            </p>
+            <SectionHeader 
+              label="Каталог"
+              title="Примеры доступные для заказа"
+              description="Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки"
+            />
             
             <div className="flex gap-0 mb-8 md:mb-12 p-1 md:p-1.5 bg-secondary/50 backdrop-blur-sm rounded-lg border border-border/50 w-fit">
               {[
@@ -344,42 +345,12 @@ const Index = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
             {vehicles.map((vehicle, index) => (
-              <Card 
-                key={index} 
+              <VehicleCard
+                key={index}
+                vehicle={vehicle}
                 onClick={() => openVehicleModal(vehicle)}
-                className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
-              >
-                <div className="relative h-[240px] overflow-hidden">
-                  <img
-                    src={vehicle.image}
-                    alt={vehicle.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <Badge className="absolute top-4 right-4 z-20 bg-accent/90 backdrop-blur-sm text-accent-foreground border-0 px-3 py-1 text-xs">
-                    {vehicle.type}
-                  </Badge>
-                  <button className="absolute top-4 left-4 z-20 w-9 h-9 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors">
-                    <Icon name="Heart" size={18} className="text-foreground" />
-                  </button>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-lg mb-3 line-clamp-1">{vehicle.name}</h3>
-                  <div className="flex flex-wrap gap-2 mb-4 text-xs text-muted-foreground">
-                    {vehicle.specs.map((spec, idx) => (
-                      <span key={idx} className="flex items-center gap-1">
-                        <div className="w-1 h-1 bg-accent rounded-full"></div>
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <div className="text-xs text-muted-foreground mb-1">Стоимость</div>
-                      <div className="text-xl font-bold">{vehicle.price}</div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+                showButton={false}
+              />
             ))}
           </div>
           
@@ -400,11 +371,10 @@ const Index = () => {
         <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="mb-8 md:mb-16">
-            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              <div className="h-px w-8 md:w-12 bg-accent"></div>
-              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Экспертиза</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Обзоры</h2>
+            <SectionHeader 
+              label="Экспертиза"
+              title="Обзоры"
+            />
           </div>
 
           <div className="flex gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
@@ -520,17 +490,12 @@ const Index = () => {
         <div className="w-full px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8 md:mb-12">
-              <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
-                <div className="h-px w-8 md:w-12 bg-accent"></div>
-                <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Подбор авто</span>
-                <div className="h-px w-8 md:w-12 bg-accent"></div>
-              </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
-                Не нашли подходящий вариант?
-              </h2>
-              <p className="text-sm md:text-base lg:text-lg text-muted-foreground px-4">
-                Ответьте на 3 простых вопроса - эксперт AVM предложит оптимальные варианты в Ваш бюджет
-              </p>
+              <SectionHeader
+                label="Подбор авто"
+                title="Не нашли подходящий вариант?"
+                description="Ответьте на 3 простых вопроса - эксперт AVM предложит оптимальные варианты в Ваш бюджет"
+                centered
+              />
             </div>
 
             <Card className="bg-background border-border shadow-2xl">
@@ -778,41 +743,26 @@ const Index = () => {
 
       <section id="services" className="py-16 md:py-24 bg-secondary">
         <div className="w-full px-6 lg:px-12">
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
-            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
-              Что вы получаете до, во время и после покупки с нами
-            </p>
-          </div>
+          <SectionHeader
+            label="Сервис"
+            title="Полный цикл обслуживания"
+            description="Что вы получаете до, во время и после покупки с нами"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки", color: "accent" },
-              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи", color: "blue-accent" },
-              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути", color: "green-accent" },
-              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля", color: "orange-accent" },
+              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки", color: "accent" as const },
+              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи", color: "blue-accent" as const },
+              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути", color: "green-accent" as const },
+              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля", color: "orange-accent" as const },
             ].map((service, idx) => (
-              <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${
-                  service.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
-                  service.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
-                  service.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
-                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
-                }`}>
-                  <Icon name={service.icon} size={32} className={`${
-                    service.color === 'accent' ? 'text-accent' :
-                    service.color === 'blue-accent' ? 'text-blue-accent' :
-                    service.color === 'green-accent' ? 'text-green-accent' :
-                    'text-orange-accent'
-                  }`} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-              </Card>
+              <ServiceCard
+                key={idx}
+                icon={service.icon}
+                title={service.title}
+                description={service.desc}
+                color={service.color}
+              />
             ))}
           </div>
         </div>
@@ -821,88 +771,30 @@ const Index = () => {
       <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-4 sm:px-6 lg:px-12 relative">
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Почему AVM Motors</h2>
-            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
-              Опыт, надежность и прозрачность на каждом этапе
-            </p>
-          </div>
+          <SectionHeader
+            label="Преимущества"
+            title="Почему AVM Motors"
+            description="Опыт, надежность и прозрачность на каждом этапе"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { 
-                icon: "Calculator", 
-                title: "Прозрачная цена до покупки", 
-                desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки",
-                color: "accent"
-              },
-              { 
-                icon: "SearchCheck", 
-                title: "Проверка автомобиля до выкупа", 
-                desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты",
-                color: "blue-accent"
-              },
-              { 
-                icon: "CreditCard", 
-                title: "Кредит и лизинг удаленно", 
-                desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис",
-                color: "green-accent"
-              },
-              { 
-                icon: "Package", 
-                title: "Дополнительное оборудование с выгодой", 
-                desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка",
-                color: "orange-accent"
-              },
-              { 
-                icon: "ClipboardCheck", 
-                title: "Сопровождение до постановки на учет", 
-                desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ",
-                color: "accent"
-              },
-              { 
-                icon: "Users", 
-                title: "Экосистема партнеров", 
-                desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам",
-                color: "blue-accent"
-              },
-              { 
-                icon: "Award", 
-                title: "Опыт и доверие, подтвержденные временем", 
-                desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025",
-                color: "green-accent"
-              },
-              { 
-                icon: "Gift", 
-                title: "Программа лояльности", 
-                desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by",
-                color: "orange-accent"
-              },
+              { icon: "Calculator", title: "Прозрачная цена до покупки", desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки", color: "accent" as const },
+              { icon: "SearchCheck", title: "Проверка автомобиля до выкупа", desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты", color: "blue-accent" as const },
+              { icon: "CreditCard", title: "Кредит и лизинг удаленно", desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис", color: "green-accent" as const },
+              { icon: "Package", title: "Дополнительное оборудование с выгодой", desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка", color: "orange-accent" as const },
+              { icon: "ClipboardCheck", title: "Сопровождение до постановки на учет", desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ", color: "accent" as const },
+              { icon: "Users", title: "Экосистема партнеров", desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам", color: "blue-accent" as const },
+              { icon: "Award", title: "Опыт и доверие, подтвержденные временем", desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025", color: "green-accent" as const },
+              { icon: "Gift", title: "Программа лояльности", desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by", color: "orange-accent" as const },
             ].map((item, idx) => (
-              <Card 
-                key={idx} 
-                className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
-              >
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-all ${
-                  item.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
-                  item.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
-                  item.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
-                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
-                }`}>
-                  <Icon name={item.icon} size={28} className={`${
-                    item.color === 'accent' ? 'text-accent' :
-                    item.color === 'blue-accent' ? 'text-blue-accent' :
-                    item.color === 'green-accent' ? 'text-green-accent' :
-                    'text-orange-accent'
-                  }`} />
-                </div>
-                <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </Card>
+              <ServiceCard
+                key={idx}
+                icon={item.icon}
+                title={item.title}
+                description={item.desc}
+                color={item.color}
+              />
             ))}
           </div>
         </div>
@@ -911,13 +803,10 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-muted">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Процесс</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-8">Как мы работаем</h2>
-            </div>
+            <SectionHeader
+              label="Процесс"
+              title="Как мы работаем"
+            />
 
             <div className="flex gap-4 mb-12 border-b border-border">
               {['Этапы работ', 'Вопрос-ответ'].map((tab) => (
@@ -948,35 +837,15 @@ const Index = () => {
                   { icon: 'Truck', title: 'Доставка', desc: 'Быстрая логистика и таможенное оформление — 30-60 дней от заказа до вашего города' },
                   { icon: 'Key', title: 'Получение автомобиля', desc: 'Передаём вам ключи, документы и помогаем с постановкой на учёт' },
                 ].map((step, idx) => (
-                  <Card 
-                    key={idx} 
-                    className="bg-background border-border hover:border-accent transition-all cursor-pointer group"
-                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
-                  >
-                    <div className="p-6 flex items-center justify-between">
-                      <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors flex-shrink-0">
-                          <Icon name={step.icon} size={28} className="text-accent" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground mb-1">Шаг {idx + 1}.</div>
-                          <h3 className="text-xl font-bold">{step.title}</h3>
-                        </div>
-                      </div>
-                      <Icon 
-                        name="ChevronDown" 
-                        size={24} 
-                        className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                    {openStep === idx && (
-                      <div className="px-6 pb-6">
-                        <p className="text-lg text-muted-foreground leading-relaxed ml-[88px]">
-                          {step.desc}
-                        </p>
-                      </div>
-                    )}
-                  </Card>
+                  <StepCard
+                    key={idx}
+                    icon={step.icon}
+                    title={step.title}
+                    description={step.desc}
+                    stepNumber={idx + 1}
+                    isOpen={openStep === idx}
+                    onToggle={() => setOpenStep(openStep === idx ? null : idx)}
+                  />
                 ))}
               </div>
             )}
@@ -990,27 +859,13 @@ const Index = () => {
                   { q: 'Нужно ли мне самому заниматься растаможкой?', a: 'Нет, мы берём на себя все вопросы таможенного оформления, сертификации и постановки на учёт.' },
                   { q: 'Какая экономия по сравнению с покупкой в России?', a: 'В среднем экономия составляет 25-35% от рыночной цены аналогичного автомобиля в РФ.' },
                 ].map((item, idx) => (
-                  <Card 
-                    key={idx} 
-                    className="bg-background border-border hover:border-accent transition-all cursor-pointer"
-                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
-                  >
-                    <div className="p-6 flex items-center justify-between">
-                      <h3 className="text-xl font-bold pr-4">{item.q}</h3>
-                      <Icon 
-                        name="ChevronDown" 
-                        size={24} 
-                        className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                    {openStep === idx && (
-                      <div className="px-6 pb-6">
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                          {item.a}
-                        </p>
-                      </div>
-                    )}
-                  </Card>
+                  <FAQCard
+                    key={idx}
+                    question={item.q}
+                    answer={item.a}
+                    isOpen={openStep === idx}
+                    onToggle={() => setOpenStep(openStep === idx ? null : idx)}
+                  />
                 ))}
               </div>
             )}
@@ -1021,16 +876,11 @@ const Index = () => {
       <section id="contact" className="py-16 md:py-24 bg-secondary">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
-              <p className="text-sm sm:text-base md:text-xl text-muted-foreground leading-relaxed">
-                Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки
-              </p>
-            </div>
+            <SectionHeader
+              label="Контакт"
+              title="Начнём подбор автомобиля прямо сейчас"
+              description="Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки"
+            />
             <Card className="p-4 sm:p-8 md:p-12 bg-card border-accent/20">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Input
