@@ -4,12 +4,39 @@ export interface Vehicle {
   price: string;
   image: string;
   specs: string[];
+  year?: string;
+  mileage?: string;
+  fuel?: string;
+  transmission?: string;
+  drive?: string;
+  engine?: string;
+  power?: string;
+  description?: string;
+  gallery?: string[];
 }
 
 const DEFAULT_IMAGE = "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg";
 const MOTO_IMAGE = "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/49624ed1-78a6-4a4a-ae22-579718390d6a.jpg";
 
 export const vehiclesChina: Vehicle[] = [
+  {
+    name: "Geely Binyue L (Coolray) 2021",
+    type: "Компактный кроссовер",
+    price: "от 13 800 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChxpVWktTCSAZOF2ACyz2GdNEug939.jpg",
+    specs: ["1.5 л", "181 л.с.", "передний привод", "бензин", "30 000 км"],
+    year: "2021",
+    mileage: "30 000 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Передний",
+    engine: "1.5 л турбо",
+    power: "181 л.с.",
+    description: "Geely Binyue L (Coolray) — стильный и технологичный компактный кроссовер с турбированным двигателем. Отличное соотношение цены и качества. Богатая комплектация, современные системы безопасности и помощи водителю.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChxpVWktTCSAZOF2ACyz2GdNEug939.jpg",
+    ],
+  },
   {
     name: "HONGQI E-HS9",
     type: "Премиум SUV",

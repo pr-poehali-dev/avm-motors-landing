@@ -9,6 +9,14 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import VehicleModal from "@/components/VehicleModal";
+import { 
+  Vehicle, 
+  vehiclesChina, 
+  vehiclesEurope, 
+  vehiclesKorean, 
+  vehiclesAmerican 
+} from "@/data/vehicles";
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 
@@ -37,6 +45,18 @@ const Index = () => {
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openVehicleModal = (vehicle: Vehicle) => {
+    setSelectedVehicle(vehicle);
+    setIsModalOpen(true);
+  };
+
+  const closeVehicleModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedVehicle(null), 300);
+  };
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,7 +95,12 @@ const Index = () => {
     return () => window.removeEventListener('wheel', handleScroll);
   }, [heroSlide]);
 
-  const vehiclesChina = [
+  // Vehicles data imported from @/data/vehicles
+  
+  const vehiclesUSA = vehiclesAmerican; // Rename for component logic
+  const vehiclesKorea = vehiclesKorean; // Rename for component logic
+
+  const oldVehiclesChina = [
     {
       name: "HONGQI E-HS9",
       type: "Премиум SUV",
@@ -924,6 +949,7 @@ const Index = () => {
             {vehicles.map((vehicle, index) => (
               <Card 
                 key={index} 
+                onClick={() => openVehicleModal(vehicle)}
                 className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
               >
                 <div className="relative h-[240px] overflow-hidden">
@@ -1642,6 +1668,12 @@ const Index = () => {
       </section>
 
       <Footer />
+      
+      <VehicleModal 
+        vehicle={selectedVehicle}
+        open={isModalOpen}
+        onClose={closeVehicleModal}
+      />
     </div>
   );
 };
