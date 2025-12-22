@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
+import VehicleModal from "@/components/VehicleModal";
+import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
 
 const Catalog = () => {
   const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
@@ -16,6 +17,8 @@ const Catalog = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000000]);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
     search: true,
     region: true,
@@ -55,6 +58,16 @@ const Catalog = () => {
         prev.includes(filter) ? prev.filter(c => c !== filter) : [...prev, filter]
       );
     }
+  };
+
+  const openVehicleModal = (vehicle: Vehicle) => {
+    setSelectedVehicle(vehicle);
+    setIsModalOpen(true);
+  };
+
+  const closeVehicleModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedVehicle(null), 300);
   };
 
   const filteredVehicles = allVehicles.filter(vehicle => {
@@ -326,6 +339,7 @@ const Catalog = () => {
                   viewMode === 'grid' ? (
                     <Card 
                       key={vehicle.id}
+                      onClick={() => openVehicleModal(vehicle)}
                       className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
                     >
                       <div className="relative h-[280px] overflow-hidden">
@@ -372,6 +386,7 @@ const Catalog = () => {
                   ) : (
                     <Card
                       key={vehicle.id}
+                      onClick={() => openVehicleModal(vehicle)}
                       className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer"
                     >
                       <div className="flex gap-6 p-6">
@@ -451,6 +466,12 @@ const Catalog = () => {
       </section>
 
       <Footer />
+      
+      <VehicleModal 
+        vehicle={selectedVehicle}
+        open={isModalOpen}
+        onClose={closeVehicleModal}
+      />
     </div>
   );
 };
