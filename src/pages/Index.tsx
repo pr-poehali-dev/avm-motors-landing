@@ -18,6 +18,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('Видеообзоры');
   const [vehicleCategory, setVehicleCategory] = useState('Авто');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
+  const [motoType, setMotoType] = useState('Все');
   const [workflowTab, setWorkflowTab] = useState('Этапы работ');
   const [openStep, setOpenStep] = useState<number | null>(null);
   const [formData, setFormData] = useState({
@@ -665,14 +666,33 @@ const Index = () => {
     },
   ];
 
-  const allVehicles = 
-    vehicleCategory === 'Мото' ? motorcycles :
-    vehicleRegion === 'Китайские' ? vehiclesChina : 
-    vehicleRegion === 'Европейские' ? vehiclesEurope :
-    vehicleRegion === 'Американские' ? vehiclesAmerican :
-    vehicleRegion === 'Японские' ? vehiclesJapanese :
-    vehicleRegion === 'Корейские' ? vehiclesKorean :
-    vehiclesTop;
+  let allVehicles;
+  
+  if (vehicleCategory === 'Мото') {
+    if (motoType === 'Все') {
+      allVehicles = motorcycles;
+    } else if (motoType === 'Спортбайки') {
+      allVehicles = motorcycles.filter(m => m.type === 'Спортбайк');
+    } else if (motoType === 'Круизеры') {
+      allVehicles = motorcycles.filter(m => m.type === 'Круизер');
+    } else if (motoType === 'Туреры') {
+      allVehicles = motorcycles.filter(m => m.type === 'Турер');
+    } else if (motoType === 'Нейкеды') {
+      allVehicles = motorcycles.filter(m => m.type === 'Нейкед');
+    } else if (motoType === 'Багеры') {
+      allVehicles = motorcycles.filter(m => m.type === 'Багер');
+    } else {
+      allVehicles = motorcycles;
+    }
+  } else {
+    allVehicles = 
+      vehicleRegion === 'Китайские' ? vehiclesChina : 
+      vehicleRegion === 'Европейские' ? vehiclesEurope :
+      vehicleRegion === 'Американские' ? vehiclesAmerican :
+      vehicleRegion === 'Японские' ? vehiclesJapanese :
+      vehicleRegion === 'Корейские' ? vehiclesKorean :
+      vehiclesTop;
+  }
 
   const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
 
@@ -775,7 +795,9 @@ const Index = () => {
                   key={category.name}
                   onClick={() => {
                     setVehicleCategory(category.name);
-                    setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
+                    setVehicleRegion('Топ продаж');
+                    setMotoType('Все');
+                    setShowAllVehicles(false);
                   }}
                   className={`relative flex items-center gap-2 md:gap-3 px-6 md:px-10 py-2.5 md:py-3.5 font-bold text-sm md:text-lg transition-all duration-300 ${
                     vehicleCategory === category.name
@@ -804,6 +826,29 @@ const Index = () => {
                   >
                     {region}
                     {vehicleRegion === region && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+            )}
+
+            {vehicleCategory === 'Мото' && (
+              <div className="relative">
+                <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
+                  {['Все', 'Спортбайки', 'Круизеры', 'Туреры', 'Нейкеды', 'Багеры'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setMotoType(type)}
+                    className={`pb-3 md:pb-4 px-3 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
+                      motoType === type 
+                        ? 'text-accent' 
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {type}
+                    {motoType === type && (
                       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
                     )}
                   </button>
