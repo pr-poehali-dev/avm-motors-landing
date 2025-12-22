@@ -660,7 +660,7 @@ export const vehiclesKorea: Vehicle[] = [
     name: "Hyundai Elantra 2021",
     type: "Седан",
     price: "от 12 900 $",
-    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChsEkV-Y8dCAXdioAB9jgvhKZ8w715.jpg",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChsEmF-X4LOAJl0lAA8ET6c5Dfw902.jpg",
     specs: ["1.5 л", "115 л.с.", "передний привод", "бензин", "42 000 км"],
     year: "2021",
     mileage: "42 000 км",
