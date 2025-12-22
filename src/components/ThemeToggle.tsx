@@ -1,13 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark';
-    }
-    return false;
-  });
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -22,21 +17,19 @@ const ThemeToggle = () => {
     }
   }, []);
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = () => {
     const root = document.documentElement;
     
-    setIsDark(prev => {
-      const newIsDark = !prev;
-      if (newIsDark) {
-        root.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        root.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-      return newIsDark;
-    });
-  }, []);
+    if (isDark) {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setIsDark(false);
+    } else {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDark(true);
+    }
+  };
 
   return (
     <button

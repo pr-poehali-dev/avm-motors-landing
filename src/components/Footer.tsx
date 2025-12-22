@@ -1,7 +1,6 @@
-import { memo } from "react";
 import Icon from "@/components/ui/icon";
 
-const Footer = memo(() => {
+const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-b from-background to-secondary/30 border-t border-border py-20">
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-accent/5 blur-[100px] rounded-full"></div>
@@ -82,8 +81,6 @@ const Footer = memo(() => {
       </div>
     </footer>
   );
-});
-
-Footer.displayName = 'Footer';
+};
 
 export default Footer;

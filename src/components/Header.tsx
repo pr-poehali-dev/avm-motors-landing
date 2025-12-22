@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
 }
 
-const Header = memo(({ onVehicleRegionChange }: HeaderProps) => {
+const Header = ({ onVehicleRegionChange }: HeaderProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -23,10 +23,6 @@ const Header = memo(({ onVehicleRegionChange }: HeaderProps) => {
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
                 alt="AVM Motors" 
-                loading="eager"
-                fetchPriority="high"
-                width="56"
-                height="56"
                 className="h-10 sm:h-12 md:h-14 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>
@@ -264,8 +260,6 @@ const Header = memo(({ onVehicleRegionChange }: HeaderProps) => {
       )}
     </header>
   );
-});
-
-Header.displayName = 'Header';
+};
 
 export default Header;
