@@ -761,15 +761,15 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры техники, доступной для заказа</h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры доступные для заказа</h2>
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
               Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
-            <div className="flex gap-3 md:gap-4 mb-8 md:mb-12">
+            <div className="flex gap-3 md:gap-6 mb-8 md:mb-12">
               {[
-                { name: 'Авто', icon: 'Car' },
-                { name: 'Мото', icon: 'Bike' }
+                { name: 'Авто', icon: 'Car', gradient: 'from-accent/20 to-accent/5' },
+                { name: 'Мото', icon: 'Bike', gradient: 'from-blue-accent/20 to-blue-accent/5' }
               ].map((category) => (
                 <button
                   key={category.name}
@@ -777,14 +777,20 @@ const Index = () => {
                     setVehicleCategory(category.name);
                     setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
                   }}
-                  className={`flex items-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold text-base md:text-xl transition-all ${
+                  className={`group relative flex items-center gap-3 md:gap-4 px-8 md:px-14 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-2xl transition-all duration-300 overflow-hidden ${
                     vehicleCategory === category.name
-                      ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/30 scale-105'
-                      : 'bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
+                      ? 'bg-gradient-to-br ' + category.gradient + ' border-2 border-accent text-foreground shadow-2xl shadow-accent/20 scale-105'
+                      : 'bg-card border-2 border-border text-muted-foreground hover:border-accent/50 hover:scale-102 hover:shadow-lg'
                   }`}
                 >
-                  <Icon name={category.icon} size={24} />
-                  <span>{category.name}</span>
+                  <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                    vehicleCategory === category.name ? 'opacity-100' : category.gradient
+                  }`}></div>
+                  <Icon name={category.icon} size={28} className="relative z-10" />
+                  <span className="relative z-10 tracking-wide">{category.name}</span>
+                  {vehicleCategory === category.name && (
+                    <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-accent/10 rounded-full blur-xl"></div>
+                  )}
                 </button>
               ))}
             </div>
