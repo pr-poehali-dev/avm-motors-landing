@@ -97,9 +97,6 @@ const Index = () => {
 
   // Vehicles data imported from @/data/vehicles
   
-  const vehiclesUSA = vehiclesAmerican; // Rename for component logic
-  const vehiclesKorea = vehiclesKorean; // Rename for component logic
-
   const oldVehiclesChina = [
     {
       name: "HONGQI E-HS9",
