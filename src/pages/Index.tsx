@@ -38,6 +38,7 @@ const Index = () => {
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroContent, setHeroContent] = useState<'auto' | 'moto'>('auto');
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [scrollLocked, setScrollLocked] = useState(false);
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,19 +61,31 @@ const Index = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!hasScrolled && window.scrollY > 100) {
+    const handleScroll = (e: WheelEvent) => {
+      if (!hasScrolled && !scrollLocked && window.scrollY < 50) {
+        e.preventDefault();
+        setScrollLocked(true);
         setHasScrolled(true);
         setHeroContent('moto');
+        
         setTimeout(() => {
+          setScrollLocked(false);
           setHeroContent('auto');
-        }, 3000);
+        }, 2500);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasScrolled]);
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    return () => window.removeEventListener('wheel', handleScroll);
+  }, [hasScrolled, scrollLocked]);
+
+  useEffect(() => {
+    if (scrollLocked) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [scrollLocked]);
 
   const vehiclesChina = [
     {
@@ -747,7 +760,7 @@ const Index = () => {
               </div>
               <img 
                 key={heroContent}
-                src={heroContent === 'auto' ? "https://cdn.poehali.dev/files/Group_117.png" : "https://cdn.poehali.dev/files/i.jpg"}
+                src={heroContent === 'auto' ? "https://cdn.poehali.dev/files/Group_117.png" : "https://cdn.poehali.dev/files/952913-middle.png"}
                 alt={heroContent === 'auto' ? "Premium Car" : "Premium Motorcycle"}
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)] animate-in slide-in-from-right-full duration-1000 ease-out"
               />
