@@ -412,12 +412,12 @@ const Catalog = () => {
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="bg-transparent border-none outline-none text-xs sm:text-sm font-medium cursor-pointer"
+                      className="bg-transparent border-none outline-none text-xs sm:text-sm font-medium cursor-pointer text-foreground"
                     >
-                      <option value="popular">Популярные</option>
-                      <option value="price_asc">Цена ↑</option>
-                      <option value="price_desc">Цена ↓</option>
-                      <option value="new">Новинки</option>
+                      <option value="popular" className="bg-background text-foreground">Популярные</option>
+                      <option value="price_asc" className="bg-background text-foreground">Цена ↑</option>
+                      <option value="price_desc" className="bg-background text-foreground">Цена ↓</option>
+                      <option value="new" className="bg-background text-foreground">Новинки</option>
                     </select>
                   </div>
                   <div className="hidden sm:flex gap-2">
