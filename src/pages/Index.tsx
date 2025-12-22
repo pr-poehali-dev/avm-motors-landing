@@ -701,7 +701,7 @@ const Index = () => {
       <Header onVehicleRegionChange={setVehicleRegion} />
 
       <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
-        <div className="absolute -top-20 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
+        <div className="absolute -top-40 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-accent/5 dark:bg-accent/5 blur-[180px] rounded-full"></div>
         <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
         <div className="hidden md:block absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
         <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
