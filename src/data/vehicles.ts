@@ -621,6 +621,24 @@ export const vehiclesJapan: Vehicle[] = [
 
 export const vehiclesKorea: Vehicle[] = [
   {
+    name: "Kia Sportage Ace 2023",
+    type: "Кроссовер",
+    price: "от 25 090 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChxkPmbqS7WAfQPuACq4HJWkMms456.jpg",
+    specs: ["1.5 л", "200 л.с.", "передний привод", "бензин", "13 000 км"],
+    year: "2023",
+    mileage: "13 000 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Передний",
+    engine: "1.5 л турбо",
+    power: "200 л.с.",
+    description: "Kia Sportage Ace — современный компактный кроссовер с динамичным дизайном и продвинутыми технологиями. Мощный турбированный двигатель, просторный салон и полный комплект систем безопасности. Идеален для активного городского и загородного использования.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChxkPmbqS7WAfQPuACq4HJWkMms456.jpg",
+    ],
+  },
+  {
     name: "Kia K5 2021",
     type: "Седан",
     price: "от 18 770 $",
