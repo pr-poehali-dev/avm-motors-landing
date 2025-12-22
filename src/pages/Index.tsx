@@ -753,7 +753,7 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20 overflow-hidden">
+            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10 overflow-hidden">
               <div 
                 className="flex transition-transform duration-700 ease-out h-full"
                 style={{ transform: `translateX(-${heroSlide * 100}%)` }}
