@@ -98,7 +98,11 @@
   }
 
   body {
-    font-family: "Geologica", sans-serif;
+    font-family:
+      "Geologica",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   h1,
@@ -107,13 +111,22 @@
   h4,
   h5,
   h6 {
-    font-family: "Geologica", sans-serif;
+    font-family:
+      "Geologica",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   .accent-title {
-    font-family: "Roboto Flex", sans-serif;
+    font-family:
+      "Geologica",
+      system-ui,
+      -apple-system,
+      sans-serif;
     font-style: italic;
     text-transform: uppercase;
+    font-weight: 700;
   }
 }
 

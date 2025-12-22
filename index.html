@@ -21,19 +21,18 @@
     <meta name="twitter:description" content="Эксклюзивный импорт авто. Подбор, проверка, доставка за 30-60 дней. Экономия до 35%.">
     <meta name="twitter:image" content="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png">
 
-    <!-- DNS prefetch and preconnect for critical domains -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://cdn.poehali.dev">
-    <link rel="dns-prefetch" href="https://mc.yandex.ru">
-    <link rel="dns-prefetch" href="https://api.poehali.dev">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical domain preconnects only -->
     <link rel="preconnect" href="https://cdn.poehali.dev">
+    <link rel="preconnect" href="https://api.poehali.dev">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdn.poehali.dev/files/Group_117.png" as="image" fetchpriority="high">
+    <link rel="modulepreload" href="/src/main.tsx">
+    
+    <!-- DNS prefetch for non-critical resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://mc.yandex.ru">
 
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->
 
