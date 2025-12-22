@@ -142,7 +142,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Header onVehicleRegionChange={setVehicleRegion} />
+      <Header 
+        onVehicleRegionChange={setVehicleRegion}
+        onSearch={(query) => {
+          navigate('/catalog');
+        }}
+      />
 
       <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
         <div className="absolute inset-0 pointer-events-none">

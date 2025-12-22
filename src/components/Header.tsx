@@ -10,12 +10,24 @@ interface HeaderProps {
   showFilterButton?: boolean;
   onFilterClick?: () => void;
   filterCount?: number;
+  onSearch?: (query: string) => void;
 }
 
-const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick, filterCount = 0 }: HeaderProps) => {
+const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick, filterCount = 0, onSearch }: HeaderProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (value: string) => {
+    setSearchQuery(value);
+    if (value.length > 0) {
+      navigate('/catalog');
+      if (onSearch) {
+        onSearch(value);
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50">
@@ -60,6 +72,8 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
               <Input
                 type="text"
                 placeholder="Марка или параметры"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="h-11 pl-12 pr-12 bg-background border-border focus:border-header-accent rounded-lg"
               />
               <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-header-accent/10 hover:bg-header-accent/20 flex items-center justify-center transition-colors">
@@ -110,6 +124,8 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
               <Input
                 type="text"
                 placeholder="Марка или параметры"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="h-12 pl-12 pr-4 bg-background border-border focus:border-header-accent"
               />
             </div>

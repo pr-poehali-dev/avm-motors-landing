@@ -102,6 +102,7 @@ const Catalog = () => {
         showFilterButton={showFilterInHeader}
         onFilterClick={() => setIsMobileFilterOpen(true)}
         filterCount={selectedRegion.length + selectedType.length + selectedCondition.length}
+        onSearch={(query) => setSearchQuery(query)}
       />
 
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
