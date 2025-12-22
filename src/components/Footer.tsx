@@ -16,14 +16,13 @@ const Footer = () => {
               Официальный импорт автомобилей из Китая и Европы с полным юридическим сопровождением
             </p>
             <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors group">
-                <Icon name="Instagram" size={22} className="text-accent" />
-              </a>
-              <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors group">
+              <a href="https://t.me/+_ZSslTyv3xg3MDky" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors group">
                 <Icon name="Send" size={22} className="text-accent" />
               </a>
-              <a href="https://wa.me" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors group">
-                <Icon name="MessageCircle" size={22} className="text-accent" />
+              <a href="https://www.tiktok.com/@avmmotors1" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-accent">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -42,17 +41,17 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <h4 className="text-sm font-bold mb-6 tracking-[0.2em] uppercase">Связь</h4>
             <div className="space-y-4">
-              <a href="tel:+375291234567" className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group">
+              <a href="tel:+375296397378" className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Icon name="Phone" size={18} className="text-accent" />
                 </div>
-                <span className="text-lg">+375 29 123 45 67</span>
+                <span className="text-lg">+375 29 639 73 78</span>
               </a>
-              <a href="mailto:info@avm.by" className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group">
+              <a href="mailto:avmmotorsby@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Icon name="Mail" size={18} className="text-accent" />
                 </div>
-                <span className="text-lg">info@avm.by</span>
+                <span className="text-lg">avmmotorsby@gmail.com</span>
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
@@ -64,7 +63,7 @@ const Footer = () => {
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <Icon name="MapPin" size={18} className="text-accent" />
                 </div>
-                <span>Минск, ул. Примерная, 1</span>
+                <span>Гомель, ул. Советская 127а</span>
               </div>
             </div>
           </div>
