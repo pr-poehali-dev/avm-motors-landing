@@ -766,10 +766,10 @@ const Index = () => {
               Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
-            <div className="flex gap-3 md:gap-6 mb-8 md:mb-12">
+            <div className="flex gap-0 mb-8 md:mb-12 p-1 md:p-1.5 bg-secondary/50 backdrop-blur-sm rounded-lg border border-border/50 w-fit">
               {[
-                { name: 'Авто', icon: 'Car', gradient: 'from-accent/20 to-accent/5' },
-                { name: 'Мото', icon: 'Bike', gradient: 'from-blue-accent/20 to-blue-accent/5' }
+                { name: 'Авто', icon: 'Car' },
+                { name: 'Мото', icon: 'Bike' }
               ].map((category) => (
                 <button
                   key={category.name}
@@ -777,20 +777,14 @@ const Index = () => {
                     setVehicleCategory(category.name);
                     setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
                   }}
-                  className={`group relative flex items-center gap-3 md:gap-4 px-8 md:px-14 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-2xl transition-all duration-300 overflow-hidden ${
+                  className={`relative flex items-center gap-2 md:gap-3 px-6 md:px-10 py-2.5 md:py-3.5 font-bold text-sm md:text-lg transition-all duration-300 ${
                     vehicleCategory === category.name
-                      ? 'bg-gradient-to-br ' + category.gradient + ' border-2 border-accent text-foreground shadow-2xl shadow-accent/20 scale-105'
-                      : 'bg-card border-2 border-border text-muted-foreground hover:border-accent/50 hover:scale-102 hover:shadow-lg'
+                      ? 'bg-accent text-accent-foreground rounded-md shadow-lg'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    vehicleCategory === category.name ? 'opacity-100' : category.gradient
-                  }`}></div>
-                  <Icon name={category.icon} size={28} className="relative z-10" />
-                  <span className="relative z-10 tracking-wide">{category.name}</span>
-                  {vehicleCategory === category.name && (
-                    <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-accent/10 rounded-full blur-xl"></div>
-                  )}
+                  <Icon name={category.icon} size={20} className="md:w-6 md:h-6" />
+                  <span className="tracking-wide uppercase">{category.name}</span>
                 </button>
               ))}
             </div>
