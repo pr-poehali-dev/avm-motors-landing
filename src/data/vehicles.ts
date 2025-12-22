@@ -453,6 +453,24 @@ export const vehiclesAmerican: Vehicle[] = [
 
 export const vehiclesJapan: Vehicle[] = [
   {
+    name: "Mazda CX-5 2021",
+    type: "Кроссовер",
+    price: "от 22 560 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwEpGCKUg6Af6IdACArAN9Vxq4030.jpg",
+    specs: ["2.0 л", "155 л.с.", "передний привод", "бензин", "41 500 км"],
+    year: "2021",
+    mileage: "41 500 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Передний",
+    engine: "2.0 л",
+    power: "155 л.с.",
+    description: "Mazda CX-5 — стильный японский кроссовер с премиальным дизайном и технологиями. Экономичный атмосферный двигатель, качественная сборка и комфортная подвеска. Идеален для городских и загородных поездок.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwEpGCKUg6Af6IdACArAN9Vxq4030.jpg",
+    ],
+  },
+  {
     name: "Toyota Land Cruiser 300",
     type: "Внедорожник",
     price: "от 8 500 000 ₽",
