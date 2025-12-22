@@ -8,20 +8,19 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import { useVehicles } from "@/hooks/useVehicles";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import {
-  videoReviews,
-  clientReviews,
-  blogPosts,
-  services,
-  advantages,
-  workflowSteps,
-  faqItems,
   quizBudgetOptions,
   quizTaskOptions,
   quizBrandOptions,
 } from "@/data/content";
+
+const Footer = lazy(() => import("@/components/Footer"));
+const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
+const ServicesSection = lazy(() => import("@/components/sections/ServicesSection"));
+const AdvantagesSection = lazy(() => import("@/components/sections/AdvantagesSection"));
+const WorkflowSection = lazy(() => import("@/components/sections/WorkflowSection"));
+const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 
 const PhoneInput = lazy(() =>
   import('react-international-phone').then(module => ({
@@ -32,17 +31,9 @@ const PhoneInput = lazy(() =>
 const Index = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState('Видеообзоры');
   const [vehicleCategory, setVehicleCategory] = useState('Авто');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [motoType, setMotoType] = useState('Все');
-  const [workflowTab, setWorkflowTab] = useState('Этапы работ');
-  const [openStep, setOpenStep] = useState<number | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
 
   const [quizStep, setQuizStep] = useState(1);
   const [quizData, setQuizData] = useState({
@@ -258,97 +249,9 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
-        <div className="w-full px-4 sm:px-6 lg:px-12">
-          <div className="mb-8 md:mb-16">
-            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              <div className="h-px w-8 md:w-12 bg-accent"></div>
-              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Экспертиза</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Обзоры</h2>
-          </div>
-
-          <div className="flex gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
-            {renderTabButtons(['Видеообзоры', 'Отзывы клиентов', 'Блог'], activeTab, setActiveTab)}
-          </div>
-
-          {activeTab === 'Видеообзоры' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-              {videoReviews.map((video, idx) => (
-                <Card key={idx} className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer">
-                  <div className="relative h-[240px] bg-secondary/50 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10"></div>
-                    <div className="w-16 h-16 rounded-full bg-accent/90 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform z-20">
-                      <Icon name="Play" size={28} className="text-accent-foreground ml-1" />
-                    </div>
-                    <Badge className="absolute top-4 right-4 z-20 bg-background/90 backdrop-blur-sm text-foreground border-0">
-                      {video.time}
-                    </Badge>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{video.title}</h3>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-2">
-                        <Icon name="Eye" size={16} />
-                        {video.views}
-                      </span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'Отзывы клиентов' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-              {clientReviews.map((review, idx) => (
-                <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={20} className="text-accent fill-accent" />
-                    ))}
-                  </div>
-                  <p className="text-lg mb-6 leading-relaxed text-muted-foreground">"{review.text}"</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Icon name="User" size={24} className="text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-bold">{review.name}</div>
-                      <div className="text-sm text-muted-foreground">{review.car}</div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'Блог' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              {blogPosts.map((post, idx) => (
-                <Card key={idx} className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer">
-                  <div className="relative h-[280px] bg-gradient-to-br from-accent/20 to-secondary/50"></div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <Badge className="bg-accent/10 text-accent border-0 hover:bg-accent/20">
-                        {post.category}
-                      </Badge>
-                      <span className="text-sm text-muted-foreground">{post.date}</span>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">{post.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">{post.excerpt}</p>
-                    <Button variant="ghost" className="text-accent hover:text-accent hover:bg-accent/10 p-0">
-                      Читать далее
-                      <Icon name="ArrowRight" size={20} className="ml-2" />
-                    </Button>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      <Suspense fallback={<div className="py-16 md:py-24 min-h-[400px]" />}>
+        <ReviewsSection />
+      </Suspense>
 
       <section className="py-16 md:py-24 bg-secondary relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
@@ -596,201 +499,25 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-24 bg-secondary">
-        <div className="w-full px-6 lg:px-12">
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Сервис</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Полный цикл обслуживания</h2>
-            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
-              Что вы получаете до, во время и после покупки с нами
-            </p>
-          </div>
+      <Suspense fallback={<div className="py-16 md:py-24 min-h-[400px]" />}>
+        <ServicesSection />
+      </Suspense>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {services.map((service, idx) => {
-              const colors = getColorClasses(service.color);
-              return (
-                <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${colors.bg} ${colors.hover}`}>
-                    <Icon name={service.icon} size={32} className={colors.text} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<div className="py-16 md:py-24 min-h-[400px]" />}>
+        <AdvantagesSection />
+      </Suspense>
 
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/5 blur-[120px] rounded-full"></div>
-        <div className="w-full px-4 sm:px-6 lg:px-12 relative">
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-accent">Преимущества</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Почему AVM Motors</h2>
-            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl">
-              Опыт, надежность и прозрачность на каждом этапе
-            </p>
-          </div>
+      <Suspense fallback={<div className="py-16 md:py-24 min-h-[400px]" />}>
+        <WorkflowSection />
+      </Suspense>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {advantages.map((item, idx) => {
-              const colors = getColorClasses(item.color);
-              return (
-                <Card
-                  key={idx}
-                  className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
-                >
-                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-all ${colors.bg} ${colors.hover}`}>
-                    <Icon name={item.icon} size={28} className={colors.text} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<div className="py-16 md:py-24 min-h-[400px]" />}>
+        <ContactSection />
+      </Suspense>
 
-      <section className="py-16 md:py-24 bg-muted">
-        <div className="w-full px-6 lg:px-12">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Процесс</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-8">Как мы работаем</h2>
-            </div>
-
-            <div className="flex gap-4 mb-12 border-b border-border">
-              {renderTabButtons(['Этапы работ', 'Вопрос-ответ'], workflowTab, setWorkflowTab)}
-            </div>
-
-            {workflowTab === 'Этапы работ' && (
-              <div className="space-y-4">
-                {workflowSteps.map((step, idx) => (
-                  <Card
-                    key={idx}
-                    className="bg-background border-border hover:border-accent transition-all cursor-pointer group"
-                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
-                  >
-                    <div className="p-6 flex items-center justify-between">
-                      <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors flex-shrink-0">
-                          <Icon name={step.icon} size={28} className="text-accent" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground mb-1">Шаг {idx + 1}.</div>
-                          <h3 className="text-xl font-bold">{step.title}</h3>
-                        </div>
-                      </div>
-                      <Icon
-                        name="ChevronDown"
-                        size={24}
-                        className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                    {openStep === idx && (
-                      <div className="px-6 pb-6">
-                        <p className="text-lg text-muted-foreground leading-relaxed ml-[88px]">
-                          {step.desc}
-                        </p>
-                      </div>
-                    )}
-                  </Card>
-                ))}
-              </div>
-            )}
-
-            {workflowTab === 'Вопрос-ответ' && (
-              <div className="space-y-4">
-                {faqItems.map((item, idx) => (
-                  <Card
-                    key={idx}
-                    className="bg-background border-border hover:border-accent transition-all cursor-pointer"
-                    onClick={() => setOpenStep(openStep === idx ? null : idx)}
-                  >
-                    <div className="p-6 flex items-center justify-between">
-                      <h3 className="text-xl font-bold pr-4">{item.q}</h3>
-                      <Icon
-                        name="ChevronDown"
-                        size={24}
-                        className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                    {openStep === idx && (
-                      <div className="px-6 pb-6">
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                          {item.a}
-                        </p>
-                      </div>
-                    )}
-                  </Card>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="py-16 md:py-24 bg-secondary">
-        <div className="w-full px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12 bg-accent"></div>
-                <span className="text-sm tracking-[0.3em] uppercase text-accent">Контакт</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">Начнём подбор автомобиля прямо сейчас</h2>
-              <p className="text-sm sm:text-base md:text-xl text-muted-foreground leading-relaxed">
-                Эксперт AVM свяжется с вами, уточнит детали и предложит подходящие варианты с расчетом полной стоимости до покупки
-              </p>
-            </div>
-            <Card className="p-4 sm:p-8 md:p-12 bg-card border-accent/20">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <Input
-                  type="text"
-                  placeholder="Ваше имя"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
-                />
-                <Suspense fallback={<Input type="tel" placeholder="+7" className="h-12 sm:h-14" />}>
-                  <PhoneInput
-                    defaultCountry="ru"
-                    value={formData.phone}
-                    onChange={(phone) => setFormData({ ...formData, phone })}
-                    inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
-                    className="phone-input-custom"
-                  />
-                </Suspense>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-button-primary hover:bg-button-primary/90 h-12 sm:h-14 text-base sm:text-lg"
-                >
-                  Получить консультацию
-                </Button>
-                <p className="text-xs text-muted-foreground text-center">
-                  Конфиденциальность гарантируется
-                </p>
-              </form>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      <Suspense fallback={<div className="py-16 min-h-[200px]" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

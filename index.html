@@ -24,15 +24,16 @@
     <!-- Critical domain preconnects only -->
     <link rel="preconnect" href="https://cdn.poehali.dev">
     <link rel="preconnect" href="https://api.poehali.dev">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
     <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- Mobile-specific optimizations -->
+    <link rel="preload" href="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" as="image" fetchpriority="high">
     <link rel="preload" href="https://cdn.poehali.dev/files/Group_117.png" as="image" fetchpriority="high" media="(min-width: 768px)">
     
     <!-- DNS prefetch for non-critical resources -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
 
