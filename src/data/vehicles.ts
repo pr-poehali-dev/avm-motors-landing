@@ -207,6 +207,24 @@ export const vehiclesChina: Vehicle[] = [
 
 export const vehiclesEurope: Vehicle[] = [
   {
+    name: "BMW 3 Series 2021",
+    type: "Седан",
+    price: "от 24 710 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwFkV9jgBKARRBwABoov71UVLE192.jpg",
+    specs: ["2.0 л", "156 л.с.", "задний привод", "бензин", "46 000 км"],
+    year: "2021",
+    mileage: "46 000 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Задний",
+    engine: "2.0 л",
+    power: "156 л.с.",
+    description: "BMW 3 Series — легендарный немецкий седан с идеальной развесовкой и задним приводом. Сочетает спортивный характер, премиальный комфорт и узнаваемый дизайн. Надежный двигатель и точное управление для истинных ценителей.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwFkV9jgBKARRBwABoov71UVLE192.jpg",
+    ],
+  },
+  {
     name: "BMW X5 M50i",
     type: "Премиум SUV",
     price: "от 8 500 000 ₽",
