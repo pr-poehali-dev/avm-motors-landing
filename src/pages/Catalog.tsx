@@ -251,8 +251,8 @@ const Catalog = () => {
 
             <div className="flex-1">
               {/* Mobile Filter Button & Controls */}
-              <div className="flex items-center justify-between gap-3 mb-6 pb-4 sm:pb-6 border-b border-border">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 sm:pb-6 border-b border-border">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
                   <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
                     <SheetTrigger asChild>
                       <Button variant="outline" size="sm" className="lg:hidden border-accent text-accent hover:bg-accent hover:text-accent-foreground">
@@ -406,7 +406,7 @@ const Catalog = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
                   <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-secondary/50">
                     <Icon name="ArrowUpDown" size={16} className="text-muted-foreground hidden sm:block" />
                     <select
