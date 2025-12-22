@@ -36,9 +36,7 @@ const Index = () => {
     phone: '',
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
-  const [heroContent, setHeroContent] = useState<'auto' | 'moto'>('auto');
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const [scrollLocked, setScrollLocked] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,30 +60,20 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
-      if (!hasScrolled && !scrollLocked && window.scrollY < 50) {
-        e.preventDefault();
-        setScrollLocked(true);
-        setHasScrolled(true);
-        setHeroContent('moto');
-        
-        setTimeout(() => {
-          setScrollLocked(false);
-          setHeroContent('auto');
-        }, 2500);
+      if (window.scrollY < 50) {
+        if (e.deltaY > 0 && heroSlide === 0) {
+          e.preventDefault();
+          setHeroSlide(1);
+        } else if (e.deltaY < 0 && heroSlide === 1) {
+          e.preventDefault();
+          setHeroSlide(0);
+        }
       }
     };
 
     window.addEventListener('wheel', handleScroll, { passive: false });
     return () => window.removeEventListener('wheel', handleScroll);
-  }, [hasScrolled, scrollLocked]);
-
-  useEffect(() => {
-    if (scrollLocked) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [scrollLocked]);
+  }, [heroSlide]);
 
   const vehiclesChina = [
     {
@@ -743,28 +731,60 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
-              <span className="transition-all duration-700">
-                {heroContent === 'auto' ? 'АВТОМОБИЛИ' : 'МОТОТЕХНИКА'}
-              </span>
-              <br />
-              <span className="accent-title text-accent">из Китая</span><br />
-              ПОД КЛЮЧ
-            </h1>
-            
-            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20">
-              <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
-                <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
-                <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-700 ease-out"
+                style={{ transform: `translateX(-${heroSlide * 100}%)` }}
+              >
+                <div className="min-w-full">
+                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
+                    АВТОМОБИЛИ<br />
+                    <span className="accent-title text-accent">из Китая</span><br />
+                    ПОД КЛЮЧ
+                  </h1>
+                </div>
+                <div className="min-w-full">
+                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
+                    МОТОТЕХНИКА<br />
+                    <span className="accent-title text-accent">из Китая</span><br />
+                    ПОД КЛЮЧ
+                  </h1>
+                </div>
               </div>
-              <img 
-                key={heroContent}
-                src={heroContent === 'auto' ? "https://cdn.poehali.dev/files/Group_117.png" : "https://cdn.poehali.dev/files/952913-middle.png"}
-                alt={heroContent === 'auto' ? "Premium Car" : "Premium Motorcycle"}
-                className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)] animate-in slide-in-from-right-full duration-1000 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
+            </div>
+            
+            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20 overflow-hidden">
+              <div 
+                className="flex transition-transform duration-700 ease-out h-full"
+                style={{ transform: `translateX(-${heroSlide * 100}%)` }}
+              >
+                <div className="min-w-full h-full relative">
+                  <div className="absolute inset-0">
+                    <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
+                    <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
+                    <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
+                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/files/Group_117.png"
+                    alt="Premium Car"
+                    className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
+                </div>
+                <div className="min-w-full h-full relative">
+                  <div className="absolute inset-0">
+                    <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
+                    <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
+                    <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
+                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/files/952913-middle.png"
+                    alt="Premium Motorcycle"
+                    className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
+                </div>
+              </div>
             </div>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative z-30">
