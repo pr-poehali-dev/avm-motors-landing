@@ -1,18 +1,31 @@
-import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
+import { useVehicles } from "@/hooks/useVehicles";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/sections/HeroSection";
+import {
+  videoReviews,
+  clientReviews,
+  blogPosts,
+  services,
+  advantages,
+  workflowSteps,
+  faqItems,
+  quizBudgetOptions,
+  quizTaskOptions,
+  quizBrandOptions,
+} from "@/data/content";
 
-const PhoneInput = lazy(() => 
-  import('react-international-phone').then(module => ({ 
-    default: module.PhoneInput 
+const PhoneInput = lazy(() =>
+  import('react-international-phone').then(module => ({
+    default: module.PhoneInput
   }))
 );
 
@@ -41,6 +54,8 @@ const Index = () => {
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
+
+  const { displayedVehicles } = useVehicles(vehicleCategory, vehicleRegion, motoType, showAllVehicles);
 
   const handleQuizSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -91,774 +106,42 @@ const Index = () => {
     return () => window.removeEventListener('wheel', handleScroll);
   }, [heroSlide]);
 
-  const vehiclesChina = [
-    {
-      name: "HONGQI E-HS9",
-      type: "Премиум SUV",
-      price: "от 6 850 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["600 л.с.", "0-100 за 4.9с", "Electric"],
-    },
-    {
-      name: "NIO ET7",
-      type: "Седан Executive",
-      price: "от 4 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["480 л.с.", "1000 км запас хода", "AWD"],
-    },
-    {
-      name: "CF MOTO 800MT",
-      type: "Adventure Touring",
-      price: "от 890 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/49624ed1-78a6-4a4a-ae22-579718390d6a.jpg",
-      specs: ["95 л.с.", "799cc", "21L бак"],
-    },
-    {
-      name: "QJMOTOR SRV 800",
-      type: "Sport Touring",
-      price: "от 1 150 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/49624ed1-78a6-4a4a-ae22-579718390d6a.jpg",
-      specs: ["76 л.с.", "754cc", "KYB подвеска"],
-    },
-    {
-      name: "Li Auto L7",
-      type: "Премиум SUV",
-      price: "от 5 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["449 л.с.", "EREV", "5 мест"],
-    },
-    {
-      name: "Zeekr 009",
-      type: "Минивэн",
-      price: "от 6 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["544 л.с.", "Electric", "7 мест"],
-    },
-    {
-      name: "Xpeng G9",
-      type: "SUV",
-      price: "от 4 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["551 л.с.", "702 км запас", "AWD"],
-    },
-    {
-      name: "Geely Monjaro",
-      type: "Кроссовер",
-      price: "от 3 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["238 л.с.", "2.0T", "AWD"],
-    },
-    {
-      name: "Changan UNI-K",
-      type: "SUV",
-      price: "от 2 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["233 л.с.", "2.0T", "4WD"],
-    },
-    {
-      name: "Tank 500",
-      type: "Внедорожник",
-      price: "от 5 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["354 л.с.", "3.0T", "Рама"],
-    },
-    {
-      name: "Avatr 11",
-      type: "SUV Coupe",
-      price: "от 4 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["578 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "IM Motors LS7",
-      type: "Седан",
-      price: "от 5 100 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["578 л.с.", "Electric", "RWD"],
-    },
-    {
-      name: "Voyah Free",
-      type: "SUV",
-      price: "от 4 300 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["510 л.с.", "PHEV", "AWD"],
-    },
-    {
-      name: "Haval Dargo X",
-      type: "Кроссовер",
-      price: "от 2 700 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["211 л.с.", "2.0T", "4WD"],
-    },
-    {
-      name: "GAC Trumpchi GS8",
-      type: "SUV",
-      price: "от 3 400 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["252 л.с.", "2.0T", "7 мест"],
-    },
-    {
-      name: "Dongfeng Mengshi M-Hero 917",
-      type: "Внедорожник",
-      price: "от 8 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["816 л.с.", "PHEV", "Рама"],
-    },
-  ];
-
-  const vehiclesEurope = [
-    {
-      name: "BMW X5 M50i",
-      type: "Премиум SUV",
-      price: "от 8 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["530 л.с.", "0-100 за 4.3с", "AWD"],
-    },
-    {
-      name: "Mercedes-Benz S-Class",
-      type: "Седан Люкс",
-      price: "от 9 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["367 л.с.", "Hybrid", "4MATIC"],
-    },
-    {
-      name: "Audi Q7",
-      type: "SUV",
-      price: "от 7 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 TFSI", "Quattro"],
-    },
-    {
-      name: "Porsche Cayenne",
-      type: "SUV",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 V6", "AWD"],
-    },
-    {
-      name: "Range Rover Sport",
-      type: "Внедорожник",
-      price: "от 10 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "3.0 MHEV", "AWD"],
-    },
-    {
-      name: "Volvo XC90",
-      type: "SUV",
-      price: "от 6 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["250 л.с.", "PHEV", "7 мест"],
-    },
-    {
-      name: "BMW 7 Series",
-      type: "Седан",
-      price: "от 9 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["380 л.с.", "3.0 Hybrid", "AWD"],
-    },
-    {
-      name: "Mercedes-Benz GLE",
-      type: "SUV",
-      price: "от 8 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["367 л.с.", "3.0 Turbo", "4MATIC"],
-    },
-    {
-      name: "Audi e-tron GT",
-      type: "Седан",
-      price: "от 11 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["476 л.с.", "Electric", "Quattro"],
-    },
-    {
-      name: "Porsche Panamera",
-      type: "Седан",
-      price: "от 10 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["330 л.с.", "2.9 V6", "AWD"],
-    },
-    {
-      name: "Jaguar F-PACE",
-      type: "SUV",
-      price: "от 7 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["300 л.с.", "3.0 Diesel", "AWD"],
-    },
-    {
-      name: "Land Rover Defender",
-      type: "Внедорожник",
-      price: "от 9 100 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "3.0 MHEV", "AWD"],
-    },
-    {
-      name: "Maserati Levante",
-      type: "SUV",
-      price: "от 10 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["350 л.с.", "3.0 V6", "AWD"],
-    },
-    {
-      name: "Alfa Romeo Stelvio",
-      type: "SUV",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["280 л.с.", "2.0 Turbo", "AWD"],
-    },
-    {
-      name: "Bentley Bentayga",
-      type: "SUV",
-      price: "от 18 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["550 л.с.", "4.0 V8", "AWD"],
-    },
-    {
-      name: "Genesis GV80",
-      type: "SUV",
-      price: "от 6 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["304 л.с.", "2.5 Turbo", "AWD"],
-    },
-  ];
-
-  const vehiclesTop = [
-    {
-      name: "Zeekr 001",
-      type: "Хэтчбек",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["544 л.с.", "0-100 за 3.8с", "Electric"],
-    },
-    {
-      name: "BYD Han",
-      type: "Седан",
-      price: "от 3 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["517 л.с.", "605 км запас", "AWD"],
-    },
-    {
-      name: "Li Auto L9",
-      type: "SUV",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["449 л.с.", "EREV", "7 мест"],
-    },
-    {
-      name: "Audi Q7",
-      type: "SUV",
-      price: "от 7 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 TFSI", "Quattro"],
-    },
-    {
-      name: "BMW X5 M50i",
-      type: "SUV",
-      price: "от 8 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["530 л.с.", "0-100 за 4.3с", "AWD"],
-    },
-    {
-      name: "NIO ET7",
-      type: "Седан",
-      price: "от 4 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["480 л.с.", "1000 км запас", "AWD"],
-    },
-    {
-      name: "Porsche Cayenne",
-      type: "SUV",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 V6", "AWD"],
-    },
-    {
-      name: "Xpeng G9",
-      type: "SUV",
-      price: "от 4 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["551 л.с.", "702 км запас", "AWD"],
-    },
-    {
-      name: "Mercedes-Benz S-Class",
-      type: "Седан",
-      price: "от 9 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["367 л.с.", "Hybrid", "4MATIC"],
-    },
-    {
-      name: "Range Rover Sport",
-      type: "SUV",
-      price: "от 10 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "3.0 MHEV", "AWD"],
-    },
-    {
-      name: "Tank 500",
-      type: "Внедорожник",
-      price: "от 5 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["354 л.с.", "3.0T", "Рама"],
-    },
-    {
-      name: "Avatr 11",
-      type: "SUV Coupe",
-      price: "от 4 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["578 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Volvo XC90",
-      type: "SUV",
-      price: "от 6 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["250 л.с.", "PHEV", "7 мест"],
-    },
-    {
-      name: "Geely Monjaro",
-      type: "Кроссовер",
-      price: "от 3 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["238 л.с.", "2.0T", "AWD"],
-    },
-    {
-      name: "BMW 7 Series",
-      type: "Седан",
-      price: "от 9 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["380 л.с.", "3.0 Hybrid", "AWD"],
-    },
-    {
-      name: "Hongqi E-HS9",
-      type: "SUV",
-      price: "от 6 850 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["600 л.с.", "Electric", "AWD"],
-    },
-  ];
-
-  const motorcycles = [
-    {
-      name: "Kawasaki Ninja H2",
-      type: "Спортбайк",
-      price: "от 2 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["231 л.с.", "998 см³", "Компрессор"],
-    },
-    {
-      name: "BMW S 1000 RR",
-      type: "Спортбайк",
-      price: "от 1 950 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["207 л.с.", "999 см³", "0-100 за 3.1с"],
-    },
-    {
-      name: "Ducati Panigale V4",
-      type: "Спортбайк",
-      price: "от 3 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["214 л.с.", "1103 см³", "V4"],
-    },
-    {
-      name: "Honda Gold Wing",
-      type: "Турер",
-      price: "от 2 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["126 л.с.", "1833 см³", "6 цилиндров"],
-    },
-    {
-      name: "Yamaha YZF-R1",
-      type: "Спортбайк",
-      price: "от 1 850 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["200 л.с.", "998 см³", "Crossplane"],
-    },
-    {
-      name: "Harley-Davidson Road Glide",
-      type: "Круизер",
-      price: "от 2 100 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["87 л.с.", "1868 см³", "V-Twin"],
-    },
-    {
-      name: "Suzuki Hayabusa",
-      type: "Спортбайк",
-      price: "от 1 750 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["190 л.с.", "1340 см³", "312 км/ч"],
-    },
-    {
-      name: "KTM 1290 Super Duke R",
-      type: "Нейкед",
-      price: "от 1 650 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["180 л.с.", "1301 см³", "V-Twin"],
-    },
-    {
-      name: "Triumph Rocket 3",
-      type: "Круизер",
-      price: "от 2 300 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["165 л.с.", "2458 см³", "3 цилиндра"],
-    },
-    {
-      name: "Aprilia RSV4",
-      type: "Спортбайк",
-      price: "от 2 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["217 л.с.", "1099 см³", "V4"],
-    },
-    {
-      name: "BMW R 1250 GS",
-      type: "Эндуро",
-      price: "от 1 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["136 л.с.", "1254 см³", "ADV"],
-    },
-    {
-      name: "MV Agusta F4",
-      type: "Спортбайк",
-      price: "от 3 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["212 л.с.", "998 см³", "299 км/ч"],
-    },
-  ];
-
-  const vehiclesAmerican = [
-    {
-      name: "Ford F-150 Lightning",
-      type: "Пикап",
-      price: "от 7 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["563 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Chevrolet Tahoe",
-      type: "SUV",
-      price: "от 8 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "4WD"],
-    },
-    {
-      name: "Cadillac Escalade",
-      type: "Премиум SUV",
-      price: "от 10 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "AWD"],
-    },
-    {
-      name: "Jeep Grand Cherokee",
-      type: "SUV",
-      price: "от 6 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["357 л.с.", "5.7 V8", "4WD"],
-    },
-    {
-      name: "Tesla Model S Plaid",
-      type: "Седан",
-      price: "от 12 000 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["1020 л.с.", "0-100 за 2.1с", "AWD"],
-    },
-    {
-      name: "GMC Yukon Denali",
-      type: "SUV",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "AWD"],
-    },
-    {
-      name: "Lincoln Navigator",
-      type: "Премиум SUV",
-      price: "от 10 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["450 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Ram 1500 TRX",
-      type: "Пикап",
-      price: "от 11 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["702 л.с.", "6.2 Supercharged", "4WD"],
-    },
-  ];
-
-  const vehiclesJapanese = [
-    {
-      name: "Toyota Land Cruiser 300",
-      type: "Внедорожник",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["415 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Lexus LX 600",
-      type: "Премиум SUV",
-      price: "от 10 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["409 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Mazda CX-90",
-      type: "SUV",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "PHEV", "AWD"],
-    },
-    {
-      name: "Honda Pilot",
-      type: "SUV",
-      price: "от 4 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["285 л.с.", "3.5 V6", "AWD"],
-    },
-    {
-      name: "Nissan Patrol",
-      type: "Внедорожник",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "5.6 V8", "4WD"],
-    },
-    {
-      name: "Lexus RX 500h",
-      type: "SUV",
-      price: "от 7 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["366 л.с.", "Hybrid", "AWD"],
-    },
-    {
-      name: "Toyota Alphard",
-      type: "Минивэн",
-      price: "от 5 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["245 л.с.", "Hybrid", "7 мест"],
-    },
-    {
-      name: "Infiniti QX80",
-      type: "SUV",
-      price: "от 7 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "5.6 V8", "4WD"],
-    },
-  ];
-
-  const vehiclesKorean = [
-    {
-      name: "Genesis GV80",
-      type: "Премиум SUV",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["375 л.с.", "3.5 Twin-Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Palisade",
-      type: "SUV",
-      price: "от 4 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["291 л.с.", "3.8 V6", "AWD"],
-    },
-    {
-      name: "Kia EV6 GT",
-      type: "Кроссовер",
-      price: "от 5 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["585 л.с.", "0-100 за 3.5с", "AWD"],
-    },
-    {
-      name: "Genesis G90",
-      type: "Седан Люкс",
-      price: "от 8 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["409 л.с.", "3.5 Twin-Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Ioniq 5 N",
-      type: "Кроссовер",
-      price: "от 6 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["641 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Kia Telluride",
-      type: "SUV",
-      price: "от 4 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["291 л.с.", "3.8 V6", "AWD"],
-    },
-    {
-      name: "Genesis GV70",
-      type: "SUV",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["300 л.с.", "2.5 Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Santa Fe",
-      type: "SUV",
-      price: "от 3 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["277 л.с.", "2.5 Turbo", "AWD"],
-    },
-  ];
-
-  const allVehicles = useMemo(() => {
-    if (vehicleCategory === 'Мото') {
-      if (motoType === 'Все') {
-        return motorcycles;
-      } else if (motoType === 'Спортбайки') {
-        return motorcycles.filter(m => m.type === 'Спортбайк');
-      } else if (motoType === 'Круизеры') {
-        return motorcycles.filter(m => m.type === 'Круизер');
-      } else if (motoType === 'Туреры') {
-        return motorcycles.filter(m => m.type === 'Турер');
-      } else if (motoType === 'Нейкеды') {
-        return motorcycles.filter(m => m.type === 'Нейкед');
-      } else if (motoType === 'Эндуро') {
-        return motorcycles.filter(m => m.type === 'Эндуро');
-      } else {
-        return motorcycles;
-      }
-    } else {
-      return vehicleRegion === 'Китайские' ? vehiclesChina : 
-        vehicleRegion === 'Европейские' ? vehiclesEurope :
-        vehicleRegion === 'Американские' ? vehiclesAmerican :
-        vehicleRegion === 'Японские' ? vehiclesJapanese :
-        vehicleRegion === 'Корейские' ? vehiclesKorean :
-        vehiclesTop;
-    }
-  }, [vehicleCategory, vehicleRegion, motoType]);
-
-  const vehicles = useMemo(() => 
-    showAllVehicles ? allVehicles : allVehicles.slice(0, 8),
-    [showAllVehicles, allVehicles]
+  const renderTabButtons = (tabs: string[], activeTab: string, setActiveTab: (tab: string) => void) => (
+    <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
+      {tabs.map((tab) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(tab)}
+          className={`pb-3 md:pb-4 px-3 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
+            activeTab === tab
+              ? 'text-accent'
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
+        >
+          {tab}
+          {activeTab === tab && (
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
+          )}
+        </button>
+      ))}
+    </div>
   );
+
+  const getColorClasses = (color: string) => {
+    const colorMap: Record<string, { bg: string; text: string; hover: string }> = {
+      'accent': { bg: 'bg-accent/10', text: 'text-accent', hover: 'group-hover:bg-accent/20' },
+      'blue-accent': { bg: 'bg-blue-accent/10', text: 'text-blue-accent', hover: 'group-hover:bg-blue-accent/20' },
+      'green-accent': { bg: 'bg-green-accent/10', text: 'text-green-accent', hover: 'group-hover:bg-green-accent/20' },
+      'orange-accent': { bg: 'bg-orange-accent/10', text: 'text-orange-accent', hover: 'group-hover:bg-orange-accent/20' },
+    };
+    return colorMap[color] || colorMap['accent'];
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header onVehicleRegionChange={setVehicleRegion} />
 
-      <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-accent/5 dark:bg-accent/5 blur-[180px] rounded-full"></div>
-          <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-accent/10 dark:bg-accent/10 blur-[200px] rounded-full"></div>
-          <div className="absolute bottom-0 right-1/3 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-blue-accent/5 dark:bg-accent/5 blur-[150px] rounded-full"></div>
-        </div>
-        
-        <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
-        <div className="hidden md:block absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
-        <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
-        <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
-        
-        <div className="hidden md:block absolute top-1/4 left-[10%] w-1 h-48 bg-gradient-to-b from-transparent via-blue-accent/30 dark:via-accent/30 to-transparent rotate-[-15deg]"></div>
-        <div className="hidden md:block absolute bottom-1/4 left-[15%] w-20 h-20 border border-blue-accent/15 dark:border-accent/15 rotate-[-30deg]"></div>
-        
-        <div className="hidden md:block absolute top-0 -right-40 lg:-right-60 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10 overflow-hidden">
-          <div 
-            className="flex transition-transform duration-700 ease-out h-full"
-            style={{ transform: `translateX(-${heroSlide * 100}%)` }}
-          >
-            <div className="min-w-full h-full relative">
-              <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
-                <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
-                <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
-              </div>
-              <img 
-                src="https://cdn.poehali.dev/files/Group_117.png"
-                alt="Premium Car"
-                fetchPriority="high"
-                width="1400"
-                height="904"
-                className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
-            </div>
-            <div className="min-w-full h-full relative">
-              <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/4 w-px h-48 bg-gradient-to-b from-transparent via-blue-accent/60 dark:via-accent/60 to-transparent"></div>
-                <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-blue-accent/40 dark:via-accent/40 to-transparent"></div>
-                <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
-              </div>
-              <img 
-                src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
-                alt="Premium Motorcycle"
-                fetchPriority="high"
-                width="1398"
-                height="1025"
-                className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20">
-          <div className="relative">
-            <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative">
-              <div className="h-px w-8 md:w-12 bg-accent"></div>
-              <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
-            </div>
-            <div className="overflow-hidden">
-              <div 
-                className="flex transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(-${heroSlide * 100}%)` }}
-              >
-                <div className="min-w-full">
-                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative max-w-4xl">
-                    АВТОМОБИЛИ<br />
-                    <span className="accent-title text-accent">из Китая</span><br />
-                    ПОД КЛЮЧ
-                  </h1>
-                </div>
-                <div className="min-w-full">
-                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative max-w-4xl">
-                    МОТОТЕХНИКА<br />
-                    <span className="accent-title text-accent">из Китая</span><br />
-                    ПОД КЛЮЧ
-                  </h1>
-                </div>
-              </div>
-            </div>
-            
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative">
-              Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
-              <Button 
-                size="lg" 
-                className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
-                onClick={() => navigate('/catalog')}
-              >
-                Перейти в каталог
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground w-full sm:w-auto"
-              >
-                Консультация эксперта
-              </Button>
-            </div>
-            <div className="mt-12 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-3xl relative z-30">
-              <div className="border-l-2 border-accent pl-3 md:pl-6">
-                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-accent">30%</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
-              </div>
-              <div className="border-l-2 border-blue-accent pl-3 md:pl-6">
-                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-blue-accent">30</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
-              </div>
-              <div className="border-l-2 border-green-accent pl-3 md:pl-6">
-                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-green-accent">24/7</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
-              </div>
-              <div className="border-l-2 border-orange-accent pl-3 md:pl-6">
-                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-orange-accent">14</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection heroSlide={heroSlide} />
 
       <section id="vehicles" className="py-16 md:py-24 relative">
         <div className="w-full px-4 sm:px-6 lg:px-12">
@@ -871,7 +154,7 @@ const Index = () => {
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
               Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
-            
+
             <div className="flex gap-0 mb-8 md:mb-12 p-1 md:p-1.5 bg-secondary/50 backdrop-blur-sm rounded-lg border border-border/50 w-fit">
               {[
                 { name: 'Авто', icon: 'Car' },
@@ -896,58 +179,32 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            
+
             {vehicleCategory === 'Авто' && (
               <div className="relative">
-                <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
-                  {['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'].map((region) => (
-                  <button
-                    key={region}
-                    onClick={() => setVehicleRegion(region)}
-                    className={`pb-3 md:pb-4 px-3 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
-                      vehicleRegion === region 
-                        ? 'text-accent' 
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    {region}
-                    {vehicleRegion === region && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
-                    )}
-                  </button>
-                ))}
+                {renderTabButtons(
+                  ['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'],
+                  vehicleRegion,
+                  setVehicleRegion
+                )}
               </div>
-            </div>
             )}
 
             {vehicleCategory === 'Мото' && (
               <div className="relative">
-                <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
-                  {['Все', 'Спортбайки', 'Круизеры', 'Туреры', 'Нейкеды', 'Эндуро'].map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => setMotoType(type)}
-                    className={`pb-3 md:pb-4 px-3 md:px-6 text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
-                      motoType === type 
-                        ? 'text-accent' 
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    {type}
-                    {motoType === type && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
-                    )}
-                  </button>
-                ))}
+                {renderTabButtons(
+                  ['Все', 'Спортбайки', 'Круизеры', 'Туреры', 'Нейкеды', 'Эндуро'],
+                  motoType,
+                  setMotoType
+                )}
               </div>
-            </div>
             )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
-            {vehicles.map((vehicle, index) => (
-              <Card 
-                key={index} 
+            {displayedVehicles.map((vehicle, index) => (
+              <Card
+                key={index}
                 className="group overflow-hidden bg-card border-border hover:border-accent transition-all duration-500 cursor-pointer"
               >
                 <div className="relative h-[240px] overflow-hidden">
@@ -987,9 +244,9 @@ const Index = () => {
               </Card>
             ))}
           </div>
-          
+
           <div className="flex justify-center">
-            <Button 
+            <Button
               size="lg"
               className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-10 h-14 text-lg"
               onClick={() => navigate('/catalog')}
@@ -1013,31 +270,12 @@ const Index = () => {
           </div>
 
           <div className="flex gap-2 md:gap-4 mb-8 md:mb-12 border-b border-border overflow-x-auto scrollbar-hide">
-            {['Видеообзоры', 'Отзывы клиентов', 'Блог'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`pb-3 md:pb-4 px-3 md:px-6 text-xs sm:text-sm md:text-base lg:text-lg font-medium transition-all relative whitespace-nowrap flex-shrink-0 ${
-                  activeTab === tab 
-                    ? 'text-accent' 
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {tab}
-                {activeTab === tab && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
-                )}
-              </button>
-            ))}
+            {renderTabButtons(['Видеообзоры', 'Отзывы клиентов', 'Блог'], activeTab, setActiveTab)}
           </div>
 
           {activeTab === 'Видеообзоры' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-              {[
-                { title: 'Обзор Zeekr 001', time: '12:45', views: '24K' },
-                { title: 'Тест-драйв BYD Han', time: '15:20', views: '31K' },
-                { title: 'NIO ES6 в России', time: '10:15', views: '18K' },
-              ].map((video, idx) => (
+              {videoReviews.map((video, idx) => (
                 <Card key={idx} className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer">
                   <div className="relative h-[240px] bg-secondary/50 flex items-center justify-center">
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10"></div>
@@ -1064,11 +302,7 @@ const Index = () => {
 
           {activeTab === 'Отзывы клиентов' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-              {[
-                { name: 'Александр М.', car: 'Zeekr 001', text: 'Невероятный сервис! Получил автомобиль мечты за 42 дня. Всё прозрачно и профессионально.', rating: 5 },
-                { name: 'Елена К.', car: 'BYD Han', text: 'Команда AVM Motors сопровождала на каждом этапе. Экономия составила более 2 млн рублей!', rating: 5 },
-                { name: 'Дмитрий Р.', car: 'NIO ES6', text: 'Индивидуальный подход и внимание к деталям. Рекомендую всем, кто ценит качество.', rating: 5 },
-              ].map((review, idx) => (
+              {clientReviews.map((review, idx) => (
                 <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all">
                   <div className="flex gap-1 mb-4">
                     {[...Array(review.rating)].map((_, i) => (
@@ -1092,11 +326,7 @@ const Index = () => {
 
           {activeTab === 'Блог' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              {[
-                { title: 'Как выбрать электромобиль из Китая', date: '15 дек 2024', category: 'Гид покупателя', excerpt: 'Подробное руководство по выбору идеального электромобиля с учётом технических характеристик и личных предпочтений.' },
-                { title: 'Топ-5 премиум моделей 2024', date: '10 дек 2024', category: 'Обзоры', excerpt: 'Эксклюзивная подборка самых востребованных премиальных автомобилей китайского производства в этом году.' },
-                { title: 'Юридические аспекты импорта', date: '5 дек 2024', category: 'Юридическая база', excerpt: 'Всё о легальном ввозе автомобилей из Китая: документы, сертификация и регистрация в России.' },
-              ].map((post, idx) => (
+              {blogPosts.map((post, idx) => (
                 <Card key={idx} className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer">
                   <div className="relative h-[280px] bg-gradient-to-br from-accent/20 to-secondary/50"></div>
                   <div className="p-8">
@@ -1144,10 +374,10 @@ const Index = () => {
                   {[1, 2, 3, 4].map((step) => (
                     <div key={step} className="flex items-center">
                       <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all ${
-                        quizStep === step 
-                          ? 'bg-accent text-accent-foreground scale-110' 
-                          : quizStep > step 
-                          ? 'bg-accent/20 text-accent' 
+                        quizStep === step
+                          ? 'bg-accent text-accent-foreground scale-110'
+                          : quizStep > step
+                          ? 'bg-accent/20 text-accent'
                           : 'bg-secondary text-muted-foreground'
                       }`}>
                         {quizStep > step ? <Icon name="Check" size={20} /> : step}
@@ -1170,12 +400,7 @@ const Index = () => {
                         </label>
                         <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">В каком бюджете подбираем автомобиль?</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {[
-                            { label: 'до 15 000$', value: 'do-15k' },
-                            { label: '15 000 - 20 000$', value: '15k-20k' },
-                            { label: '20 000 - 30 000$', value: '20k-30k' },
-                            { label: '30 000$ и выше', value: '30k+' },
-                          ].map((option) => (
+                          {quizBudgetOptions.map((option) => (
                             <button
                               key={option.value}
                               type="button"
@@ -1212,14 +437,7 @@ const Index = () => {
                         <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">Для каких задач Вам нужен автомобиль?</h3>
                         <p className="text-sm text-muted-foreground mb-4">Можно выбрать несколько вариантов</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {[
-                            { label: 'Семейный автомобиль', value: 'family' },
-                            { label: 'Поездки по городу', value: 'city' },
-                            { label: 'Путешествия / трасса', value: 'travel' },
-                            { label: 'Бездорожье', value: 'offroad' },
-                            { label: 'Стиль и комфорт', value: 'luxury' },
-                            { label: 'Пока не определился', value: 'unsure' },
-                          ].map((option) => {
+                          {quizTaskOptions.map((option) => {
                             const isSelected = quizData.tasks.includes(option.value);
                             return (
                               <button
@@ -1277,12 +495,7 @@ const Index = () => {
                         </label>
                         <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6">Как Вы относитесь к китайским маркам?</h3>
                         <div className="grid grid-cols-1 gap-3">
-                          {[
-                            { label: 'Рассматриваю к покупке', value: 'considering' },
-                            { label: 'Рассмотрю, если очень выгодно', value: 'if-profitable' },
-                            { label: 'Без разницы', value: 'no-preference' },
-                            { label: 'Пока не рассматриваю', value: 'not-considering' },
-                          ].map((option) => (
+                          {quizBrandOptions.map((option) => (
                             <button
                               key={option.value}
                               type="button"
@@ -1397,30 +610,18 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { icon: "Search", title: "Индивидуальный подбор", desc: "Подбор авто под бюджет и задачи с полной проверкой до покупки", color: "accent" },
-              { icon: "Shield", title: "Юридическое сопровождение сделки", desc: "Проверка продавца на риски, проверка документов и договора, сопровождение до выдачи", color: "blue-accent" },
-              { icon: "Truck", title: "VIP доставка", desc: "Безопасная контейнерная доставка, страхование, контроль и отчет на всех этапах пути", color: "green-accent" },
-              { icon: "FileCheck", title: "Таможенная очистка под ключ", desc: "Размещение на СВХ, расчёт таможенных платежей, удалённая растаможка и сопровождение до выпуска автомобиля", color: "orange-accent" },
-            ].map((service, idx) => (
-              <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${
-                  service.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
-                  service.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
-                  service.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
-                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
-                }`}>
-                  <Icon name={service.icon} size={32} className={`${
-                    service.color === 'accent' ? 'text-accent' :
-                    service.color === 'blue-accent' ? 'text-blue-accent' :
-                    service.color === 'green-accent' ? 'text-green-accent' :
-                    'text-orange-accent'
-                  }`} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-              </Card>
-            ))}
+            {services.map((service, idx) => {
+              const colors = getColorClasses(service.color);
+              return (
+                <Card key={idx} className="p-8 bg-card border-border hover:border-accent transition-all group">
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${colors.bg} ${colors.hover}`}>
+                    <Icon name={service.icon} size={32} className={colors.text} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1440,77 +641,21 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { 
-                icon: "Calculator", 
-                title: "Прозрачная цена до покупки", 
-                desc: "Рассчитываем полную стоимость до покупки - без скрытых платежей, доплат и \"всплывающих\" расходов после покупки",
-                color: "accent"
-              },
-              { 
-                icon: "SearchCheck", 
-                title: "Проверка автомобиля до выкупа", 
-                desc: "Проверяем ЛКП, следы затопления или пожара, механические повреждения, техническое состояние деталей и агрегатов. Предоставляем подробный фото и видеоотчёт до оплаты",
-                color: "blue-accent"
-              },
-              { 
-                icon: "CreditCard", 
-                title: "Кредит и лизинг удаленно", 
-                desc: "Подбираем оптимальные условия и сопровождаем сделку без визита в офис",
-                color: "green-accent"
-              },
-              { 
-                icon: "Package", 
-                title: "Дополнительное оборудование с выгодой", 
-                desc: "Помогаем заказать вместе с автомобилем резину и аксессуары дешевле рынка",
-                color: "orange-accent"
-              },
-              { 
-                icon: "ClipboardCheck", 
-                title: "Сопровождение до постановки на учет", 
-                desc: "Передаём автомобиль и документы, даём пошаговую памятку по регистрации в ГАИ",
-                color: "accent"
-              },
-              { 
-                icon: "Users", 
-                title: "Экосистема партнеров", 
-                desc: "Детейлинг, антикор, русификация, прошивки, запчасти и масла по оптовым ценам",
-                color: "blue-accent"
-              },
-              { 
-                icon: "Award", 
-                title: "Опыт и доверие, подтвержденные временем", 
-                desc: "На рынке с 2012 года. Более 5 лет работы с Китаем, собственная логистика, кредитный отдел, представительство в Китае. AVM - бренд года 2025",
-                color: "green-accent"
-              },
-              { 
-                icon: "Gift", 
-                title: "Программа лояльности", 
-                desc: "Любой наш клиент вместе с заказом автомобиля получает скидку 10% на любой товар среди ассортимента avtovelomoto.by",
-                color: "orange-accent"
-              },
-            ].map((item, idx) => (
-              <Card 
-                key={idx} 
-                className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
-              >
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-all ${
-                  item.color === 'accent' ? 'bg-accent/10 group-hover:bg-accent/20' :
-                  item.color === 'blue-accent' ? 'bg-blue-accent/10 group-hover:bg-blue-accent/20' :
-                  item.color === 'green-accent' ? 'bg-green-accent/10 group-hover:bg-green-accent/20' :
-                  'bg-orange-accent/10 group-hover:bg-orange-accent/20'
-                }`}>
-                  <Icon name={item.icon} size={28} className={`${
-                    item.color === 'accent' ? 'text-accent' :
-                    item.color === 'blue-accent' ? 'text-blue-accent' :
-                    item.color === 'green-accent' ? 'text-green-accent' :
-                    'text-orange-accent'
-                  }`} />
-                </div>
-                <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </Card>
-            ))}
+            {advantages.map((item, idx) => {
+              const colors = getColorClasses(item.color);
+              return (
+                <Card
+                  key={idx}
+                  className="p-6 bg-card border-border hover:border-accent transition-all group cursor-pointer hover:shadow-lg"
+                >
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-all ${colors.bg} ${colors.hover}`}>
+                    <Icon name={item.icon} size={28} className={colors.text} />
+                  </div>
+                  <h3 className="text-lg font-bold mb-3 leading-tight">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1527,36 +672,14 @@ const Index = () => {
             </div>
 
             <div className="flex gap-4 mb-12 border-b border-border">
-              {['Этапы работ', 'Вопрос-ответ'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setWorkflowTab(tab)}
-                  className={`pb-4 px-8 text-lg font-medium transition-all relative ${
-                    workflowTab === tab 
-                      ? 'text-accent' 
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {tab}
-                  {workflowTab === tab && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"></div>
-                  )}
-                </button>
-              ))}
+              {renderTabButtons(['Этапы работ', 'Вопрос-ответ'], workflowTab, setWorkflowTab)}
             </div>
 
             {workflowTab === 'Этапы работ' && (
               <div className="space-y-4">
-                {[
-                  { icon: 'MessageSquare', title: 'Консультация и подбор', desc: 'Обсуждаем ваши пожелания, подбираем идеальный автомобиль и рассчитываем полную стоимость — быстро и прозрачно' },
-                  { icon: 'FileText', title: 'Оформление договора', desc: 'Заключаем официальный договор с фиксированной ценой — без скрытых платежей' },
-                  { icon: 'SearchCheck', title: 'Диагностика и проверка автомобиля', desc: 'Проверяем техническое состояние, ЛКП, отсутствие затоплений. Отправляем вам подробный фото-видеоотчёт' },
-                  { icon: 'Banknote', title: 'Выкуп и оплата', desc: 'Покупаем автомобиль после вашего одобрения. Безопасная сделка с полным юридическим сопровождением' },
-                  { icon: 'Truck', title: 'Доставка', desc: 'Быстрая логистика и таможенное оформление — 30-60 дней от заказа до вашего города' },
-                  { icon: 'Key', title: 'Получение автомобиля', desc: 'Передаём вам ключи, документы и помогаем с постановкой на учёт' },
-                ].map((step, idx) => (
-                  <Card 
-                    key={idx} 
+                {workflowSteps.map((step, idx) => (
+                  <Card
+                    key={idx}
                     className="bg-background border-border hover:border-accent transition-all cursor-pointer group"
                     onClick={() => setOpenStep(openStep === idx ? null : idx)}
                   >
@@ -1570,9 +693,9 @@ const Index = () => {
                           <h3 className="text-xl font-bold">{step.title}</h3>
                         </div>
                       </div>
-                      <Icon 
-                        name="ChevronDown" 
-                        size={24} 
+                      <Icon
+                        name="ChevronDown"
+                        size={24}
                         className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
                       />
                     </div>
@@ -1590,23 +713,17 @@ const Index = () => {
 
             {workflowTab === 'Вопрос-ответ' && (
               <div className="space-y-4">
-                {[
-                  { q: 'Сколько времени занимает доставка?', a: 'В среднем 30-60 дней от момента заказа до получения автомобиля в России с полным пакетом документов.' },
-                  { q: 'Какие гарантии вы предоставляете?', a: 'Официальный договор, юридическое сопровождение на всех этапах, страхование при доставке и гарантия производителя.' },
-                  { q: 'Можно ли получить кредит на автомобиль?', a: 'Да, мы работаем с ведущими банками и поможем подобрать оптимальные условия кредитования или лизинга.' },
-                  { q: 'Нужно ли мне самому заниматься растаможкой?', a: 'Нет, мы берём на себя все вопросы таможенного оформления, сертификации и постановки на учёт.' },
-                  { q: 'Какая экономия по сравнению с покупкой в России?', a: 'В среднем экономия составляет 25-35% от рыночной цены аналогичного автомобиля в РФ.' },
-                ].map((item, idx) => (
-                  <Card 
-                    key={idx} 
+                {faqItems.map((item, idx) => (
+                  <Card
+                    key={idx}
                     className="bg-background border-border hover:border-accent transition-all cursor-pointer"
                     onClick={() => setOpenStep(openStep === idx ? null : idx)}
                   >
                     <div className="p-6 flex items-center justify-between">
                       <h3 className="text-xl font-bold pr-4">{item.q}</h3>
-                      <Icon 
-                        name="ChevronDown" 
-                        size={24} 
+                      <Icon
+                        name="ChevronDown"
+                        size={24}
                         className={`text-accent transition-transform flex-shrink-0 ${openStep === idx ? 'rotate-180' : ''}`}
                       />
                     </div>
@@ -1657,9 +774,9 @@ const Index = () => {
                     className="phone-input-custom"
                   />
                 </Suspense>
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   className="w-full bg-button-primary hover:bg-button-primary/90 h-12 sm:h-14 text-base sm:text-lg"
                 >
                   Получить консультацию
