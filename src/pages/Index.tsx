@@ -14,8 +14,9 @@ import {
   Vehicle, 
   vehiclesChina, 
   vehiclesEurope, 
-  vehiclesKorean, 
-  vehiclesAmerican 
+  vehiclesKorea, 
+  vehiclesAmerican,
+  vehiclesJapan
 } from "@/data/vehicles";
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -328,118 +329,10 @@ const Index = () => {
   ];
 
   const vehiclesTop = [
-    {
-      name: "Zeekr 001",
-      type: "Хэтчбек",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["544 л.с.", "0-100 за 3.8с", "Electric"],
-    },
-    {
-      name: "BYD Han",
-      type: "Седан",
-      price: "от 3 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["517 л.с.", "605 км запас", "AWD"],
-    },
-    {
-      name: "Li Auto L9",
-      type: "SUV",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["449 л.с.", "EREV", "7 мест"],
-    },
-    {
-      name: "Audi Q7",
-      type: "SUV",
-      price: "от 7 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 TFSI", "Quattro"],
-    },
-    {
-      name: "BMW X5 M50i",
-      type: "SUV",
-      price: "от 8 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["530 л.с.", "0-100 за 4.3с", "AWD"],
-    },
-    {
-      name: "NIO ET7",
-      type: "Седан",
-      price: "от 4 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["480 л.с.", "1000 км запас", "AWD"],
-    },
-    {
-      name: "Porsche Cayenne",
-      type: "SUV",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "3.0 V6", "AWD"],
-    },
-    {
-      name: "Xpeng G9",
-      type: "SUV",
-      price: "от 4 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["551 л.с.", "702 км запас", "AWD"],
-    },
-    {
-      name: "Mercedes-Benz S-Class",
-      type: "Седан",
-      price: "от 9 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["367 л.с.", "Hybrid", "4MATIC"],
-    },
-    {
-      name: "Range Rover Sport",
-      type: "SUV",
-      price: "от 10 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "3.0 MHEV", "AWD"],
-    },
-    {
-      name: "Tank 500",
-      type: "Внедорожник",
-      price: "от 5 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["354 л.с.", "3.0T", "Рама"],
-    },
-    {
-      name: "Avatr 11",
-      type: "SUV Coupe",
-      price: "от 4 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["578 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Volvo XC90",
-      type: "SUV",
-      price: "от 6 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["250 л.с.", "PHEV", "7 мест"],
-    },
-    {
-      name: "Geely Monjaro",
-      type: "Кроссовер",
-      price: "от 3 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["238 л.с.", "2.0T", "AWD"],
-    },
-    {
-      name: "BMW 7 Series",
-      type: "Седан",
-      price: "от 9 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["380 л.с.", "3.0 Hybrid", "AWD"],
-    },
-    {
-      name: "Hongqi E-HS9",
-      type: "SUV",
-      price: "от 6 850 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["600 л.с.", "Electric", "AWD"],
-    },
+    ...vehiclesChina.slice(0, 3),
+    ...vehiclesEurope.slice(0, 2),
+    ...vehiclesAmerican.slice(0, 2),
+    ...vehiclesJapan.slice(0, 1),
   ];
 
   const motorcycles = [
@@ -529,125 +422,7 @@ const Index = () => {
     },
   ];
 
-  // vehiclesAmerican imported from @/data/vehicles
-
-  const vehiclesJapanese = [
-    {
-      name: "Toyota Land Cruiser 300",
-      type: "Внедорожник",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["415 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Lexus LX 600",
-      type: "Премиум SUV",
-      price: "от 10 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["409 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Mazda CX-90",
-      type: "SUV",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["340 л.с.", "PHEV", "AWD"],
-    },
-    {
-      name: "Honda Pilot",
-      type: "SUV",
-      price: "от 4 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["285 л.с.", "3.5 V6", "AWD"],
-    },
-    {
-      name: "Nissan Patrol",
-      type: "Внедорожник",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "5.6 V8", "4WD"],
-    },
-    {
-      name: "Lexus RX 500h",
-      type: "SUV",
-      price: "от 7 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["366 л.с.", "Hybrid", "AWD"],
-    },
-    {
-      name: "Toyota Alphard",
-      type: "Минивэн",
-      price: "от 5 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["245 л.с.", "Hybrid", "7 мест"],
-    },
-    {
-      name: "Infiniti QX80",
-      type: "SUV",
-      price: "от 7 900 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["400 л.с.", "5.6 V8", "4WD"],
-    },
-  ];
-
-  const vehiclesKorean = [
-    {
-      name: "Genesis GV80",
-      type: "Премиум SUV",
-      price: "от 6 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["375 л.с.", "3.5 Twin-Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Palisade",
-      type: "SUV",
-      price: "от 4 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["291 л.с.", "3.8 V6", "AWD"],
-    },
-    {
-      name: "Kia EV6 GT",
-      type: "Кроссовер",
-      price: "от 5 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["585 л.с.", "0-100 за 3.5с", "AWD"],
-    },
-    {
-      name: "Genesis G90",
-      type: "Седан Люкс",
-      price: "от 8 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["409 л.с.", "3.5 Twin-Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Ioniq 5 N",
-      type: "Кроссовер",
-      price: "от 6 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["641 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Kia Telluride",
-      type: "SUV",
-      price: "от 4 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["291 л.с.", "3.8 V6", "AWD"],
-    },
-    {
-      name: "Genesis GV70",
-      type: "SUV",
-      price: "от 5 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["300 л.с.", "2.5 Turbo", "AWD"],
-    },
-    {
-      name: "Hyundai Santa Fe",
-      type: "SUV",
-      price: "от 3 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["277 л.с.", "2.5 Turbo", "AWD"],
-    },
-  ];
+  // vehiclesAmerican, vehiclesJapan, vehiclesKorea imported from @/data/vehicles
 
   let allVehicles;
   
@@ -672,8 +447,8 @@ const Index = () => {
       vehicleRegion === 'Китайские' ? vehiclesChina : 
       vehicleRegion === 'Европейские' ? vehiclesEurope :
       vehicleRegion === 'Американские' ? vehiclesAmerican :
-      vehicleRegion === 'Японские' ? vehiclesJapanese :
-      vehicleRegion === 'Корейские' ? vehiclesKorean :
+      vehicleRegion === 'Японские' ? vehiclesJapan :
+      vehicleRegion === 'Корейские' ? vehiclesKorea :
       vehiclesTop;
   }
 
