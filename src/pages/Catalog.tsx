@@ -103,7 +103,7 @@ const Catalog = () => {
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Desktop Filters */}
-            <aside className="hidden lg:block w-64 flex-shrink-0 space-y-2 sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto scrollbar-hide">
+            <aside className="hidden lg:block w-64 flex-shrink-0 space-y-2 sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hide">
               <FilterSection
                 icon="Search"
                 title="Поиск"
