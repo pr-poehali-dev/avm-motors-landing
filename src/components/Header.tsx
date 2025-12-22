@@ -21,8 +21,11 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             <button onClick={() => navigate('/')}>
               <img 
-                src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
+                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/a08e96cd-71e0-4cf4-a545-b3b15cfbca65.jpg" 
                 alt="AVM Motors" 
+                width="56"
+                height="56"
+                loading="eager"
                 className="h-10 sm:h-12 md:h-14 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>

@@ -8,8 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
             <img 
-              src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
+              src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/a08e96cd-71e0-4cf4-a545-b3b15cfbca65.jpg" 
               alt="AVM Motors" 
+              width="64"
+              height="64"
+              loading="lazy"
               className="h-16 mb-6"
             />
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">

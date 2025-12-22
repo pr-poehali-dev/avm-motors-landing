@@ -745,8 +745,11 @@ const Index = () => {
                 <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
               </div>
               <img 
-                src="https://cdn.poehali.dev/files/Group_117.png"
+                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/05b2573f-2f3e-4b19-a9e3-f34bdf55bb42.jpg"
                 alt="Premium Car"
+                loading="eager"
+                width="1400"
+                height="904"
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
@@ -758,8 +761,11 @@ const Index = () => {
                 <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
               </div>
               <img 
-                src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
+                src="https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/440b42be-8106-4076-a78e-b77b4a176b8f.jpg"
                 alt="Premium Motorcycle"
+                loading="eager"
+                width="1398"
+                height="1025"
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
