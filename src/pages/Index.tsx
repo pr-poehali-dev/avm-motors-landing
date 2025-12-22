@@ -529,64 +529,7 @@ const Index = () => {
     },
   ];
 
-  const vehiclesAmerican = [
-    {
-      name: "Ford F-150 Lightning",
-      type: "Пикап",
-      price: "от 7 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["563 л.с.", "Electric", "AWD"],
-    },
-    {
-      name: "Chevrolet Tahoe",
-      type: "SUV",
-      price: "от 8 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "4WD"],
-    },
-    {
-      name: "Cadillac Escalade",
-      type: "Премиум SUV",
-      price: "от 10 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "AWD"],
-    },
-    {
-      name: "Jeep Grand Cherokee",
-      type: "SUV",
-      price: "от 6 800 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["357 л.с.", "5.7 V8", "4WD"],
-    },
-    {
-      name: "Tesla Model S Plaid",
-      type: "Седан",
-      price: "от 12 000 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["1020 л.с.", "0-100 за 2.1с", "AWD"],
-    },
-    {
-      name: "GMC Yukon Denali",
-      type: "SUV",
-      price: "от 9 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["420 л.с.", "6.2 V8", "AWD"],
-    },
-    {
-      name: "Lincoln Navigator",
-      type: "Премиум SUV",
-      price: "от 10 200 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["450 л.с.", "3.5 Twin-Turbo", "4WD"],
-    },
-    {
-      name: "Ram 1500 TRX",
-      type: "Пикап",
-      price: "от 11 500 000 ₽",
-      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["702 л.с.", "6.2 Supercharged", "4WD"],
-    },
-  ];
+  // vehiclesAmerican imported from @/data/vehicles
 
   const vehiclesJapanese = [
     {
