@@ -671,7 +671,6 @@ export const vehiclesKorea: Vehicle[] = [
     power: "115 л.с.",
     description: "Hyundai Elantra — стильный седан с выразительным дизайном и отличной надёжностью. Экономичный атмосферный двигатель, комфортный салон и богатая комплектация. Идеален для ежедневных поездок и дальних путешествий по доступной цене.",
     gallery: [
-      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChsEkV-Y8dCAXdioAB9jgvhKZ8w715.jpg",
       "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChsEmF-X4LOAJl0lAA8ET6c5Dfw902.jpg",
     ],
   },
