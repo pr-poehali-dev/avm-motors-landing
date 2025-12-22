@@ -944,6 +944,9 @@ const Index = () => {
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
+                    loading="lazy"
+                    width="294"
+                    height="240"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <Badge className="absolute top-4 right-4 z-20 bg-accent/90 backdrop-blur-sm text-accent-foreground border-0 px-3 py-1 text-xs">
