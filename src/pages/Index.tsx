@@ -725,7 +725,7 @@ const Index = () => {
         <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
         <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
         
-        <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10 overflow-hidden">
+        <div className="hidden md:block absolute top-0 right-0 lg:right-10 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10 overflow-hidden">
           <div 
             className="flex transition-transform duration-700 ease-out h-full"
             style={{ transform: `translateX(-${heroSlide * 100}%)` }}
