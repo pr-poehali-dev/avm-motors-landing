@@ -29,15 +29,17 @@ const Catalog = () => {
   };
 
   const allVehicles = [
-    ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай", condition: "Новый", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) })),
-    ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000000 })),
-    ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) })),
-    ...vehiclesJapan.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) })),
-    ...vehiclesKorea.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) })),
+    ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+    ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+    ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+    ...vehiclesJapan.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+    ...vehiclesKorea.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
   ];
 
   const regions = ["Китай", "Европа", "Америка", "Япония", "Корея"];
-  const types = ["SUV", "Седан", "Хэтчбек", "Кроссовер", "Внедорожник"];
+  
+  const allTypes = Array.from(new Set(allVehicles.map(v => v.type)));
+  const types = allTypes.sort();
 
   const toggleFilter = (filter: string, type: 'region' | 'type' | 'condition') => {
     if (type === 'region') {
@@ -76,9 +78,9 @@ const Catalog = () => {
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-6">Автомобили из Китая и Европы</h1>
+            <h1 className="text-6xl md:text-7xl font-bold mb-6">Полный каталог автомобилей</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Эксклюзивная коллекция автомобилей из Китая и Европы
+              Автомобили из Китая, Европы, Америки, Японии и Кореи
             </p>
           </div>
         </div>
