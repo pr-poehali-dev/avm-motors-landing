@@ -902,7 +902,7 @@ const Index = () => {
 
             <Card className="bg-background border-border shadow-2xl">
               <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-                <div className="flex justify-between mb-6 md:mb-8 overflow-x-auto">
+                <div className="flex justify-between mb-6 md:mb-8 overflow-x-auto scrollbar-hide">
                   {[1, 2, 3, 4].map((step) => (
                     <div key={step} className="flex items-center flex-shrink-0">
                       <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all ${
