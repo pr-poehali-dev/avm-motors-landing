@@ -16,23 +16,23 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50">
-      <div className="w-full px-6 lg:px-12">
-        <div className="flex items-center justify-between gap-6 h-20">
-          <div className="flex items-center gap-6">
+      <div className="w-full px-3 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 h-16 sm:h-20">
+          <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             <button onClick={() => navigate('/')}>
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
                 alt="AVM Motors" 
-                className="h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                className="h-8 sm:h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>
             
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-header-accent/10 hover:bg-header-accent/20 transition-colors"
+              className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-header-accent/10 hover:bg-header-accent/20 transition-colors"
             >
-              <Icon name="Menu" size={20} className="text-header-accent" />
-              <span className="text-sm font-medium">Меню</span>
+              <Icon name="Menu" size={18} className="text-header-accent sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm font-medium">Меню</span>
             </button>
           </div>
           
@@ -50,12 +50,12 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             <button 
               onClick={() => setSearchOpen(!searchOpen)}
-              className="md:hidden w-10 h-10 rounded-full bg-header-accent/10 flex items-center justify-center hover:bg-header-accent/20 transition-colors"
+              className="md:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-header-accent/10 flex items-center justify-center hover:bg-header-accent/20 transition-colors"
             >
-              <Icon name="Search" size={18} className="text-header-accent" />
+              <Icon name="Search" size={16} className="text-header-accent sm:w-[18px] sm:h-[18px]" />
             </button>
             
             <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-header-accent transition-colors cursor-pointer">
@@ -76,8 +76,8 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
             <ThemeToggle />
             
             <Button 
-              size="lg"
-              className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-6 h-11 rounded-full font-medium"
+              size="sm"
+              className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-3 sm:px-6 h-8 sm:h-11 rounded-full font-medium text-xs sm:text-base"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Связаться
@@ -100,8 +100,8 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
       </div>
       
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 border-t border-border/50 bg-background shadow-2xl animate-in slide-in-from-top-4 duration-300 max-h-[calc(100vh-5rem)] overflow-y-auto">
-          <div className="w-full px-6 lg:px-12 py-8">
+        <div className="absolute top-full left-0 right-0 border-t border-border/50 bg-background shadow-2xl animate-in slide-in-from-top-4 duration-300 max-h-[calc(100vh-5rem)] overflow-y-auto scrollbar-hide">
+          <div className="w-full px-3 sm:px-6 lg:px-12 py-4 sm:py-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl">
               <div>
                 <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Каталог</h3>
