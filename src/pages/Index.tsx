@@ -753,13 +753,12 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="hidden md:block absolute top-0 right-0 w-[450px] lg:w-[650px] xl:w-[900px] h-full pointer-events-none z-20 overflow-hidden">
+            <div className="hidden md:block absolute top-0 right-0 w-[450px] lg:w-[650px] xl:w-[900px] h-full pointer-events-none z-10 overflow-hidden">
               <div 
                 className="flex transition-transform duration-700 ease-out h-full"
                 style={{ transform: `translateX(-${heroSlide * 100}%)` }}
               >
                 <div className="min-w-full h-full relative">
-                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/60 z-10"></div>
                   <img 
                     src="https://cdn.poehali.dev/files/Group_117.png"
                     alt="Premium Car"
@@ -767,7 +766,6 @@ const Index = () => {
                   />
                 </div>
                 <div className="min-w-full h-full relative">
-                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/60 z-10"></div>
                   <img 
                     src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
                     alt="Premium Motorcycle"
