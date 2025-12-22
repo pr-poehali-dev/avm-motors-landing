@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +36,8 @@ const Index = () => {
     phone: '',
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
+  const [heroContent, setHeroContent] = useState<'auto' | 'moto'>('auto');
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,6 +58,21 @@ const Index = () => {
     });
     setFormData({ name: "", phone: "", message: "" });
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!hasScrolled && window.scrollY > 100) {
+        setHasScrolled(true);
+        setHeroContent('moto');
+        setTimeout(() => {
+          setHeroContent('auto');
+        }, 3000);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasScrolled]);
 
   const vehiclesChina = [
     {
@@ -714,7 +731,10 @@ const Index = () => {
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
             </div>
             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
-              АВТОМОБИЛИ<br />
+              <span className="transition-all duration-700">
+                {heroContent === 'auto' ? 'АВТОМОБИЛИ' : 'МОТОТЕХНИКА'}
+              </span>
+              <br />
               <span className="accent-title text-accent">из Китая</span><br />
               ПОД КЛЮЧ
             </h1>
@@ -726,8 +746,9 @@ const Index = () => {
                 <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
               </div>
               <img 
-                src="https://cdn.poehali.dev/files/Group_117.png"
-                alt="Premium Car"
+                key={heroContent}
+                src={heroContent === 'auto' ? "https://cdn.poehali.dev/files/Group_117.png" : "https://cdn.poehali.dev/files/i.jpg"}
+                alt={heroContent === 'auto' ? "Premium Car" : "Premium Motorcycle"}
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)] animate-in slide-in-from-right-full duration-1000 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
