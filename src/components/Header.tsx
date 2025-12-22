@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
 }
 
-const Header = ({ onVehicleRegionChange }: HeaderProps) => {
+const Header = memo(({ onVehicleRegionChange }: HeaderProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -260,6 +260,8 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
       )}
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

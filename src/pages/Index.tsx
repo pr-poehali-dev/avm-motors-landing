@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,8 +9,12 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { PhoneInput } from 'react-international-phone';
-import 'react-international-phone/style.css';
+
+const PhoneInput = lazy(() => 
+  import('react-international-phone').then(module => ({ 
+    default: module.PhoneInput 
+  }))
+);
 
 const Index = () => {
   const navigate = useNavigate();
@@ -1336,13 +1340,15 @@ const Index = () => {
                             className="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
                             required
                           />
-                          <PhoneInput
-                            defaultCountry="ru"
-                            value={quizData.phone}
-                            onChange={(phone) => setQuizData({ ...quizData, phone })}
-                            inputClassName="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
-                            className="phone-input-custom"
-                          />
+                          <Suspense fallback={<Input type="tel" placeholder="+7" className="h-12 sm:h-14" />}>
+                            <PhoneInput
+                              defaultCountry="ru"
+                              value={quizData.phone}
+                              onChange={(phone) => setQuizData({ ...quizData, phone })}
+                              inputClassName="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
+                              className="phone-input-custom"
+                            />
+                          </Suspense>
                         </div>
                       </div>
                       <div className="flex flex-col sm:flex-row gap-3">
@@ -1642,13 +1648,15 @@ const Index = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
                 />
-                <PhoneInput
-                  defaultCountry="ru"
-                  value={formData.phone}
-                  onChange={(phone) => setFormData({ ...formData, phone })}
-                  inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
-                  className="phone-input-custom"
-                />
+                <Suspense fallback={<Input type="tel" placeholder="+7" className="h-12 sm:h-14" />}>
+                  <PhoneInput
+                    defaultCountry="ru"
+                    value={formData.phone}
+                    onChange={(phone) => setFormData({ ...formData, phone })}
+                    inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
+                    className="phone-input-custom"
+                  />
+                </Suspense>
                 <Button 
                   type="submit" 
                   size="lg" 
