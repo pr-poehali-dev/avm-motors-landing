@@ -753,23 +753,25 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 xl:-right-20 w-[600px] lg:w-[900px] xl:w-[1400px] h-full pointer-events-none z-20 overflow-hidden">
+            <div className="hidden md:block absolute top-0 right-0 w-[450px] lg:w-[650px] xl:w-[900px] h-full pointer-events-none z-20 overflow-hidden">
               <div 
                 className="flex transition-transform duration-700 ease-out h-full"
                 style={{ transform: `translateX(-${heroSlide * 100}%)` }}
               >
                 <div className="min-w-full h-full relative">
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/60 z-10"></div>
                   <img 
                     src="https://cdn.poehali.dev/files/Group_117.png"
                     alt="Premium Car"
-                    className="w-full h-full object-contain object-right"
+                    className="w-full h-full object-contain object-right drop-shadow-[0_0_80px_rgba(0,149,218,0.4)] dark:drop-shadow-[0_0_80px_rgba(229,87,68,0.5)]"
                   />
                 </div>
                 <div className="min-w-full h-full relative">
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/60 z-10"></div>
                   <img 
                     src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
                     alt="Premium Motorcycle"
-                    className="w-full h-full object-contain object-right"
+                    className="w-full h-full object-contain object-right drop-shadow-[0_0_80px_rgba(0,149,218,0.4)] dark:drop-shadow-[0_0_80px_rgba(229,87,68,0.5)]"
                   />
                 </div>
               </div>
