@@ -99,9 +99,9 @@ const Catalog = () => {
         </div>
       </section>
 
-      <section className="pb-16 md:pb-32">
+      <section className="pb-16 md:pb-32 relative">
         <div className="w-full px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 relative">
             {/* Desktop Filters */}
             <aside className="hidden lg:block w-64 flex-shrink-0 space-y-2 sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hide">
               <FilterSection
@@ -233,9 +233,9 @@ const Catalog = () => {
               </Button>
             </aside>
 
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {/* Mobile Filter Button & Controls */}
-              <div className="sticky top-[4.5rem] lg:top-20 z-40 bg-background border-b border-border shadow-md -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="sticky top-[4rem] sm:top-[5rem] lg:top-20 z-[45] bg-background border-b border-border shadow-md py-3 sm:py-4 mb-6 -mx-4 sm:-mx-6 px-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
                     <SheetTrigger asChild>
