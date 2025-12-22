@@ -23,7 +23,7 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
                 alt="AVM Motors" 
-                className="h-8 sm:h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                className="h-10 sm:h-12 md:h-14 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>
             
