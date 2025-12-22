@@ -762,14 +762,14 @@ const Index = () => {
                   <img 
                     src="https://cdn.poehali.dev/files/Group_117.png"
                     alt="Premium Car"
-                    className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="min-w-full h-full relative">
                   <img 
                     src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
                     alt="Premium Motorcycle"
-                    className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
