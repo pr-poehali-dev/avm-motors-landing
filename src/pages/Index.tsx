@@ -700,20 +700,20 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Header onVehicleRegionChange={setVehicleRegion} />
 
-      <section className="relative h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
+      <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
         <div className="absolute -top-40 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-accent/5 dark:bg-accent/5 blur-[180px] rounded-full"></div>
         <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
         <div className="hidden md:block absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
         <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
         <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
         
-        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-12">
+        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-16 md:py-32">
           <div className="relative">
-            <div className="mb-4 md:mb-6 flex items-center gap-2 md:gap-3 relative z-30">
+            <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative z-30">
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
               АВТОМОБИЛИ<br />
               <span className="accent-title text-accent">из Китая</span><br />
               ПОД КЛЮЧ
@@ -733,13 +733,13 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-accent/5 dark:via-accent/5 to-transparent"></div>
             </div>
             
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-2xl leading-relaxed relative z-30">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative z-30">
               Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 relative z-30">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
               <Button 
                 size="lg" 
-                className="bg-button-primary hover:bg-button-primary/90 text-sm md:text-base px-6 md:px-8 h-10 md:h-12 w-full sm:w-auto"
+                className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
                 onClick={() => navigate('/catalog')}
               >
                 Перейти в каталог
@@ -747,27 +747,27 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 text-sm md:text-base px-6 md:px-8 h-10 md:h-12 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground w-full sm:w-auto"
+                className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground w-full sm:w-auto"
               >
                 Консультация эксперта
               </Button>
             </div>
-            <div className="mt-8 md:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-3xl relative z-30">
-              <div className="border-l-2 border-accent pl-3 md:pl-4">
-                <div className="text-xl md:text-3xl font-bold mb-1 text-accent">30%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Экономия</div>
+            <div className="mt-12 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-3xl relative z-30">
+              <div className="border-l-2 border-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-accent">30%</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Экономия</div>
               </div>
-              <div className="border-l-2 border-blue-accent pl-3 md:pl-4">
-                <div className="text-xl md:text-3xl font-bold mb-1 text-blue-accent">30</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Дней доставка</div>
+              <div className="border-l-2 border-blue-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-blue-accent">30</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Дней доставка</div>
               </div>
-              <div className="border-l-2 border-green-accent pl-3 md:pl-4">
-                <div className="text-xl md:text-3xl font-bold mb-1 text-green-accent">24/7</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Поддержка</div>
+              <div className="border-l-2 border-green-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-green-accent">24/7</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Поддержка</div>
               </div>
-              <div className="border-l-2 border-orange-accent pl-3 md:pl-4">
-                <div className="text-xl md:text-3xl font-bold mb-1 text-orange-accent">14</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
+              <div className="border-l-2 border-orange-accent pl-3 md:pl-6">
+                <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-orange-accent">14</div>
+                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Лет на рынке</div>
               </div>
             </div>
           </div>
