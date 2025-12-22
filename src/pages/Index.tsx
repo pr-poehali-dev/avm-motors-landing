@@ -778,7 +778,7 @@ const Index = () => {
                     <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
                   </div>
                   <img 
-                    src="https://cdn.poehali.dev/files/952913-middle.png"
+                    src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
                     alt="Premium Motorcycle"
                     className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
                   />
