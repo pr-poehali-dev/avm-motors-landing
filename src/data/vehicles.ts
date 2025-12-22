@@ -621,6 +621,24 @@ export const vehiclesJapan: Vehicle[] = [
 
 export const vehiclesKorea: Vehicle[] = [
   {
+    name: "Kia K5 2021",
+    type: "Седан",
+    price: "от 18 770 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwFkmGwkueABlDzACM_eZj83Gk888.jpg",
+    specs: ["1.5 л", "170 л.с.", "передний привод", "бензин", "40 000 км"],
+    year: "2021",
+    mileage: "40 000 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Передний",
+    engine: "1.5 л турбо",
+    power: "170 л.с.",
+    description: "Kia K5 — стильный корейский седан среднего класса с современным дизайном и богатой комплектацией. Экономичный турбированный двигатель, просторный салон и передовые технологии безопасности. Отличное соотношение цены и качества.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChwFkmGwkueABlDzACM_eZj83Gk888.jpg",
+    ],
+  },
+  {
     name: "Genesis GV80",
     type: "SUV",
     price: "от 6 900 000 ₽",
