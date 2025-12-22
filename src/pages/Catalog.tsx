@@ -13,7 +13,7 @@ const Catalog = () => {
   const [selectedType, setSelectedType] = useState<string[]>([]);
   const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000000]);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
@@ -270,7 +270,7 @@ const Catalog = () => {
                   setSelectedRegion([]);
                   setSelectedType([]);
                   setSelectedCondition([]);
-                  setPriceRange([0, 20000000]);
+                  setPriceRange([0, 50000000]);
                 }}
               >
                 <Icon name="RotateCcw" size={18} className="mr-2" />
@@ -438,7 +438,7 @@ const Catalog = () => {
                     onClick={() => {
                       setSelectedRegion([]);
                       setSelectedType([]);
-                      setPriceRange([0, 20000000]);
+                      setPriceRange([0, 50000000]);
                     }}
                   >
                     Сбросить фильтры
