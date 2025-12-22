@@ -1321,19 +1321,19 @@ const Index = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <Button
                           type="button"
                           onClick={() => setQuizStep(3)}
                           variant="outline"
-                          className="flex-1 h-14 text-lg border-border hover:border-accent"
+                          className="w-full sm:flex-1 h-14 text-lg border-border hover:border-accent"
                         >
                           <Icon name="ArrowLeft" size={20} className="mr-2" />
                           Назад
                         </Button>
                         <Button
                           type="submit"
-                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-base sm:text-lg"
+                          className="w-full sm:flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-sm sm:text-base"
                           disabled={!quizData.name.trim() || !quizData.phone.trim()}
                         >
                           <span className="hidden sm:inline">Получить подбор от эксперта AVM</span>
