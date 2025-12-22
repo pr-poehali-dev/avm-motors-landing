@@ -911,7 +911,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-32 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-accent/5 blur-[100px] rounded-full"></div>
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="mb-8 md:mb-16">
