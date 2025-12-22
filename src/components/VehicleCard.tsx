@@ -26,8 +26,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
         onClick={onClick}
         className="group overflow-hidden bg-card border-border hover:border-accent transition-all cursor-pointer"
       >
-        <div className="flex gap-6 p-6">
-          <div className="relative w-80 h-52 overflow-hidden rounded-lg flex-shrink-0">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6">
+          <div className="relative w-full sm:w-64 md:w-80 h-48 sm:h-52 overflow-hidden rounded-lg flex-shrink-0">
             <img
               src={vehicle.image}
               alt={vehicle.name}
@@ -41,33 +41,33 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
           </div>
           <div className="flex-1 flex flex-col">
             <div className="flex items-start justify-between mb-4">
-              <div>
-                <Badge className="mb-3 bg-secondary text-foreground border-0 text-xs">
+              <div className="flex-1">
+                <Badge className="mb-2 sm:mb-3 bg-secondary text-foreground border-0 text-xs">
                   {vehicle.region} • {vehicle.type}
                 </Badge>
-                <h3 className="font-bold text-2xl mb-3">{vehicle.name}</h3>
-                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                <h3 className="font-bold text-xl sm:text-2xl mb-2 sm:mb-3">{vehicle.name}</h3>
+                <div className="flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
                   {vehicle.specs.map((spec, idx) => (
-                    <span key={idx} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                    <span key={idx} className="flex items-center gap-1 sm:gap-2">
+                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-accent rounded-full"></div>
                       {spec}
                     </span>
                   ))}
                 </div>
               </div>
-              <button className="w-11 h-11 rounded-full bg-secondary/50 hover:bg-secondary flex items-center justify-center transition-colors">
-                <Icon name="Heart" size={22} className="text-foreground" />
+              <button className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-secondary/50 hover:bg-secondary flex items-center justify-center transition-colors flex-shrink-0">
+                <Icon name="Heart" size={20} className="sm:w-5.5 sm:h-5.5 text-foreground" />
               </button>
             </div>
             <div className="mt-auto flex items-end justify-between">
               <div>
-                <div className="text-sm text-muted-foreground mb-1">Стоимость</div>
-                <div className="text-3xl font-bold">{vehicle.price}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mb-1">Стоимость</div>
+                <div className="text-2xl sm:text-3xl font-bold">{vehicle.price}</div>
               </div>
               {showButton && (
-                <Button className="bg-button-primary hover:bg-button-primary/90 px-8 h-12">
+                <Button className="bg-button-primary hover:bg-button-primary/90 px-6 sm:px-8 h-10 sm:h-12 text-sm sm:text-base">
                   Подробнее
-                  <Icon name="ArrowRight" size={20} className="ml-2" />
+                  <Icon name="ArrowRight" size={18} className="ml-2 sm:w-5 sm:h-5" />
                 </Button>
               )}
             </div>
