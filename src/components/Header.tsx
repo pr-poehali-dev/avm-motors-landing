@@ -7,9 +7,12 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
+  showFilterButton?: boolean;
+  onFilterClick?: () => void;
+  filterCount?: number;
 }
 
-const Header = ({ onVehicleRegionChange }: HeaderProps) => {
+const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick, filterCount = 0 }: HeaderProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -34,6 +37,21 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
               <Icon name="Menu" size={18} className="text-header-accent sm:w-5 sm:h-5" />
               <span className="text-xs sm:text-sm font-medium">Меню</span>
             </button>
+            
+            {showFilterButton && (
+              <button
+                onClick={onFilterClick}
+                className="lg:hidden flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all animate-in fade-in slide-in-from-left-3 duration-300"
+              >
+                <Icon name="Filter" size={18} className="text-accent sm:w-5 sm:h-5" />
+                <span className="text-xs sm:text-sm font-medium">Фильтры</span>
+                {filterCount > 0 && (
+                  <span className="ml-1 px-1.5 py-0.5 rounded-full bg-accent text-accent-foreground text-xs font-bold">
+                    {filterCount}
+                  </span>
+                )}
+              </button>
+            )}
           </div>
           
           <div className="hidden md:flex flex-1 max-w-xl">

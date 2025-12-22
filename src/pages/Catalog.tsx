@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -24,6 +24,7 @@ const Catalog = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [showFilterInHeader, setShowFilterInHeader] = useState(false);
   const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
     search: true,
     region: true,
@@ -31,6 +32,16 @@ const Catalog = () => {
     condition: true,
     price: true
   });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 400;
+      setShowFilterInHeader(scrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleFilterSection = (section: string) => {
     setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
@@ -86,7 +97,12 @@ const Catalog = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Header onVehicleRegionChange={() => {}} />
+      <Header 
+        onVehicleRegionChange={() => {}} 
+        showFilterButton={showFilterInHeader}
+        onFilterClick={() => setIsMobileFilterOpen(true)}
+        filterCount={selectedRegion.length + selectedType.length + selectedCondition.length}
+      />
 
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-accent/5 blur-[100px] md:blur-[120px] rounded-full"></div>
