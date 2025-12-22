@@ -766,27 +766,37 @@ const Index = () => {
               Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
-            <div className="flex gap-0 mb-8 md:mb-12 p-1 md:p-1.5 bg-secondary/50 backdrop-blur-sm rounded-lg border border-border/50 w-fit">
-              {[
-                { name: 'Авто', icon: 'Car' },
-                { name: 'Мото', icon: 'Bike' }
-              ].map((category) => (
-                <button
-                  key={category.name}
-                  onClick={() => {
-                    setVehicleCategory(category.name);
-                    setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
-                  }}
-                  className={`relative flex items-center gap-2 md:gap-3 px-6 md:px-10 py-2.5 md:py-3.5 font-bold text-sm md:text-lg transition-all duration-300 ${
-                    vehicleCategory === category.name
-                      ? 'bg-accent text-accent-foreground rounded-md shadow-lg'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <Icon name={category.icon} size={20} className="md:w-6 md:h-6" />
-                  <span className="tracking-wide uppercase">{category.name}</span>
-                </button>
-              ))}
+            <div className="relative -mx-4 sm:-mx-6 lg:-mx-12 mb-8 md:mb-16">
+              <div className="relative bg-secondary/30 backdrop-blur-sm border-y border-border/50">
+                <div className="w-full px-4 sm:px-6 lg:px-12 py-1 md:py-2">
+                  <div className="flex gap-0 w-fit">
+                    {[
+                      { name: 'Авто', icon: 'Car' },
+                      { name: 'Мото', icon: 'Bike' }
+                    ].map((category) => (
+                      <button
+                        key={category.name}
+                        onClick={() => {
+                          setVehicleCategory(category.name);
+                          setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
+                        }}
+                        className={`relative flex items-center gap-2 md:gap-3 px-8 md:px-12 py-4 md:py-5 font-bold text-base md:text-xl transition-all duration-300 ${
+                          vehicleCategory === category.name
+                            ? 'text-accent'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                      >
+                        <Icon name={category.icon} size={22} className="md:w-7 md:h-7" />
+                        <span className="tracking-wider uppercase">{category.name}</span>
+                        {vehicleCategory === category.name && (
+                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent"></div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-accent/5 to-transparent pointer-events-none"></div>
+              </div>
             </div>
             
             {vehicleCategory === 'Авто' && (
