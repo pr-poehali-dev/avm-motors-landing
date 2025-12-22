@@ -235,7 +235,7 @@ const Catalog = () => {
 
             <div className="flex-1">
               {/* Mobile Filter Button & Controls */}
-              <div className="sticky top-20 z-30 bg-background/95 backdrop-blur-sm -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 mb-6 border-b border-border shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="sticky top-[4.5rem] lg:top-20 z-40 bg-background border-b border-border shadow-md -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
                     <SheetTrigger asChild>
