@@ -1112,9 +1112,9 @@ const Index = () => {
 
             <Card className="bg-background border-border shadow-2xl">
               <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-                <div className="flex justify-between mb-6 md:mb-8 overflow-x-auto scrollbar-hide">
+                <div className="flex justify-center mb-6 md:mb-8">
                   {[1, 2, 3, 4].map((step) => (
-                    <div key={step} className="flex items-center flex-shrink-0">
+                    <div key={step} className="flex items-center">
                       <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all ${
                         quizStep === step 
                           ? 'bg-accent text-accent-foreground scale-110' 
@@ -1125,7 +1125,7 @@ const Index = () => {
                         {quizStep > step ? <Icon name="Check" size={20} /> : step}
                       </div>
                       {step < 4 && (
-                        <div className={`w-12 md:w-20 h-0.5 mx-2 transition-colors ${
+                        <div className={`w-8 sm:w-12 md:w-20 h-0.5 mx-1 sm:mx-2 transition-colors ${
                           quizStep > step ? 'bg-accent' : 'bg-secondary'
                         }`}></div>
                       )}
@@ -1333,10 +1333,11 @@ const Index = () => {
                         </Button>
                         <Button
                           type="submit"
-                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-lg"
+                          className="flex-1 h-14 bg-button-primary hover:bg-button-primary/90 text-base sm:text-lg"
                           disabled={!quizData.name.trim() || !quizData.phone.trim()}
                         >
-                          Получить подбор от эксперта AVM
+                          <span className="hidden sm:inline">Получить подбор от эксперта AVM</span>
+                          <span className="sm:hidden">Получить подбор</span>
                           <Icon name="Check" size={20} className="ml-2" />
                         </Button>
                       </div>
