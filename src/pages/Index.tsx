@@ -37,6 +37,7 @@ const Index = () => {
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,14 +60,36 @@ const Index = () => {
   };
 
   useEffect(() => {
+    let accumulatedDelta = 0;
+    const threshold = 300;
+
     const handleScroll = (e: WheelEvent) => {
       if (window.scrollY < 50) {
-        if (e.deltaY > 0 && heroSlide === 0) {
-          e.preventDefault();
-          setHeroSlide(1);
-        } else if (e.deltaY < 0 && heroSlide === 1) {
-          e.preventDefault();
-          setHeroSlide(0);
+        e.preventDefault();
+        
+        accumulatedDelta += e.deltaY;
+        
+        if (heroSlide === 0 && accumulatedDelta > 0) {
+          const progress = Math.min(accumulatedDelta / threshold, 1);
+          setScrollProgress(progress);
+          
+          if (progress >= 1) {
+            setHeroSlide(1);
+            accumulatedDelta = 0;
+            setScrollProgress(0);
+          }
+        } else if (heroSlide === 1 && accumulatedDelta < 0) {
+          const progress = Math.max(1 + (accumulatedDelta / threshold), 0);
+          setScrollProgress(progress);
+          
+          if (progress <= 0) {
+            setHeroSlide(0);
+            accumulatedDelta = 0;
+            setScrollProgress(0);
+          }
+        } else {
+          accumulatedDelta = 0;
+          setScrollProgress(0);
         }
       }
     };
@@ -733,8 +756,8 @@ const Index = () => {
             </div>
             <div className="overflow-hidden">
               <div 
-                className="flex transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(-${heroSlide * 100}%)` }}
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${(heroSlide + scrollProgress) * 100}%)` }}
               >
                 <div className="min-w-full">
                   <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative z-30 max-w-4xl">
@@ -755,8 +778,8 @@ const Index = () => {
             
             <div className="hidden md:block absolute top-0 -right-20 lg:-right-40 w-[900px] lg:w-[1400px] h-full pointer-events-none z-20 overflow-hidden">
               <div 
-                className="flex transition-transform duration-700 ease-out h-full"
-                style={{ transform: `translateX(-${heroSlide * 100}%)` }}
+                className="flex transition-transform duration-300 ease-out h-full"
+                style={{ transform: `translateX(-${(heroSlide + scrollProgress) * 100}%)` }}
               >
                 <div className="min-w-full h-full relative">
                   <div className="absolute inset-0">
