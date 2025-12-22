@@ -235,25 +235,26 @@ const Catalog = () => {
 
             <div className="flex-1">
               {/* Mobile Filter Button & Controls */}
-              <div className="sticky top-20 z-30 bg-background/95 backdrop-blur-sm -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 mb-6 border-b border-border shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
-                    <SheetTrigger asChild>
-                      <Button variant="outline" size="sm" className="lg:hidden border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                        <Icon name="Filter" size={18} className="mr-2" />
-                        Фильтры
-                        {(selectedRegion.length + selectedType.length + selectedCondition.length) > 0 && (
-                          <Badge className="ml-2 h-5 min-w-5 bg-accent text-accent-foreground px-1.5">
-                            {selectedRegion.length + selectedType.length + selectedCondition.length}
-                          </Badge>
-                        )}
-                      </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-80 overflow-y-auto">
-                      <SheetHeader>
-                        <SheetTitle>Фильтры</SheetTitle>
-                      </SheetHeader>
-                      <div className="space-y-2 mt-6">
+              <div className="sticky top-[4.5rem] z-30 bg-background border-b border-border shadow-md -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 mb-6">
+                <div className="flex items-center justify-between gap-2 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
+                      <SheetTrigger asChild>
+                        <Button variant="outline" size="sm" className="lg:hidden border-accent text-accent hover:bg-accent hover:text-accent-foreground h-9">
+                          <Icon name="Filter" size={16} className="mr-1.5" />
+                          <span className="hidden xs:inline">Фильтры</span>
+                          {(selectedRegion.length + selectedType.length + selectedCondition.length) > 0 && (
+                            <Badge className="ml-1.5 h-5 min-w-5 bg-accent text-accent-foreground px-1.5 text-xs">
+                              {selectedRegion.length + selectedType.length + selectedCondition.length}
+                            </Badge>
+                          )}
+                        </Button>
+                      </SheetTrigger>
+                      <SheetContent side="left" className="w-80 overflow-y-auto bg-background text-foreground">
+                        <SheetHeader>
+                          <SheetTitle>Фильтры</SheetTitle>
+                        </SheetHeader>
+                        <div className="space-y-2 mt-6">
                         <FilterSection
                           icon="Search"
                           title="Поиск"
@@ -384,43 +385,44 @@ const Catalog = () => {
                       </div>
                     </SheetContent>
                   </Sheet>
-                  
-                  <div className="text-sm sm:text-base lg:text-lg">
-                    Найдено: <span className="font-bold text-accent">{filteredVehicles.length}</span>
+                    
+                    <div className="text-xs sm:text-sm whitespace-nowrap">
+                      <span className="font-bold text-accent">{filteredVehicles.length}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                  <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-secondary/50">
-                    <Icon name="ArrowUpDown" size={16} className="text-muted-foreground hidden sm:block" />
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="bg-transparent border-none outline-none text-xs sm:text-sm font-medium cursor-pointer"
-                    >
-                      <option value="popular">Популярные</option>
-                      <option value="price_asc">Цена ↑</option>
-                      <option value="price_desc">Цена ↓</option>
-                      <option value="new">Новинки</option>
-                    </select>
-                  </div>
-                  <div className="hidden sm:flex gap-2">
-                    <button
-                      onClick={() => setViewMode('grid')}
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
-                        viewMode === 'grid' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
-                      }`}
-                    >
-                      <Icon name="Grid3x3" size={18} />
-                    </button>
-                    <button
-                      onClick={() => setViewMode('list')}
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
-                        viewMode === 'list' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
-                      }`}
-                    >
-                      <Icon name="List" size={18} />
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-secondary/50 h-9">
+                      <Icon name="ArrowUpDown" size={14} className="text-muted-foreground hidden sm:block" />
+                      <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="bg-transparent border-none outline-none text-xs sm:text-sm font-medium cursor-pointer text-foreground"
+                      >
+                        <option value="popular">Популярные</option>
+                        <option value="price_asc">Цена ↑</option>
+                        <option value="price_desc">Цена ↓</option>
+                        <option value="new">Новинки</option>
+                      </select>
+                    </div>
+                    <div className="hidden md:flex gap-2">
+                      <button
+                        onClick={() => setViewMode('grid')}
+                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
+                          viewMode === 'grid' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
+                        }`}
+                      >
+                        <Icon name="Grid3x3" size={16} />
+                      </button>
+                      <button
+                        onClick={() => setViewMode('list')}
+                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
+                          viewMode === 'list' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
+                        }`}
+                      >
+                        <Icon name="List" size={16} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
