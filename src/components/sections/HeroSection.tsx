@@ -66,7 +66,8 @@ const HeroSection = ({ heroSlide }: HeroSectionProps) => {
               <img
                 src={image.src}
                 alt={image.alt}
-                fetchPriority="high"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "low"}
                 width={image.width}
                 height={image.height}
                 className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"

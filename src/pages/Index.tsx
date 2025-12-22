@@ -211,8 +211,8 @@ const Index = () => {
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
-                    loading={index < 4 ? "eager" : "lazy"}
-                    fetchPriority={index < 2 ? "high" : "auto"}
+                    loading="lazy"
+                    decoding="async"
                     width="294"
                     height="240"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

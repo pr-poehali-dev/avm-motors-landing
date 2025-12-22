@@ -10,14 +10,17 @@ export const loadNonCriticalCSS = () => {
     document.head.appendChild(link);
   };
 
+  const isMobile = window.innerWidth < 768;
+  const timeout = isMobile ? 3500 : 2000;
+  
   const loadFonts = () => {
     loadCSS('https://fonts.googleapis.com/css2?family=Geologica:wght@600;700;800&display=swap');
   };
-
+  
   if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(loadFonts, { timeout: 2000 });
+    (window as any).requestIdleCallback(loadFonts, { timeout });
   } else {
-    setTimeout(loadFonts, 2000);
+    setTimeout(loadFonts, timeout);
   }
 };
 

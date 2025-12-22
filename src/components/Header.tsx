@@ -23,6 +23,10 @@ const Header = memo(({ onVehicleRegionChange }: HeaderProps) => {
               <img 
                 src="https://cdn.poehali.dev/files/motors (370 x 370 пикс.)-Photoroom.png" 
                 alt="AVM Motors" 
+                loading="eager"
+                fetchPriority="high"
+                width="56"
+                height="56"
                 className="h-10 sm:h-12 md:h-14 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>
