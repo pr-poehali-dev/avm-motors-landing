@@ -898,18 +898,7 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="flex flex-col items-center gap-4">
-            {!showAllVehicles && allVehicles.length > 8 && (
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-2 px-10 h-14 text-lg hover:bg-button-primary hover:border-accent hover:text-accent-foreground"
-                onClick={() => setShowAllVehicles(true)}
-              >
-                Показать ещё ({allVehicles.length - 8})
-                <Icon name="ChevronDown" size={20} className="ml-2" />
-              </Button>
-            )}
+          <div className="flex justify-center">
             <Button 
               size="lg"
               className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-10 h-14 text-lg"
