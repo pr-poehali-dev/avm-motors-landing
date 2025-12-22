@@ -474,11 +474,11 @@ const Index = () => {
       specs: ["217 л.с.", "1099 см³", "V4"],
     },
     {
-      name: "Indian Challenger",
-      type: "Багер",
-      price: "от 2 400 000 ₽",
+      name: "BMW R 1250 GS",
+      type: "Эндуро",
+      price: "от 1 900 000 ₽",
       image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
-      specs: ["122 л.с.", "1768 см³", "V-Twin"],
+      specs: ["136 л.с.", "1254 см³", "ADV"],
     },
     {
       name: "MV Agusta F4",
@@ -679,8 +679,8 @@ const Index = () => {
       allVehicles = motorcycles.filter(m => m.type === 'Турер');
     } else if (motoType === 'Нейкеды') {
       allVehicles = motorcycles.filter(m => m.type === 'Нейкед');
-    } else if (motoType === 'Багеры') {
-      allVehicles = motorcycles.filter(m => m.type === 'Багер');
+    } else if (motoType === 'Эндуро') {
+      allVehicles = motorcycles.filter(m => m.type === 'Эндуро');
     } else {
       allVehicles = motorcycles;
     }
@@ -837,7 +837,7 @@ const Index = () => {
             {vehicleCategory === 'Мото' && (
               <div className="relative">
                 <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
-                  {['Все', 'Спортбайки', 'Круизеры', 'Туреры', 'Нейкеды', 'Багеры'].map((type) => (
+                  {['Все', 'Спортбайки', 'Круизеры', 'Туреры', 'Нейкеды', 'Эндуро'].map((type) => (
                   <button
                     key={type}
                     onClick={() => setMotoType(type)}
