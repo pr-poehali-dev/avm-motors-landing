@@ -707,7 +707,7 @@ const Index = () => {
         <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
         <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
         
-        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-16 md:py-32">
+        <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16">
           <div className="relative">
             <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative z-30">
               <div className="h-px w-8 md:w-12 bg-accent"></div>
