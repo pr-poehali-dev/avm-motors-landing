@@ -397,6 +397,54 @@ export const vehiclesAmerican: Vehicle[] = [
   },
 ];
 
+export const vehiclesJapan: Vehicle[] = [
+  {
+    name: "Toyota Land Cruiser 300",
+    type: "Внедорожник",
+    price: "от 8 500 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["415 л.с.", "3.5 V6", "4WD"],
+  },
+  {
+    name: "Lexus LX 600",
+    type: "Премиум SUV",
+    price: "от 10 800 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["409 л.с.", "3.5 Twin-Turbo", "4WD"],
+  },
+  {
+    name: "Nissan GT-R",
+    type: "Купе",
+    price: "от 9 200 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["570 л.с.", "3.8 V6 Twin-Turbo", "AWD"],
+  },
+];
+
+export const vehiclesKorea: Vehicle[] = [
+  {
+    name: "Genesis GV80",
+    type: "SUV",
+    price: "от 6 900 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["304 л.с.", "2.5 Turbo", "AWD"],
+  },
+  {
+    name: "Hyundai Ioniq 5",
+    type: "Кроссовер",
+    price: "от 5 200 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["306 л.с.", "Electric", "AWD"],
+  },
+  {
+    name: "Kia EV6 GT",
+    type: "Кроссовер",
+    price: "от 6 500 000 ₽",
+    image: DEFAULT_IMAGE,
+    specs: ["585 л.с.", "0-100 за 3.5с", "AWD"],
+  },
+];
+
 export const vehiclesJapanese: Vehicle[] = [
   {
     name: "Toyota Land Cruiser 300",
