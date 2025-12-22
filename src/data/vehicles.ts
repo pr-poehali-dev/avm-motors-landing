@@ -322,6 +322,24 @@ export const vehiclesEurope: Vehicle[] = [
 
 export const vehiclesAmerican: Vehicle[] = [
   {
+    name: "Ford Evos 2022",
+    type: "Кроссовер",
+    price: "от 22 920 $",
+    image: "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChtlxmUJQ3qAEKwuACPeyRH4MEA562.jpg",
+    specs: ["2.0 л", "238 л.с.", "передний привод", "бензин", "19 000 км"],
+    year: "2022",
+    mileage: "19 000 км",
+    fuel: "Бензин",
+    transmission: "Автомат",
+    drive: "Передний",
+    engine: "2.0 л турбо",
+    power: "238 л.с.",
+    description: "Ford Evos — стильный кроссовер с современным дизайном и передовыми технологиями. Мощный турбированный двигатель обеспечивает отличную динамику. Просторный салон с премиальной отделкой и большой мультимедийный экран.",
+    gallery: [
+      "https://cdn.poehali.dev/files/1400x1050_autohomecar__ChtlxmUJQ3qAEKwuACPeyRH4MEA562.jpg",
+    ],
+  },
+  {
     name: "Ford F-150 Lightning",
     type: "Пикап",
     price: "от 7 500 000 ₽",
