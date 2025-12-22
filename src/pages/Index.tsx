@@ -16,6 +16,7 @@ const Index = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
+  const [vehicleCategory, setVehicleCategory] = useState('Авто');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [workflowTab, setWorkflowTab] = useState('Этапы работ');
   const [openStep, setOpenStep] = useState<number | null>(null);
@@ -400,6 +401,93 @@ const Index = () => {
     },
   ];
 
+  const motorcycles = [
+    {
+      name: "Kawasaki Ninja H2",
+      type: "Спортбайк",
+      price: "от 2 800 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["231 л.с.", "998 см³", "Компрессор"],
+    },
+    {
+      name: "BMW S 1000 RR",
+      type: "Спортбайк",
+      price: "от 1 950 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["207 л.с.", "999 см³", "0-100 за 3.1с"],
+    },
+    {
+      name: "Ducati Panigale V4",
+      type: "Спортбайк",
+      price: "от 3 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["214 л.с.", "1103 см³", "V4"],
+    },
+    {
+      name: "Honda Gold Wing",
+      type: "Турер",
+      price: "от 2 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["126 л.с.", "1833 см³", "6 цилиндров"],
+    },
+    {
+      name: "Yamaha YZF-R1",
+      type: "Спортбайк",
+      price: "от 1 850 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["200 л.с.", "998 см³", "Crossplane"],
+    },
+    {
+      name: "Harley-Davidson Road Glide",
+      type: "Круизер",
+      price: "от 2 100 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["87 л.с.", "1868 см³", "V-Twin"],
+    },
+    {
+      name: "Suzuki Hayabusa",
+      type: "Спортбайк",
+      price: "от 1 750 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["190 л.с.", "1340 см³", "312 км/ч"],
+    },
+    {
+      name: "KTM 1290 Super Duke R",
+      type: "Нейкед",
+      price: "от 1 650 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["180 л.с.", "1301 см³", "V-Twin"],
+    },
+    {
+      name: "Triumph Rocket 3",
+      type: "Круизер",
+      price: "от 2 300 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["165 л.с.", "2458 см³", "3 цилиндра"],
+    },
+    {
+      name: "Aprilia RSV4",
+      type: "Спортбайк",
+      price: "от 2 200 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["217 л.с.", "1099 см³", "V4"],
+    },
+    {
+      name: "Indian Challenger",
+      type: "Багер",
+      price: "от 2 400 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["122 л.с.", "1768 см³", "V-Twin"],
+    },
+    {
+      name: "MV Agusta F4",
+      type: "Спортбайк",
+      price: "от 3 500 000 ₽",
+      image: "https://cdn.poehali.dev/projects/189fb1fe-c8be-4068-9b1c-3c1f73650f4a/files/efb03dd7-09c5-4008-b690-e653aab81b48.jpg",
+      specs: ["212 л.с.", "998 см³", "299 км/ч"],
+    },
+  ];
+
   const vehiclesAmerican = [
     {
       name: "Ford F-150 Lightning",
@@ -578,6 +666,7 @@ const Index = () => {
   ];
 
   const allVehicles = 
+    vehicleCategory === 'Мото' ? motorcycles :
     vehicleRegion === 'Китайские' ? vehiclesChina : 
     vehicleRegion === 'Европейские' ? vehiclesEurope :
     vehicleRegion === 'Американские' ? vehiclesAmerican :
@@ -672,14 +761,38 @@ const Index = () => {
               <div className="h-px w-8 md:w-12 bg-accent"></div>
               <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Каталог</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры автомобилей, доступных для заказа</h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Примеры техники, доступной для заказа</h2>
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8">
-              Подбираем автомобиль под Ваш бюджет с расчетом полной стоимости до покупки
+              Подбираем транспорт под Ваш бюджет с расчетом полной стоимости до покупки
             </p>
             
-            <div className="relative">
-              <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
-                {['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'].map((region) => (
+            <div className="flex gap-3 md:gap-4 mb-8 md:mb-12">
+              {[
+                { name: 'Авто', icon: 'Car' },
+                { name: 'Мото', icon: 'Bike' }
+              ].map((category) => (
+                <button
+                  key={category.name}
+                  onClick={() => {
+                    setVehicleCategory(category.name);
+                    setVehicleRegion(category.name === 'Авто' ? 'Топ продаж' : 'Все мотоциклы');
+                  }}
+                  className={`flex items-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold text-base md:text-xl transition-all ${
+                    vehicleCategory === category.name
+                      ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/30 scale-105'
+                      : 'bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
+                  }`}
+                >
+                  <Icon name={category.icon} size={24} />
+                  <span>{category.name}</span>
+                </button>
+              ))}
+            </div>
+            
+            {vehicleCategory === 'Авто' && (
+              <div className="relative">
+                <div className="flex gap-2 md:gap-4 border-b border-border overflow-x-auto scrollbar-hide pb-0 -mb-px">
+                  {['Топ продаж', 'Китайские', 'Европейские', 'Американские', 'Японские', 'Корейские'].map((region) => (
                   <button
                     key={region}
                     onClick={() => setVehicleRegion(region)}
@@ -697,6 +810,7 @@ const Index = () => {
                 ))}
               </div>
             </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
