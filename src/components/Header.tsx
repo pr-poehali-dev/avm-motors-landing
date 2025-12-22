@@ -114,8 +114,8 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-header-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
-                      <span className="text-2xl">🇨🇳</span>
-                      <span className="text-sm font-medium">Китай - новые авто</span>
+                      <Icon name="Car" size={20} className="text-header-accent" />
+                      <span className="text-sm font-medium">Авто</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-header-accent" />
                   </button>
@@ -127,8 +127,8 @@ const Header = ({ onVehicleRegionChange }: HeaderProps) => {
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-header-accent/10 transition-colors group w-full"
                   >
                     <div className="flex items-center gap-3 flex-1">
-                      <span className="text-2xl">🇪🇺</span>
-                      <span className="text-sm font-medium">Европа - авто с пробегом</span>
+                      <Icon name="Bike" size={20} className="text-header-accent" />
+                      <span className="text-sm font-medium">Мото</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-header-accent" />
                   </button>
