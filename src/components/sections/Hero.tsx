@@ -151,7 +151,7 @@ const Hero = () => {
                   className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
                   onClick={() => navigate('/catalog')}
                 >
-                  Смотреть мото
+                  Перейти в каталог
                 </Button>
                 <Button 
                   size="lg" 
