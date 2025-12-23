@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Vehicle } from '@/data/vehicles';
-import VehicleModal from '@/components/VehicleModal';
+
+const VehicleModal = lazy(() => import('@/components/VehicleModal'));
 
 export const useVehicleModal = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
@@ -17,11 +18,13 @@ export const useVehicleModal = () => {
   };
 
   const VehicleModalComponent = (
-    <VehicleModal
-      vehicle={selectedVehicle}
-      open={isModalOpen}
-      onClose={closeVehicleModal}
-    />
+    <Suspense fallback={null}>
+      <VehicleModal
+        vehicle={selectedVehicle}
+        open={isModalOpen}
+        onClose={closeVehicleModal}
+      />
+    </Suspense>
   );
 
   return {

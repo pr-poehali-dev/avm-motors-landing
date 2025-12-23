@@ -1,12 +1,8 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
-import VehiclesCatalog from "@/components/sections/VehiclesCatalog";
-import QuizSection from "@/components/sections/QuizSection";
-import ReviewsSection from "@/components/sections/ReviewsSection";
-import InfoSections from "@/components/sections/InfoSections";
 import { useVehicleModal } from "@/hooks/useVehicleModal";
 import { useContactForm } from "@/hooks/useContactForm";
 import { 
@@ -18,6 +14,11 @@ import {
   vehiclesJapan
 } from "@/data/vehicles";
 import 'react-international-phone/style.css';
+
+const VehiclesCatalog = lazy(() => import("@/components/sections/VehiclesCatalog"));
+const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
+const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
+const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -77,27 +78,29 @@ const Index = () => {
 
       <Hero />
 
-      <VehiclesCatalog
-        vehicleCategory={vehicleCategory}
-        setVehicleCategory={setVehicleCategory}
-        vehicleRegion={vehicleRegion}
-        setVehicleRegion={setVehicleRegion}
-        motoType={motoType}
-        setMotoType={setMotoType}
-        setShowAllVehicles={setShowAllVehicles}
-        vehicles={vehicles}
-        openVehicleModal={openVehicleModal}
-      />
+      <Suspense fallback={<div className="py-16 text-center"><div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
+        <VehiclesCatalog
+          vehicleCategory={vehicleCategory}
+          setVehicleCategory={setVehicleCategory}
+          vehicleRegion={vehicleRegion}
+          setVehicleRegion={setVehicleRegion}
+          motoType={motoType}
+          setMotoType={setMotoType}
+          setShowAllVehicles={setShowAllVehicles}
+          vehicles={vehicles}
+          openVehicleModal={openVehicleModal}
+        />
 
-      <QuizSection />
+        <QuizSection />
 
-      <ReviewsSection />
+        <ReviewsSection />
 
-      <InfoSections
-        formData={formData}
-        setFormData={setFormData}
-        handleSubmit={handleSubmit}
-      />
+        <InfoSections
+          formData={formData}
+          setFormData={setFormData}
+          handleSubmit={handleSubmit}
+        />
+      </Suspense>
 
       <Footer />
       
