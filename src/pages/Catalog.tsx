@@ -21,6 +21,9 @@ const Catalog = () => {
   const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000000]);
+  const [minPriceInput, setMinPriceInput] = useState('');
+  const [maxPriceInput, setMaxPriceInput] = useState('');
+  const [showRfPassable, setShowRfPassable] = useState(false);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -82,6 +85,13 @@ const Catalog = () => {
     if (selectedType.length > 0 && !selectedType.includes(vehicle.type)) return false;
     if (selectedCondition.length > 0 && !selectedCondition.includes(vehicle.condition)) return false;
     if (vehicle.priceNum < priceRange[0] || vehicle.priceNum > priceRange[1]) return false;
+    
+    if (showRfPassable) {
+      const powerMatch = vehicle.power?.match(/\d+/);
+      const powerNum = powerMatch ? parseInt(powerMatch[0]) : 0;
+      if (powerNum > 160) return false;
+    }
+    
     return true;
   });
 
@@ -208,20 +218,52 @@ const Catalog = () => {
                 isOpen={openFilters.price}
                 onToggle={() => toggleFilterSection('price')}
               >
-                <div className="flex gap-2">
-                  <Input
-                    type="text"
-                    value={`${(priceRange[0] / 1000000).toFixed(1)} млн`}
-                    readOnly
-                    className="bg-secondary/50 border-border text-center text-xs h-9"
-                  />
-                  <Input
-                    type="text"
-                    value={`${(priceRange[1] / 1000000).toFixed(1)} млн`}
-                    readOnly
-                    className="bg-secondary/50 border-border text-center text-xs h-9"
-                  />
+                <div className="space-y-3">
+                  <div className="flex gap-2">
+                    <Input
+                      type="number"
+                      placeholder="От"
+                      value={minPriceInput}
+                      onChange={(e) => {
+                        setMinPriceInput(e.target.value);
+                        const val = parseFloat(e.target.value) || 0;
+                        setPriceRange([val * 1000, priceRange[1]]);
+                      }}
+                      className="bg-secondary/50 border-border text-xs h-9"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="До"
+                      value={maxPriceInput}
+                      onChange={(e) => {
+                        setMaxPriceInput(e.target.value);
+                        const val = parseFloat(e.target.value) || 50000;
+                        setPriceRange([priceRange[0], val * 1000]);
+                      }}
+                      className="bg-secondary/50 border-border text-xs h-9"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground">Цена в тысячах $</p>
                 </div>
+              </FilterSection>
+
+              <FilterSection
+                icon="CheckCircle"
+                title="Дополнительно"
+                isOpen={true}
+                onToggle={() => {}}
+              >
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={showRfPassable}
+                    onChange={() => setShowRfPassable(!showRfPassable)}
+                    className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                  />
+                  <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                    Проходная на РФ (до 160 л.с.)
+                  </span>
+                </label>
               </FilterSection>
 
               <Button
@@ -234,6 +276,9 @@ const Catalog = () => {
                   setSelectedType([]);
                   setSelectedCondition([]);
                   setPriceRange([0, 50000000]);
+                  setMinPriceInput('');
+                  setMaxPriceInput('');
+                  setShowRfPassable(false);
                 }}
               >
                 <Icon name="RotateCcw" size={18} className="mr-2" />
