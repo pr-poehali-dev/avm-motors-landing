@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -9,9 +7,6 @@ import SectionHeader from "@/components/SectionHeader";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
 
 const About = () => {
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'auto' | 'moto'>('auto');
-
   const stats = [
     { value: "13+", label: "лет на рынке", icon: "Calendar" },
     { value: "5+", label: "лет работы с Китаем", icon: "Globe" },
@@ -119,127 +114,6 @@ const About = () => {
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
               С 2012 года помогаем клиентам приобретать автомобили мечты с максимальной выгодой и гарантией качества
             </p>
-          </div>
-
-          <div className="mt-16 space-y-8">
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={() => setActiveTab('auto')}
-                className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-lg transition-all ${
-                  activeTab === 'auto'
-                    ? 'bg-accent text-accent-foreground shadow-lg scale-105'
-                    : 'bg-card border border-border hover:border-accent/50'
-                }`}
-              >
-                <Icon name="Car" size={24} />
-                Автомобили
-              </button>
-              <button
-                onClick={() => setActiveTab('moto')}
-                className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-lg transition-all ${
-                  activeTab === 'moto'
-                    ? 'bg-orange-500 text-white shadow-lg scale-105'
-                    : 'bg-card border border-border hover:border-orange-500/50'
-                }`}
-              >
-                <Icon name="Bike" size={24} />
-                Мототехника
-              </button>
-            </div>
-
-            <div className="relative overflow-hidden">
-              <div
-                className="transition-all duration-500 ease-out"
-                style={{
-                  transform: activeTab === 'auto' ? 'translateX(0)' : 'translateX(-100%)',
-                  opacity: activeTab === 'auto' ? 1 : 0,
-                  display: activeTab === 'auto' ? 'block' : 'none'
-                }}
-              >
-                <Card className="p-8 md:p-12 bg-gradient-to-br from-accent/10 via-yellow-500/5 to-orange-500/10 border-accent/20">
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <div className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-bold mb-4">
-                        100 000+ вариантов
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-bold mb-4">Актуальный каталог с пробегом из Китая!</h3>
-                      <p className="text-lg text-muted-foreground mb-6">
-                        Больше 100 000 вариантов до 5 лет. Ежедневные обновления! Бесплатный подбор и расчет доставки.
-                      </p>
-                      <Button
-                        size="lg"
-                        onClick={() => navigate('/catalog')}
-                        className="bg-accent hover:bg-accent/90 text-accent-foreground h-12 px-8"
-                      >
-                        Смотреть авто
-                        <Icon name="ArrowRight" size={20} className="ml-2" />
-                      </Button>
-                    </div>
-                    <div className="relative h-[300px] flex items-center justify-center">
-                      <img
-                        src="https://cdn.poehali.dev/files/photo_2025-12-23_10-44-12.jpg"
-                        alt="Автомобили из Китая"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-
-              <div
-                className="transition-all duration-500 ease-out"
-                style={{
-                  transform: activeTab === 'moto' ? 'translateX(0)' : 'translateX(100%)',
-                  opacity: activeTab === 'moto' ? 1 : 0,
-                  display: activeTab === 'moto' ? 'block' : 'none'
-                }}
-              >
-                <Card className="p-8 md:p-12 bg-gradient-to-br from-orange-500/10 via-red-500/5 to-yellow-500/10 border-orange-500/20">
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <div className="inline-block px-4 py-1 rounded-full bg-orange-500/20 text-orange-500 text-sm font-bold mb-4">
-                        Эксклюзивные модели
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-bold mb-4">Мототехника из Китая с доставкой</h3>
-                      <p className="text-lg text-muted-foreground mb-6">
-                        Широкий выбор мотоциклов, скутеров и квадроциклов. Официальная гарантия и полное юридическое сопровождение.
-                      </p>
-                      <Button
-                        size="lg"
-                        onClick={() => navigate('/catalog')}
-                        className="bg-orange-500 hover:bg-orange-600 text-white h-12 px-8"
-                      >
-                        Смотреть мото
-                        <Icon name="ArrowRight" size={20} className="ml-2" />
-                      </Button>
-                    </div>
-                    <div className="relative h-[300px] flex items-center justify-center">
-                      <div className="text-center text-muted-foreground">
-                        <Icon name="Bike" size={120} className="mx-auto mb-4 opacity-20" />
-                        <p className="text-sm">Изображение мототехники</p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            </div>
-
-            <div className="flex justify-center gap-2 mt-6">
-              <button
-                onClick={() => setActiveTab('auto')}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  activeTab === 'auto' ? 'bg-accent w-8' : 'bg-border hover:bg-accent/50'
-                }`}
-                aria-label="Показать автомобили"
-              />
-              <button
-                onClick={() => setActiveTab('moto')}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  activeTab === 'moto' ? 'bg-orange-500 w-8' : 'bg-border hover:bg-orange-500/50'
-                }`}
-                aria-label="Показать мототехнику"
-              />
-            </div>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-16">
