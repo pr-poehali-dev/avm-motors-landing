@@ -110,7 +110,7 @@ const Hero = () => {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
+              <div className="flex flex-row flex-wrap gap-4 md:gap-6 relative z-30">
                 <Button 
                   size="lg" 
                   className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
@@ -145,7 +145,7 @@ const Hero = () => {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Мотоциклы, скутеры и квадроциклы. Полное юридическое сопровождение и доставка до вашего города
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
+              <div className="flex flex-row flex-wrap gap-4 md:gap-6 relative z-30">
                 <Button 
                   size="lg" 
                   className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
