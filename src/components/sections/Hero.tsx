@@ -2,10 +2,9 @@ import { useState, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import { BackgroundBlur, DecorativeShapes } from "@/components/ui/decorative-background";
 
 const ConsultationModal = lazy(() => import("@/components/ConsultationModal"));
-const BackgroundBlur = lazy(() => import("@/components/ui/decorative-background").then(m => ({ default: m.BackgroundBlur })));
-const DecorativeShapes = lazy(() => import("@/components/ui/decorative-background").then(m => ({ default: m.DecorativeShapes })));
 
 const slideConfig = {
   auto: {
@@ -47,10 +46,8 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
-      <Suspense fallback={null}>
-        <BackgroundBlur variant="hero" />
-        <DecorativeShapes />
-      </Suspense>
+      <BackgroundBlur variant="hero" />
+      <DecorativeShapes />
       
       {/* Images */}
       <div className="hidden md:block absolute top-0 right-0 w-[50%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-0">

@@ -21,20 +21,15 @@ const Index = () => {
   const [vehiclesData, setVehiclesData] = useState<any>(null);
 
   useEffect(() => {
-    // Delay vehicles loading until after Hero renders
-    const timer = setTimeout(() => {
-      import("@/data/vehicles").then(module => {
-        setVehiclesData({
-          vehiclesChina: module.vehiclesChina,
-          vehiclesEurope: module.vehiclesEurope,
-          vehiclesAmerican: module.vehiclesAmerican,
-          vehiclesJapan: module.vehiclesJapan,
-          vehiclesKorea: module.vehiclesKorea
-        });
+    import("@/data/vehicles").then(module => {
+      setVehiclesData({
+        vehiclesChina: module.vehiclesChina,
+        vehiclesEurope: module.vehiclesEurope,
+        vehiclesAmerican: module.vehiclesAmerican,
+        vehiclesJapan: module.vehiclesJapan,
+        vehiclesKorea: module.vehiclesKorea
       });
-    }, 100);
-    
-    return () => clearTimeout(timer);
+    });
   }, []);
 
   const vehiclesTop = useMemo(() => {
