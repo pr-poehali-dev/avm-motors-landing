@@ -109,18 +109,20 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             
             <ThemeToggle />
             
-            <Button 
-              size="sm"
-              className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-3 sm:px-6 h-8 sm:h-11 rounded-full font-medium text-xs sm:text-base"
-              onClick={() => {
-                const element = document.getElementById("contact");
-                if (element) {
-                  element.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
+            <a 
+              href="tel:+375296397378"
+              className="hidden lg:flex items-center gap-2 px-6 h-11 rounded-full font-medium text-base bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground transition-colors"
             >
-              Связаться
-            </Button>
+              <Icon name="Phone" size={18} />
+              <span>+375 29 639 73 78</span>
+            </a>
+
+            <a
+              href="tel:+375296397378"
+              className="lg:hidden flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground transition-colors"
+            >
+              <Icon name="Phone" size={18} className="sm:w-5 sm:h-5" />
+            </a>
           </div>
         </div>
         
