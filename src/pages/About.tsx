@@ -114,7 +114,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mt-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-16">
             {stats.map((stat, idx) => (
               <Card key={idx} className="p-6 md:p-8 text-center bg-card border-border hover:border-accent transition-all">
                 <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
