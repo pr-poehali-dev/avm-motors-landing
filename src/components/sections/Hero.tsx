@@ -60,10 +60,13 @@ const Hero = () => {
             <div className="absolute top-1/3 right-1/3 w-px h-64 bg-gradient-to-b from-transparent via-orange-500/40 to-transparent"></div>
             <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
           </div>
-          <Icon 
-            name="Bike"
-            size={800}
-            className="w-full h-full object-contain text-orange-500/30 drop-shadow-[0_30px_100px_rgba(249,115,22,0.4)]"
+          <img 
+            src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
+            alt="Premium Motorcycle"
+            loading="lazy"
+            width="1400"
+            height="904"
+            className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(249,115,22,0.4)]"
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-orange-500/5 to-transparent"></div>
         </div>
