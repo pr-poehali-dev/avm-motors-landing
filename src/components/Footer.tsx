@@ -32,7 +32,7 @@ const Footer = () => {
           
           <div className="lg:col-span-3">
             <h4 className="text-sm font-bold mb-6 tracking-[0.2em] uppercase">Навигация</h4>
-            <ul className="space-y-4">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 lg:flex lg:flex-col lg:space-y-4">
               <li><a href="#vehicles" className="text-muted-foreground hover:text-accent transition-colors">Каталог</a></li>
               <li><a href="#quiz" className="text-muted-foreground hover:text-accent transition-colors">Подбор авто</a></li>
               <li><a href="#services" className="text-muted-foreground hover:text-accent transition-colors">Услуги</a></li>
