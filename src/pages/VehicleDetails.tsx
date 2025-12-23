@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
+import { useEffect, useState, useMemo } from "react";
+import { Vehicle } from "@/data/vehicles";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
@@ -13,23 +13,38 @@ const VehicleDetails = () => {
   const navigate = useNavigate();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [vehiclesData, setVehiclesData] = useState<any>(null);
 
   useEffect(() => {
+    import("@/data/vehicles").then(module => {
+      setVehiclesData({
+        vehiclesChina: module.vehiclesChina,
+        vehiclesEurope: module.vehiclesEurope,
+        vehiclesAmerican: module.vehiclesAmerican,
+        vehiclesJapan: module.vehiclesJapan,
+        vehiclesKorea: module.vehiclesKorea
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!vehiclesData) return;
+
     const allVehicles = [
-      ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай" })),
-      ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа" })),
-      ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка" })),
-      ...vehiclesJapan.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония" })),
-      ...vehiclesKorea.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея" })),
+      ...vehiclesData.vehiclesChina.map((v: Vehicle, i: number) => ({ ...v, id: i + 1, region: "Китай" })),
+      ...vehiclesData.vehiclesEurope.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + i + 1, region: "Европа" })),
+      ...vehiclesData.vehiclesAmerican.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + i + 1, region: "Америка" })),
+      ...vehiclesData.vehiclesJapan.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + vehiclesData.vehiclesAmerican.length + i + 1, region: "Япония" })),
+      ...vehiclesData.vehiclesKorea.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + vehiclesData.vehiclesAmerican.length + vehiclesData.vehiclesJapan.length + i + 1, region: "Корея" })),
     ];
 
-    const foundVehicle = allVehicles.find(v => v.id === Number(id));
+    const foundVehicle = allVehicles.find((v: any) => v.id === Number(id));
     if (foundVehicle) {
       setVehicle(foundVehicle);
     } else {
       navigate('/catalog');
     }
-  }, [id, navigate]);
+  }, [id, navigate, vehiclesData]);
 
   if (!vehicle) {
     return (

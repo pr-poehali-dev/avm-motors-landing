@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
@@ -8,14 +8,7 @@ import QuizSection from "@/components/sections/QuizSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import InfoSections from "@/components/sections/InfoSections";
 import { useContactForm } from "@/hooks/useContactForm";
-import { 
-  Vehicle, 
-  vehiclesChina, 
-  vehiclesEurope, 
-  vehiclesKorea, 
-  vehiclesAmerican,
-  vehiclesJapan
-} from "@/data/vehicles";
+import { Vehicle } from "@/data/vehicles";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -24,44 +17,66 @@ const Index = () => {
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [motoType, setMotoType] = useState('Все');
   const [showAllVehicles, setShowAllVehicles] = useState(false);
+  const [vehiclesData, setVehiclesData] = useState<any>(null);
 
-  const vehiclesTop = [
-    ...vehiclesChina.slice(0, 3),
-    ...vehiclesAmerican.slice(0, 2),
-    ...vehiclesJapan.slice(0, 3),
-  ];
+  useEffect(() => {
+    import("@/data/vehicles").then(module => {
+      setVehiclesData({
+        vehiclesChina: module.vehiclesChina,
+        vehiclesEurope: module.vehiclesEurope,
+        vehiclesAmerican: module.vehiclesAmerican,
+        vehiclesJapan: module.vehiclesJapan,
+        vehiclesKorea: module.vehiclesKorea
+      });
+    });
+  }, []);
+
+  const vehiclesTop = useMemo(() => {
+    if (!vehiclesData) return [];
+    return [
+      ...vehiclesData.vehiclesChina.slice(0, 3),
+      ...vehiclesData.vehiclesAmerican.slice(0, 2),
+      ...vehiclesData.vehiclesJapan.slice(0, 3),
+    ];
+  }, [vehiclesData]);
 
   const motorcycles: Vehicle[] = [];
 
-  let allVehicles;
-  
-  if (vehicleCategory === 'Мото') {
-    if (motoType === 'Все') {
-      allVehicles = motorcycles;
-    } else if (motoType === 'Спортбайки') {
-      allVehicles = motorcycles.filter(m => m.type === 'Спортбайк');
-    } else if (motoType === 'Круизеры') {
-      allVehicles = motorcycles.filter(m => m.type === 'Круизер');
-    } else if (motoType === 'Туреры') {
-      allVehicles = motorcycles.filter(m => m.type === 'Турер');
-    } else if (motoType === 'Нейкеды') {
-      allVehicles = motorcycles.filter(m => m.type === 'Нейкед');
-    } else if (motoType === 'Эндуро') {
-      allVehicles = motorcycles.filter(m => m.type === 'Эндуро');
-    } else {
-      allVehicles = motorcycles;
+  const allVehicles = useMemo(() => {
+    if (!vehiclesData) return [];
+    
+    if (vehicleCategory === 'Мото') {
+      if (motoType === 'Все') return motorcycles;
+      return motorcycles.filter(m => {
+        if (motoType === 'Спортбайки') return m.type === 'Спортбайк';
+        if (motoType === 'Круизеры') return m.type === 'Круизер';
+        if (motoType === 'Туреры') return m.type === 'Турер';
+        if (motoType === 'Нейкеды') return m.type === 'Нейкед';
+        if (motoType === 'Эндуро') return m.type === 'Эндуро';
+        return true;
+      });
     }
-  } else {
-    allVehicles = 
-      vehicleRegion === 'Китайские' ? vehiclesChina : 
-      vehicleRegion === 'Европейские' ? vehiclesEurope :
-      vehicleRegion === 'Американские' ? vehiclesAmerican :
-      vehicleRegion === 'Японские' ? vehiclesJapan :
-      vehicleRegion === 'Корейские' ? vehiclesKorea :
-      vehiclesTop;
-  }
+    
+    if (vehicleRegion === 'Китайские') return vehiclesData.vehiclesChina;
+    if (vehicleRegion === 'Европейские') return vehiclesData.vehiclesEurope;
+    if (vehicleRegion === 'Американские') return vehiclesData.vehiclesAmerican;
+    if (vehicleRegion === 'Японские') return vehiclesData.vehiclesJapan;
+    if (vehicleRegion === 'Корейские') return vehiclesData.vehiclesKorea;
+    return vehiclesTop;
+  }, [vehiclesData, vehicleCategory, vehicleRegion, motoType, motorcycles, vehiclesTop]);
 
-  const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
+  const vehicles = useMemo(() => 
+    showAllVehicles ? allVehicles : allVehicles.slice(0, 8),
+    [showAllVehicles, allVehicles]
+  );
+
+  if (!vehiclesData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
