@@ -41,8 +41,10 @@
     <style>
       :root{--background:0 0% 98%;--foreground:218 100% 13%;--accent:8 76% 51%;--accent-foreground:0 0% 100%;}
       .dark{--background:220 17% 11%;--foreground:0 0% 95%;--accent:8 72% 53%;--accent-foreground:0 0% 98%;}
-      body{margin:0;background-color:hsl(var(--background));color:hsl(var(--foreground));font-family:system-ui,-apple-system,sans-serif;}
-      #root{min-height:100vh;}
+      *{box-sizing:border-box;}
+      body{margin:0;padding:0;background-color:hsl(var(--background));color:hsl(var(--foreground));font-family:Geologica,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+      #root{min-height:100vh;display:flex;flex-direction:column;}
+      img{max-width:100%;height:auto;display:block;content-visibility:auto;}
     </style>
 
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->

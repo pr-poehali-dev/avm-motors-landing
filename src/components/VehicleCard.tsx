@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,7 @@ interface VehicleCardProps {
   showButton?: boolean;
 }
 
-const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }: VehicleCardProps) => {
+const VehicleCard = memo(({ vehicle, viewMode = 'grid', onClick, showButton = true }: VehicleCardProps) => {
   if (viewMode === 'list') {
     return (
       <Card
@@ -134,6 +135,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
       </div>
     </Card>
   );
-};
+});
+
+VehicleCard.displayName = 'VehicleCard';
 
 export default VehicleCard;

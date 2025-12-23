@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,18 +58,20 @@ const Catalog = () => {
     setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const allVehicles = [
+  const allVehicles = useMemo(() => [
     ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesJapan.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesKorea.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-  ];
+  ], []);
 
-  const regions = ["Китай", "Европа", "Америка", "Япония", "Корея"];
+  const regions = useMemo(() => ["Китай", "Европа", "Америка", "Япония", "Корея"], []);
   
-  const allTypes = Array.from(new Set(allVehicles.map(v => v.type)));
-  const types = allTypes.sort();
+  const types = useMemo(() => {
+    const allTypes = Array.from(new Set(allVehicles.map(v => v.type)));
+    return allTypes.sort();
+  }, [allVehicles]);
 
   const toggleFilter = (filter: string, type: 'region' | 'type' | 'condition') => {
     if (type === 'region') {
@@ -87,21 +89,23 @@ const Catalog = () => {
     }
   };
 
-  const filteredVehicles = allVehicles.filter(vehicle => {
-    if (searchQuery && !vehicle.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
-    if (selectedRegion.length > 0 && !selectedRegion.includes(vehicle.region)) return false;
-    if (selectedType.length > 0 && !selectedType.includes(vehicle.type)) return false;
-    if (selectedCondition.length > 0 && !selectedCondition.includes(vehicle.condition)) return false;
-    if (vehicle.priceNum < priceRange[0] || vehicle.priceNum > priceRange[1]) return false;
-    
-    if (showRfPassable) {
-      const powerMatch = vehicle.power?.match(/\d+/);
-      const powerNum = powerMatch ? parseInt(powerMatch[0]) : 0;
-      if (powerNum > 160) return false;
-    }
-    
-    return true;
-  });
+  const filteredVehicles = useMemo(() => {
+    return allVehicles.filter(vehicle => {
+      if (searchQuery && !vehicle.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+      if (selectedRegion.length > 0 && !selectedRegion.includes(vehicle.region)) return false;
+      if (selectedType.length > 0 && !selectedType.includes(vehicle.type)) return false;
+      if (selectedCondition.length > 0 && !selectedCondition.includes(vehicle.condition)) return false;
+      if (vehicle.priceNum < priceRange[0] || vehicle.priceNum > priceRange[1]) return false;
+      
+      if (showRfPassable) {
+        const powerMatch = vehicle.power?.match(/\d+/);
+        const powerNum = powerMatch ? parseInt(powerMatch[0]) : 0;
+        if (powerNum > 160) return false;
+      }
+      
+      return true;
+    });
+  }, [allVehicles, searchQuery, selectedRegion, selectedType, selectedCondition, priceRange, showRfPassable]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

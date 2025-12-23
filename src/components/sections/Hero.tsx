@@ -37,7 +37,7 @@ const Hero = () => {
             src="https://cdn.poehali.dev/files/Group_117.png"
             alt="Premium Car"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             width="1400"
             height="904"
             className="w-full h-full object-contain drop-shadow-[0_30px_100px_rgba(0,149,218,0.3)] dark:drop-shadow-[0_30px_100px_rgba(229,87,68,0.4)]"
