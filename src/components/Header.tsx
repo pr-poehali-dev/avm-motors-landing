@@ -109,7 +109,12 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             <Button 
               size="sm"
               className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground px-3 sm:px-6 h-8 sm:h-11 rounded-full font-medium text-xs sm:text-base"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => {
+                const element = document.getElementById("contact");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
             >
               Связаться
             </Button>
