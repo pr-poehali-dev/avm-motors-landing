@@ -435,7 +435,7 @@ const Index = () => {
                             required
                           />
                           <PhoneInput
-                            defaultCountry="ru"
+                            defaultCountry="by"
                             value={quizData.phone}
                             onChange={(phone) => setQuizData({ ...quizData, phone })}
                             inputClassName="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
@@ -744,7 +744,7 @@ const Index = () => {
                   className="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
                 />
                 <PhoneInput
-                  defaultCountry="ru"
+                  defaultCountry="by"
                   value={formData.phone}
                   onChange={(phone) => setFormData({ ...formData, phone })}
                   inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
