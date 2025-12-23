@@ -9,7 +9,7 @@ interface BackgroundBlurProps {
 export const BackgroundBlur = memo(({ variant = 'hero', className }: BackgroundBlurProps) => {
   if (variant === 'hero') {
     return (
-      <div className={cn("absolute inset-0 pointer-events-none", className)}>
+      <div className={cn("absolute inset-0 pointer-events-none -z-10", className)}>
         <div className="absolute -top-40 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-accent/8 dark:bg-accent/8 blur-[140px] rounded-full"></div>
       </div>
@@ -18,13 +18,13 @@ export const BackgroundBlur = memo(({ variant = 'hero', className }: BackgroundB
 
   if (variant === 'catalog') {
     return (
-      <div className={cn("absolute top-0 right-1/4 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-accent/5 blur-[100px] md:blur-[120px] rounded-full", className)} />
+      <div className={cn("absolute top-0 right-1/4 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-accent/5 blur-[100px] md:blur-[120px] rounded-full -z-10", className)} />
     );
   }
 
   if (variant === 'footer') {
     return (
-      <div className={cn("absolute top-0 left-1/4 w-[300px] h-[300px] bg-accent/5 blur-[100px] rounded-full", className)} />
+      <div className={cn("absolute top-0 left-1/4 w-[300px] h-[300px] bg-accent/5 blur-[100px] rounded-full -z-10", className)} />
     );
   }
 
