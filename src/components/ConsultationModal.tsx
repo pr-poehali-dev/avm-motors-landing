@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 
@@ -22,6 +23,7 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
     name: "",
     phone: "",
   });
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,6 +33,15 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
       toast({
         title: "Ошибка",
         description: "Пожалуйста, заполните все поля",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!agreedToPolicy) {
+      toast({
+        title: "Ошибка",
+        description: "Необходимо согласие с политикой конфиденциальности",
         variant: "destructive",
       });
       return;
@@ -47,6 +58,7 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
       });
       
       setFormData({ name: "", phone: "" });
+      setAgreedToPolicy(false);
       onOpenChange(false);
     } catch (error) {
       toast({
@@ -106,10 +118,45 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
             </div>
           </div>
 
+          <div className="flex items-start space-x-3">
+            <Checkbox
+              id="policy"
+              checked={agreedToPolicy}
+              onCheckedChange={(checked) => setAgreedToPolicy(checked as boolean)}
+              disabled={isSubmitting}
+              className="mt-1"
+            />
+            <label
+              htmlFor="policy"
+              className="text-sm leading-relaxed cursor-pointer"
+            >
+              Я согласен с{" "}
+              <a
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline font-medium"
+                onClick={(e) => e.stopPropagation()}
+              >
+                политикой конфиденциальности
+              </a>
+              {" "}и{" "}
+              <a
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline font-medium"
+                onClick={(e) => e.stopPropagation()}
+              >
+                пользовательским соглашением
+              </a>
+            </label>
+          </div>
+
           <Button
             type="submit"
             className="w-full h-12 text-base bg-button-primary hover:bg-button-primary/90"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !agreedToPolicy}
           >
             {isSubmitting ? (
               <>
@@ -123,13 +170,6 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
               </>
             )}
           </Button>
-
-          <p className="text-xs text-center text-muted-foreground">
-            Нажимая кнопку, вы соглашаетесь с{" "}
-            <a href="#" className="text-accent hover:underline">
-              политикой конфиденциальности
-            </a>
-          </p>
         </form>
       </DialogContent>
     </Dialog>
