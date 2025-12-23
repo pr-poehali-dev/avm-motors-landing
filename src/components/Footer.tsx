@@ -11,7 +11,7 @@ const Footer = () => {
             <img 
               src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
               alt="AVM Motors" 
-              className="h-16 mb-6"
+              className="h-16 mb-6 dark:invert"
             />
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               Официальный импорт автомобилей из Китая и Европы с полным юридическим сопровождением
