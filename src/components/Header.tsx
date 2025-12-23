@@ -232,13 +232,19 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
               <div>
                 <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Компания</h3>
                 <div className="space-y-2">
-                  <a href="#services" className="flex items-center justify-between p-3 rounded-lg hover:bg-header-accent/10 transition-colors group">
+                  <button
+                    onClick={() => {
+                      navigate('/about');
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-header-accent/10 transition-colors group w-full"
+                  >
                     <div className="flex items-center gap-3">
                       <Icon name="Info" size={20} className="text-header-accent" />
                       <span className="text-sm font-medium">О нас</span>
                     </div>
                     <Icon name="ChevronRight" size={18} className="text-muted-foreground group-hover:text-header-accent" />
-                  </a>
+                  </button>
                   <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-header-accent/10 transition-colors group">
                     <div className="flex items-center gap-3">
                       <Icon name="Play" size={20} className="text-header-accent" />
