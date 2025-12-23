@@ -33,7 +33,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/50">
       <div className="w-full px-3 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 h-16 sm:h-20">
-          <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+          <div className="flex items-center gap-2 md:gap-6">
             <button onClick={() => navigate('/')} className="flex-shrink-0">
               <img 
                 src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
@@ -46,7 +46,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-header-accent/10 hover:bg-header-accent/20 transition-colors"
+              className="md:flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-header-accent/10 hover:bg-header-accent/20 transition-colors"
             >
               <Icon name="Menu" size={18} className="text-header-accent sm:w-5 sm:h-5" />
               <span className="hidden sm:inline text-xs sm:text-sm font-medium">Меню</span>
@@ -55,7 +55,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             {showFilterButton && (
               <button
                 onClick={onFilterClick}
-                className="lg:hidden flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all animate-in fade-in slide-in-from-left-3 duration-300"
+                className="lg:hidden md:flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all animate-in fade-in slide-in-from-left-3 duration-300"
               >
                 <Icon name="Filter" size={18} className="text-accent sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline text-xs sm:text-sm font-medium">Фильтры</span>
