@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -6,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import VehicleCard from "@/components/VehicleCard";
-import { useVehicleModal } from "@/hooks/useVehicleModal";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
 import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
@@ -16,7 +16,7 @@ import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Catalog = () => {
-  const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
+  const navigate = useNavigate();
   const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<string[]>([]);
   const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
@@ -496,7 +496,7 @@ const Catalog = () => {
                     key={vehicle.id}
                     vehicle={vehicle}
                     viewMode={viewMode}
-                    onClick={() => openVehicleModal(vehicle)}
+                    onClick={() => navigate(`/catalog/${vehicle.id}`)}
                   />
                 ))}
               </div>
@@ -522,8 +522,6 @@ const Catalog = () => {
       <Suspense fallback={<div className="py-8"></div>}>
         <Footer />
       </Suspense>
-      
-      {VehicleModalComponent}
     </div>
   );
 };

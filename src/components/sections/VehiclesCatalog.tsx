@@ -14,7 +14,6 @@ interface VehiclesCatalogProps {
   setMotoType: (type: string) => void;
   setShowAllVehicles: (show: boolean) => void;
   vehicles: Vehicle[];
-  openVehicleModal: (vehicle: Vehicle) => void;
 }
 
 const VehiclesCatalog = ({
@@ -26,7 +25,6 @@ const VehiclesCatalog = ({
   setMotoType,
   setShowAllVehicles,
   vehicles,
-  openVehicleModal,
 }: VehiclesCatalogProps) => {
   const navigate = useNavigate();
 
@@ -117,7 +115,7 @@ const VehiclesCatalog = ({
             <VehicleCard
               key={index}
               vehicle={vehicle}
-              onClick={() => openVehicleModal(vehicle)}
+              onClick={() => navigate(`/catalog/${vehicle.id || index + 1}`)}
               showButton={false}
             />
           ))}

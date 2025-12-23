@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Index = lazy(() => import("./pages/Index"));
 const Catalog = lazy(() => import("./pages/Catalog"));
+const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
 const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -18,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:id" element={<VehicleDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

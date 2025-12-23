@@ -2,7 +2,6 @@ import { useState, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
-import { useVehicleModal } from "@/hooks/useVehicleModal";
 import { useContactForm } from "@/hooks/useContactForm";
 import { 
   Vehicle, 
@@ -21,7 +20,6 @@ const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
 
 const Index = () => {
   const navigate = useNavigate();
-  const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
   const { formData, setFormData, handleSubmit } = useContactForm();
   const [vehicleCategory, setVehicleCategory] = useState('Авто');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
@@ -87,7 +85,6 @@ const Index = () => {
           setMotoType={setMotoType}
           setShowAllVehicles={setShowAllVehicles}
           vehicles={vehicles}
-          openVehicleModal={openVehicleModal}
         />
 
         <QuizSection />
@@ -102,8 +99,6 @@ const Index = () => {
         
         <Footer />
       </Suspense>
-      
-      {VehicleModalComponent}
     </div>
   );
 };
