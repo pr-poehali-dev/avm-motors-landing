@@ -114,6 +114,7 @@
     font-family: "Roboto Flex", sans-serif;
     font-style: italic;
     text-transform: uppercase;
+    padding-right: 0.15em;
   }
 
   * {
