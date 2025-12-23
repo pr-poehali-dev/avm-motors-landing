@@ -253,9 +253,6 @@ const About = () => {
         <div className="w-full px-4 sm:px-6 lg:px-12 relative">
           <div className="max-w-3xl mx-auto">
             <Card className="p-8 md:p-12 bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20 text-center">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-accent/20 flex items-center justify-center">
-                <Icon name="Sparkles" size={40} className="text-accent" />
-              </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Готовы начать?</h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Свяжитесь с нами и получите бесплатную консультацию по подбору автомобиля
