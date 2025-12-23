@@ -14,7 +14,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
       <div className="w-full px-3 sm:px-6 lg:px-12 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl">
           <div>
-            <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Каталог</h3>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Каталог</p>
             <div className="space-y-2">
               <button
                 onClick={() => {
@@ -46,7 +46,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
             </div>
             
             <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
-              <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Доставка</h4>
+              <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Доставка</p>
               <div className="flex gap-2">
                 <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground" aria-label="Доставка в Беларусь">
                   в РБ
@@ -58,7 +58,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
             </div>
             
             <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
-              <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Цены</h4>
+              <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Цены</p>
               <div className="flex gap-2">
                 <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground" aria-label="Цены в долларах США">
                   USD
@@ -74,7 +74,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
           </div>
           
           <div>
-            <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Информация</h3>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Информация</p>
             <div className="space-y-2">
               <a href="#" className="flex items-center justify-between p-3 rounded-lg hover:bg-header-accent/10 transition-colors group">
                 <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
           </div>
           
           <div>
-            <h3 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Компания</h3>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">Компания</p>
             <div className="space-y-2">
               <button
                 onClick={() => {
