@@ -219,7 +219,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary relative overflow-hidden">
+      <section id="quiz" className="py-16 md:py-24 bg-secondary relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full"></div>
         <div className="w-full px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto">

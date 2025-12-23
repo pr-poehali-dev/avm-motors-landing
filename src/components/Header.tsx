@@ -285,7 +285,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
                       className="mt-4 bg-header-accent hover:bg-header-accent/90 text-white"
                       onClick={() => {
                         setMobileMenuOpen(false);
-                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                        document.getElementById("quiz")?.scrollIntoView({ behavior: "smooth" });
                       }}
                     >
                       Получить подборку
