@@ -76,25 +76,23 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-sm text-muted-foreground">
               <p>© 2025 AVM Моторс. Все права защищены.</p>
-              <a 
-                href="https://albeweb.ru/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-              >
-                <span>Разработано в</span>
-                <img 
-                  src="https://cdn.poehali.dev/files/albe.png" 
-                  alt="AlbeWeb"
-                  width="60"
-                  height="18"
-                  className="h-4 w-auto"
-                />
-              </a>
-            </div>
-            <div className="flex gap-8 text-sm text-muted-foreground">
               <a href="/privacy" className="hover:text-accent transition-colors">Политика конфиденциальности и пользовательское соглашение</a>
             </div>
+            <a 
+              href="https://albeweb.ru/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:opacity-80 transition-opacity"
+            >
+              <span>Разработано в</span>
+              <img 
+                src="https://cdn.poehali.dev/files/albe.png" 
+                alt="AlbeWeb"
+                width="60"
+                height="18"
+                className="h-4 w-auto"
+              />
+            </a>
           </div>
         </div>
       </div>
