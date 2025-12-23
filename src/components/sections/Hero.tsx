@@ -74,28 +74,28 @@ const Hero = () => {
 
       <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20">
         <div className="relative">
-          <div className="mb-6 flex gap-3">
+          <div className="mb-8 flex gap-4">
             <button
               onClick={() => setActiveSlide('auto')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+              className={`flex items-center gap-3 px-6 py-3.5 rounded-xl font-bold text-base transition-all duration-300 ${
                 activeSlide === 'auto'
-                  ? 'bg-accent text-accent-foreground shadow-lg'
-                  : 'bg-card/50 border border-border hover:border-accent/50'
+                  ? 'bg-accent text-accent-foreground shadow-2xl scale-105 ring-2 ring-accent ring-offset-2 ring-offset-background'
+                  : 'bg-card/80 border-2 border-border hover:border-accent/70 hover:scale-102 hover:shadow-lg'
               }`}
             >
-              <Icon name="Car" size={18} />
-              Авто
+              <Icon name="Car" size={22} />
+              <span>Автомобили</span>
             </button>
             <button
               onClick={() => setActiveSlide('moto')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+              className={`flex items-center gap-3 px-6 py-3.5 rounded-xl font-bold text-base transition-all duration-300 ${
                 activeSlide === 'moto'
-                  ? 'bg-orange-500 text-white shadow-lg'
-                  : 'bg-card/50 border border-border hover:border-orange-500/50'
+                  ? 'bg-orange-500 text-white shadow-2xl scale-105 ring-2 ring-orange-500 ring-offset-2 ring-offset-background'
+                  : 'bg-card/80 border-2 border-border hover:border-orange-500/70 hover:scale-102 hover:shadow-lg'
               }`}
             >
-              <Icon name="Bike" size={18} />
-              Мото
+              <Icon name="Bike" size={22} />
+              <span>Мототехника</span>
             </button>
           </div>
 
@@ -184,18 +184,18 @@ const Hero = () => {
               ))}
             </div>
 
-            <div className="flex gap-2 mt-8">
+            <div className="flex gap-3 mt-8">
               <button
                 onClick={() => setActiveSlide('auto')}
-                className={`h-1.5 rounded-full transition-all ${
-                  activeSlide === 'auto' ? 'bg-accent w-8' : 'bg-border w-1.5 hover:bg-accent/50'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeSlide === 'auto' ? 'bg-accent w-12 shadow-lg' : 'bg-border/50 w-2 hover:bg-accent/50 hover:w-6'
                 }`}
                 aria-label="Показать автомобили"
               />
               <button
                 onClick={() => setActiveSlide('moto')}
-                className={`h-1.5 rounded-full transition-all ${
-                  activeSlide === 'moto' ? 'bg-orange-500 w-8' : 'bg-border w-1.5 hover:bg-orange-500/50'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeSlide === 'moto' ? 'bg-orange-500 w-12 shadow-lg' : 'bg-border/50 w-2 hover:bg-orange-500/50 hover:w-6'
                 }`}
                 aria-label="Показать мототехнику"
               />
