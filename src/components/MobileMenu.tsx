@@ -151,7 +151,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
             
             <div className="mt-6 relative overflow-hidden rounded-lg bg-gradient-to-br from-header-accent/20 to-header-accent/5 border border-header-accent/20 h-[200px]">
               <img 
-                src="https://cdn.poehali.dev/files/Group_117.png"
+                src="https://cdn.poehali.dev/files/Group_117.webp"
                 alt="Premium Car"
                 className="absolute inset-0 w-full h-full object-cover opacity-10"
               />

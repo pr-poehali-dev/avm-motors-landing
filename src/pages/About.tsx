@@ -191,7 +191,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 max-w-6xl mx-auto">
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] group">
               <img 
-                src="https://cdn.poehali.dev/files/photo_2025-10-08_18-25-35.jpg"
+                src="https://cdn.poehali.dev/files/photo_2025-10-08_18-25-35.webp"
                 alt="Офис AVM Motors снаружи"
                 width="1200"
                 height="900"
@@ -207,7 +207,7 @@ const About = () => {
 
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] group">
               <img 
-                src="https://cdn.poehali.dev/files/photo_2025-10-09_06-19-52.jpg"
+                src="https://cdn.poehali.dev/files/photo_2025-10-09_06-19-52.webp"
                 alt="Офис AVM Motors изнутри"
                 width="1200"
                 height="900"
