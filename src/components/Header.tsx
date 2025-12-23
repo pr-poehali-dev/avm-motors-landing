@@ -36,7 +36,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
           <div className="flex items-center gap-2 md:gap-6">
             <button onClick={() => navigate('/')} className="flex-shrink-0">
               <img 
-                src="https://cdn.poehali.dev/files/Group 287-Photoroom.webp" 
+                src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
                 alt="AVM Motors"
                 width="180"
                 height="44"

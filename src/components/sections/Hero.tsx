@@ -34,7 +34,7 @@ const Hero = () => {
             <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-blue-accent/50 dark:via-accent/50 to-transparent"></div>
           </div>
           <img 
-            src="https://cdn.poehali.dev/files/Group_117.webp"
+            src="https://cdn.poehali.dev/files/Group_117.png"
             alt="Premium Car"
             loading="eager"
             fetchpriority="high"
@@ -56,7 +56,7 @@ const Hero = () => {
             <div className="absolute top-1/2 right-[40%] w-16 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
           </div>
           <img 
-            src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.webp"
+            src="https://cdn.poehali.dev/files/1679234788_hdpic-club-p-mototsikl-dlya-fotoshopa-18.png"
             alt="Premium Motorcycle"
             loading="lazy"
             width="1400"
