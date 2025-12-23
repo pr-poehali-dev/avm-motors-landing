@@ -139,7 +139,7 @@ const Catalog = () => {
 
               <FilterSection
                 icon="MapPin"
-                title="Регион"
+                title="Страна производитель"
                 isOpen={openFilters.region}
                 onToggle={() => toggleFilterSection('region')}
               >
