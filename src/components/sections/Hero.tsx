@@ -110,10 +110,10 @@ const Hero = () => {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
               </p>
-              <div className="flex flex-row gap-4 relative z-30">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
                 <Button 
                   size="lg" 
-                  className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
+                  className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
                   onClick={() => navigate('/catalog')}
                 >
                   Перейти в каталог
@@ -121,7 +121,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
+                  className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
                 >
                   Консультация эксперта
                 </Button>
@@ -145,10 +145,10 @@ const Hero = () => {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Мотоциклы, скутеры и квадроциклы. Полное юридическое сопровождение и доставка до вашего города
               </p>
-              <div className="flex flex-row gap-4 relative z-30">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
                 <Button 
                   size="lg" 
-                  className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
+                  className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
                   onClick={() => navigate('/catalog')}
                 >
                   Перейти в каталог
@@ -156,7 +156,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-orange-500 text-orange-500 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-orange-500 hover:text-white"
+                  className="border-2 border-orange-500 text-orange-500 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto hover:bg-orange-500 hover:text-white"
                 >
                   Консультация эксперта
                 </Button>
