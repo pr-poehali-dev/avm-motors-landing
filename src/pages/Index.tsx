@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
@@ -17,6 +17,13 @@ const Footer = lazy(() => import("@/components/Footer"));
 const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
 const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
 const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
+
+const prefetchComponents = () => {
+  import("@/components/Footer");
+  import("@/components/sections/QuizSection");
+  import("@/components/sections/ReviewsSection");
+  import("@/components/sections/InfoSections");
+};
 
 const Index = () => {
   const navigate = useNavigate();
@@ -63,6 +70,13 @@ const Index = () => {
   }
 
   const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      prefetchComponents();
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

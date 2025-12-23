@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
-import { lazy, Suspense } from "react";
+import VehicleCard from "@/components/VehicleCard";
 import SectionHeader from "@/components/SectionHeader";
 import { Vehicle } from "@/data/vehicles";
-
-const VehicleCard = lazy(() => import("@/components/VehicleCard"));
 
 interface VehiclesCatalogProps {
   vehicleCategory: string;
@@ -113,20 +111,14 @@ const VehiclesCatalog = ({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
-          <Suspense fallback={
-            <div className="col-span-full flex justify-center py-8">
-              <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          }>
-            {vehicles.map((vehicle, index) => (
-              <VehicleCard
-                key={index}
-                vehicle={vehicle}
-                onClick={() => navigate(`/catalog/${vehicle.id || index + 1}`)}
-                showButton={false}
-              />
-            ))}
-          </Suspense>
+          {vehicles.map((vehicle, index) => (
+            <VehicleCard
+              key={index}
+              vehicle={vehicle}
+              onClick={() => navigate(`/catalog/${vehicle.id || index + 1}`)}
+              showButton={false}
+            />
+          ))}
         </div>
         
         <div className="flex justify-center">
