@@ -1,7 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import { useVehicleModal } from "@/hooks/useVehicleModal";
 import { useContactForm } from "@/hooks/useContactForm";
@@ -15,6 +14,7 @@ import {
 } from "@/data/vehicles";
 import 'react-international-phone/style.css';
 
+const Footer = lazy(() => import("@/components/Footer"));
 const VehiclesCatalog = lazy(() => import("@/components/sections/VehiclesCatalog"));
 const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
 const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
@@ -100,9 +100,9 @@ const Index = () => {
           setFormData={setFormData}
           handleSubmit={handleSubmit}
         />
+        
+        <Footer />
       </Suspense>
-
-      <Footer />
       
       {VehicleModalComponent}
     </div>

@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import VehicleCard from "@/components/VehicleCard";
 import { useVehicleModal } from "@/hooks/useVehicleModal";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
@@ -13,6 +12,8 @@ import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
 import EmptyState from "@/components/EmptyState";
 import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
+
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Catalog = () => {
   const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
@@ -518,7 +519,9 @@ const Catalog = () => {
         </div>
       </section>
 
-      <Footer />
+      <Suspense fallback={<div className="py-8"></div>}>
+        <Footer />
+      </Suspense>
       
       {VehicleModalComponent}
     </div>
