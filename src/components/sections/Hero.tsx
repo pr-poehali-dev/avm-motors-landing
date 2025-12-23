@@ -113,7 +113,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
                 <Button 
                   size="lg" 
-                  className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
+                  className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
                   onClick={() => navigate('/catalog')}
                 >
                   Перейти в каталог
@@ -121,7 +121,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground w-full sm:w-auto"
+                  className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
                 >
                   Консультация эксперта
                 </Button>
@@ -148,7 +148,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
                 <Button 
                   size="lg" 
-                  className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
+                  className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14"
                   onClick={() => navigate('/catalog')}
                 >
                   Смотреть мото
@@ -156,7 +156,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-orange-500 text-orange-500 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-orange-500 hover:text-white w-full sm:w-auto"
+                  className="border-2 border-orange-500 text-orange-500 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 hover:bg-orange-500 hover:text-white"
                 >
                   Консультация эксперта
                 </Button>
