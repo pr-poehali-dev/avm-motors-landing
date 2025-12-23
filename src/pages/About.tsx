@@ -102,14 +102,14 @@ const About = () => {
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
         <BackgroundBlur variant="hero" />
         <div className="w-full px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-6xl">
             <Badge className="mb-6 bg-accent/10 text-accent border-0 text-sm px-6 py-2">
               О компании
             </Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-4xl">
               AVM Motors — ваш надёжный партнёр в мире автомобилей
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
               С 2012 года помогаем клиентам приобретать автомобили мечты с максимальной выгодой и гарантией качества
             </p>
           </div>
@@ -193,7 +193,7 @@ const About = () => {
                 alt="Офис AVM Motors снаружи"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="text-2xl font-bold text-white mb-2">Главный офис</h3>
                 <p className="text-white/90">Современное здание с удобной парковкой</p>
@@ -206,7 +206,7 @@ const About = () => {
                 alt="Офис AVM Motors изнутри"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="text-2xl font-bold text-white mb-2">Рабочее пространство</h3>
                 <p className="text-white/90">Комфортная зона для консультаций клиентов</p>
