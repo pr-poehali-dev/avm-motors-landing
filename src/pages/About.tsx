@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -103,9 +102,12 @@ const About = () => {
         <BackgroundBlur variant="hero" />
         <div className="w-full px-4 sm:px-6 lg:px-12 relative z-10">
           <div className="max-w-6xl">
-            <Badge className="mb-6 bg-accent/10 text-accent border-0 text-sm px-6 py-2">
-              О компании
-            </Badge>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-accent"></div>
+              <span className="text-sm tracking-[0.3em] uppercase text-accent">
+                О компании
+              </span>
+            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-4xl">
               AVM Motors — ваш надёжный партнёр в мире автомобилей
             </h1>
