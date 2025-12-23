@@ -11,6 +11,36 @@ const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
 const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
 const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
 
+interface VehiclesData {
+  vehiclesChina: Vehicle[];
+  vehiclesEurope: Vehicle[];
+  vehiclesAmerican: Vehicle[];
+  vehiclesJapan: Vehicle[];
+  vehiclesKorea: Vehicle[];
+}
+
+const MOTO_TYPE_MAP: Record<string, string> = {
+  'Спортбайки': 'Спортбайк',
+  'Круизеры': 'Круизер',
+  'Туреры': 'Турер',
+  'Нейкеды': 'Нейкед',
+  'Эндуро': 'Эндуро',
+};
+
+const REGION_MAP: Record<string, keyof VehiclesData> = {
+  'Китайские': 'vehiclesChina',
+  'Европейские': 'vehiclesEurope',
+  'Американские': 'vehiclesAmerican',
+  'Японские': 'vehiclesJapan',
+  'Корейские': 'vehiclesKorea',
+};
+
+const LoadingSpinner = () => (
+  <div className="py-24 flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+  </div>
+);
+
 const Index = () => {
   const navigate = useNavigate();
   const { formData, setFormData, handleSubmit } = useContactForm();
@@ -18,7 +48,7 @@ const Index = () => {
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [motoType, setMotoType] = useState('Все');
   const [showAllVehicles, setShowAllVehicles] = useState(false);
-  const [vehiclesData, setVehiclesData] = useState<any>(null);
+  const [vehiclesData, setVehiclesData] = useState<VehiclesData | null>(null);
 
   useEffect(() => {
     import("@/data/vehicles").then(module => {
@@ -43,49 +73,41 @@ const Index = () => {
 
   const motorcycles: Vehicle[] = [];
 
+  const getFilteredMotorcycles = useMemo(() => {
+    if (motoType === 'Все') return motorcycles;
+    const targetType = MOTO_TYPE_MAP[motoType];
+    return motorcycles.filter(m => m.type === targetType);
+  }, [motoType, motorcycles]);
+
   const allVehicles = useMemo(() => {
     if (!vehiclesData) return [];
     
     if (vehicleCategory === 'Мото') {
-      if (motoType === 'Все') return motorcycles;
-      return motorcycles.filter(m => {
-        if (motoType === 'Спортбайки') return m.type === 'Спортбайк';
-        if (motoType === 'Круизеры') return m.type === 'Круизер';
-        if (motoType === 'Туреры') return m.type === 'Турер';
-        if (motoType === 'Нейкеды') return m.type === 'Нейкед';
-        if (motoType === 'Эндуро') return m.type === 'Эндуро';
-        return true;
-      });
+      return getFilteredMotorcycles;
     }
     
-    if (vehicleRegion === 'Китайские') return vehiclesData.vehiclesChina;
-    if (vehicleRegion === 'Европейские') return vehiclesData.vehiclesEurope;
-    if (vehicleRegion === 'Американские') return vehiclesData.vehiclesAmerican;
-    if (vehicleRegion === 'Японские') return vehiclesData.vehiclesJapan;
-    if (vehicleRegion === 'Корейские') return vehiclesData.vehiclesKorea;
-    return vehiclesTop;
-  }, [vehiclesData, vehicleCategory, vehicleRegion, motoType, motorcycles, vehiclesTop]);
+    const regionKey = REGION_MAP[vehicleRegion];
+    return regionKey ? vehiclesData[regionKey] : vehiclesTop;
+  }, [vehiclesData, vehicleCategory, vehicleRegion, getFilteredMotorcycles, vehiclesTop]);
 
   const vehicles = useMemo(() => 
     showAllVehicles ? allVehicles : allVehicles.slice(0, 8),
     [showAllVehicles, allVehicles]
   );
 
-  const isLoading = !vehiclesData;
+  const handleSearch = () => navigate('/catalog');
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header 
         onVehicleRegionChange={setVehicleRegion}
-        onSearch={(query) => {
-          navigate('/catalog');
-        }}
+        onSearch={handleSearch}
       />
 
       <main>
         <Hero />
 
-        {!isLoading && (
+        {vehiclesData ? (
           <VehiclesCatalog
             vehicleCategory={vehicleCategory}
             setVehicleCategory={setVehicleCategory}
@@ -96,12 +118,8 @@ const Index = () => {
             setShowAllVehicles={setShowAllVehicles}
             vehicles={vehicles}
           />
-        )}
-        
-        {isLoading && (
-          <div className="py-24 flex items-center justify-center">
-            <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
-          </div>
+        ) : (
+          <LoadingSpinner />
         )}
 
         <Suspense fallback={<div className="py-16 bg-secondary" />}>
