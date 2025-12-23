@@ -1,5 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { FixedSizeGrid } from 'react-window';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -12,7 +13,7 @@ import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
 import EmptyState from "@/components/EmptyState";
 import Footer from "@/components/Footer";
-import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
+import { Vehicle } from "@/data/vehicles";
 
 const Catalog = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Catalog = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [showFilterInHeader, setShowFilterInHeader] = useState(false);
+  const [vehiclesData, setVehiclesData] = useState<any>(null);
   const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
     search: true,
     region: true,
@@ -35,6 +37,18 @@ const Catalog = () => {
     condition: true,
     price: true
   });
+
+  useEffect(() => {
+    import("@/data/vehicles").then(module => {
+      setVehiclesData({
+        vehiclesChina: module.vehiclesChina,
+        vehiclesEurope: module.vehiclesEurope,
+        vehiclesAmerican: module.vehiclesAmerican,
+        vehiclesJapan: module.vehiclesJapan,
+        vehiclesKorea: module.vehiclesKorea
+      });
+    });
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -58,13 +72,19 @@ const Catalog = () => {
     setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const allVehicles = useMemo(() => [
-    ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-    ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-    ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-    ...vehiclesJapan.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-    ...vehiclesKorea.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
-  ], []);
+  const allVehicles = useMemo(() => {
+    if (!vehiclesData) return [];
+    
+    const { vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } = vehiclesData;
+    
+    return [
+      ...vehiclesChina.map((v: Vehicle, i: number) => ({ ...v, id: i + 1, region: "Китай", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+      ...vehiclesEurope.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+      ...vehiclesAmerican.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+      ...vehiclesJapan.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + i + 1, region: "Япония", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+      ...vehiclesKorea.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + vehiclesAmerican.length + vehiclesJapan.length + i + 1, region: "Корея", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
+    ];
+  }, [vehiclesData]);
 
   const regions = useMemo(() => ["Китай", "Европа", "Америка", "Япония", "Корея"], []);
   
@@ -106,6 +126,14 @@ const Catalog = () => {
       return true;
     });
   }, [allVehicles, searchQuery, selectedRegion, selectedType, selectedCondition, priceRange, showRfPassable]);
+
+  if (!vehiclesData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -490,19 +518,29 @@ const Catalog = () => {
                 </div>
               </div>
 
-              <div className={viewMode === 'grid' 
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" 
-                : "space-y-4 md:space-y-6"
-              }>
-                {filteredVehicles.map((vehicle) => (
-                  <VehicleCard
-                    key={vehicle.id}
-                    vehicle={vehicle}
-                    viewMode={viewMode}
-                    onClick={() => navigate(`/catalog/${vehicle.id}`)}
-                  />
-                ))}
-              </div>
+              {viewMode === 'grid' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  {filteredVehicles.slice(0, 20).map((vehicle) => (
+                    <VehicleCard
+                      key={vehicle.id}
+                      vehicle={vehicle}
+                      viewMode={viewMode}
+                      onClick={() => navigate(`/catalog/${vehicle.id}`)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-4 md:space-y-6">
+                  {filteredVehicles.slice(0, 20).map((vehicle) => (
+                    <VehicleCard
+                      key={vehicle.id}
+                      vehicle={vehicle}
+                      viewMode={viewMode}
+                      onClick={() => navigate(`/catalog/${vehicle.id}`)}
+                    />
+                  ))}
+                </div>
+              )}
 
               {filteredVehicles.length === 0 && (
                 <EmptyState
