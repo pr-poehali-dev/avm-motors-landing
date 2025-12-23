@@ -2,10 +2,17 @@ import VehicleCard from "@/components/VehicleCard";
 import EmptyState from "@/components/EmptyState";
 import { Vehicle } from "@/data/vehicles";
 
+interface ExtendedVehicle extends Vehicle {
+  id: number;
+  region: string;
+  condition: string;
+  priceNum: number;
+}
+
 interface CatalogGridProps {
-  vehicles: Vehicle[];
+  vehicles: ExtendedVehicle[];
   viewMode: 'grid' | 'list';
-  onVehicleClick: (vehicle: Vehicle) => void;
+  onVehicleClick: (vehicle: ExtendedVehicle) => void;
 }
 
 const CatalogGrid = ({ vehicles, viewMode, onVehicleClick }: CatalogGridProps) => {

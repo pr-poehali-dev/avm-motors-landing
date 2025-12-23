@@ -10,6 +10,13 @@ import CatalogGrid from "@/components/catalog/CatalogGrid";
 
 const Footer = lazy(() => import("@/components/Footer"));
 
+interface ExtendedVehicle extends Vehicle {
+  id: number;
+  region: string;
+  condition: string;
+  priceNum: number;
+}
+
 const Catalog = () => {
   const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
   const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
@@ -55,7 +62,7 @@ const Catalog = () => {
     setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const allVehicles = [
+  const allVehicles: ExtendedVehicle[] = [
     ...vehiclesChina.map((v, i) => ({ ...v, id: i + 1, region: "Китай", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesEurope.map((v, i) => ({ ...v, id: vehiclesChina.length + i + 1, region: "Европа", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
     ...vehiclesAmerican.map((v, i) => ({ ...v, id: vehiclesChina.length + vehiclesEurope.length + i + 1, region: "Америка", condition: "Б/У", priceNum: parseFloat(v.price.replace(/[^0-9.]/g, '')) * 1000 })),
