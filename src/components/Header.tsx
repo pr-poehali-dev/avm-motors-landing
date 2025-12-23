@@ -34,13 +34,13 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
       <div className="w-full px-3 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 h-16 sm:h-20">
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-            <button onClick={() => navigate('/')}>
+            <button onClick={() => navigate('/')} className="flex-shrink-0">
               <img 
                 src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
                 alt="AVM Motors"
                 width="180"
                 height="44"
-                className="h-8 sm:h-10 md:h-11 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity dark:brightness-0 dark:invert"
+                className="h-8 sm:h-10 md:h-11 w-auto cursor-pointer hover:opacity-80 transition-opacity dark:brightness-0 dark:invert"
               />
             </button>
             
