@@ -518,9 +518,7 @@ const Catalog = () => {
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-8"></div>}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
   );
 };
