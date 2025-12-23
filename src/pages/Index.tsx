@@ -21,15 +21,20 @@ const Index = () => {
   const [vehiclesData, setVehiclesData] = useState<any>(null);
 
   useEffect(() => {
-    import("@/data/vehicles").then(module => {
-      setVehiclesData({
-        vehiclesChina: module.vehiclesChina,
-        vehiclesEurope: module.vehiclesEurope,
-        vehiclesAmerican: module.vehiclesAmerican,
-        vehiclesJapan: module.vehiclesJapan,
-        vehiclesKorea: module.vehiclesKorea
+    // Delay vehicles loading until after Hero renders
+    const timer = setTimeout(() => {
+      import("@/data/vehicles").then(module => {
+        setVehiclesData({
+          vehiclesChina: module.vehiclesChina,
+          vehiclesEurope: module.vehiclesEurope,
+          vehiclesAmerican: module.vehiclesAmerican,
+          vehiclesJapan: module.vehiclesJapan,
+          vehiclesKorea: module.vehiclesKorea
+        });
       });
-    });
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const vehiclesTop = useMemo(() => {
@@ -71,13 +76,7 @@ const Index = () => {
     [showAllVehicles, allVehicles]
   );
 
-  if (!vehiclesData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
+  const isLoading = !vehiclesData;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -91,16 +90,24 @@ const Index = () => {
       <main>
         <Hero />
 
-        <VehiclesCatalog
-          vehicleCategory={vehicleCategory}
-          setVehicleCategory={setVehicleCategory}
-          vehicleRegion={vehicleRegion}
-          setVehicleRegion={setVehicleRegion}
-          motoType={motoType}
-          setMotoType={setMotoType}
-          setShowAllVehicles={setShowAllVehicles}
-          vehicles={vehicles}
-        />
+        {!isLoading && (
+          <VehiclesCatalog
+            vehicleCategory={vehicleCategory}
+            setVehicleCategory={setVehicleCategory}
+            vehicleRegion={vehicleRegion}
+            setVehicleRegion={setVehicleRegion}
+            motoType={motoType}
+            setMotoType={setMotoType}
+            setShowAllVehicles={setShowAllVehicles}
+            vehicles={vehicles}
+          />
+        )}
+        
+        {isLoading && (
+          <div className="py-24 flex items-center justify-center">
+            <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
 
         <Suspense fallback={<div className="py-16 bg-secondary" />}>
           <QuizSection />

@@ -32,7 +32,7 @@
     <link rel="dns-prefetch" href="https://cdn.poehali.dev">
     
     <!-- Preload critical LCP image -->
-    <link rel="preload" as="image" href="https://cdn.poehali.dev/files/Group_117.png" fetchpriority="high">
+    <link rel="preload" as="image" href="https://cdn.poehali.dev/files/Group_117.png" fetchpriority="high" imagesrcset="https://cdn.poehali.dev/files/Group_117.png 1400w" imagesizes="(max-width: 768px) 100vw, 50vw">
     
     <!-- Optimize font loading to reduce layout shift -->
     <link rel="preload" href="https://fonts.gstatic.com/s/geologica/v1/oY1o8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckU8H3G43dPfCOt5.woff2" as="font" type="font/woff2" crossorigin>
@@ -68,8 +68,18 @@
       body{font-family:Geologica,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
       #root{min-height:100vh;display:flex;flex-direction:column;}
       img{max-width:100%;height:auto;display:block;content-visibility:auto;}
+      h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;line-height:0.95;contain:layout style paint;will-change:auto;font-display:swap;}
+      section{contain:layout style;}
+      .accent-title{background:linear-gradient(135deg,hsl(var(--accent)),hsl(var(--accent))90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-fill-color:transparent;}
+      .min-h-screen{min-height:100vh;}
+      .relative{position:relative;}
       .fixed{position:fixed;}
+      .absolute{position:absolute;}
+      .inset-0{top:0;right:0;bottom:0;left:0;}
+      .overflow-hidden{overflow:hidden;}
+      .pt-16{padding-top:4rem;}
       .flex{display:flex;}
+      .flex-col{flex-direction:column;}
       .items-center{align-items:center;}
       .justify-between{justify-content:space-between;}
       .gap-2{gap:0.5rem;}
@@ -127,7 +137,7 @@
             webvisor: true,
             trackHash: true
         });
-    }, 3000);
+    }, 5000);
 </script>
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/101026698" style="position:absolute; left:-9999px;" alt=""/></div>

@@ -115,25 +115,22 @@
     font-style: italic;
     text-transform: uppercase;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    overflow-x: hidden;
+    content-visibility: auto;
   }
 
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
     will-change: scroll-position;
-  }
-
-  html {
-    overflow-x: hidden;
-  }
-
-  * {
-    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeSpeed;
   }
 }
 
