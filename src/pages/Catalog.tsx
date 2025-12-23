@@ -116,9 +116,9 @@ const Catalog = () => {
       case 'price-desc':
         return b.priceNum - a.priceNum;
       case 'year-desc':
-        return parseInt(b.year) - parseInt(a.year);
+        return parseInt(b.year || '0') - parseInt(a.year || '0');
       case 'year-asc':
-        return parseInt(a.year) - parseInt(b.year);
+        return parseInt(a.year || '0') - parseInt(b.year || '0');
       default:
         return 0;
     }
