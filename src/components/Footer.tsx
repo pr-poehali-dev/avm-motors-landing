@@ -7,7 +7,7 @@ const Footer = () => {
       <BackgroundBlur variant="footer" />
       <div className="w-full px-6 lg:px-12 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-8 lg:mb-16">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
             <img 
               src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
               alt="AVM Motors"
