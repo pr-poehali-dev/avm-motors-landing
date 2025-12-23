@@ -20,7 +20,7 @@ const Hero = () => {
       <BackgroundBlur variant="hero" />
       <DecorativeShapes />
       
-      <div className="absolute top-0 right-0 w-[50%] sm:w-[55%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-10">
+      <div className="hidden md:block absolute top-0 right-0 w-[50%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-10">
         <div
           className={`absolute inset-0 transition-all duration-700 ${
             activeSlide === 'auto' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
@@ -65,7 +65,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20 max-w-[50%] sm:max-w-[45%] md:max-w-[50%] lg:max-w-[50%] xl:max-w-[48%]">
+      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20 md:max-w-[50%] lg:max-w-[50%] xl:max-w-[48%]">
         <div className="relative">
           <div className="mb-8 flex gap-3 sm:gap-4">
             <button
