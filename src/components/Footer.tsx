@@ -86,9 +86,9 @@ const Footer = () => {
                 <img 
                   src="https://cdn.poehali.dev/files/albe.png" 
                   alt="AlbeWeb"
-                  width="80"
-                  height="24"
-                  className="h-6 w-auto"
+                  width="60"
+                  height="18"
+                  className="h-4 w-auto"
                 />
               </a>
             </div>
