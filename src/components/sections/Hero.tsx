@@ -102,7 +102,7 @@ const Hero = () => {
                 <div className="h-px w-8 md:w-12 bg-accent"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-xl lg:max-w-2xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-2xl lg:max-w-3xl">
                 АВТОМОБИЛИ<br />
                 <span className="accent-title text-accent">из Китая</span><br />
                 ПОД КЛЮЧ
@@ -137,7 +137,7 @@ const Hero = () => {
                 <div className="h-px w-8 md:w-12 bg-orange-500"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-orange-500">Быстрые и мощные</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-xl lg:max-w-2xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-2xl lg:max-w-3xl">
                 МОТОТЕХНИКА<br />
                 <span className="accent-title text-orange-500">из Китая</span><br />
                 ПОД КЛЮЧ
