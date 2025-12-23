@@ -138,17 +138,7 @@ const ConsultationModal = ({ open, onOpenChange }: ConsultationModalProps) => {
                 className="text-accent hover:underline font-medium"
                 onClick={(e) => e.stopPropagation()}
               >
-                политикой конфиденциальности
-              </a>
-              {" "}и{" "}
-              <a
-                href="/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline font-medium"
-                onClick={(e) => e.stopPropagation()}
-              >
-                пользовательским соглашением
+                политикой конфиденциальности и пользовательским соглашением
               </a>
             </label>
           </div>

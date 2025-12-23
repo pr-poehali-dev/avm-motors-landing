@@ -76,8 +76,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-sm text-muted-foreground">© 2025 AVM Моторс. Все права защищены.</p>
             <div className="flex gap-8 text-sm text-muted-foreground">
-              <a href="/privacy" className="hover:text-accent transition-colors">Политика конфиденциальности</a>
-              <a href="/privacy" className="hover:text-accent transition-colors">Пользовательское соглашение</a>
+              <a href="/privacy" className="hover:text-accent transition-colors">Политика конфиденциальности и пользовательское соглашение</a>
             </div>
           </div>
         </div>
