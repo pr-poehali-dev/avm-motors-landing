@@ -96,7 +96,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             
             <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-header-accent transition-colors cursor-pointer">
               <Icon name="Package" size={20} className="mb-1 text-header-accent" />
-              <span>Доставка в РФ</span>
+              <span>Доставка в РБ</span>
             </div>
             
             <div className="hidden lg:flex flex-col items-center text-xs text-muted-foreground hover:text-header-accent transition-colors cursor-pointer">
