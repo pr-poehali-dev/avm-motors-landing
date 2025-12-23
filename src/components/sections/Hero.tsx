@@ -71,7 +71,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-[100] md:max-w-[50%] lg:max-w-[50%] xl:max-w-[48%]">
+      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-[100]">
         <div className="relative">
           <div className="mb-8 flex gap-3 sm:gap-4">
             <button
