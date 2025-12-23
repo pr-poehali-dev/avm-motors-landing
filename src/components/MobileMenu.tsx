@@ -35,6 +35,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
                   onClose();
                 }} 
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-header-accent/10 transition-colors group w-full"
+                aria-label="Каталог мотоциклов"
               >
                 <div className="flex items-center gap-3 flex-1">
                   <Icon name="Bike" size={20} className="text-header-accent" />
@@ -47,10 +48,10 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
             <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
               <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Доставка</h4>
               <div className="flex gap-2">
-                <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
+                <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground" aria-label="Доставка в Беларусь">
                   в РБ
                 </button>
-                <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors">
+                <button className="flex-1 px-4 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors" aria-label="Доставка в Россию">
                   в РФ
                 </button>
               </div>
@@ -59,13 +60,13 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
             <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border">
               <h4 className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">Цены</h4>
               <div className="flex gap-2">
-                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground">
+                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-button-primary text-button-primary-foreground" aria-label="Цены в долларах США">
                   USD
                 </button>
-                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors">
+                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors" aria-label="Цены в рублях">
                   RUB
                 </button>
-                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors">
+                <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-background hover:bg-header-accent/10 transition-colors" aria-label="Цены в белорусских рублях">
                   BYN
                 </button>
               </div>
@@ -115,6 +116,7 @@ const MobileMenu = ({ onClose }: MobileMenuProps) => {
                   onClose();
                 }}
                 className="flex items-center justify-between p-3 rounded-lg hover:bg-header-accent/10 transition-colors group w-full"
+                aria-label="О компании"
               >
                 <div className="flex items-center gap-3">
                   <Icon name="Info" size={20} className="text-header-accent" />

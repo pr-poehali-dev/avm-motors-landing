@@ -60,7 +60,7 @@ const VehicleCard = memo(({ vehicle, viewMode = 'grid', onClick, showButton = tr
                   ))}
                 </div>
               </div>
-              <button className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-secondary/50 hover:bg-secondary flex items-center justify-center transition-colors flex-shrink-0">
+              <button className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-secondary/50 hover:bg-secondary flex items-center justify-center transition-colors flex-shrink-0" aria-label="Добавить в избранное">
                 <Icon name="Heart" size={20} className="sm:w-5.5 sm:h-5.5 text-foreground" />
               </button>
             </div>
@@ -102,7 +102,7 @@ const VehicleCard = memo(({ vehicle, viewMode = 'grid', onClick, showButton = tr
             {vehicle.badge || vehicle.type}
           </Badge>
         )}
-        <button className="absolute top-4 left-4 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors">
+        <button className="absolute top-4 left-4 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors" aria-label="Добавить в избранное">
           <Icon name="Heart" size={18} className="md:w-5 md:h-5 text-foreground" />
         </button>
       </div>

@@ -34,7 +34,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
       <div className="w-full px-3 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 h-16 sm:h-20">
           <div className="flex items-center gap-2 md:gap-6">
-            <button onClick={() => navigate('/')} className="flex-shrink-0">
+            <button onClick={() => navigate('/')} className="flex-shrink-0" aria-label="Перейти на главную страницу">
               <img 
                 src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
                 alt="AVM Motors"
@@ -47,6 +47,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-header-accent/10 hover:bg-header-accent/20 transition-colors"
+              aria-label="Открыть меню"
             >
               <Icon name="Menu" size={18} className="text-header-accent sm:w-5 sm:h-5" />
               <span className="hidden sm:inline text-xs sm:text-sm font-medium">Меню</span>
@@ -56,6 +57,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
               <button
                 onClick={onFilterClick}
                 className="lg:hidden md:flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all animate-in fade-in slide-in-from-left-3 duration-300"
+                aria-label="Открыть фильтры"
               >
                 <Icon name="Filter" size={18} className="text-accent sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline text-xs sm:text-sm font-medium">Фильтры</span>
@@ -78,7 +80,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
                 onChange={(e) => handleSearch(e.target.value)}
                 className="h-11 pl-12 pr-12 bg-background border-border focus:border-header-accent rounded-lg"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-header-accent/10 hover:bg-header-accent/20 flex items-center justify-center transition-colors">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-header-accent/10 hover:bg-header-accent/20 flex items-center justify-center transition-colors" aria-label="Поиск">
                 <Icon name="Search" size={18} className="text-header-accent" />
               </button>
             </div>
@@ -88,6 +90,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
             <button 
               onClick={() => setSearchOpen(!searchOpen)}
               className="md:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-header-accent/10 flex items-center justify-center hover:bg-header-accent/20 transition-colors"
+              aria-label="Открыть поиск"
             >
               <Icon name="Search" size={16} className="text-header-accent sm:w-[18px] sm:h-[18px]" />
             </button>
@@ -120,6 +123,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
             <a
               href="tel:+375296397378"
               className="lg:hidden flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground transition-colors"
+              aria-label="Позвонить +375 29 639 73 78"
             >
               <Icon name="Phone" size={18} className="sm:w-5 sm:h-5" />
             </a>

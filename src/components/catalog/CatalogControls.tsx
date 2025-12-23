@@ -89,6 +89,7 @@ const CatalogControls = ({
             className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
               viewMode === 'grid' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
             }`}
+            aria-label="Отображение сеткой"
           >
             <Icon name="Grid3x3" size={18} />
           </button>
@@ -97,6 +98,7 @@ const CatalogControls = ({
             className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
               viewMode === 'list' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
             }`}
+            aria-label="Отображение списком"
           >
             <Icon name="List" size={18} />
           </button>
