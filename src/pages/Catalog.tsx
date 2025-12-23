@@ -149,57 +149,35 @@ const Catalog = () => {
         searchValue={searchQuery}
       />
 
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
-        <BackgroundBlur variant="catalog" />
-        <div className="w-full px-4 sm:px-6 lg:px-12">
-          <SectionHeader
-            label="Каталог"
-            title="Полный каталог автомобилей"
-            description="Автомобили из Китая, Европы, Америки, Японии и Кореи"
-          />
-        </div>
-      </section>
-
-      <section className="pb-16 md:pb-32">
-        <div className="w-full px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-            <CatalogFiltersDesktop
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              selectedRegion={selectedRegion}
-              selectedType={selectedType}
-              selectedCondition={selectedCondition}
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
-              minPriceInput={minPriceInput}
-              setMinPriceInput={setMinPriceInput}
-              maxPriceInput={maxPriceInput}
-              setMaxPriceInput={setMaxPriceInput}
-              showRfPassable={showRfPassable}
-              setShowRfPassable={setShowRfPassable}
-              regions={regions}
-              types={types}
-              toggleFilter={toggleFilter}
-              openFilters={openFilters}
-              toggleFilterSection={toggleFilterSection}
-              onResetFilters={handleResetFilters}
+      <main>
+        <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
+          <BackgroundBlur variant="catalog" />
+          <div className="w-full px-4 sm:px-6 lg:px-12">
+            <SectionHeader
+              label="Каталог"
+              title="Полный каталог автомобилей"
+              description="Автомобили из Китая, Европы, Америки, Japonии и Кореи"
             />
+          </div>
+        </section>
 
-            <div className="flex-1">
-              <CatalogControls
-                isMobileFilterOpen={isMobileFilterOpen}
-                setIsMobileFilterOpen={setIsMobileFilterOpen}
-                filteredVehiclesCount={filteredVehicles.length}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                viewMode={viewMode}
-                setViewMode={setViewMode}
+        <section className="pb-16 md:pb-32">
+          <div className="w-full px-4 sm:px-6 lg:px-12">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              <CatalogFiltersDesktop
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 selectedRegion={selectedRegion}
                 selectedType={selectedType}
                 selectedCondition={selectedCondition}
                 priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                minPriceInput={minPriceInput}
+                setMinPriceInput={setMinPriceInput}
+                maxPriceInput={maxPriceInput}
+                setMaxPriceInput={setMaxPriceInput}
+                showRfPassable={showRfPassable}
+                setShowRfPassable={setShowRfPassable}
                 regions={regions}
                 types={types}
                 toggleFilter={toggleFilter}
@@ -208,17 +186,41 @@ const Catalog = () => {
                 onResetFilters={handleResetFilters}
               />
 
-              <CatalogVehiclesList
-                filteredVehicles={filteredVehicles}
-                viewMode={viewMode}
-                onResetFilters={handleResetFilters}
-              />
+              <div className="flex-1">
+                <CatalogControls
+                  isMobileFilterOpen={isMobileFilterOpen}
+                  setIsMobileFilterOpen={setIsMobileFilterOpen}
+                  filteredVehiclesCount={filteredVehicles.length}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
+                  viewMode={viewMode}
+                  setViewMode={setViewMode}
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                  selectedRegion={selectedRegion}
+                  selectedType={selectedType}
+                  selectedCondition={selectedCondition}
+                  priceRange={priceRange}
+                  regions={regions}
+                  types={types}
+                  toggleFilter={toggleFilter}
+                  openFilters={openFilters}
+                  toggleFilterSection={toggleFilterSection}
+                  onResetFilters={handleResetFilters}
+                />
+
+                <CatalogVehiclesList
+                  filteredVehicles={filteredVehicles}
+                  viewMode={viewMode}
+                  onResetFilters={handleResetFilters}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 };

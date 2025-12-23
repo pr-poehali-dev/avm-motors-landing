@@ -98,7 +98,8 @@ const About = () => {
         onSearch={() => {}}
       />
 
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
+      <main>
+        <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
         <BackgroundBlur variant="hero" />
         <div className="w-full px-4 sm:px-6 lg:px-12 relative z-10">
           <div className="max-w-6xl">
@@ -276,7 +277,8 @@ const About = () => {
         </div>
       </section>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 };

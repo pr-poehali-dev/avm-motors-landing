@@ -88,38 +88,40 @@ const Index = () => {
         }}
       />
 
-      <Hero />
+      <main>
+        <Hero />
 
-      <VehiclesCatalog
-        vehicleCategory={vehicleCategory}
-        setVehicleCategory={setVehicleCategory}
-        vehicleRegion={vehicleRegion}
-        setVehicleRegion={setVehicleRegion}
-        motoType={motoType}
-        setMotoType={setMotoType}
-        setShowAllVehicles={setShowAllVehicles}
-        vehicles={vehicles}
-      />
-
-      <Suspense fallback={<div className="py-16 bg-secondary" />}>
-        <QuizSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="py-16" />}>
-        <ReviewsSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="py-16 bg-secondary" />}>
-        <InfoSections
-          formData={formData}
-          setFormData={setFormData}
-          handleSubmit={handleSubmit}
+        <VehiclesCatalog
+          vehicleCategory={vehicleCategory}
+          setVehicleCategory={setVehicleCategory}
+          vehicleRegion={vehicleRegion}
+          setVehicleRegion={setVehicleRegion}
+          motoType={motoType}
+          setMotoType={setMotoType}
+          setShowAllVehicles={setShowAllVehicles}
+          vehicles={vehicles}
         />
-      </Suspense>
-      
-      <Suspense fallback={<div className="py-8 bg-card" />}>
-        <Footer />
-      </Suspense>
+
+        <Suspense fallback={<div className="py-16 bg-secondary" />}>
+          <QuizSection />
+        </Suspense>
+
+        <Suspense fallback={<div className="py-16" />}>
+          <ReviewsSection />
+        </Suspense>
+
+        <Suspense fallback={<div className="py-16 bg-secondary" />}>
+          <InfoSections
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={handleSubmit}
+          />
+        </Suspense>
+        
+        <Suspense fallback={<div className="py-8 bg-card" />}>
+          <Footer />
+        </Suspense>
+      </main>
     </div>
   );
 };
