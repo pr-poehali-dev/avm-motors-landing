@@ -36,6 +36,11 @@
     
     <!-- Optimize font loading to reduce layout shift -->
     <link rel="preload" href="https://fonts.gstatic.com/s/geologica/v1/oY1o8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckU8H3G43dPfCOt5.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Preload critical JS modules -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="modulepreload" href="/src/App.tsx">
+    <link rel="modulepreload" href="/src/pages/Index.tsx">
 
     <!-- Critical CSS for instant rendering -->
     <style>
