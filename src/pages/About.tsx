@@ -181,6 +181,44 @@ const About = () => {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <SectionHeader
+            label="Наш офис"
+            title="Приглашаем в гости"
+            description="Современное пространство, где создаётся ваш идеальный автомобиль"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 max-w-6xl mx-auto">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] group">
+              <img 
+                src="https://cdn.poehali.dev/files/photo_2025-10-08_18-25-35.jpg"
+                alt="Офис AVM Motors снаружи"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Главный офис</h3>
+                <p className="text-white/90">Современное здание с удобной парковкой</p>
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] group">
+              <img 
+                src="https://cdn.poehali.dev/files/photo_2025-10-09_06-19-52.jpg"
+                alt="Офис AVM Motors изнутри"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Рабочее пространство</h3>
+                <p className="text-white/90">Комфортная зона для консультаций клиентов</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="w-full px-4 sm:px-6 lg:px-12">
+          <SectionHeader
             label="История"
             title="Наш путь к успеху"
             description="От небольшой компании до лидера рынка автомобильного импорта"
