@@ -259,7 +259,7 @@ const About = () => {
               </p>
               <Button 
                 size="lg"
-                className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground h-14 px-10 text-lg"
+                className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground h-12 sm:h-14 px-6 sm:px-10 text-base sm:text-lg w-full sm:w-auto"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Получить консультацию
