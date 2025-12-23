@@ -104,19 +104,19 @@ const Hero = () => {
                 activeSlide === 'auto' ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
               }`}
             >
-              <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative">
+              <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative z-50">
                 <div className="h-px w-8 md:w-12 bg-accent"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative z-50">
                 АВТОМОБИЛИ<br />
                 <span className="accent-title text-accent">из Китая</span><br />
                 ПОД КЛЮЧ
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative z-50">
                 Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-50">
                 <Button 
                   size="lg" 
                   className="bg-button-primary hover:bg-button-primary/90 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
@@ -140,19 +140,19 @@ const Hero = () => {
                 activeSlide === 'moto' ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
               }`}
             >
-              <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative">
+              <div className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 relative z-50">
                 <div className="h-px w-8 md:w-12 bg-orange-500"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-orange-500">Быстрые и мощные</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative z-50">
                 МОТОТЕХНИКА<br />
                 <span className="accent-title text-orange-500">из Китая</span><br />
                 ПОД КЛЮЧ
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative z-50">
                 Мотоциклы, скутеры и квадроциклы. Полное юридическое сопровождение и доставка до вашего города
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-50">
                 <Button 
                   size="lg" 
                   className="bg-orange-500 hover:bg-orange-600 text-white text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto"
