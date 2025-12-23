@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
           
           <div className="lg:col-span-3">
-            <h4 className="text-xs lg:text-sm font-bold mb-4 lg:mb-6 tracking-[0.2em] uppercase text-muted-foreground">Навигация</h4>
+            <h2 className="text-xs lg:text-sm font-bold mb-4 lg:mb-6 tracking-[0.2em] uppercase text-muted-foreground">Навигация</h2>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 lg:gap-y-3 lg:flex lg:flex-col lg:space-y-4 text-sm lg:text-base">
               <li><a href="#vehicles" className="text-muted-foreground hover:text-accent transition-colors">Каталог</a></li>
               <li><a href="#quiz" className="text-muted-foreground hover:text-accent transition-colors">Подбор авто</a></li>
@@ -42,7 +42,7 @@ const Footer = () => {
           </div>
           
           <div className="lg:col-span-4">
-            <h4 className="text-xs lg:text-sm font-bold mb-4 lg:mb-6 tracking-[0.2em] uppercase text-muted-foreground">Связь</h4>
+            <h2 className="text-xs lg:text-sm font-bold mb-4 lg:mb-6 tracking-[0.2em] uppercase text-muted-foreground">Связь</h2>
             <div className="space-y-3 lg:space-y-4">
               <a href="tel:+375296397378" className="flex items-center gap-2 lg:gap-3 text-muted-foreground hover:text-accent transition-colors group">
                 <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors flex-shrink-0">
