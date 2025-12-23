@@ -1,51 +1,3 @@
-export const videoReviews = [
-  { title: 'Обзор Zeekr 001', time: '12:45', views: '24K' },
-  { title: 'Тест-драйв BYD Han', time: '15:20', views: '31K' },
-  { title: 'NIO ES6 в России', time: '10:15', views: '18K' },
-];
-
-export const clientReviews = [
-  { 
-    name: 'Александр М.', 
-    car: 'Zeekr 001', 
-    text: 'Невероятный сервис! Получил автомобиль мечты за 42 дня. Всё прозрачно и профессионально.', 
-    rating: 5 
-  },
-  { 
-    name: 'Елена К.', 
-    car: 'BYD Han', 
-    text: 'Команда AVM Motors сопровождала на каждом этапе. Экономия составила более 2 млн рублей!', 
-    rating: 5 
-  },
-  { 
-    name: 'Дмитрий Р.', 
-    car: 'NIO ES6', 
-    text: 'Индивидуальный подход и внимание к деталям. Рекомендую всем, кто ценит качество.', 
-    rating: 5 
-  },
-];
-
-export const blogPosts = [
-  { 
-    title: 'Как выбрать электромобиль из Китая', 
-    date: '15 дек 2024', 
-    category: 'Гид покупателя', 
-    excerpt: 'Подробное руководство по выбору идеального электромобиля с учётом технических характеристик и личных предпочтений.' 
-  },
-  { 
-    title: 'Топ-5 премиум моделей 2024', 
-    date: '10 дек 2024', 
-    category: 'Обзоры', 
-    excerpt: 'Эксклюзивная подборка самых востребованных премиальных автомобилей китайского производства в этом году.' 
-  },
-  { 
-    title: 'Юридические аспекты импорта', 
-    date: '5 дек 2024', 
-    category: 'Юридическая база', 
-    excerpt: 'Всё о легальном ввозе автомобилей из Китая: документы, сертификация и регистрация в России.' 
-  },
-];
-
 export const services = [
   { 
     icon: "Search", 
@@ -178,27 +130,4 @@ export const faqItems = [
     q: 'Какая экономия по сравнению с покупкой в России?', 
     a: 'В среднем экономия составляет 25-35% от рыночной цены аналогичного автомобиля в РФ.' 
   },
-];
-
-export const quizBudgetOptions = [
-  { label: 'до 15 000$', value: 'do-15k' },
-  { label: '15 000 - 20 000$', value: '15k-20k' },
-  { label: '20 000 - 30 000$', value: '20k-30k' },
-  { label: '30 000$ и выше', value: '30k+' },
-];
-
-export const quizTaskOptions = [
-  { label: 'Семейный автомобиль', value: 'family' },
-  { label: 'Поездки по городу', value: 'city' },
-  { label: 'Путешествия / трасса', value: 'travel' },
-  { label: 'Бездорожье', value: 'offroad' },
-  { label: 'Стиль и комфорт', value: 'luxury' },
-  { label: 'Пока не определился', value: 'unsure' },
-];
-
-export const quizBrandOptions = [
-  { label: 'Рассматриваю к покупке', value: 'considering' },
-  { label: 'Рассмотрю, если очень выгодно', value: 'if-profitable' },
-  { label: 'Без разницы', value: 'no-preference' },
-  { label: 'Пока не рассматриваю', value: 'not-considering' },
 ];

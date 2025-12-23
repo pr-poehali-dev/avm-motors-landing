@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,7 +55,6 @@ const Index = () => {
       title: "Заявка принята!",
       description: "Мы подберём для вас идеальный автомобиль и свяжемся в течение часа",
     });
-    setQuizStep(1);
     setQuizData({ budget: '', tasks: [], chineseBrands: '', name: '', phone: '' });
     setQuizStep(1);
   };

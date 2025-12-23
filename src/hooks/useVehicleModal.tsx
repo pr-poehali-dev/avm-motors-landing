@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Vehicle } from '@/types/vehicle';
+import { Vehicle } from '@/data/vehicles';
 import VehicleModal from '@/components/VehicleModal';
 
 export const useVehicleModal = () => {
