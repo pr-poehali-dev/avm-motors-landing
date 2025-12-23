@@ -74,27 +74,27 @@ const Hero = () => {
 
       <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20">
         <div className="relative">
-          <div className="mb-8 flex gap-4">
+          <div className="mb-8 flex gap-2 sm:gap-4">
             <button
               onClick={() => setActiveSlide('auto')}
-              className={`flex items-center gap-3 px-6 py-3.5 rounded-xl font-bold text-base transition-all duration-300 ${
+              className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base transition-all duration-300 ${
                 activeSlide === 'auto'
                   ? 'bg-accent text-accent-foreground shadow-2xl scale-105 ring-2 ring-accent ring-offset-2 ring-offset-background'
                   : 'bg-card/80 border-2 border-border hover:border-accent/70 hover:scale-102 hover:shadow-lg'
               }`}
             >
-              <Icon name="Car" size={22} />
+              <Icon name="Car" className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]" />
               <span>Автомобили</span>
             </button>
             <button
               onClick={() => setActiveSlide('moto')}
-              className={`flex items-center gap-3 px-6 py-3.5 rounded-xl font-bold text-base transition-all duration-300 ${
+              className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base transition-all duration-300 ${
                 activeSlide === 'moto'
                   ? 'bg-orange-500 text-white shadow-2xl scale-105 ring-2 ring-orange-500 ring-offset-2 ring-offset-background'
                   : 'bg-card/80 border-2 border-border hover:border-orange-500/70 hover:scale-102 hover:shadow-lg'
               }`}
             >
-              <Icon name="Bike" size={22} />
+              <Icon name="Bike" className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]" />
               <span>Мототехника</span>
             </button>
           </div>
