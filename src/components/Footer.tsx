@@ -74,9 +74,9 @@ const Footer = () => {
         
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-sm text-muted-foreground">
+            <div className="flex flex-col items-center md:items-start gap-4 text-sm text-muted-foreground">
               <p>© 2025 AVM Моторс. Все права защищены.</p>
-              <a href="/privacy" className="hover:text-accent transition-colors">Политика конфиденциальности и пользовательское соглашение</a>
+              <a href="/privacy" className="hover:text-accent transition-colors text-center md:text-left">Политика конфиденциальности и пользовательское соглашение</a>
             </div>
             <a 
               href="https://albeweb.ru/" 
