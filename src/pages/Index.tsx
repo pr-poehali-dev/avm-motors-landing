@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
+import VehiclesCatalog from "@/components/sections/VehiclesCatalog";
 import { useContactForm } from "@/hooks/useContactForm";
 import { 
   Vehicle, 
@@ -13,7 +14,6 @@ import {
 } from "@/data/vehicles";
 
 const Footer = lazy(() => import("@/components/Footer"));
-const VehiclesCatalog = lazy(() => import("@/components/sections/VehiclesCatalog"));
 const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
 const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
 const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
@@ -75,18 +75,18 @@ const Index = () => {
 
       <Hero />
 
-      <Suspense fallback={<div className="py-16 text-center"><div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
-        <VehiclesCatalog
-          vehicleCategory={vehicleCategory}
-          setVehicleCategory={setVehicleCategory}
-          vehicleRegion={vehicleRegion}
-          setVehicleRegion={setVehicleRegion}
-          motoType={motoType}
-          setMotoType={setMotoType}
-          setShowAllVehicles={setShowAllVehicles}
-          vehicles={vehicles}
-        />
+      <VehiclesCatalog
+        vehicleCategory={vehicleCategory}
+        setVehicleCategory={setVehicleCategory}
+        vehicleRegion={vehicleRegion}
+        setVehicleRegion={setVehicleRegion}
+        motoType={motoType}
+        setMotoType={setMotoType}
+        setShowAllVehicles={setShowAllVehicles}
+        vehicles={vehicles}
+      />
 
+      <Suspense fallback={<div className="py-16 text-center"><div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
         <QuizSection />
 
         <ReviewsSection />
