@@ -1,14 +1,15 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
 import VehiclesCatalog from "@/components/sections/VehiclesCatalog";
-import Footer from "@/components/Footer";
-import QuizSection from "@/components/sections/QuizSection";
-import ReviewsSection from "@/components/sections/ReviewsSection";
-import InfoSections from "@/components/sections/InfoSections";
 import { useContactForm } from "@/hooks/useContactForm";
 import { Vehicle } from "@/data/vehicles";
+
+const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
+const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
+const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -100,17 +101,25 @@ const Index = () => {
         vehicles={vehicles}
       />
 
-      <QuizSection />
+      <Suspense fallback={<div className="py-16 bg-secondary" />}>
+        <QuizSection />
+      </Suspense>
 
-      <ReviewsSection />
+      <Suspense fallback={<div className="py-16" />}>
+        <ReviewsSection />
+      </Suspense>
 
-      <InfoSections
-        formData={formData}
-        setFormData={setFormData}
-        handleSubmit={handleSubmit}
-      />
+      <Suspense fallback={<div className="py-16 bg-secondary" />}>
+        <InfoSections
+          formData={formData}
+          setFormData={setFormData}
+          handleSubmit={handleSubmit}
+        />
+      </Suspense>
       
-      <Footer />
+      <Suspense fallback={<div className="py-8 bg-card" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

@@ -1,10 +1,11 @@
-import { useState, memo } from "react";
+import { useState, memo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import ThemeToggle from "@/components/ThemeToggle";
-import MobileMenu from "@/components/MobileMenu";
+
+const MobileMenu = lazy(() => import("@/components/MobileMenu"));
 
 interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
@@ -147,7 +148,9 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
       </div>
       
       {mobileMenuOpen && (
-        <MobileMenu onClose={() => setMobileMenuOpen(false)} />
+        <Suspense fallback={null}>
+          <MobileMenu onClose={() => setMobileMenuOpen(false)} />
+        </Suspense>
       )}
     </header>
   );

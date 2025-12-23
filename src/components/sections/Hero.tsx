@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { BackgroundBlur, DecorativeShapes } from "@/components/ui/decorative-background";
-import ConsultationModal from "@/components/ConsultationModal";
+
+const ConsultationModal = lazy(() => import("@/components/ConsultationModal"));
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -201,7 +202,11 @@ const Hero = () => {
         </div>
       </div>
 
-      <ConsultationModal open={consultationOpen} onOpenChange={setConsultationOpen} />
+      {consultationOpen && (
+        <Suspense fallback={null}>
+          <ConsultationModal open={consultationOpen} onOpenChange={setConsultationOpen} />
+        </Suspense>
+      )}
     </section>
   );
 };
