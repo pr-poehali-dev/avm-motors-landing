@@ -26,7 +26,7 @@ const Hero = () => {
         <DecorativeShapes />
       </Suspense>
       
-      <div className="hidden md:block absolute top-0 right-0 w-[50%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-5">
+      <div className="hidden md:block absolute top-0 right-0 w-[50%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-0">
         <div
           className={`absolute inset-0 transition-all duration-700 ${
             activeSlide === 'auto' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
