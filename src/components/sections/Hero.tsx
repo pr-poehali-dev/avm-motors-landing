@@ -74,7 +74,7 @@ const Hero = () => {
 
       <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20">
         <div className="relative">
-          <div className="mb-8 flex gap-2 sm:gap-4">
+          <div className="mb-8 flex gap-3 sm:gap-4">
             <button
               onClick={() => setActiveSlide('auto')}
               className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base transition-all duration-300 ${
