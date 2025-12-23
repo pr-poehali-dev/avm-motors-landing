@@ -1,12 +1,10 @@
-import { lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import SectionHeader from "@/components/SectionHeader";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
-
-const Footer = lazy(() => import("@/components/Footer"));
+import Footer from "@/components/Footer";
 
 const About = () => {
   const stats = [
@@ -278,9 +276,7 @@ const About = () => {
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-8"></div>}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
   );
 };

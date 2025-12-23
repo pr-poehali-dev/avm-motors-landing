@@ -1,11 +1,10 @@
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import ThemeToggle from "@/components/ThemeToggle";
-
-const MobileMenu = lazy(() => import("@/components/MobileMenu"));
+import MobileMenu from "@/components/MobileMenu";
 
 interface HeaderProps {
   onVehicleRegionChange: (region: string) => void;
@@ -142,9 +141,7 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
       </div>
       
       {mobileMenuOpen && (
-        <Suspense fallback={<div className="absolute top-full left-0 right-0 py-8 text-center bg-background border-t border-border/50"><div className="w-6 h-6 border-3 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
-          <MobileMenu onClose={() => setMobileMenuOpen(false)} />
-        </Suspense>
+        <MobileMenu onClose={() => setMobileMenuOpen(false)} />
       )}
     </header>
   );

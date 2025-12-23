@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,9 +11,8 @@ import { BackgroundBlur } from "@/components/ui/decorative-background";
 import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
 import EmptyState from "@/components/EmptyState";
+import Footer from "@/components/Footer";
 import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
-
-const Footer = lazy(() => import("@/components/Footer"));
 
 const Catalog = () => {
   const navigate = useNavigate();

@@ -1,8 +1,12 @@
-import { useState, lazy, Suspense, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
 import VehiclesCatalog from "@/components/sections/VehiclesCatalog";
+import Footer from "@/components/Footer";
+import QuizSection from "@/components/sections/QuizSection";
+import ReviewsSection from "@/components/sections/ReviewsSection";
+import InfoSections from "@/components/sections/InfoSections";
 import { useContactForm } from "@/hooks/useContactForm";
 import { 
   Vehicle, 
@@ -12,18 +16,6 @@ import {
   vehiclesAmerican,
   vehiclesJapan
 } from "@/data/vehicles";
-
-const Footer = lazy(() => import("@/components/Footer"));
-const QuizSection = lazy(() => import("@/components/sections/QuizSection"));
-const ReviewsSection = lazy(() => import("@/components/sections/ReviewsSection"));
-const InfoSections = lazy(() => import("@/components/sections/InfoSections"));
-
-const prefetchComponents = () => {
-  import("@/components/Footer");
-  import("@/components/sections/QuizSection");
-  import("@/components/sections/ReviewsSection");
-  import("@/components/sections/InfoSections");
-};
 
 const Index = () => {
   const navigate = useNavigate();
@@ -71,13 +63,6 @@ const Index = () => {
 
   const vehicles = showAllVehicles ? allVehicles : allVehicles.slice(0, 8);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      prefetchComponents();
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header 
@@ -100,19 +85,17 @@ const Index = () => {
         vehicles={vehicles}
       />
 
-      <Suspense fallback={<div className="py-16 text-center"><div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
-        <QuizSection />
+      <QuizSection />
 
-        <ReviewsSection />
+      <ReviewsSection />
 
-        <InfoSections
-          formData={formData}
-          setFormData={setFormData}
-          handleSubmit={handleSubmit}
-        />
-        
-        <Footer />
-      </Suspense>
+      <InfoSections
+        formData={formData}
+        setFormData={setFormData}
+        handleSubmit={handleSubmit}
+      />
+      
+      <Footer />
     </div>
   );
 };
