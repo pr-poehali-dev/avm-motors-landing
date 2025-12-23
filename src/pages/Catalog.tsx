@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
@@ -11,7 +11,7 @@ import { BackgroundBlur } from "@/components/ui/decorative-background";
 import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
 import EmptyState from "@/components/EmptyState";
-import { vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
+import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
 
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -104,52 +104,6 @@ const Catalog = () => {
     return true;
   });
 
-  const sortedVehicles = [...filteredVehicles].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-asc':
-        return a.priceNum - b.priceNum;
-      case 'price-desc':
-        return b.priceNum - a.priceNum;
-      case 'year-desc':
-        return parseInt(b.year || '0') - parseInt(a.year || '0');
-      case 'year-asc':
-        return parseInt(a.year || '0') - parseInt(b.year || '0');
-      default:
-        return 0;
-    }
-  });
-
-  const clearFilters = () => {
-    setSelectedRegion([]);
-    setSelectedType([]);
-    setSelectedCondition([]);
-    setSearchQuery('');
-    setPriceRange([0, 50000000]);
-    setMinPriceInput('');
-    setMaxPriceInput('');
-    setShowRfPassable(false);
-  };
-
-  const formatPrice = (value: number) => {
-    return new Intl.NumberFormat('ru-RU').format(value);
-  };
-
-  const handleMinPriceChange = (value: string) => {
-    setMinPriceInput(value);
-    const numValue = parseInt(value.replace(/\s/g, '')) || 0;
-    setPriceRange([numValue, priceRange[1]]);
-  };
-
-  const handleMaxPriceChange = (value: string) => {
-    setMaxPriceInput(value);
-    const numValue = parseInt(value.replace(/\s/g, '')) || 50000000;
-    setPriceRange([priceRange[0], numValue]);
-  };
-
-  const activeFiltersCount = selectedRegion.length + selectedType.length + selectedCondition.length + 
-    (showRfPassable ? 1 : 0) + 
-    (priceRange[0] > 0 || priceRange[1] < 50000000 ? 1 : 0);
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header 
@@ -175,6 +129,7 @@ const Catalog = () => {
       <section className="pb-16 md:pb-32">
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+            {/* Desktop Filters */}
             <aside className="hidden lg:block w-64 flex-shrink-0 space-y-2 sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto scrollbar-hide">
               <FilterSection
                 icon="Search"
@@ -241,7 +196,7 @@ const Catalog = () => {
               </FilterSection>
 
               <FilterSection
-                icon="Clock"
+                icon="Badge"
                 title="Состояние"
                 isOpen={openFilters.condition}
                 onToggle={() => toggleFilterSection('condition')}
@@ -268,35 +223,41 @@ const Catalog = () => {
 
               <FilterSection
                 icon="DollarSign"
-                title="Цена (BYN)"
+                title="Цена"
                 isOpen={openFilters.price}
                 onToggle={() => toggleFilterSection('price')}
               >
                 <div className="space-y-3">
                   <div className="flex gap-2">
                     <Input
-                      type="text"
+                      type="number"
                       placeholder="От"
                       value={minPriceInput}
-                      onChange={(e) => handleMinPriceChange(e.target.value)}
-                      className="h-9 text-sm bg-secondary/50 border-border"
+                      onChange={(e) => {
+                        setMinPriceInput(e.target.value);
+                        const val = parseFloat(e.target.value) || 0;
+                        setPriceRange([val * 1000, priceRange[1]]);
+                      }}
+                      className="bg-secondary/50 border-border text-xs h-9"
                     />
                     <Input
-                      type="text"
+                      type="number"
                       placeholder="До"
                       value={maxPriceInput}
-                      onChange={(e) => handleMaxPriceChange(e.target.value)}
-                      className="h-9 text-sm bg-secondary/50 border-border"
+                      onChange={(e) => {
+                        setMaxPriceInput(e.target.value);
+                        const val = parseFloat(e.target.value) || 50000;
+                        setPriceRange([priceRange[0], val * 1000]);
+                      }}
+                      className="bg-secondary/50 border-border text-xs h-9"
                     />
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {formatPrice(priceRange[0])} - {formatPrice(priceRange[1])} BYN
-                  </div>
+                  <p className="text-xs text-muted-foreground">Цена в тысячах $</p>
                 </div>
               </FilterSection>
 
               <FilterSection
-                icon="Shield"
+                icon="CheckCircle"
                 title="Дополнительно"
                 isOpen={true}
                 onToggle={() => {}}
@@ -305,246 +266,220 @@ const Catalog = () => {
                   <input
                     type="checkbox"
                     checked={showRfPassable}
-                    onChange={(e) => setShowRfPassable(e.target.checked)}
+                    onChange={() => setShowRfPassable(!showRfPassable)}
                     className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
                   />
                   <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                    Проходные в РФ (до 160 л.с.)
+                    Проходная на РФ (до 160 л.с.)
                   </span>
                 </label>
               </FilterSection>
 
-              {activeFiltersCount > 0 && (
-                <button
-                  onClick={clearFilters}
-                  className="w-full mt-4 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2"
-                >
-                  <Icon name="X" size={16} />
-                  Очистить все ({activeFiltersCount})
-                </button>
-              )}
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-accent text-accent hover:bg-button-primary hover:text-accent-foreground text-xs"
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedRegion([]);
+                  setSelectedType([]);
+                  setSelectedCondition([]);
+                  setPriceRange([0, 50000000]);
+                  setMinPriceInput('');
+                  setMaxPriceInput('');
+                  setShowRfPassable(false);
+                }}
+              >
+                <Icon name="RotateCcw" size={18} className="mr-2" />
+                Сбросить фильтры
+              </Button>
             </aside>
 
-            <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
-              <SheetContent side="left" className="w-full sm:w-96 overflow-y-auto">
-                <SheetHeader className="mb-6">
-                  <SheetTitle className="flex items-center gap-2">
-                    <Icon name="Filter" size={20} className="text-accent" />
-                    Фильтры
-                    {activeFiltersCount > 0 && (
-                      <Badge variant="secondary" className="ml-2">
-                        {activeFiltersCount}
-                      </Badge>
-                    )}
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="space-y-2">
-                  <FilterSection
-                    icon="Search"
-                    title="Поиск"
-                    isOpen={openFilters.search}
-                    onToggle={() => toggleFilterSection('search')}
-                  >
-                    <Input
-                      type="text"
-                      placeholder="Марка автомобиля"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-9 text-sm bg-secondary/50 border-border"
-                    />
-                  </FilterSection>
-
-                  <FilterSection
-                    icon="MapPin"
-                    title="Страна производитель"
-                    isOpen={openFilters.region}
-                    onToggle={() => toggleFilterSection('region')}
-                  >
-                    <div className="space-y-2">
-                      {regions.map(region => (
-                        <button
-                          key={region}
-                          onClick={() => toggleFilter(region, 'region')}
-                          className={`w-full px-3 py-2 rounded-md text-sm text-left transition-all ${
-                            selectedRegion.includes(region)
-                              ? 'bg-accent text-accent-foreground font-medium'
-                              : 'bg-secondary/50 hover:bg-secondary text-foreground'
-                          }`}
-                        >
-                          {region}
-                        </button>
-                      ))}
-                    </div>
-                  </FilterSection>
-
-                  <FilterSection
-                    icon="Car"
-                    title="Тип кузова"
-                    isOpen={openFilters.type}
-                    onToggle={() => toggleFilterSection('type')}
-                  >
-                    <div className="space-y-2">
-                      {types.map(type => (
-                        <label
-                          key={type}
-                          className="flex items-center gap-2 cursor-pointer group"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedType.includes(type)}
-                            onChange={() => toggleFilter(type, 'type')}
-                            className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
-                          />
-                          <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                            {type}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </FilterSection>
-
-                  <FilterSection
-                    icon="Clock"
-                    title="Состояние"
-                    isOpen={openFilters.condition}
-                    onToggle={() => toggleFilterSection('condition')}
-                  >
-                    <div className="space-y-2">
-                      {["Новый", "Б/У"].map(condition => (
-                        <label
-                          key={condition}
-                          className="flex items-center gap-2 cursor-pointer group"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedCondition.includes(condition)}
-                            onChange={() => toggleFilter(condition, 'condition')}
-                            className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
-                          />
-                          <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                            {condition}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </FilterSection>
-
-                  <FilterSection
-                    icon="DollarSign"
-                    title="Цена (BYN)"
-                    isOpen={openFilters.price}
-                    onToggle={() => toggleFilterSection('price')}
-                  >
-                    <div className="space-y-3">
-                      <div className="flex gap-2">
-                        <Input
-                          type="text"
-                          placeholder="От"
-                          value={minPriceInput}
-                          onChange={(e) => handleMinPriceChange(e.target.value)}
-                          className="h-9 text-sm bg-secondary/50 border-border"
-                        />
-                        <Input
-                          type="text"
-                          placeholder="До"
-                          value={maxPriceInput}
-                          onChange={(e) => handleMaxPriceChange(e.target.value)}
-                          className="h-9 text-sm bg-secondary/50 border-border"
-                        />
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {formatPrice(priceRange[0])} - {formatPrice(priceRange[1])} BYN
-                      </div>
-                    </div>
-                  </FilterSection>
-
-                  <FilterSection
-                    icon="Shield"
-                    title="Дополнительно"
-                    isOpen={true}
-                    onToggle={() => {}}
-                  >
-                    <label className="flex items-center gap-2 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={showRfPassable}
-                        onChange={(e) => setShowRfPassable(e.target.checked)}
-                        className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
-                      />
-                      <span className="text-sm text-foreground group-hover:text-accent transition-colors">
-                        Проходные в РФ (до 160 л.с.)
-                      </span>
-                    </label>
-                  </FilterSection>
-
-                  {activeFiltersCount > 0 && (
-                    <button
-                      onClick={clearFilters}
-                      className="w-full mt-4 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2"
-                    >
-                      <Icon name="X" size={16} />
-                      Очистить все ({activeFiltersCount})
-                    </button>
-                  )}
-                </div>
-              </SheetContent>
-            </Sheet>
-
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                  <p className="text-sm sm:text-base text-muted-foreground">
-                    Найдено: <span className="font-semibold text-foreground">{filteredVehicles.length}</span> из {allVehicles.length}
-                  </p>
-                  {activeFiltersCount > 0 && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={clearFilters}
-                      className="h-8 text-xs gap-1.5 animate-in fade-in slide-in-from-left-2 duration-200"
-                    >
-                      <Icon name="X" size={14} />
-                      Сбросить фильтры ({activeFiltersCount})
-                    </Button>
-                  )}
-                </div>
-
+            <div className="flex-1">
+              {/* Mobile Filter Button & Controls */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 sm:pb-6 border-b border-border">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <div className="flex items-center gap-2 flex-1 sm:flex-initial">
-                    <span className="text-sm text-muted-foreground whitespace-nowrap hidden sm:inline">Сортировка:</span>
+                  <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
+                    <SheetTrigger asChild>
+                      <Button variant="outline" size="sm" className="lg:hidden border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                        <Icon name="Filter" size={18} className="mr-2" />
+                        Фильтры
+                        {(selectedRegion.length + selectedType.length + selectedCondition.length) > 0 && (
+                          <Badge className="ml-2 h-5 min-w-5 bg-accent text-accent-foreground px-1.5">
+                            {selectedRegion.length + selectedType.length + selectedCondition.length}
+                          </Badge>
+                        )}
+                      </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-80 overflow-y-auto">
+                      <SheetHeader>
+                        <SheetTitle>Фильтры</SheetTitle>
+                      </SheetHeader>
+                      <div className="space-y-2 mt-6">
+                        <FilterSection
+                          icon="Search"
+                          title="Поиск"
+                          isOpen={openFilters.search}
+                          onToggle={() => toggleFilterSection('search')}
+                        >
+                          <Input
+                            type="text"
+                            placeholder="Марка автомобиля"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="h-9 text-sm bg-secondary/50 border-border"
+                          />
+                        </FilterSection>
+
+                        <FilterSection
+                          icon="MapPin"
+                          title="Регион"
+                          isOpen={openFilters.region}
+                          onToggle={() => toggleFilterSection('region')}
+                        >
+                          <div className="space-y-2">
+                            {regions.map(region => (
+                              <button
+                                key={region}
+                                onClick={() => toggleFilter(region, 'region')}
+                                className={`w-full px-3 py-2 rounded-md text-sm text-left transition-all ${
+                                  selectedRegion.includes(region)
+                                    ? 'bg-accent text-accent-foreground font-medium'
+                                    : 'bg-secondary/50 hover:bg-secondary text-foreground'
+                                }`}
+                              >
+                                {region}
+                              </button>
+                            ))}
+                          </div>
+                        </FilterSection>
+
+                        <FilterSection
+                          icon="Car"
+                          title="Тип кузова"
+                          isOpen={openFilters.type}
+                          onToggle={() => toggleFilterSection('type')}
+                        >
+                          <div className="space-y-2">
+                            {types.map(type => (
+                              <label
+                                key={type}
+                                className="flex items-center gap-2 cursor-pointer group"
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={selectedType.includes(type)}
+                                  onChange={() => toggleFilter(type, 'type')}
+                                  className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                                />
+                                <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                                  {type}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                        </FilterSection>
+
+                        <FilterSection
+                          icon="Badge"
+                          title="Состояние"
+                          isOpen={openFilters.condition}
+                          onToggle={() => toggleFilterSection('condition')}
+                        >
+                          <div className="space-y-2">
+                            {["Новый", "Б/У"].map(condition => (
+                              <label
+                                key={condition}
+                                className="flex items-center gap-2 cursor-pointer group"
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={selectedCondition.includes(condition)}
+                                  onChange={() => toggleFilter(condition, 'condition')}
+                                  className="w-4 h-4 rounded border-2 border-border checked:bg-accent checked:border-accent"
+                                />
+                                <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                                  {condition}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                        </FilterSection>
+
+                        <FilterSection
+                          icon="DollarSign"
+                          title="Цена"
+                          isOpen={openFilters.price}
+                          onToggle={() => toggleFilterSection('price')}
+                        >
+                          <div className="flex gap-2">
+                            <Input
+                              type="text"
+                              value={`${(priceRange[0] / 1000000).toFixed(1)} млн`}
+                              readOnly
+                              className="bg-secondary/50 border-border text-center text-xs h-9"
+                            />
+                            <Input
+                              type="text"
+                              value={`${(priceRange[1] / 1000000).toFixed(1)} млн`}
+                              readOnly
+                              className="bg-secondary/50 border-border text-center text-xs h-9"
+                            />
+                          </div>
+                        </FilterSection>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full border-accent text-accent hover:bg-button-primary hover:text-accent-foreground text-xs"
+                          onClick={() => {
+                            setSearchQuery('');
+                            setSelectedRegion([]);
+                            setSelectedType([]);
+                            setSelectedCondition([]);
+                            setPriceRange([0, 50000000]);
+                          }}
+                        >
+                          <Icon name="RotateCcw" size={18} className="mr-2" />
+                          Сбросить фильтры
+                        </Button>
+                      </div>
+                    </SheetContent>
+                  </Sheet>
+                  
+                  <div className="text-sm sm:text-base lg:text-lg">
+                    Найдено: <span className="font-bold text-accent">{filteredVehicles.length}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                  <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-secondary/50">
+                    <Icon name="ArrowUpDown" size={16} className="text-muted-foreground hidden sm:block" />
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="flex-1 sm:flex-initial h-9 px-3 rounded-md bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                      className="bg-transparent border-none outline-none text-xs sm:text-sm font-medium cursor-pointer text-foreground"
                     >
-                      <option value="popular">По популярности</option>
-                      <option value="price-asc">Цена: по возрастанию</option>
-                      <option value="price-desc">Цена: по убыванию</option>
-                      <option value="year-desc">Год: новые</option>
-                      <option value="year-asc">Год: старые</option>
+                      <option value="popular" className="bg-background text-foreground">Популярные</option>
+                      <option value="price_asc" className="bg-background text-foreground">Цена ↑</option>
+                      <option value="price_desc" className="bg-background text-foreground">Цена ↓</option>
+                      <option value="new" className="bg-background text-foreground">Новинки</option>
                     </select>
                   </div>
-
-                  <div className="flex gap-1 bg-secondary rounded-md p-1">
+                  <div className="hidden sm:flex gap-2">
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`p-1.5 rounded transition-colors ${
-                        viewMode === 'grid'
-                          ? 'bg-accent text-accent-foreground'
-                          : 'text-muted-foreground hover:text-foreground'
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
+                        viewMode === 'grid' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
                       }`}
-                      aria-label="Сетка"
                     >
-                      <Icon name="Grid" size={18} />
+                      <Icon name="Grid3x3" size={18} />
                     </button>
                     <button
                       onClick={() => setViewMode('list')}
-                      className={`p-1.5 rounded transition-colors ${
-                        viewMode === 'list'
-                          ? 'bg-accent text-accent-foreground'
-                          : 'text-muted-foreground hover:text-foreground'
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
+                        viewMode === 'list' ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'
                       }`}
-                      aria-label="Список"
                     >
                       <Icon name="List" size={18} />
                     </button>
@@ -552,42 +487,43 @@ const Catalog = () => {
                 </div>
               </div>
 
-              {sortedVehicles.length === 0 ? (
-                <div className="py-20">
-                  <EmptyState
-                    icon="Search"
-                    title="Ничего не найдено"
-                    description="Попробуйте изменить параметры фильтрации"
+              <div className={viewMode === 'grid' 
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" 
+                : "space-y-4 md:space-y-6"
+              }>
+                {filteredVehicles.map((vehicle) => (
+                  <VehicleCard
+                    key={vehicle.id}
+                    vehicle={vehicle}
+                    viewMode={viewMode}
+                    onClick={() => openVehicleModal(vehicle)}
                   />
-                </div>
-              ) : (
-                <div 
-                  className={
-                    viewMode === 'grid'
-                      ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'
-                      : 'flex flex-col gap-4'
-                  }
-                >
-                  {sortedVehicles.map((vehicle) => (
-                    <VehicleCard
-                      key={vehicle.id}
-                      vehicle={vehicle}
-                      onClick={() => openVehicleModal(vehicle)}
-                      viewMode={viewMode}
-                    />
-                  ))}
-                </div>
+                ))}
+              </div>
+
+              {filteredVehicles.length === 0 && (
+                <EmptyState
+                  icon="SearchX"
+                  title="Автомобили не найдены"
+                  description="Попробуйте изменить параметры фильтрации"
+                  buttonText="Сбросить фильтры"
+                  onButtonClick={() => {
+                    setSelectedRegion([]);
+                    setSelectedType([]);
+                    setPriceRange([0, 50000000]);
+                  }}
+                />
               )}
             </div>
           </div>
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-20 text-center"><div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div></div>}>
+      <Suspense fallback={<div className="py-8"></div>}>
         <Footer />
       </Suspense>
-
-      <VehicleModalComponent />
+      
+      {VehicleModalComponent}
     </div>
   );
 };
