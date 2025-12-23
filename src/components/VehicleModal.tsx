@@ -76,8 +76,16 @@ const VehicleModal = ({ vehicle, open, onClose }: VehicleModalProps) => {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-5xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto scroll-smooth p-0 gap-0 w-full sm:w-[calc(100%-4rem)] shadow-2xl">
         <div className="relative">
+          {/* Mobile Close Button */}
+          <button
+            onClick={onClose}
+            className="sm:hidden absolute top-3 left-3 z-50 w-10 h-10 rounded-full bg-background/95 backdrop-blur-md shadow-lg flex items-center justify-center hover:bg-background transition-all duration-200 hover:scale-110 border border-border/50"
+          >
+            <Icon name="X" size={20} className="text-foreground" />
+          </button>
+          
           {/* Mobile Swipe Indicator */}
-          <div className="sm:hidden sticky top-0 z-50 flex justify-center pt-3 pb-2 bg-background/95 backdrop-blur-sm border-b border-border/50">
+          <div className="sm:hidden sticky top-0 z-40 flex justify-center pt-3 pb-2 bg-background/95 backdrop-blur-sm border-b border-border/50">
             <div className="w-12 h-1 rounded-full bg-border/60"></div>
           </div>
 
