@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
@@ -7,13 +7,6 @@ import { BackgroundBlur, DecorativeShapes } from "@/components/ui/decorative-bac
 const Hero = () => {
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState<'auto' | 'moto'>('auto');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide(prev => prev === 'auto' ? 'moto' : 'auto');
-    }, 7000);
-    return () => clearInterval(interval);
-  }, []);
 
   const heroStats = [
     { value: "30%", label: "Экономия", color: "accent" },
