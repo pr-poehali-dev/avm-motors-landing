@@ -1,9 +1,10 @@
 import Icon from "@/components/ui/icon";
+import { BackgroundBlur } from "@/components/ui/decorative-background";
 
 const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-b from-background to-secondary/30 border-t border-border py-20">
-      <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-accent/5 blur-[100px] rounded-full"></div>
+      <BackgroundBlur variant="footer" />
       <div className="w-full px-6 lg:px-12 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">

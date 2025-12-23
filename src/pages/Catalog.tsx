@@ -6,14 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import VehicleModal from "@/components/VehicleModal";
 import VehicleCard from "@/components/VehicleCard";
+import { useVehicleModal } from "@/hooks/useVehicleModal";
+import { BackgroundBlur } from "@/components/ui/decorative-background";
 import SectionHeader from "@/components/SectionHeader";
 import FilterSection from "@/components/FilterSection";
 import EmptyState from "@/components/EmptyState";
 import { Vehicle, vehiclesChina, vehiclesEurope, vehiclesAmerican, vehiclesJapan, vehiclesKorea } from "@/data/vehicles";
 
 const Catalog = () => {
+  const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
   const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<string[]>([]);
   const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
@@ -21,8 +23,6 @@ const Catalog = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000000]);
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [showFilterInHeader, setShowFilterInHeader] = useState(false);
   const [openFilters, setOpenFilters] = useState<{[key: string]: boolean}>({
@@ -76,16 +76,6 @@ const Catalog = () => {
     }
   };
 
-  const openVehicleModal = (vehicle: Vehicle) => {
-    setSelectedVehicle(vehicle);
-    setIsModalOpen(true);
-  };
-
-  const closeVehicleModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedVehicle(null), 300);
-  };
-
   const filteredVehicles = allVehicles.filter(vehicle => {
     if (searchQuery && !vehicle.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     if (selectedRegion.length > 0 && !selectedRegion.includes(vehicle.region)) return false;
@@ -107,7 +97,7 @@ const Catalog = () => {
       />
 
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-accent/5 blur-[100px] md:blur-[120px] rounded-full"></div>
+        <BackgroundBlur variant="catalog" />
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <SectionHeader
             label="Каталог"
@@ -477,11 +467,7 @@ const Catalog = () => {
 
       <Footer />
       
-      <VehicleModal 
-        vehicle={selectedVehicle}
-        open={isModalOpen}
-        onClose={closeVehicleModal}
-      />
+      {VehicleModalComponent}
     </div>
   );
 };

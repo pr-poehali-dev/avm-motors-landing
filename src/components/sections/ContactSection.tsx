@@ -1,8 +1,8 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useContactForm } from "@/hooks/useContactForm";
 
 const PhoneInput = lazy(() =>
   import('react-international-phone').then(module => ({
@@ -11,21 +11,7 @@ const PhoneInput = lazy(() =>
 );
 
 const ContactSection = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Заявка отправлена",
-      description: "Наш специалист свяжется с вами в ближайшее время",
-    });
-    setFormData({ name: "", phone: "", message: "" });
-  }, [toast]);
+  const { formData, setFormData, handleSubmit } = useContactForm();
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-secondary">

@@ -8,9 +8,11 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import VehicleModal from "@/components/VehicleModal";
 import VehicleCard from "@/components/VehicleCard";
 import SectionHeader from "@/components/SectionHeader";
+import { useVehicleModal } from "@/hooks/useVehicleModal";
+import { useContactForm } from "@/hooks/useContactForm";
+import { BackgroundBlur, DecorativeShapes } from "@/components/ui/decorative-background";
 import ServiceCard from "@/components/ServiceCard";
 import StepCard from "@/components/StepCard";
 import FAQCard from "@/components/FAQCard";
@@ -28,17 +30,14 @@ import 'react-international-phone/style.css';
 const Index = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { openVehicleModal, VehicleModalComponent } = useVehicleModal();
+  const { formData, setFormData, handleSubmit } = useContactForm();
   const [activeTab, setActiveTab] = useState('Видеообзоры');
   const [vehicleCategory, setVehicleCategory] = useState('Авто');
   const [vehicleRegion, setVehicleRegion] = useState('Топ продаж');
   const [motoType, setMotoType] = useState('Все');
   const [workflowTab, setWorkflowTab] = useState('Этапы работ');
   const [openStep, setOpenStep] = useState<number | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
 
   const [quizStep, setQuizStep] = useState(1);
   const [quizData, setQuizData] = useState({
@@ -50,18 +49,6 @@ const Index = () => {
   });
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
-  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openVehicleModal = (vehicle: Vehicle) => {
-    setSelectedVehicle(vehicle);
-    setIsModalOpen(true);
-  };
-
-  const closeVehicleModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedVehicle(null), 300);
-  };
 
   const handleQuizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,14 +61,7 @@ const Index = () => {
     setQuizStep(1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Заявка отправлена",
-      description: "Наш специалист свяжется с вами в ближайшее время",
-    });
-    setFormData({ name: "", phone: "", message: "" });
-  };
+
 
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
@@ -150,19 +130,8 @@ const Index = () => {
       />
 
       <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-accent/5 dark:bg-accent/5 blur-[180px] rounded-full"></div>
-          <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-accent/10 dark:bg-accent/10 blur-[200px] rounded-full"></div>
-          <div className="absolute bottom-0 right-1/3 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-blue-accent/5 dark:bg-accent/5 blur-[150px] rounded-full"></div>
-        </div>
-        
-        <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/40 dark:from-accent/40 to-transparent rotate-12"></div>
-        <div className="hidden md:block absolute top-1/2 right-[30%] w-1 h-64 bg-gradient-to-b from-blue-accent/60 dark:from-accent/60 to-transparent -rotate-6"></div>
-        <div className="hidden md:block absolute top-1/4 right-[20%] w-32 h-32 border border-blue-accent/20 dark:border-accent/20 rotate-45"></div>
-        <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/30 dark:border-accent/30 rotate-12"></div>
-        
-        <div className="hidden md:block absolute top-1/4 left-[10%] w-1 h-48 bg-gradient-to-b from-transparent via-blue-accent/30 dark:via-accent/30 to-transparent rotate-[-15deg]"></div>
-        <div className="hidden md:block absolute bottom-1/4 left-[15%] w-20 h-20 border border-blue-accent/15 dark:border-accent/15 rotate-[-30deg]"></div>
+        <BackgroundBlur variant="hero" />
+        <DecorativeShapes />
         
         <div className="hidden md:block absolute top-0 -right-40 lg:-right-60 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10 overflow-hidden">
           <div 
