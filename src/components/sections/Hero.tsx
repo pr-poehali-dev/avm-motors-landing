@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { BackgroundBlur, DecorativeShapes } from "@/components/ui/decorative-background";
+import ConsultationModal from "@/components/ConsultationModal";
 
 const Hero = () => {
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState<'auto' | 'moto'>('auto');
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   const heroStats = [
     { value: "30%", label: "Экономия", color: "accent" },
@@ -122,6 +124,7 @@ const Hero = () => {
                   size="lg" 
                   variant="outline" 
                   className="border-2 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto hover:bg-button-primary hover:border-button-primary hover:text-button-primary-foreground"
+                  onClick={() => setConsultationOpen(true)}
                 >
                   Консультация эксперта
                 </Button>
@@ -157,6 +160,7 @@ const Hero = () => {
                   size="lg" 
                   variant="outline" 
                   className="border-2 border-orange-500 text-orange-500 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 w-full sm:w-auto hover:bg-orange-500 hover:text-white"
+                  onClick={() => setConsultationOpen(true)}
                 >
                   Консультация эксперта
                 </Button>
@@ -196,6 +200,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      <ConsultationModal open={consultationOpen} onOpenChange={setConsultationOpen} />
     </section>
   );
 };
