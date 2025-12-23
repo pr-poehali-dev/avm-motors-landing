@@ -20,7 +20,7 @@ const Hero = () => {
       <BackgroundBlur variant="hero" />
       <DecorativeShapes />
       
-      <div className="hidden md:block absolute top-0 -right-40 lg:-right-60 w-[900px] lg:w-[1400px] h-full pointer-events-none z-10">
+      <div className="absolute top-0 right-0 w-[50%] sm:w-[55%] md:w-[50%] lg:w-[55%] xl:w-[60%] h-full pointer-events-none z-10">
         <div
           className={`absolute inset-0 transition-all duration-700 ${
             activeSlide === 'auto' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
@@ -65,7 +65,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20">
+      <div className="w-full px-4 sm:px-6 lg:px-12 relative py-8 md:py-16 z-20 max-w-[50%] sm:max-w-[45%] md:max-w-[50%] lg:max-w-[45%] xl:max-w-[40%]">
         <div className="relative">
           <div className="mb-8 flex gap-3 sm:gap-4">
             <button
@@ -102,12 +102,12 @@ const Hero = () => {
                 <div className="h-px w-8 md:w-12 bg-accent"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-accent">Эксклюзивный импорт</span>
               </div>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-xl lg:max-w-2xl">
                 АВТОМОБИЛИ<br />
                 <span className="accent-title text-accent">из Китая</span><br />
                 ПОД КЛЮЧ
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Подбор, проверка и доставка авто под Ваши критерии и бюджет. Без скрытых платежей с фиксированной ценой по договору
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
@@ -137,12 +137,12 @@ const Hero = () => {
                 <div className="h-px w-8 md:w-12 bg-orange-500"></div>
                 <span className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-orange-500">Быстрые и мощные</span>
               </div>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-[0.95] tracking-tight relative max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tight relative max-w-xl lg:max-w-2xl">
                 МОТОТЕХНИКА<br />
                 <span className="accent-title text-orange-500">из Китая</span><br />
                 ПОД КЛЮЧ
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-2xl leading-relaxed relative">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 max-w-md lg:max-w-xl leading-relaxed relative">
                 Мотоциклы, скутеры и квадроциклы. Полное юридическое сопровождение и доставка до вашего города
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 relative z-30">
