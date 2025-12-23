@@ -195,6 +195,9 @@ const About = () => {
               <img 
                 src="https://cdn.poehali.dev/files/photo_2025-10-08_18-25-35.jpg"
                 alt="Офис AVM Motors снаружи"
+                width="1200"
+                height="900"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -208,6 +211,9 @@ const About = () => {
               <img 
                 src="https://cdn.poehali.dev/files/photo_2025-10-09_06-19-52.jpg"
                 alt="Офис AVM Motors изнутри"
+                width="1200"
+                height="900"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>

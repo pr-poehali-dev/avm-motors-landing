@@ -31,6 +31,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
             <img
               src={vehicle.image}
               alt={vehicle.name}
+              width="640"
+              height="480"
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -88,6 +90,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
         <img
           src={vehicle.image}
           alt={vehicle.name}
+          width="640"
+          height="480"
           loading="lazy"
           decoding="async"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

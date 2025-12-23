@@ -10,7 +10,9 @@ const Footer = () => {
           <div className="lg:col-span-5">
             <img 
               src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
-              alt="AVM Motors" 
+              alt="AVM Motors"
+              width="180"
+              height="64"
               className="h-16 mb-6 dark:brightness-0 dark:invert"
             />
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">

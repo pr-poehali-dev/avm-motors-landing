@@ -38,7 +38,9 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
             <button onClick={() => navigate('/')}>
               <img 
                 src="https://cdn.poehali.dev/files/Group 287-Photoroom.png" 
-                alt="AVM Motors" 
+                alt="AVM Motors"
+                width="180"
+                height="44"
                 className="h-8 sm:h-10 md:h-11 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity dark:brightness-0 dark:invert"
               />
             </button>
