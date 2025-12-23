@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -9,9 +7,6 @@ import SectionHeader from "@/components/SectionHeader";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
 
 const About = () => {
-  const navigate = useNavigate();
-  const [activeSlide, setActiveSlide] = useState<'auto' | 'moto'>('auto');
-
   const stats = [
     { value: "13+", label: "лет на рынке", icon: "Calendar" },
     { value: "5+", label: "лет работы с Китаем", icon: "Globe" },
@@ -106,129 +101,19 @@ const About = () => {
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
         <BackgroundBlur variant="hero" />
         <div className="w-full px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-3 mb-8">
+          <div className="max-w-6xl">
+            <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-accent"></div>
               <span className="text-sm tracking-[0.3em] uppercase text-accent">
-                Каталог
+                О компании
               </span>
             </div>
-
-            <div className="flex gap-3 mb-8">
-              <button
-                onClick={() => setActiveSlide('auto')}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-base transition-all ${
-                  activeSlide === 'auto'
-                    ? 'bg-accent text-accent-foreground shadow-lg scale-105'
-                    : 'bg-card/50 border border-border hover:border-accent/50 hover:bg-card'
-                }`}
-              >
-                <Icon name="Car" size={20} />
-                Автомобили
-              </button>
-              <button
-                onClick={() => setActiveSlide('moto')}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-base transition-all ${
-                  activeSlide === 'moto'
-                    ? 'bg-orange-500 text-white shadow-lg scale-105'
-                    : 'bg-card/50 border border-border hover:border-orange-500/50 hover:bg-card'
-                }`}
-              >
-                <Icon name="Bike" size={20} />
-                Мототехника
-              </button>
-            </div>
-
-            <div className="relative">
-              <div
-                className={`transition-all duration-500 ${
-                  activeSlide === 'auto' ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8 absolute inset-0 pointer-events-none'
-                }`}
-              >
-                <Card className="overflow-hidden bg-gradient-to-br from-yellow-400/20 via-orange-400/10 to-accent/20 border-accent/30">
-                  <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
-                    <div>
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-bold mb-6">
-                        <Icon name="Zap" size={16} />
-                        100 000+ вариантов
-                      </div>
-                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                        Актуальный каталог с пробегом из Китая!
-                      </h2>
-                      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                        Больше 100 000 вариантов до 5 лет. Ежедневные обновления! Бесплатный подбор и расчет доставки.
-                      </p>
-                      <Button
-                        size="lg"
-                        onClick={() => navigate('/catalog')}
-                        className="bg-accent hover:bg-accent/90 text-accent-foreground h-14 px-8 text-base font-semibold"
-                      >
-                        Смотреть авто
-                        <Icon name="ArrowRight" size={20} className="ml-2" />
-                      </Button>
-                    </div>
-                    <div className="relative h-[280px] md:h-[320px]">
-                      <img
-                        src="https://cdn.poehali.dev/files/photo_2025-12-23_10-44-12.jpg"
-                        alt="Автомобили из Китая"
-                        className="w-full h-full object-contain drop-shadow-2xl"
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-
-              <div
-                className={`transition-all duration-500 ${
-                  activeSlide === 'moto' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 absolute inset-0 pointer-events-none'
-                }`}
-              >
-                <Card className="overflow-hidden bg-gradient-to-br from-orange-500/20 via-red-500/10 to-yellow-500/20 border-orange-500/30">
-                  <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
-                    <div>
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-500 text-sm font-bold mb-6">
-                        <Icon name="Sparkles" size={16} />
-                        Эксклюзивные модели
-                      </div>
-                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                        Мототехника из Китая с доставкой
-                      </h2>
-                      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                        Широкий выбор мотоциклов, скутеров и квадроциклов. Официальная гарантия и полное юридическое сопровождение.
-                      </p>
-                      <Button
-                        size="lg"
-                        onClick={() => navigate('/catalog')}
-                        className="bg-orange-500 hover:bg-orange-600 text-white h-14 px-8 text-base font-semibold"
-                      >
-                        Смотреть мото
-                        <Icon name="ArrowRight" size={20} className="ml-2" />
-                      </Button>
-                    </div>
-                    <div className="relative h-[280px] md:h-[320px] flex items-center justify-center">
-                      <Icon name="Bike" size={160} className="text-orange-500/20" />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            </div>
-
-            <div className="flex justify-center gap-2 mt-6">
-              <button
-                onClick={() => setActiveSlide('auto')}
-                className={`h-2 rounded-full transition-all ${
-                  activeSlide === 'auto' ? 'bg-accent w-8' : 'bg-border w-2 hover:bg-accent/50'
-                }`}
-                aria-label="Показать автомобили"
-              />
-              <button
-                onClick={() => setActiveSlide('moto')}
-                className={`h-2 rounded-full transition-all ${
-                  activeSlide === 'moto' ? 'bg-orange-500 w-8' : 'bg-border w-2 hover:bg-orange-500/50'
-                }`}
-                aria-label="Показать мототехнику"
-              />
-            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-4xl">
+              AVM Motors — ваш надёжный партнёр в мире автомобилей
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
+              С 2012 года помогаем клиентам приобретать автомобили мечты с максимальной выгодой и гарантией качества
+            </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-16">
