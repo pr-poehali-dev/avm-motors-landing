@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,7 @@ interface HeaderProps {
   searchValue?: string;
 }
 
-const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick, filterCount = 0, onSearch, searchValue = '' }: HeaderProps) => {
+const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilterClick, filterCount = 0, onSearch, searchValue = '' }: HeaderProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -147,6 +147,8 @@ const Header = ({ onVehicleRegionChange, showFilterButton = false, onFilterClick
       )}
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

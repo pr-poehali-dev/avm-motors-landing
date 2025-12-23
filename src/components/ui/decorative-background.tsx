@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BackgroundBlurProps {
@@ -5,7 +6,7 @@ interface BackgroundBlurProps {
   className?: string;
 }
 
-export const BackgroundBlur = ({ variant = 'hero', className }: BackgroundBlurProps) => {
+export const BackgroundBlur = memo(({ variant = 'hero', className }: BackgroundBlurProps) => {
   if (variant === 'hero') {
     return (
       <div className={cn("absolute inset-0 pointer-events-none", className)}>
@@ -28,9 +29,11 @@ export const BackgroundBlur = ({ variant = 'hero', className }: BackgroundBlurPr
   }
 
   return null;
-};
+});
 
-export const DecorativeShapes = ({ className }: { className?: string }) => {
+BackgroundBlur.displayName = 'BackgroundBlur';
+
+export const DecorativeShapes = memo(({ className }: { className?: string }) => {
   return (
     <div className={cn("absolute inset-0 pointer-events-none", className)}>
       <div className="hidden md:block absolute top-1/3 right-1/4 w-2 h-96 bg-gradient-to-b from-blue-accent/30 dark:from-accent/30 to-transparent rotate-12"></div>
@@ -38,4 +41,6 @@ export const DecorativeShapes = ({ className }: { className?: string }) => {
       <div className="hidden md:block absolute top-[60%] right-[35%] w-24 h-24 border border-blue-accent/20 dark:border-accent/20 rotate-12"></div>
     </div>
   );
-};
+});
+
+DecorativeShapes.displayName = 'DecorativeShapes';
