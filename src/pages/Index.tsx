@@ -890,11 +890,7 @@ const Index = () => {
 
       <Footer />
       
-      <VehicleModal 
-        vehicle={selectedVehicle}
-        open={isModalOpen}
-        onClose={closeVehicleModal}
-      />
+      {VehicleModalComponent}
     </div>
   );
 };
