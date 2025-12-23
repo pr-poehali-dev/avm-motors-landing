@@ -242,6 +242,7 @@ const QuizSection = () => {
                           value={quizData.name}
                           onChange={(e) => setQuizData({ ...quizData, name: e.target.value })}
                           className="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
+                          aria-label="Ваше имя"
                           required
                         />
                         <PhoneInput
@@ -250,6 +251,7 @@ const QuizSection = () => {
                           onChange={(phone) => setQuizData({ ...quizData, phone })}
                           inputClassName="h-12 sm:h-14 text-sm sm:text-base md:text-lg bg-secondary/50 border-border focus:border-accent"
                           className="phone-input-custom"
+                          inputProps={{ 'aria-label': 'Номер телефона' }}
                         />
                       </div>
                     </div>

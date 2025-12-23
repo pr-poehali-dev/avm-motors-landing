@@ -170,6 +170,7 @@ const InfoSections = ({ formData, setFormData, handleSubmit }: InfoSectionsProps
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
+                  aria-label="Ваше имя"
                 />
                 <PhoneInput
                   defaultCountry="by"
@@ -177,6 +178,7 @@ const InfoSections = ({ formData, setFormData, handleSubmit }: InfoSectionsProps
                   onChange={(phone) => setFormData({ ...formData, phone })}
                   inputClassName="h-12 sm:h-14 text-sm sm:text-base bg-background border-border focus:border-accent"
                   className="phone-input-custom"
+                  inputProps={{ 'aria-label': 'Номер телефона' }}
                 />
                 <Button 
                   type="submit" 
