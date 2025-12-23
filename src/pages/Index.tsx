@@ -114,7 +114,7 @@ const Index = () => {
 
       <Hero />
 
-      <section id="vehicles" className="py-16 md:py-24 relative">
+      <section id="vehicles" className="py-12 md:py-16 relative">
         <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="mb-12 md:mb-20">
             <SectionHeader 
