@@ -7,6 +7,7 @@ import ServiceCard from "@/components/ServiceCard";
 import StepCard from "@/components/StepCard";
 import FAQCard from "@/components/FAQCard";
 import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
 
 interface InfoSectionsProps {
   formData: { name: string; phone: string };

@@ -1,6 +1,102 @@
 import React from 'react';
-import * as LucideIcons from 'lucide-react';
-import { LucideProps } from 'lucide-react';
+import { 
+  Activity,
+  ArrowLeft,
+  ArrowRight,
+  Award,
+  Bike,
+  Calendar,
+  Calculator,
+  Car,
+  Check,
+  CheckCircle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  CircleAlert,
+  Clock,
+  DollarSign,
+  Eye,
+  FileText,
+  Filter,
+  Fuel,
+  Gauge,
+  Globe,
+  Heart,
+  Info,
+  ListChecks,
+  Mail,
+  MapPin,
+  Menu,
+  Moon,
+  Package,
+  Phone,
+  Play,
+  Scale,
+  Search,
+  Send,
+  Settings,
+  Shield,
+  Star,
+  Sun,
+  Target,
+  TrendingUp,
+  Truck,
+  User,
+  Users,
+  X,
+  Zap,
+  type LucideProps
+} from 'lucide-react';
+
+const iconMap: Record<string, React.FC<LucideProps>> = {
+  Activity,
+  ArrowLeft,
+  ArrowRight,
+  Award,
+  Bike,
+  Calendar,
+  Calculator,
+  Car,
+  Check,
+  CheckCircle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  CircleAlert,
+  Clock,
+  DollarSign,
+  Eye,
+  FileText,
+  Filter,
+  Fuel,
+  Gauge,
+  Globe,
+  Heart,
+  Info,
+  ListChecks,
+  Mail,
+  MapPin,
+  Menu,
+  Moon,
+  Package,
+  Phone,
+  Play,
+  Scale,
+  Search,
+  Send,
+  Settings,
+  Shield,
+  Star,
+  Sun,
+  Target,
+  TrendingUp,
+  Truck,
+  User,
+  Users,
+  X,
+  Zap,
+};
 
 interface IconProps extends LucideProps {
   name: string;
@@ -8,17 +104,13 @@ interface IconProps extends LucideProps {
 }
 
 const Icon: React.FC<IconProps> = ({ name, fallback = 'CircleAlert', ...props }) => {
-  const IconComponent = (LucideIcons as Record<string, React.FC<LucideProps>>)[name];
+  const IconComponent = iconMap[name];
 
   if (!IconComponent) {
-    // Если иконка не найдена, используем fallback иконку
-    const FallbackIcon = (LucideIcons as Record<string, React.FC<LucideProps>>)[fallback];
-
-    // Если даже fallback не найден, возвращаем пустой span
+    const FallbackIcon = iconMap[fallback];
     if (!FallbackIcon) {
       return <span className="text-xs text-gray-400">[icon]</span>;
     }
-
     return <FallbackIcon {...props} />;
   }
 

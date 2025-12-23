@@ -12,7 +12,6 @@ import {
   vehiclesAmerican,
   vehiclesJapan
 } from "@/data/vehicles";
-import 'react-international-phone/style.css';
 
 const Footer = lazy(() => import("@/components/Footer"));
 const VehiclesCatalog = lazy(() => import("@/components/sections/VehiclesCatalog"));
