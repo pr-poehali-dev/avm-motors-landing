@@ -31,6 +31,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
             <img
               src={vehicle.image}
               alt={vehicle.name}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             {vehicle.badge && (
@@ -86,6 +88,8 @@ const VehicleCard = ({ vehicle, viewMode = 'grid', onClick, showButton = true }:
         <img
           src={vehicle.image}
           alt={vehicle.name}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         {(vehicle.badge || vehicle.type) && (

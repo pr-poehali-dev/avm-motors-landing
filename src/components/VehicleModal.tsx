@@ -100,6 +100,8 @@ const VehicleModal = ({ vehicle, open, onClose }: VehicleModalProps) => {
               <img
                 src={gallery[currentImageIndex]}
                 alt={vehicle.name}
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover select-none transition-opacity duration-300"
                 draggable={false}
               />
