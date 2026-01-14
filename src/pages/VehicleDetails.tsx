@@ -7,6 +7,7 @@ import Icon from "@/components/ui/icon";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { BackgroundBlur } from "@/components/ui/decorative-background";
+import CostCalculator from "@/components/CostCalculator";
 
 const VehicleDetails = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const VehicleDetails = () => {
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
   const [vehiclesData, setVehiclesData] = useState<any>(null);
 
   useEffect(() => {
@@ -183,6 +185,15 @@ const VehicleDetails = () => {
                   WhatsApp
                 </Button>
 
+                <Button
+                  onClick={() => setShowCalculator(true)}
+                  variant="outline"
+                  className="w-full h-12 text-base font-semibold gap-2"
+                >
+                  <Icon name="Calculator" size={20} />
+                  Рассчитать
+                </Button>
+
                 <div className="pt-4 border-t border-border space-y-3">
                   <div className="flex items-center gap-2">
                     <Icon name="Clock" size={18} className="text-muted-foreground" />
@@ -303,6 +314,14 @@ const VehicleDetails = () => {
       </section>
 
       <Footer />
+
+      {showCalculator && (
+        <CostCalculator
+          basePrice={parseInt(vehicle.price.replace(/[^0-9]/g, '')) || 1143364}
+          vehicleName={vehicle.name}
+          onClose={() => setShowCalculator(false)}
+        />
+      )}
     </div>
   );
 };
