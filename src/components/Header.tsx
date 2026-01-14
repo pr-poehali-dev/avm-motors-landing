@@ -31,7 +31,7 @@ const Header = memo(({ onVehicleRegionChange, showFilterButton = false, onFilter
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-background border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/50">
       <div className="w-full px-3 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 h-16 sm:h-20">
           <div className="flex items-center gap-2 md:gap-6">
