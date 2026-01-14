@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ConsultationModal from '@/components/ConsultationModal';
 
 const Calculator = () => {
   const [region, setRegion] = useState<'RB' | 'RF'>('RB');
   const [platformPrice, setPlatformPrice] = useState<number>(8000);
   const [currency] = useState('CNY');
   const [exchangeRate] = useState(13.5);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [commission, setCommission] = useState(0);
   const [delivery, setDelivery] = useState(0);
@@ -165,7 +167,7 @@ const Calculator = () => {
                 </ul>
               </div>
 
-              <Button size="lg" className="w-full">
+              <Button size="lg" className="w-full" onClick={() => setIsModalOpen(true)}>
                 Получить консультацию
               </Button>
             </div>
@@ -174,6 +176,7 @@ const Calculator = () => {
       </section>
 
       <Footer />
+      <ConsultationModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </div>
   );
 };
