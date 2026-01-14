@@ -32,7 +32,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
       <div className="bg-card border border-border rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-card border-b border-border p-4 flex justify-between items-center">
           <h2 className="text-xl font-bold">
