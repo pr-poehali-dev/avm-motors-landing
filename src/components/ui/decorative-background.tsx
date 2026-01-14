@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BackgroundBlurProps {
-  variant?: 'hero' | 'catalog' | 'footer' | 'custom';
+  variant?: 'hero' | 'catalog' | 'footer' | 'details' | 'custom';
   className?: string;
 }
 
@@ -25,6 +25,14 @@ export const BackgroundBlur = memo(({ variant = 'hero', className }: BackgroundB
   if (variant === 'footer') {
     return (
       <div className={cn("absolute top-0 left-1/4 w-[300px] h-[300px] bg-accent/5 blur-[100px] rounded-full -z-10", className)} />
+    );
+  }
+
+  if (variant === 'details') {
+    return (
+      <div className={cn("absolute inset-0 pointer-events-none -z-10", className)}>
+        <div className="absolute top-0 right-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-blue-accent/5 dark:bg-accent/5 blur-[120px] rounded-full"></div>
+      </div>
     );
   }
 

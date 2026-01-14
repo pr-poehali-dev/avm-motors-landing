@@ -33,7 +33,7 @@ const Calculator = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Header onVehicleRegionChange={() => {}} />
       
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 relative overflow-hidden">
+      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 relative">
         <BackgroundBlur variant="hero" />
         
         <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
