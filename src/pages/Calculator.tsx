@@ -167,7 +167,7 @@ const Calculator = () => {
                 </ul>
               </div>
 
-              <Button size="lg" className="w-full" onClick={() => setIsModalOpen(true)}>
+              <Button size="lg" className="w-full bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground" onClick={() => setIsModalOpen(true)}>
                 Получить консультацию
               </Button>
             </div>
