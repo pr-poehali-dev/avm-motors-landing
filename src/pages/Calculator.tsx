@@ -32,7 +32,7 @@ const Calculator = () => {
   const includedServices = [
     'Подбор под Ваши задачи и бюджет автомобиля, его проверка и организация покупки',
     'Оформление экспортных документов + страхование перед отправкой',
-    'Доставка по Китаю + до СВХ в г. Минске',
+    'Доставка по Китаю + доставка до СВХ',
     'Таможенное оформление',
     'Помощь в получении ЭПТС и регистрации в ГАИ'
   ];
@@ -142,7 +142,7 @@ const Calculator = () => {
                   </li>
                   <li className="flex gap-3">
                     <span className="font-bold text-accent">3.</span>
-                    <span>Доставка (включает в себя доставку по Китаю + до СВХ в Минске)</span>
+                    <span>Доставка (включает в себя доставку по Китаю + доставку до СВХ)</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-bold text-accent">4.</span>
@@ -150,7 +150,7 @@ const Calculator = () => {
                   </li>
                   <li className="flex gap-3">
                     <span className="font-bold text-accent">5.</span>
-                    <span>Наши услуги остаются как указано</span>
+                    <span>Наши услуги (см. список «Что входит в под ключ?»)</span>
                   </li>
                 </ol>
               </div>
