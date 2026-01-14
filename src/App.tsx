@@ -6,6 +6,7 @@ import Index from "./pages/Index";
 
 const Catalog = lazy(() => import("./pages/Catalog"));
 const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
+const Calculator = lazy(() => import("./pages/Calculator"));
 const About = lazy(() => import("./pages/About"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:id" element={<VehicleDetails />} />
+          <Route path="/calculator" element={<Calculator />} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
