@@ -181,7 +181,7 @@ const Calculator = () => {
                       : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
                 >
-                  В Белоруссию
+                  В Беларусь
                 </button>
               </div>
 
@@ -229,7 +229,7 @@ const Calculator = () => {
 
                 <div className="pt-4 border-t border-border">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-semibold">Итого "под ключ" в {currency === 'BYN' ? 'России' : 'Белоруссии'}</span>
+                    <span className="font-semibold">Итого "под ключ" в {currency === 'BYN' ? 'России' : 'Беларуси'}</span>
                     <Icon name="Info" size={16} className="text-muted-foreground" />
                   </div>
                   <div className="text-3xl font-bold">{formatPrice(displayTotal)} {displayCurrency}*</div>
@@ -324,7 +324,7 @@ const Calculator = () => {
                         : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                     }`}
                   >
-                    В Белоруссию
+                    В Беларусь
                   </button>
                 </div>
 
