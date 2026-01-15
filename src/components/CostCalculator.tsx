@@ -265,7 +265,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                   className="flex-1 bg-accent hover:bg-accent/90"
                   onClick={() => setActiveTab('credit')}
                 >
-                  Точный расчет
+                  В кредит
                 </Button>
               </div>
             </div>
@@ -373,35 +373,37 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="space-y-2">
                 <Button
                   variant="outline"
-                  className="flex-1"
-                  onClick={exportToPDF}
+                  className="w-full"
+                  onClick={() => setActiveTab('detail')}
                 >
-                  <Icon name="Download" size={16} className="mr-2" />
-                  PDF
+                  <Icon name="ArrowLeft" size={16} className="mr-2" />
+                  Назад
                 </Button>
-                <Button
-                  className="flex-1 bg-accent hover:bg-accent/90"
-                  onClick={onClose}
-                >
-                  Связаться
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    className="flex-1"
+                    onClick={exportToPDF}
+                  >
+                    <Icon name="Download" size={16} className="mr-2" />
+                    PDF
+                  </Button>
+                  <Button
+                    className="flex-1 bg-accent hover:bg-accent/90"
+                    onClick={onClose}
+                  >
+                    Связаться
+                  </Button>
+                </div>
               </div>
 
               <button className="w-full py-3 text-foreground flex items-center justify-between hover:bg-secondary rounded-lg px-4 transition-colors">
                 <span className="font-semibold">Банки партнеры</span>
                 <Icon name="ChevronRight" size={20} />
               </button>
-
-              <Button
-                variant="outline"
-                onClick={() => setActiveTab('detail')}
-                className="w-full"
-              >
-                Вернуться к детализации
-              </Button>
             </div>
           </div>
         )}

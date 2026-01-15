@@ -247,7 +247,7 @@ const Calculator = () => {
                     className="flex-1 bg-accent hover:bg-accent/90"
                     onClick={() => setActiveTab('credit')}
                   >
-                    Точный расчет
+                    В кредит
                   </Button>
                 </div>
               </div>
@@ -380,21 +380,31 @@ const Calculator = () => {
                     <div className="text-3xl font-bold">{formatPrice(currency === 'BYN' ? Math.round(monthlyPayment / 100) : monthlyPayment)} {displayCurrency}</div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="space-y-2">
                     <Button
                       variant="outline"
-                      className="flex-1"
-                      onClick={exportToPDF}
+                      className="w-full"
+                      onClick={() => setActiveTab('detail')}
                     >
-                      <Icon name="Download" size={16} className="mr-2" />
-                      PDF
+                      <Icon name="ArrowLeft" size={16} className="mr-2" />
+                      Назад
                     </Button>
-                    <Button
-                      className="flex-1 bg-accent hover:bg-accent/90"
-                      onClick={() => setIsModalOpen(true)}
-                    >
-                      Получить консультацию
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        className="flex-1"
+                        onClick={exportToPDF}
+                      >
+                        <Icon name="Download" size={16} className="mr-2" />
+                        PDF
+                      </Button>
+                      <Button
+                        className="flex-1 bg-accent hover:bg-accent/90"
+                        onClick={() => setIsModalOpen(true)}
+                      >
+                        Консультация
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
