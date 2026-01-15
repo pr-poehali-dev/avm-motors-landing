@@ -22,7 +22,7 @@ const Calculator = () => {
   const [activeTab, setActiveTab] = useState<'detail' | 'credit' | 'saved'>('detail');
   const [region, setRegion] = useState<'RB' | 'RF'>('RB');
   const [platformPrice, setPlatformPrice] = useState<number>(1143364);
-  const [currency, setCurrency] = useState<'RUB' | 'BYN'>('RUB');
+  const [currency, setCurrency] = useState<'RUB' | 'BYN'>('BYN');
   const [exchangeRate] = useState(13.5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [downPaymentPercent, setDownPaymentPercent] = useState(30);
@@ -32,7 +32,7 @@ const Calculator = () => {
   const [commission, setCommission] = useState(0);
   const [delivery, setDelivery] = useState(0);
   const [customs, setCustoms] = useState(0);
-  const [services] = useState(currency === 'RUB' ? 98566 : Math.round(98566 / 3.3));
+  const services = currency === 'BYN' ? 98566 : Math.round(98566 / 100);
 
   useEffect(() => {
     const saved = localStorage.getItem('savedCalculations');
@@ -43,8 +43,8 @@ const Calculator = () => {
 
   useEffect(() => {
     setCommission(Math.round(platformPrice * 0.08));
-    setDelivery(currency === 'RUB' ? 354837 : Math.round(354837 / 3.3));
-    setCustoms(currency === 'RUB' ? Math.round(platformPrice * 4.6) : Math.round((platformPrice * 4.6) / 3.3));
+    setDelivery(currency === 'BYN' ? 354837 : Math.round(354837 / 100));
+    setCustoms(currency === 'BYN' ? Math.round(platformPrice * 4.6) : Math.round((platformPrice * 4.6) / 100));
   }, [platformPrice, currency]);
 
   const totalCost = platformPrice + commission + delivery + services + customs;
@@ -57,6 +57,7 @@ const Calculator = () => {
   const formatPrice = (price: number) => price.toLocaleString('ru-RU');
   const displayCurrency = currency === 'BYN' ? '₽' : '$';
   const displayTotal = currency === 'BYN' ? totalCost : totalCostUSD;
+  const convertForDisplay = (price: number) => currency === 'RUB' ? Math.round(price / 100) : price;
 
   const exportToPDF = () => {
     const doc = new jsPDF();
@@ -77,12 +78,12 @@ const Calculator = () => {
     
     doc.setFontSize(11);
     let y = 60;
-    const pdfCurrency = currency === 'RUB' ? 'USD' : 'RUB';
+    const pdfCurrency = currency === 'BYN' ? 'RUB' : 'USD';
     const convertForPDF = (price: number) => currency === 'RUB' ? Math.round(price / 100) : price;
     
-    doc.text(`Cena na aukcione: ${formatPrice(platformPrice)} ${currency}`, 20, y);
+    doc.text(`Cena na ploshhadke: ${formatPrice(currency === 'RUB' ? Math.round(platformPrice / 100) : platformPrice)} ${pdfCurrency}`, 20, y);
     y += 10;
-    doc.text(`Sbory aukciona: ${formatPrice(convertForPDF(auctionFees))} ${pdfCurrency}`, 20, y);
+    doc.text(`Sbory ploshhadki: ${formatPrice(convertForPDF(auctionFees))} ${pdfCurrency}`, 20, y);
     y += 10;
     doc.text(`Dostavka: ot ${formatPrice(convertForPDF(deliveryCost))} ${pdfCurrency}`, 20, y);
     y += 10;
@@ -186,7 +187,7 @@ const Calculator = () => {
 
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
-                  <span className="text-muted-foreground text-sm">Цена авто на аукционе</span>
+                  <span className="text-muted-foreground text-sm">Цена на площадке</span>
                   <div className="text-right">
                     <input
                       type="number"
@@ -194,7 +195,7 @@ const Calculator = () => {
                       onChange={(e) => setPlatformPrice(Number(e.target.value))}
                       className="text-2xl font-bold text-right bg-transparent border-none focus:outline-none w-40"
                     />
-                    <div className="text-sm text-muted-foreground">{currency}</div>
+                    <div className="text-sm text-muted-foreground">{displayCurrency}</div>
                   </div>
                 </div>
 
@@ -204,20 +205,20 @@ const Calculator = () => {
 
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Сборы аукциона</span>
-                    <span className="font-semibold">{formatPrice(currency === 'RUB' ? Math.round(commission / 100) : commission)} {displayCurrency}</span>
+                    <span className="text-muted-foreground">Сборы площадки</span>
+                    <span className="font-semibold">{formatPrice(convertForDisplay(commission))} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Доставка</span>
-                    <span className="font-semibold">от {formatPrice(currency === 'RUB' ? Math.round(delivery / 100) : delivery)} {displayCurrency}</span>
+                    <span className="font-semibold">от {formatPrice(convertForDisplay(delivery))} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Наши услуги</span>
-                    <span className="font-semibold">от {formatPrice(currency === 'RUB' ? Math.round(services / 100) : services)} {displayCurrency}</span>
+                    <span className="font-semibold">от {formatPrice(convertForDisplay(services))} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Растаможка</span>
-                    <span className="font-semibold">≈ {formatPrice(currency === 'RUB' ? Math.round(customs / 100) : customs)} {displayCurrency}</span>
+                    <span className="font-semibold">≈ {formatPrice(convertForDisplay(customs))} {displayCurrency}</span>
                   </div>
                 </div>
 
@@ -340,7 +341,7 @@ const Calculator = () => {
                         <option value="BYN">BYN</option>
                       </select>
                     </div>
-                    <div className="text-2xl font-bold">{formatPrice(loanAmount)}</div>
+                    <div className="text-2xl font-bold">{formatPrice(convertForDisplay(loanAmount))} {displayCurrency}</div>
                   </div>
 
                   <div>
@@ -356,7 +357,7 @@ const Calculator = () => {
                         <option value={30}>30%</option>
                       </select>
                     </div>
-                    <div className="text-2xl font-bold">{formatPrice(downPayment)}</div>
+                    <div className="text-2xl font-bold">{formatPrice(convertForDisplay(downPayment))} {displayCurrency}</div>
                   </div>
 
                   <div>
@@ -377,7 +378,7 @@ const Calculator = () => {
 
                   <div className="pt-4 border-t border-border">
                     <div className="text-sm text-muted-foreground mb-2">Ежемесячный платеж</div>
-                    <div className="text-3xl font-bold">{formatPrice(currency === 'RUB' ? Math.round(monthlyPayment / 100) : monthlyPayment)} {displayCurrency}</div>
+                    <div className="text-3xl font-bold">{formatPrice(convertForDisplay(monthlyPayment))} {displayCurrency}</div>
                   </div>
 
                   <div className="space-y-2">

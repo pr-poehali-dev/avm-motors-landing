@@ -23,7 +23,7 @@ interface CostCalculatorProps {
 
 const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps) => {
   const [activeTab, setActiveTab] = useState<'detail' | 'credit'>('detail');
-  const [currency, setCurrency] = useState<'RUB' | 'BYN'>('RUB');
+  const [currency, setCurrency] = useState<'RUB' | 'BYN'>('BYN');
   const [country, setCountry] = useState<'BY' | 'RU'>('BY');
   const [downPaymentPercent, setDownPaymentPercent] = useState(30);
   const [loanTerm, setLoanTerm] = useState(40);
@@ -38,9 +38,9 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   }, []);
 
   const auctionFees = Math.round(basePrice * 0.08);
-  const deliveryCost = currency === 'RUB' ? 354837 : Math.round(354837 / 3.3);
-  const serviceFee = currency === 'RUB' ? 98566 : Math.round(98566 / 3.3);
-  const customsCost = currency === 'RUB' ? Math.round(basePrice * 4.6) : Math.round((basePrice * 4.6) / 3.3);
+  const deliveryCost = currency === 'BYN' ? 354837 : Math.round(354837 / 100);
+  const serviceFee = currency === 'BYN' ? 98566 : Math.round(98566 / 100);
+  const customsCost = currency === 'BYN' ? Math.round(basePrice * 4.6) : Math.round((basePrice * 4.6) / 100);
   
   const totalCost = basePrice + auctionFees + deliveryCost + serviceFee + customsCost;
   const totalCostUSD = Math.round(totalCost / 100);
@@ -57,6 +57,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   const displayCurrency = currency === 'BYN' ? '₽' : '$';
   const displayTotal = currency === 'BYN' ? totalCost : totalCostUSD;
   const convertForDisplay = (price: number) => currency === 'RUB' ? Math.round(price / 100) : price;
+  const convertBasePriceForDisplay = () => currency === 'RUB' ? Math.round(basePrice / 100) : basePrice;
 
   const exportToPDF = () => {
     const doc = new jsPDF();
@@ -76,11 +77,11 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
     
     doc.setFontSize(11);
     let y = 70;
-    const pdfCurrency = currency === 'RUB' ? 'USD' : 'RUB';
+    const pdfCurrency = currency === 'BYN' ? 'RUB' : 'USD';
     
-    doc.text(`Cena na aukcione: ${formatPrice(basePrice)} ${currency}`, 20, y);
+    doc.text(`Cena na ploshhadke: ${formatPrice(convertBasePriceForDisplay())} ${pdfCurrency}`, 20, y);
     y += 10;
-    doc.text(`Sbory aukciona: ${formatPrice(convertForDisplay(auctionFees))} ${pdfCurrency}`, 20, y);
+    doc.text(`Sbory ploshhadki: ${formatPrice(convertForDisplay(auctionFees))} ${pdfCurrency}`, 20, y);
     y += 10;
     doc.text(`Dostavka: ot ${formatPrice(convertForDisplay(deliveryCost))} ${pdfCurrency}`, 20, y);
     y += 10;
@@ -209,10 +210,10 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
 
             <div className="space-y-4">
               <div className="flex justify-between items-start">
-                <span className="text-muted-foreground text-sm">Цена авто на аукционе</span>
+                <span className="text-muted-foreground text-sm">Цена на площадке</span>
                 <div className="text-right">
-                  <div className="text-2xl font-bold">{formatPrice(basePrice)}</div>
-                  <div className="text-sm text-muted-foreground">{currency}</div>
+                  <div className="text-2xl font-bold">{formatPrice(convertBasePriceForDisplay())}</div>
+                  <div className="text-sm text-muted-foreground">{displayCurrency}</div>
                 </div>
               </div>
 
@@ -222,7 +223,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
 
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Сборы аукциона</span>
+                  <span className="text-muted-foreground">Сборы площадки</span>
                   <span className="font-semibold">{formatPrice(convertForDisplay(auctionFees))} {displayCurrency}</span>
                 </div>
                 <div className="flex justify-between">
