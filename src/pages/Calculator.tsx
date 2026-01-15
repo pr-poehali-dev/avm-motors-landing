@@ -5,8 +5,20 @@ import Footer from '@/components/Footer';
 import ConsultationModal from '@/components/ConsultationModal';
 import Icon from '@/components/ui/icon';
 
+interface SavedCalculation {
+  id: string;
+  vehicleName: string;
+  basePrice: number;
+  currency: 'RUB' | 'BYN';
+  totalCost: number;
+  date: string;
+  downPaymentPercent?: number;
+  loanTerm?: number;
+  monthlyPayment?: number;
+}
+
 const Calculator = () => {
-  const [activeTab, setActiveTab] = useState<'detail' | 'credit'>('detail');
+  const [activeTab, setActiveTab] = useState<'detail' | 'credit' | 'saved'>('detail');
   const [region, setRegion] = useState<'RB' | 'RF'>('RB');
   const [platformPrice, setPlatformPrice] = useState<number>(1143364);
   const [currency, setCurrency] = useState<'RUB' | 'BYN'>('RUB');
@@ -14,11 +26,19 @@ const Calculator = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [downPaymentPercent, setDownPaymentPercent] = useState(30);
   const [loanTerm, setLoanTerm] = useState(40);
+  const [savedCalculations, setSavedCalculations] = useState<SavedCalculation[]>([]);
 
   const [commission, setCommission] = useState(0);
   const [delivery, setDelivery] = useState(0);
   const [customs, setCustoms] = useState(0);
   const [services] = useState(currency === 'RUB' ? 98566 : Math.round(98566 / 3.3));
+
+  useEffect(() => {
+    const saved = localStorage.getItem('savedCalculations');
+    if (saved) {
+      setSavedCalculations(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     setCommission(Math.round(platformPrice * 0.08));
@@ -33,6 +53,33 @@ const Calculator = () => {
   const monthlyPayment = Math.round((loanAmount * (interestRate / 12) * Math.pow(1 + interestRate / 12, loanTerm)) / (Math.pow(1 + interestRate / 12, loanTerm) - 1));
 
   const formatPrice = (price: number) => price.toLocaleString('ru-RU');
+
+  const saveCalculation = () => {
+    const newCalculation: SavedCalculation = {
+      id: Date.now().toString(),
+      vehicleName: 'Расчет авто',
+      basePrice: platformPrice,
+      currency,
+      totalCost,
+      date: new Date().toLocaleDateString('ru-RU'),
+      ...(activeTab === 'credit' && {
+        downPaymentPercent,
+        loanTerm,
+        monthlyPayment
+      })
+    };
+
+    const updated = [newCalculation, ...savedCalculations].slice(0, 10);
+    setSavedCalculations(updated);
+    localStorage.setItem('savedCalculations', JSON.stringify(updated));
+    alert('Расчет сохранен!');
+  };
+
+  const deleteCalculation = (id: string) => {
+    const updated = savedCalculations.filter(calc => calc.id !== id);
+    setSavedCalculations(updated);
+    localStorage.setItem('savedCalculations', JSON.stringify(updated));
+  };
 
   const includedServices = [
     'Подбор под Ваши задачи и бюджет автомобиля, его проверка и организация покупки',
@@ -59,10 +106,17 @@ const Calculator = () => {
 
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <div className="bg-card border-b border-border p-4">
+              <div className="bg-card border-b border-border p-4 flex justify-between items-center">
                 <h2 className="text-xl font-bold">
-                  {activeTab === 'detail' ? 'Детализация на 14.01.26' : 'Расчет оплаты частями'}
+                  {activeTab === 'saved' ? 'Сохраненные расчеты' : activeTab === 'detail' ? 'Детализация на 14.01.26' : 'Расчет оплаты частями'}
                 </h2>
+                <button
+                  onClick={() => setActiveTab(activeTab === 'saved' ? 'detail' : 'saved')}
+                  className="p-1 hover:bg-secondary rounded"
+                  title="Сохраненные расчеты"
+                >
+                  <Icon name="History" size={20} />
+                </button>
               </div>
 
               {activeTab === 'detail' && (
@@ -144,9 +198,10 @@ const Calculator = () => {
                   <Button
                     variant="outline"
                     className="flex-1"
-                    onClick={() => setActiveTab('credit')}
+                    onClick={saveCalculation}
                   >
-                    Детализация
+                    <Icon name="Save" size={16} className="mr-2" />
+                    Сохранить
                   </Button>
                   <Button
                     className="flex-1 bg-accent hover:bg-accent/90"
@@ -157,6 +212,50 @@ const Calculator = () => {
                 </div>
               </div>
             </div>
+              )}
+
+              {activeTab === 'saved' && (
+              <div className="p-6 space-y-4">
+                {savedCalculations.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Icon name="Inbox" size={48} className="mx-auto mb-3 opacity-50" />
+                    <p>Нет сохраненных расчетов</p>
+                  </div>
+                ) : (
+                  savedCalculations.map((calc) => (
+                    <div key={calc.id} className="bg-secondary rounded-lg p-4 space-y-2">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h3 className="font-semibold">{calc.vehicleName}</h3>
+                          <p className="text-sm text-muted-foreground">{calc.date}</p>
+                        </div>
+                        <button
+                          onClick={() => deleteCalculation(calc.id)}
+                          className="p-1 hover:bg-background rounded"
+                        >
+                          <Icon name="Trash2" size={16} className="text-muted-foreground" />
+                        </button>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">Цена на аукционе:</span>
+                          <span className="font-semibold">{formatPrice(calc.basePrice)} {calc.currency}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Итого под ключ:</span>
+                          <span className="font-bold text-accent">{formatPrice(calc.totalCost)} ₽</span>
+                        </div>
+                        {calc.monthlyPayment && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Платеж/мес:</span>
+                            <span className="font-semibold">{formatPrice(calc.monthlyPayment)} ₽</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
               )}
 
               {activeTab === 'credit' && (
@@ -245,9 +344,10 @@ const Calculator = () => {
                     <Button
                       variant="outline"
                       className="flex-1"
-                      onClick={() => setActiveTab('detail')}
+                      onClick={saveCalculation}
                     >
-                      Назад
+                      <Icon name="Save" size={16} className="mr-2" />
+                      Сохранить
                     </Button>
                     <Button
                       className="flex-1 bg-accent hover:bg-accent/90"
