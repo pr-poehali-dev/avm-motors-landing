@@ -49,8 +49,8 @@ const Calculator = () => {
 
   const totalCost = platformPrice + commission + delivery + services + customs;
   const totalCostUSD = Math.round(totalCost / 100);
-  const downPayment = Math.round(totalCost * (downPaymentPercent / 100));
-  const loanAmount = totalCost - downPayment;
+  const downPayment = Math.round((currency === 'BYN' ? totalCost : totalCostUSD) * (downPaymentPercent / 100));
+  const loanAmount = (currency === 'BYN' ? totalCost : totalCostUSD) - downPayment;
   const interestRate = 0.06;
   const monthlyPayment = Math.round((loanAmount * (interestRate / 12) * Math.pow(1 + interestRate / 12, loanTerm)) / (Math.pow(1 + interestRate / 12, loanTerm) - 1));
 

@@ -24,7 +24,6 @@ interface CostCalculatorProps {
 const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps) => {
   const [activeTab, setActiveTab] = useState<'detail' | 'credit'>('detail');
   const [currency, setCurrency] = useState<'RUB' | 'BYN'>('BYN');
-  const [country, setCountry] = useState<'BY' | 'RU'>('BY');
   const [downPaymentPercent, setDownPaymentPercent] = useState(30);
   const [loanTerm, setLoanTerm] = useState(40);
   const [savedCalculations, setSavedCalculations] = useState<SavedCalculation[]>([]);
@@ -45,8 +44,8 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   const totalCost = basePrice + auctionFees + deliveryCost + serviceFee + customsCost;
   const totalCostUSD = Math.round(totalCost / 100);
 
-  const downPayment = Math.round(totalCost * (downPaymentPercent / 100));
-  const loanAmount = totalCost - downPayment;
+  const downPayment = Math.round((currency === 'BYN' ? totalCost : totalCostUSD) * (downPaymentPercent / 100));
+  const loanAmount = (currency === 'BYN' ? totalCost : totalCostUSD) - downPayment;
   const interestRate = 0.06;
   const monthlyPayment = Math.round((loanAmount * (interestRate / 12) * Math.pow(1 + interestRate / 12, loanTerm)) / (Math.pow(1 + interestRate / 12, loanTerm) - 1));
 
