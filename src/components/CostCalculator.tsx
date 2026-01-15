@@ -54,9 +54,9 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
     return price.toLocaleString('ru-RU');
   };
   
-  const displayCurrency = currency === 'BYN' ? '$' : '₽';
-  const displayTotal = currency === 'BYN' ? totalCostUSD : totalCost;
-  const convertForDisplay = (price: number) => currency === 'BYN' ? Math.round(price / 100) : price;
+  const displayCurrency = currency === 'BYN' ? '₽' : '$';
+  const displayTotal = currency === 'BYN' ? totalCost : totalCostUSD;
+  const convertForDisplay = (price: number) => currency === 'RUB' ? Math.round(price / 100) : price;
 
   const exportToPDF = () => {
     const doc = new jsPDF();
@@ -76,7 +76,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
     
     doc.setFontSize(11);
     let y = 70;
-    const pdfCurrency = currency === 'BYN' ? 'USD' : 'RUB';
+    const pdfCurrency = currency === 'RUB' ? 'USD' : 'RUB';
     
     doc.text(`Cena na aukcione: ${formatPrice(basePrice)} ${currency}`, 20, y);
     y += 10;
@@ -186,9 +186,9 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
           <div className="p-6 space-y-6">
             <div className="flex gap-2">
               <button
-                onClick={() => setCurrency('RUB')}
+                onClick={() => setCurrency('BYN')}
                 className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
-                  currency === 'RUB'
+                  currency === 'BYN'
                     ? 'bg-secondary text-foreground'
                     : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                 }`}
@@ -196,9 +196,9 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                 В РБ
               </button>
               <button
-                onClick={() => setCurrency('BYN')}
+                onClick={() => setCurrency('RUB')}
                 className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
-                  currency === 'BYN'
+                  currency === 'RUB'
                     ? 'bg-secondary text-foreground'
                     : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                 }`}

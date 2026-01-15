@@ -55,8 +55,8 @@ const Calculator = () => {
   const monthlyPayment = Math.round((loanAmount * (interestRate / 12) * Math.pow(1 + interestRate / 12, loanTerm)) / (Math.pow(1 + interestRate / 12, loanTerm) - 1));
 
   const formatPrice = (price: number) => price.toLocaleString('ru-RU');
-  const displayCurrency = currency === 'BYN' ? '$' : '₽';
-  const displayTotal = currency === 'BYN' ? totalCostUSD : totalCost;
+  const displayCurrency = currency === 'BYN' ? '₽' : '$';
+  const displayTotal = currency === 'BYN' ? totalCost : totalCostUSD;
 
   const exportToPDF = () => {
     const doc = new jsPDF();
@@ -77,8 +77,8 @@ const Calculator = () => {
     
     doc.setFontSize(11);
     let y = 60;
-    const pdfCurrency = currency === 'BYN' ? 'USD' : 'RUB';
-    const convertForPDF = (price: number) => currency === 'BYN' ? Math.round(price / 100) : price;
+    const pdfCurrency = currency === 'RUB' ? 'USD' : 'RUB';
+    const convertForPDF = (price: number) => currency === 'RUB' ? Math.round(price / 100) : price;
     
     doc.text(`Cena na aukcione: ${formatPrice(platformPrice)} ${currency}`, 20, y);
     y += 10;
@@ -163,9 +163,9 @@ const Calculator = () => {
               <div className="p-6 space-y-6">
               <div className="flex gap-2">
                 <button
-                  onClick={() => setCurrency('RUB')}
+                  onClick={() => setCurrency('BYN')}
                   className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
-                    currency === 'RUB'
+                    currency === 'BYN'
                       ? 'bg-secondary text-foreground'
                       : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
@@ -173,9 +173,9 @@ const Calculator = () => {
                   В РБ
                 </button>
                 <button
-                  onClick={() => setCurrency('BYN')}
+                  onClick={() => setCurrency('RUB')}
                   className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
-                    currency === 'BYN'
+                    currency === 'RUB'
                       ? 'bg-secondary text-foreground'
                       : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
@@ -205,19 +205,19 @@ const Calculator = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Сборы аукциона</span>
-                    <span className="font-semibold">{formatPrice(currency === 'BYN' ? Math.round(commission / 100) : commission)} {displayCurrency}</span>
+                    <span className="font-semibold">{formatPrice(currency === 'RUB' ? Math.round(commission / 100) : commission)} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Доставка</span>
-                    <span className="font-semibold">от {formatPrice(currency === 'BYN' ? Math.round(delivery / 100) : delivery)} {displayCurrency}</span>
+                    <span className="font-semibold">от {formatPrice(currency === 'RUB' ? Math.round(delivery / 100) : delivery)} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Наши услуги</span>
-                    <span className="font-semibold">от {formatPrice(currency === 'BYN' ? Math.round(services / 100) : services)} {displayCurrency}</span>
+                    <span className="font-semibold">от {formatPrice(currency === 'RUB' ? Math.round(services / 100) : services)} {displayCurrency}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Растаможка</span>
-                    <span className="font-semibold">≈ {formatPrice(currency === 'BYN' ? Math.round(customs / 100) : customs)} {displayCurrency}</span>
+                    <span className="font-semibold">≈ {formatPrice(currency === 'RUB' ? Math.round(customs / 100) : customs)} {displayCurrency}</span>
                   </div>
                 </div>
 
@@ -231,7 +231,7 @@ const Calculator = () => {
                     <span className="font-semibold">Итого "под ключ" в РФ</span>
                     <Icon name="Info" size={16} className="text-muted-foreground" />
                   </div>
-                  <div className="text-3xl font-bold">{formatPrice(totalCost)} ₽*</div>
+                  <div className="text-3xl font-bold">{formatPrice(displayTotal)} {displayCurrency}*</div>
                 </div>
 
                 <div className="flex gap-2">
@@ -377,7 +377,7 @@ const Calculator = () => {
 
                   <div className="pt-4 border-t border-border">
                     <div className="text-sm text-muted-foreground mb-2">Ежемесячный платеж</div>
-                    <div className="text-3xl font-bold">{formatPrice(currency === 'BYN' ? Math.round(monthlyPayment / 100) : monthlyPayment)} {displayCurrency}</div>
+                    <div className="text-3xl font-bold">{formatPrice(currency === 'RUB' ? Math.round(monthlyPayment / 100) : monthlyPayment)} {displayCurrency}</div>
                   </div>
 
                   <div className="space-y-2">
