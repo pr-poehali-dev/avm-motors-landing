@@ -158,14 +158,14 @@ const VehicleDetails = () => {
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-lg p-6 space-y-6 sticky top-28">
                 <div>
-                  <div className="text-sm text-muted-foreground mb-1">Текущая ставка</div>
+                  <div className="text-sm text-muted-foreground mb-1">Цена под ключ</div>
                   <p className="text-3xl font-bold mb-2">{vehicle.price}</p>
                   <p className="text-sm text-muted-foreground mb-4">
                     С доставкой, таможней ≈ {vehicle.price.replace(/[^0-9]/g, '') ? (parseInt(vehicle.price.replace(/[^0-9]/g, '')) * 1.15).toLocaleString('ru-RU') : vehicle.price}
                   </p>
                   <div className="flex items-center gap-2 mb-4">
                     <Icon name="Truck" size={18} className="text-blue-accent" />
-                    <span className="text-sm">Доставка ≈ 3 месяца</span>
+                    <span className="text-sm">Доставка ≈ 30 дней</span>
                   </div>
                 </div>
 
