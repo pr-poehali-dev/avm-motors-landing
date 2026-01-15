@@ -171,7 +171,7 @@ const Calculator = () => {
                       : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
                 >
-                  В РБ
+                  В Россию
                 </button>
                 <button
                   onClick={() => setCurrency('RUB')}
@@ -181,7 +181,7 @@ const Calculator = () => {
                       : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
                 >
-                  В РФ
+                  В Белоруссию
                 </button>
               </div>
 

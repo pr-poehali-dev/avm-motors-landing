@@ -194,7 +194,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                     : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                 }`}
               >
-                В РБ
+                В Россию
               </button>
               <button
                 onClick={() => setCurrency('RUB')}
@@ -204,7 +204,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                     : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                 }`}
               >
-                В РФ
+                В Белоруссию
               </button>
             </div>
 
