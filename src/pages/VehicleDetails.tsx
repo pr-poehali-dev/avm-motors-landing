@@ -160,15 +160,12 @@ const VehicleDetails = () => {
                 <div>
                   <div className="text-sm text-muted-foreground mb-1">Цена под ключ</div>
                   <p className="text-3xl font-bold mb-2">{vehicle.price}</p>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    С доставкой, таможней ≈ {vehicle.price.replace(/[^0-9]/g, '') ? (parseInt(vehicle.price.replace(/[^0-9]/g, '')) * 1.15).toLocaleString('ru-RU') : vehicle.price}
-                  </p>
                   <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mb-4">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-muted-foreground">В кредит от</span>
                       <span className="text-xl font-bold text-accent">
                         {vehicle.price.replace(/[^0-9]/g, '') ? 
-                          Math.round((parseInt(vehicle.price.replace(/[^0-9]/g, '')) * 1.15) / 60).toLocaleString('ru-RU') + ' ₽' 
+                          Math.round(parseInt(vehicle.price.replace(/[^0-9]/g, '')) / 60).toLocaleString('ru-RU') + ' $' 
                           : vehicle.price}/мес
                       </span>
                     </div>
