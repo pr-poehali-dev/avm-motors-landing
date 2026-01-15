@@ -3,31 +3,36 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConsultationModal from '@/components/ConsultationModal';
+import Icon from '@/components/ui/icon';
 
 const Calculator = () => {
+  const [activeTab, setActiveTab] = useState<'detail' | 'credit'>('detail');
   const [region, setRegion] = useState<'RB' | 'RF'>('RB');
-  const [platformPrice, setPlatformPrice] = useState<number>(8000);
-  const [currency] = useState('CNY');
+  const [platformPrice, setPlatformPrice] = useState<number>(1143364);
+  const [currency, setCurrency] = useState<'RUB' | 'BYN'>('RUB');
   const [exchangeRate] = useState(13.5);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [downPaymentPercent, setDownPaymentPercent] = useState(30);
+  const [loanTerm, setLoanTerm] = useState(40);
 
   const [commission, setCommission] = useState(0);
   const [delivery, setDelivery] = useState(0);
   const [customs, setCustoms] = useState(0);
-  const [services] = useState(500);
+  const [services] = useState(currency === 'RUB' ? 98566 : Math.round(98566 / 3.3));
 
   useEffect(() => {
-    const priceInRub = platformPrice * exchangeRate;
-    
-    setCommission(Math.round(priceInRub * 0.08));
-    setDelivery(region === 'RB' ? 80000 : 60000);
-    
-    const customsRate = region === 'RB' ? 0.54 : 0.48;
-    setCustoms(Math.round(priceInRub * customsRate));
-  }, [platformPrice, region, exchangeRate]);
+    setCommission(Math.round(platformPrice * 0.08));
+    setDelivery(currency === 'RUB' ? 354837 : Math.round(354837 / 3.3));
+    setCustoms(currency === 'RUB' ? Math.round(platformPrice * 4.6) : Math.round((platformPrice * 4.6) / 3.3));
+  }, [platformPrice, currency]);
 
-  const totalRub = Math.round(platformPrice * exchangeRate + commission + delivery + services + customs);
-  const totalUsd = Math.round(totalRub / 100);
+  const totalCost = platformPrice + commission + delivery + services + customs;
+  const downPayment = Math.round(totalCost * (downPaymentPercent / 100));
+  const loanAmount = totalCost - downPayment;
+  const interestRate = 0.06;
+  const monthlyPayment = Math.round((loanAmount * (interestRate / 12) * Math.pow(1 + interestRate / 12, loanTerm)) / (Math.pow(1 + interestRate / 12, loanTerm) - 1));
+
+  const formatPrice = (price: number) => price.toLocaleString('ru-RU');
 
   const includedServices = [
     'Подбор под Ваши задачи и бюджет автомобиля, его проверка и организация покупки',
@@ -53,79 +58,207 @@ const Calculator = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            <div className="bg-card border border-border rounded-xl p-6 space-y-6">
-              <div className="flex gap-3 p-1 bg-secondary rounded-lg">
+            <div className="bg-card border border-border rounded-xl overflow-hidden">
+              <div className="bg-card border-b border-border p-4">
+                <h2 className="text-xl font-bold">
+                  {activeTab === 'detail' ? 'Детализация на 14.01.26' : 'Расчет оплаты частями'}
+                </h2>
+              </div>
+
+              {activeTab === 'detail' && (
+              <div className="p-6 space-y-6">
+              <div className="flex gap-2">
                 <button
-                  onClick={() => setRegion('RB')}
-                  className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
-                    region === 'RB'
-                      ? 'bg-background shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                  onClick={() => setCurrency('RUB')}
+                  className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+                    currency === 'RUB'
+                      ? 'bg-secondary text-foreground'
+                      : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
                 >
-                  в РБ
+                  В РБ
                 </button>
                 <button
-                  onClick={() => setRegion('RF')}
-                  className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
-                    region === 'RF'
-                      ? 'bg-background shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                  onClick={() => setCurrency('BYN')}
+                  className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+                    currency === 'BYN'
+                      ? 'bg-secondary text-foreground'
+                      : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
                   }`}
                 >
-                  в РФ
+                  В РФ
                 </button>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium mb-3">
-                  Цена авто на площадке (торговая площадка)
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    value={platformPrice}
-                    onChange={(e) => setPlatformPrice(Number(e.target.value))}
-                    className="w-full px-4 py-4 bg-background border border-border rounded-lg text-2xl font-bold pr-20"
-                  />
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-lg font-semibold text-muted-foreground">
-                    {currency}
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <span className="text-muted-foreground text-sm">Цена авто на аукционе</span>
+                  <div className="text-right">
+                    <input
+                      type="number"
+                      value={platformPrice}
+                      onChange={(e) => setPlatformPrice(Number(e.target.value))}
+                      className="text-2xl font-bold text-right bg-transparent border-none focus:outline-none w-40"
+                    />
+                    <div className="text-sm text-muted-foreground">{currency}</div>
+                  </div>
+                </div>
+
+                <div className="h-2 bg-accent rounded-full relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-orange-accent" />
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Сборы аукциона</span>
+                    <span className="font-semibold">{formatPrice(commission)} ₽</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Доставка</span>
+                    <span className="font-semibold">от {formatPrice(delivery)} ₽</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Наши услуги</span>
+                    <span className="font-semibold">от {formatPrice(services)} ₽</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Растаможка</span>
+                    <span className="font-semibold">≈ {formatPrice(customs)} ₽</span>
+                  </div>
+                </div>
+
+                <button className="w-full py-3 bg-secondary hover:bg-secondary/80 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                  <Icon name="Calculator" size={20} className="text-accent" />
+                  <span className="font-semibold">Таможенный калькулятор</span>
+                </button>
+
+                <div className="pt-4 border-t border-border">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-semibold">Итого "под ключ" в РФ</span>
+                    <Icon name="Info" size={16} className="text-muted-foreground" />
+                  </div>
+                  <div className="text-3xl font-bold">{formatPrice(totalCost)} ₽*</div>
+                </div>
+
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    className="flex-1"
+                    onClick={() => setActiveTab('credit')}
+                  >
+                    Детализация
+                  </Button>
+                  <Button
+                    className="flex-1 bg-accent hover:bg-accent/90"
+                    onClick={() => setActiveTab('credit')}
+                  >
+                    Точный расчет
+                  </Button>
+                </div>
+              </div>
+            </div>
+              )}
+
+              {activeTab === 'credit' && (
+              <div className="p-6 space-y-6">
+                <div className="text-center py-3 bg-secondary rounded-lg font-semibold">
+                  Кредит
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setRegion('RB')}
+                    className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+                      region === 'RB'
+                        ? 'bg-secondary text-foreground'
+                        : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
+                    }`}
+                  >
+                    Беларусь
+                  </button>
+                  <button
+                    onClick={() => setRegion('RF')}
+                    className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+                      region === 'RF'
+                        ? 'bg-secondary text-foreground'
+                        : 'bg-transparent text-muted-foreground hover:bg-secondary/50'
+                    }`}
+                  >
+                    Россия
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Сумма кредита</span>
+                      <select
+                        value={currency}
+                        onChange={(e) => setCurrency(e.target.value as 'RUB' | 'BYN')}
+                        className="px-3 py-1 bg-secondary border border-border rounded text-sm"
+                      >
+                        <option value="RUB">RUB</option>
+                        <option value="BYN">BYN</option>
+                      </select>
+                    </div>
+                    <div className="text-2xl font-bold">{formatPrice(loanAmount)}</div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Первый взнос от 10 до 30%</span>
+                      <select
+                        value={downPaymentPercent}
+                        onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
+                        className="px-3 py-1 bg-secondary border border-border rounded text-sm"
+                      >
+                        <option value={10}>10%</option>
+                        <option value={20}>20%</option>
+                        <option value={30}>30%</option>
+                      </select>
+                    </div>
+                    <div className="text-2xl font-bold">{formatPrice(downPayment)}</div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Срок кредита от 20 до 40 мес.</span>
+                      <select
+                        value={loanTerm}
+                        onChange={(e) => setLoanTerm(Number(e.target.value))}
+                        className="px-3 py-1 bg-secondary border border-border rounded text-sm"
+                      >
+                        <option value={20}>20</option>
+                        <option value={30}>30</option>
+                        <option value={40}>40</option>
+                      </select>
+                    </div>
+                    <div className="text-2xl font-bold">{loanTerm}</div>
+                  </div>
+
+                  <div className="pt-4 border-t border-border">
+                    <div className="text-sm text-muted-foreground mb-2">Ежемесячный платеж</div>
+                    <div className="text-3xl font-bold">{formatPrice(monthlyPayment)} ₽</div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      className="flex-1"
+                      onClick={() => setActiveTab('detail')}
+                    >
+                      Назад
+                    </Button>
+                    <Button
+                      className="flex-1 bg-accent hover:bg-accent/90"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Получить консультацию
+                    </Button>
                   </div>
                 </div>
               </div>
-
-              <div className="space-y-4 pt-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Комиссия и оформление документов</span>
-                  <span className="font-semibold">{commission.toLocaleString()} ₽</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Доставка</span>
-                  <span className="font-semibold">{delivery.toLocaleString()} ₽</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Наши услуги</span>
-                  <span className="font-semibold">{services.toLocaleString()} ₽</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Растаможка</span>
-                  <span className="font-semibold">{customs.toLocaleString()} ₽</span>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-border">
-                <div className="flex justify-between items-baseline mb-2">
-                  <span className="text-lg font-semibold">Итого под ключ в {region === 'RB' ? 'РБ' : 'РФ'}</span>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-4xl font-bold text-accent">{totalRub.toLocaleString()} ₽</div>
-                  <div className="text-xl text-muted-foreground">{totalUsd.toLocaleString()} $</div>
-                </div>
-              </div>
-
-              <p className="text-xs text-muted-foreground">
-                * Итоговая стоимость зависит от характеристик автомобиля и курса валют
-              </p>
+              )}
             </div>
 
             <div className="space-y-6">
