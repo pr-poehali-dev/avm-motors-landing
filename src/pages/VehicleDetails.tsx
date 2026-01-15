@@ -64,9 +64,9 @@ const VehicleDetails = () => {
     window.open(`https://t.me/imVlad_ok?text=${message}`, '_blank');
   };
 
-  const handleWhatsApp = () => {
+  const handleTelegram = () => {
     const message = encodeURIComponent(`Здравствуйте! Интересует ${vehicle.name}`);
-    window.open(`https://wa.me/375293851485?text=${message}`, '_blank');
+    window.open(`https://t.me/imVlad_ok?text=${message}`, '_blank');
   };
 
   const handlePrevImage = () => {
@@ -177,12 +177,12 @@ const VehicleDetails = () => {
                 </Button>
 
                 <Button
-                  onClick={handleWhatsApp}
+                  onClick={handleTelegram}
                   variant="outline"
                   className="w-full h-12 text-base font-semibold gap-2"
                 >
-                  <Icon name="MessageCircle" size={20} />
-                  WhatsApp
+                  <Icon name="Send" size={20} />
+                  Telegram
                 </Button>
 
                 <Button
@@ -195,10 +195,6 @@ const VehicleDetails = () => {
                 </Button>
 
                 <div className="pt-4 border-t border-border space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Icon name="Clock" size={18} className="text-muted-foreground" />
-                    <span className="text-sm">Торги: 15 янв</span>
-                  </div>
                   <div className="flex items-center gap-2">
                     <Icon name="Shield" size={18} className="text-green-accent" />
                     <span className="text-sm">Гарантия сроков доставки</span>
