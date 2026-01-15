@@ -260,14 +260,65 @@ const VehicleDetails = () => {
               </div>
             )}
 
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-bold mb-6">Похожие</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="text-center py-8 text-muted-foreground">
-                  Загрузка похожих автомобилей...
+            {vehiclesData && (() => {
+              const allVehicles = [
+                ...vehiclesData.vehiclesChina.map((v: Vehicle, i: number) => ({ ...v, id: i + 1, region: "Китай" })),
+                ...vehiclesData.vehiclesEurope.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + i + 1, region: "Европа" })),
+                ...vehiclesData.vehiclesAmerican.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + i + 1, region: "Америка" })),
+                ...vehiclesData.vehiclesJapan.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + vehiclesData.vehiclesAmerican.length + i + 1, region: "Япония" })),
+                ...vehiclesData.vehiclesKorea.map((v: Vehicle, i: number) => ({ ...v, id: vehiclesData.vehiclesChina.length + vehiclesData.vehiclesEurope.length + vehiclesData.vehiclesAmerican.length + vehiclesData.vehiclesJapan.length + i + 1, region: "Корея" })),
+              ];
+
+              const currentPrice = parseInt(vehicle.price.replace(/[^0-9]/g, '')) || 0;
+              const priceMin = currentPrice * 0.8;
+              const priceMax = currentPrice * 1.2;
+
+              const similarVehicles = allVehicles
+                .filter((v: any) => {
+                  if (v.id === vehicle.id) return false;
+                  
+                  const vPrice = parseInt(v.price.replace(/[^0-9]/g, '')) || 0;
+                  const isPriceMatch = vPrice >= priceMin && vPrice <= priceMax;
+                  const isBodyTypeMatch = v.type === vehicle.type;
+                  const isPowerMatch = v.power === vehicle.power;
+                  const isFuelMatch = v.fuel === vehicle.fuel;
+                  
+                  return isPriceMatch && isBodyTypeMatch && isPowerMatch && isFuelMatch;
+                })
+                .slice(0, 4);
+
+              return similarVehicles.length > 0 ? (
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h2 className="text-xl font-bold mb-6">Похожие</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {similarVehicles.map((v: any) => (
+                      <div
+                        key={v.id}
+                        onClick={() => navigate(`/catalog/${v.id}`)}
+                        className="bg-secondary rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+                      >
+                        <div className="aspect-[4/3] overflow-hidden">
+                          <img
+                            src={v.image}
+                            alt={v.name}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="p-4 space-y-2">
+                          <h3 className="font-semibold text-sm line-clamp-2">{v.name}</h3>
+                          <p className="text-accent font-bold">{v.price}</p>
+                          <div className="flex flex-wrap gap-1 text-xs text-muted-foreground">
+                            {v.specs.slice(0, 3).map((spec: string, i: number) => (
+                              <span key={i}>{spec}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
+              ) : null;
+            })()}
 
             <div className="bg-card border border-border rounded-lg p-6">
               <h2 className="text-xl font-bold mb-6">5 причин выбрать нас</h2>
