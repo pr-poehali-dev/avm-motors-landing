@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConsultationModal from '@/components/ConsultationModal';
 import Icon from '@/components/ui/icon';
+import { jsPDF } from 'jspdf';
 
 interface SavedCalculation {
   id: string;
@@ -54,25 +55,58 @@ const Calculator = () => {
 
   const formatPrice = (price: number) => price.toLocaleString('ru-RU');
 
-  const saveCalculation = () => {
-    const newCalculation: SavedCalculation = {
-      id: Date.now().toString(),
-      vehicleName: 'Расчет авто',
-      basePrice: platformPrice,
-      currency,
-      totalCost,
-      date: new Date().toLocaleDateString('ru-RU'),
-      ...(activeTab === 'credit' && {
-        downPaymentPercent,
-        loanTerm,
-        monthlyPayment
-      })
-    };
-
-    const updated = [newCalculation, ...savedCalculations].slice(0, 10);
-    setSavedCalculations(updated);
-    localStorage.setItem('savedCalculations', JSON.stringify(updated));
-    alert('Расчет сохранен!');
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    
+    const auctionFees = commission;
+    const deliveryCost = delivery;
+    const serviceFee = services;
+    const customsCost = customs;
+    
+    doc.setFontSize(20);
+    doc.text('Raschet stoimosti avtomobilya', 20, 20);
+    
+    doc.setFontSize(12);
+    doc.text(`Data: ${new Date().toLocaleDateString('ru-RU')}`, 20, 35);
+    
+    doc.setFontSize(14);
+    doc.text('Detalizaciya:', 20, 50);
+    
+    doc.setFontSize(11);
+    let y = 60;
+    doc.text(`Cena na aukcione: ${formatPrice(platformPrice)} ${currency}`, 20, y);
+    y += 10;
+    doc.text(`Sbory aukciona: ${formatPrice(auctionFees)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Dostavka: ot ${formatPrice(deliveryCost)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Nashi uslugi: ot ${formatPrice(serviceFee)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Rastamozhka: ~ ${formatPrice(customsCost)} RUB`, 20, y);
+    y += 15;
+    
+    doc.setFontSize(16);
+    doc.text(`Itogo "pod klyuch": ${formatPrice(totalCost)} RUB`, 20, y);
+    
+    if (activeTab === 'credit') {
+      y += 20;
+      doc.setFontSize(14);
+      doc.text('Kredit:', 20, y);
+      y += 10;
+      doc.setFontSize(11);
+      doc.text(`Pervyj vznos (${downPaymentPercent}%): ${formatPrice(downPayment)} RUB`, 20, y);
+      y += 10;
+      doc.text(`Summa kredita: ${formatPrice(loanAmount)} RUB`, 20, y);
+      y += 10;
+      doc.text(`Srok kredita: ${loanTerm} mes.`, 20, y);
+      y += 10;
+      doc.text(`Stavka: 6%`, 20, y);
+      y += 10;
+      doc.setFontSize(14);
+      doc.text(`Ezhemesyachnyj platezh: ${formatPrice(monthlyPayment)} RUB`, 20, y);
+    }
+    
+    doc.save(`raschet-avto-${Date.now()}.pdf`);
   };
 
   const deleteCalculation = (id: string) => {
@@ -198,10 +232,10 @@ const Calculator = () => {
                   <Button
                     variant="outline"
                     className="flex-1"
-                    onClick={saveCalculation}
+                    onClick={exportToPDF}
                   >
-                    <Icon name="Save" size={16} className="mr-2" />
-                    Сохранить
+                    <Icon name="Download" size={16} className="mr-2" />
+                    PDF
                   </Button>
                   <Button
                     className="flex-1 bg-accent hover:bg-accent/90"
@@ -344,10 +378,10 @@ const Calculator = () => {
                     <Button
                       variant="outline"
                       className="flex-1"
-                      onClick={saveCalculation}
+                      onClick={exportToPDF}
                     >
-                      <Icon name="Save" size={16} className="mr-2" />
-                      Сохранить
+                      <Icon name="Download" size={16} className="mr-2" />
+                      PDF
                     </Button>
                     <Button
                       className="flex-1 bg-accent hover:bg-accent/90"

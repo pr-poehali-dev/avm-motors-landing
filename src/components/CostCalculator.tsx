@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { jsPDF } from 'jspdf';
 
 interface SavedCalculation {
   id: string;
@@ -52,25 +53,57 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
     return price.toLocaleString('ru-RU');
   };
 
-  const saveCalculation = () => {
-    const newCalculation: SavedCalculation = {
-      id: Date.now().toString(),
-      vehicleName,
-      basePrice,
-      currency,
-      totalCost,
-      date: new Date().toLocaleDateString('ru-RU'),
-      ...(activeTab === 'credit' && {
-        downPaymentPercent,
-        loanTerm,
-        monthlyPayment
-      })
-    };
-
-    const updated = [newCalculation, ...savedCalculations].slice(0, 10);
-    setSavedCalculations(updated);
-    localStorage.setItem('savedCalculations', JSON.stringify(updated));
-    alert('Расчет сохранен!');
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    
+    doc.addFont('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf', 'Roboto', 'normal');
+    doc.setFont('Roboto');
+    
+    doc.setFontSize(20);
+    doc.text('Расчет стоимости автомобиля', 20, 20);
+    
+    doc.setFontSize(12);
+    doc.text(`Автомобиль: ${vehicleName}`, 20, 35);
+    doc.text(`Дата: ${new Date().toLocaleDateString('ru-RU')}`, 20, 45);
+    
+    doc.setFontSize(14);
+    doc.text('Детализация:', 20, 60);
+    
+    doc.setFontSize(11);
+    let y = 70;
+    doc.text(`Цена на аукционе: ${formatPrice(basePrice)} ${currency}`, 20, y);
+    y += 10;
+    doc.text(`Сборы аукциона: ${formatPrice(auctionFees)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Доставка: от ${formatPrice(deliveryCost)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Наши услуги: от ${formatPrice(serviceFee)} RUB`, 20, y);
+    y += 10;
+    doc.text(`Растаможка: ~ ${formatPrice(customsCost)} RUB`, 20, y);
+    y += 15;
+    
+    doc.setFontSize(16);
+    doc.text(`Итого "под ключ": ${formatPrice(totalCost)} RUB`, 20, y);
+    
+    if (activeTab === 'credit') {
+      y += 20;
+      doc.setFontSize(14);
+      doc.text('Кредит:', 20, y);
+      y += 10;
+      doc.setFontSize(11);
+      doc.text(`Первый взнос (${downPaymentPercent}%): ${formatPrice(downPayment)} RUB`, 20, y);
+      y += 10;
+      doc.text(`Сумма кредита: ${formatPrice(loanAmount)} RUB`, 20, y);
+      y += 10;
+      doc.text(`Срок кредита: ${loanTerm} мес.`, 20, y);
+      y += 10;
+      doc.text(`Ставка: 6%`, 20, y);
+      y += 10;
+      doc.setFontSize(14);
+      doc.text(`Ежемесячный платеж: ${formatPrice(monthlyPayment)} RUB`, 20, y);
+    }
+    
+    doc.save(`raschet-${vehicleName.replace(/\s+/g, '-')}-${Date.now()}.pdf`);
   };
 
   const deleteCalculation = (id: string) => {
@@ -216,10 +249,10 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                 <Button
                   variant="outline"
                   className="flex-1"
-                  onClick={saveCalculation}
+                  onClick={exportToPDF}
                 >
-                  <Icon name="Save" size={16} className="mr-2" />
-                  Сохранить
+                  <Icon name="Download" size={16} className="mr-2" />
+                  PDF
                 </Button>
                 <Button
                   className="flex-1 bg-accent hover:bg-accent/90"
@@ -337,10 +370,10 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                 <Button
                   variant="outline"
                   className="flex-1"
-                  onClick={saveCalculation}
+                  onClick={exportToPDF}
                 >
-                  <Icon name="Save" size={16} className="mr-2" />
-                  Сохранить
+                  <Icon name="Download" size={16} className="mr-2" />
+                  PDF
                 </Button>
                 <Button
                   className="flex-1 bg-accent hover:bg-accent/90"
