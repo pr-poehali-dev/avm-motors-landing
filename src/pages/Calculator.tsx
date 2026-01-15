@@ -337,8 +337,8 @@ const Calculator = () => {
                         onChange={(e) => setCurrency(e.target.value as 'RUB' | 'BYN')}
                         className="px-3 py-1 bg-secondary border border-border rounded text-sm"
                       >
-                        <option value="RUB">RUB</option>
-                        <option value="BYN">BYN</option>
+                        <option value="RUB">$</option>
+                        <option value="BYN">₽</option>
                       </select>
                     </div>
                     <div className="text-2xl font-bold">{formatPrice(convertForDisplay(loanAmount))} {displayCurrency}</div>
