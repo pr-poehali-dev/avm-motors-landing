@@ -43,6 +43,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   const customsCost = currency === 'RUB' ? Math.round(basePrice * 4.6) : Math.round((basePrice * 4.6) / 3.3);
   
   const totalCost = basePrice + auctionFees + deliveryCost + serviceFee + customsCost;
+  const totalCostUSD = Math.round(totalCost / 100);
 
   const downPayment = Math.round(totalCost * (downPaymentPercent / 100));
   const loanAmount = totalCost - downPayment;
@@ -52,6 +53,10 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
   const formatPrice = (price: number) => {
     return price.toLocaleString('ru-RU');
   };
+  
+  const displayCurrency = currency === 'BYN' ? '$' : '₽';
+  const displayTotal = currency === 'BYN' ? totalCostUSD : totalCost;
+  const convertForDisplay = (price: number) => currency === 'BYN' ? Math.round(price / 100) : price;
 
   const exportToPDF = () => {
     const doc = new jsPDF();
@@ -71,36 +76,38 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
     
     doc.setFontSize(11);
     let y = 70;
-    doc.text(`Цена на аукционе: ${formatPrice(basePrice)} ${currency}`, 20, y);
+    const pdfCurrency = currency === 'BYN' ? 'USD' : 'RUB';
+    
+    doc.text(`Cena na aukcione: ${formatPrice(basePrice)} ${currency}`, 20, y);
     y += 10;
-    doc.text(`Сборы аукциона: ${formatPrice(auctionFees)} RUB`, 20, y);
+    doc.text(`Sbory aukciona: ${formatPrice(convertForDisplay(auctionFees))} ${pdfCurrency}`, 20, y);
     y += 10;
-    doc.text(`Доставка: от ${formatPrice(deliveryCost)} RUB`, 20, y);
+    doc.text(`Dostavka: ot ${formatPrice(convertForDisplay(deliveryCost))} ${pdfCurrency}`, 20, y);
     y += 10;
-    doc.text(`Наши услуги: от ${formatPrice(serviceFee)} RUB`, 20, y);
+    doc.text(`Nashi uslugi: ot ${formatPrice(convertForDisplay(serviceFee))} ${pdfCurrency}`, 20, y);
     y += 10;
-    doc.text(`Растаможка: ~ ${formatPrice(customsCost)} RUB`, 20, y);
+    doc.text(`Rastamozhka: ~ ${formatPrice(convertForDisplay(customsCost))} ${pdfCurrency}`, 20, y);
     y += 15;
     
     doc.setFontSize(16);
-    doc.text(`Итого "под ключ": ${formatPrice(totalCost)} RUB`, 20, y);
+    doc.text(`Itogo "pod klyuch": ${formatPrice(displayTotal)} ${pdfCurrency}`, 20, y);
     
     if (activeTab === 'credit') {
       y += 20;
       doc.setFontSize(14);
-      doc.text('Кредит:', 20, y);
+      doc.text('Kredit:', 20, y);
       y += 10;
       doc.setFontSize(11);
-      doc.text(`Первый взнос (${downPaymentPercent}%): ${formatPrice(downPayment)} RUB`, 20, y);
+      doc.text(`Pervyj vznos (${downPaymentPercent}%): ${formatPrice(convertForDisplay(downPayment))} ${pdfCurrency}`, 20, y);
       y += 10;
-      doc.text(`Сумма кредита: ${formatPrice(loanAmount)} RUB`, 20, y);
+      doc.text(`Summa kredita: ${formatPrice(convertForDisplay(loanAmount))} ${pdfCurrency}`, 20, y);
       y += 10;
-      doc.text(`Срок кредита: ${loanTerm} мес.`, 20, y);
+      doc.text(`Srok kredita: ${loanTerm} mes.`, 20, y);
       y += 10;
-      doc.text(`Ставка: 6%`, 20, y);
+      doc.text(`Stavka: 6%`, 20, y);
       y += 10;
       doc.setFontSize(14);
-      doc.text(`Ежемесячный платеж: ${formatPrice(monthlyPayment)} RUB`, 20, y);
+      doc.text(`Ezhemesyachnyj platezh: ${formatPrice(convertForDisplay(monthlyPayment))} ${pdfCurrency}`, 20, y);
     }
     
     doc.save(`raschet-${vehicleName.replace(/\s+/g, '-')}-${Date.now()}.pdf`);
@@ -216,19 +223,19 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Сборы аукциона</span>
-                  <span className="font-semibold">{formatPrice(auctionFees)} ₽</span>
+                  <span className="font-semibold">{formatPrice(convertForDisplay(auctionFees))} {displayCurrency}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Доставка</span>
-                  <span className="font-semibold">от {formatPrice(deliveryCost)} ₽</span>
+                  <span className="font-semibold">от {formatPrice(convertForDisplay(deliveryCost))} {displayCurrency}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Наши услуги</span>
-                  <span className="font-semibold">от {formatPrice(serviceFee)} ₽</span>
+                  <span className="font-semibold">от {formatPrice(convertForDisplay(serviceFee))} {displayCurrency}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Растаможка</span>
-                  <span className="font-semibold">≈ {formatPrice(customsCost)} ₽</span>
+                  <span className="font-semibold">≈ {formatPrice(convertForDisplay(customsCost))} {displayCurrency}</span>
                 </div>
               </div>
 
@@ -239,10 +246,10 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
 
               <div className="pt-4 border-t border-border">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Итого "под ключ" в РФ</span>
+                  <span className="font-semibold">Итого "под ключ" в {currency === 'BYN' ? 'Беларуси' : 'России'}</span>
                   <Icon name="Info" size={16} className="text-muted-foreground" />
                 </div>
-                <div className="text-3xl font-bold">{formatPrice(totalCost)} ₽*</div>
+                <div className="text-3xl font-bold">{formatPrice(displayTotal)} {displayCurrency}*</div>
               </div>
 
               <div className="flex gap-2">
@@ -307,7 +314,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                     <option value="BYN">BYN</option>
                   </select>
                 </div>
-                <div className="text-2xl font-bold">{formatPrice(loanAmount)}</div>
+                <div className="text-2xl font-bold">{formatPrice(convertForDisplay(loanAmount))} {displayCurrency}</div>
               </div>
 
               <div>
@@ -323,7 +330,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
                     <option value={30}>30%</option>
                   </select>
                 </div>
-                <div className="text-2xl font-bold">{formatPrice(downPayment)}</div>
+                <div className="text-2xl font-bold">{formatPrice(convertForDisplay(downPayment))} {displayCurrency}</div>
               </div>
 
               <div>
@@ -346,7 +353,7 @@ const CostCalculator = ({ basePrice, vehicleName, onClose }: CostCalculatorProps
               </div>
 
               <div className="pt-4 border-t border-border">
-                <div className="text-3xl font-bold mb-1">от {formatPrice(monthlyPayment)} RUB/мес</div>
+                <div className="text-3xl font-bold mb-1">от {formatPrice(convertForDisplay(monthlyPayment))} {displayCurrency}/мес</div>
                 <div className="text-sm text-muted-foreground">Ставка: 6%</div>
               </div>
 
